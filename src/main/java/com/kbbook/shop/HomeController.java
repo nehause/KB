@@ -62,5 +62,17 @@ public class HomeController {
 		
 		return "e";
 	}
+	@RequestMapping(value = "/codeGroupList", method = RequestMethod.GET)
+	public String codeGroupList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "codeGroupList";
+	}
+	@RequestMapping(value = "/codeGroupRegForm", method = RequestMethod.GET)
+	public String codeGroupRegForm(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "codeGroupRegForm";
+	}
 
 }
