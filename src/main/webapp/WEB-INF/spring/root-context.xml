@@ -8,7 +8,7 @@
 	<!-- mysql s 2022.02.15 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://july.c8z1jcudcfqc.ap-northeast-2.rds.amazonaws.com:33602/july" />
+		<property name="url" value="jdbc:mysql://july.c8z1jcudcfqc.ap-northeast-2.rds.amazonaws.com:33062/future" />
 		<property name="username" value="nehause" />
 		<property name="password" value="Wlsgnlwo974!gksdnl974!" />
 	</bean>
