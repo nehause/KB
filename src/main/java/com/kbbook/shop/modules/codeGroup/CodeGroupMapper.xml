@@ -4,9 +4,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kbbook.shop.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.kbbook.shop.modules.codeGroup.CodeGroupMapper">
 
-    <resultMap id="resultMapObj" type="com.kbbook.shop.modules.code.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.kbbook.shop.modules.codeGroup.CodeGroup"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT

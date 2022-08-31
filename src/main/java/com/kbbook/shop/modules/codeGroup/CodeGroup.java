@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class CodeGroup {
 	//KB_code_group
-		private String CGseq;
+		private String CGSeq;
 		private String CGName;
 		private Integer CGUseNy;
 		private Integer CGorder;
@@ -12,11 +12,11 @@ public class CodeGroup {
 		private Date CGRegistration;
 		private Date CGCorrectation;
 //---------------------------
-		public String getCGseq() {
-			return CGseq;
+		public String getCGSeq() {
+			return CGSeq;
 		}
-		public void setCGseq(String cGseq) {
-			CGseq = cGseq;
+		public void setCGSeq(String cGSeq) {
+			CGSeq = cGSeq;
 		}
 		public String getCGName() {
 			return CGName;
