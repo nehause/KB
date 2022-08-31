@@ -32,11 +32,35 @@ public class HomeController {
 		
 		return "home";
 	}
-	@RequestMapping(value = "/sample", method = RequestMethod.GET)
-	public String sample(Locale locale, Model model) {
+	@RequestMapping(value = "/a", method = RequestMethod.GET)
+	public String a(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-	
-		return "sample";
+		
+		return "a";
+	}
+	@RequestMapping(value = "/b", method = RequestMethod.GET)
+	public String b(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "b";
+	}
+	@RequestMapping(value = "/c", method = RequestMethod.GET)
+	public String c(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "c";
+	}
+	@RequestMapping(value = "/d", method = RequestMethod.GET)
+	public String d(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "d";
+	}
+	@RequestMapping(value = "/e", method = RequestMethod.GET)
+	public String e(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		return "e";
 	}
 
 }

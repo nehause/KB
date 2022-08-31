@@ -4,13 +4,11 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>sample</title>
+	<title>A</title>
 </head>
 <body>
 <h1>
-	Hello Sample!
+	Hello A!
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
