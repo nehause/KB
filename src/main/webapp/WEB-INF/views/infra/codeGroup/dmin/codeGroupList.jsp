@@ -10,6 +10,6 @@ codegroup
 <br>
 
 <c:forEach items="${list}" var="list" varStatus="status">
-	<c:out value="${list.CGSeq }"/> / <c:out value="${list.CGName }"/>
+	<c:out value="${list.CGSeq }"/> / <c:out value="${list.CGNameKor }"/>
 	<br>		
 </c:forEach>

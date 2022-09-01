@@ -5,9 +5,10 @@ import java.sql.Date;
 public class CodeGroup {
 	//KB_code_group
 		private String CGSeq;
-		private String CGName;
+		private String CGNameKor;
+		private String CGNameEng;
 		private Integer CGUseNy;
-		private Integer CGorder;
+		private Integer CGOrder;
 		private Integer CGDelNy;
 		private Date CGRegistration;
 		private Date CGCorrectation;
@@ -18,11 +19,17 @@ public class CodeGroup {
 		public void setCGSeq(String cGSeq) {
 			CGSeq = cGSeq;
 		}
-		public String getCGName() {
-			return CGName;
+		public String getCGNameKor() {
+			return CGNameKor;
 		}
-		public void setCGName(String cGName) {
-			CGName = cGName;
+		public void setCGNameKor(String cGNameKor) {
+			CGNameKor = cGNameKor;
+		}
+		public String getCGNameEng() {
+			return CGNameEng;
+		}
+		public void setCGNameEng(String cGNameEng) {
+			CGNameEng = cGNameEng;
 		}
 		public Integer getCGUseNy() {
 			return CGUseNy;
@@ -30,11 +37,11 @@ public class CodeGroup {
 		public void setCGUseNy(Integer cGUseNy) {
 			CGUseNy = cGUseNy;
 		}
-		public Integer getCGorder() {
-			return CGorder;
+		public Integer getCGOrder() {
+			return CGOrder;
 		}
-		public void setCGorder(Integer cGorder) {
-			CGorder = cGorder;
+		public void setCGOrder(Integer cGOrder) {
+			CGOrder = cGOrder;
 		}
 		public Integer getCGDelNy() {
 			return CGDelNy;
