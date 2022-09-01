@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
 
 <html lang="ko">
 <head>
@@ -219,7 +217,7 @@
 									</div>
 									<div style="float:right;">
 										<select class="form-select" id="showBoard" name="showBoard">
-											<option value="10" selected>10</option>
+											<option value="10">10</option>
 											<option value="15">15</option>
 											<option value="20">20</option>
 											<option value="25">25</option>
@@ -241,32 +239,66 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list}" var="list" varStatus="status">
-										<tr>
-											<td>
-												<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
-											</td>
-											<td>
-												<c:out value="${status.count }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGSeq }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGNameKor }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGNameEng }"/>
-											</td>
-											<td>
-												<c:out value="${list.CCount }"/>
-											</td>
-											<td>
-											</td>
-											<td>
-											</td>
-										</tr>
-									</c:forEach>
+									<tr>
+										<td>
+											<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+										</td>
+										<td>1</td>
+										<td>1</td>
+										<td>일</td>
+										<td>one</td>
+										<td>0</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+										</td>
+										<td>2</td>
+										<td>2</td>
+										<td>이</td>
+										<td>two</td>
+										<td>0</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+										</td>
+										<td>3</td>
+										<td>3</td>
+										<td>삼</td>
+										<td>three</td>
+										<td>0</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+										</td>
+										<td>4</td>
+										<td>4</td>
+										<td>사</td>
+										<td>four</td>
+										<td>0</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+										</td>
+										<td>5</td>
+										<td>5</td>
+										<td>오</td>
+										<td>five</td>
+										<td>0</td>
+										<td></td>
+										<td></td>
+									</tr>	
 								</tbody>
 							</table>
 							<div class="d-flex justify-content-center">

@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 //codeGroup - 중간 주소
 @Controller
 @RequestMapping(value = "/codeGroup/")
 public class CodeGroupController {
-	
 	@Autowired
 	CodeGroupServiceImpl service;
-	// new 역할
+	
 
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(Model model) throws Exception {
@@ -22,6 +22,5 @@ public class CodeGroupController {
 		model.addAttribute("list", list);
 		
 		return "infra/codeGroup/dmin/codeGroupList";
-				//뿌리/쓰는 폴더/사용자,관리자/
 	}
 }

@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<title>그룹 코드 관리</title>
+	<title>코드</title>
 	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
@@ -165,45 +165,45 @@
 						<!-- 빈공간을 위해 col은 10까지만 -->
 						<div class="row" style="margin-top: 10px;">
 							<div class="col-2">
-								<select class="form-select bg-light" id="" name="codeGroupUse" aria-label="codeGroupUse">
+								<select class="form-select bg-light" id="codeUse" name="codeUse" aria-label="codeUse">
 									<option value="" selected>N</option>
-									<option value="ascCodeGroupUse">오름차순</option>
-									<option value="desCodeGroupUse">내림차순</option>
+									<option value="CodeUseAsc">오름차순</option>
+									<option value="CodeUseDes">내림차순</option>
 								</select>
 							</div>
 							<div class="col-2">
-								<select class="form-select bg-light" name="codeGroupDoc" aria-label="codeGroupDoc">
+								<select class="form-select bg-light" id="codeDoc" name="codeDoc" aria-label="codeDoc"> <!-- doc = "day of correction" -->
 									<option value="" selected>수정일</option>
-									<option value="codeGroupAsc">오름차순</option>
-									<option value="codeGroupDes">내림차순</option>
+									<option value="codeDocAsc">오름차순</option>
+									<option value="codeDocDes">내림차순</option>
 								</select>
 							</div>
 							<div class="col-2">
-								<input type="text" class="form-control" id="codeGroupDos" name="codeGroupDos" placeholder="시작일">
+								<input type="text" class="form-control" id="codeDos" name="codeDos" placeholder="시작일"> <!-- dos = "day of start" -->
 							</div>
 							<div class="col-2">
-								<input type="text" class="form-control" id="codeGroupDoe" name="codeGroupDoe" placeholder="종료일">
+								<input type="text" class="form-control" id="codeDoe" name="codeDoe" placeholder="종료일"> <!-- doe = "day of end" -->
 							</div>
 						</div>
 						<div class="row" style="height: 10px;"></div>
 						<div class="row" style="margin-bottom: 10px;">
 							<form class="d-flex" role="search">
 								<div class="col-lg-2">
-									<select class="form-select bg-light" id="codeGroupSearchType" name="codeGroupSearchType" aria-label="selectsearch">
+									<select class="form-select bg-light" id="codeSearchType" name="codeSearchType" aria-label="selectsearch">
 										<option selected>검색기준</option>
-										<option value="typeCodeGroup">코드그룹 코드</option>
-										<option value="typeGroupNameKor">코드그룹 이름(한글)</option>
-										<option value="typeGroupNameEng">코드그룹 이름(영문)</option>
+										<option value="typeCode">코드그룹 코드</option>
+										<option value="typeNameKor">코드그룹 이름(한글)</option>
+										<option value="typeNameEng">코드그룹 이름(영문)</option>
 									</select>
 								</div>
 								<div class="col-lg-2">
-									<input class="form-control" type="search" id="codeGroupSearchValue" name="codeGroupSearchValue" placeholder="검색어" aria-label="Search" >
+									<input type="search" class="form-control" id="codeSearchValue" name="codeSearchValue" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
-									<button class="col-2 btn btn-outline-dark" type="submit" style="width:40px; height:38px; margin-right: 10px;">
+									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; margin-right: 10px;">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
-									<button class="col-2 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; margin-right: 10px;">
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
 								</div>
@@ -212,7 +212,7 @@
 					</div>
 					<div class="row">
 						<div class="col">
-							<table class="table table-striped table-hover border" id="codeGroupTable" style="text-align:center;">
+							<table class="table table-striped table-hover border" id="codeTable" style="text-align:center;">
 								<caption style="caption-side: top;">
 									<div style="float: left;">
 										<span>total: 42</span>
@@ -229,13 +229,17 @@
 								<thead>
 									<tr style="background-color: black">
 										<td class="checkboxsize"> 
-											<input class="form-check-input" type="checkbox" name="allCodeGroupCheck" value="allCodeChecked" onclick="selectAll(this);">
+											<input class="form-check-input" type="checkbox" name="allCodeCheck" value="allCodeChecked" onclick="selectAll(this);">
 										</td>
 										<th>#</th>
 										<th>코드그룹 코드</th>
 										<th>코드그룹 이름(한글)</th>
-										<th>코드그룹 이름(영문)</th>
-										<th>코드 갯수</th>
+										<th>코드</th>
+										<th>대체 코드</th>
+										<th>코드 이름(한글)</th>
+										<th>코드 이름(영문)</th>
+										<th>사용</th>
+										<th>순서</th>
 										<th>등록일</th>
 										<th>수정일</th>
 									</tr>
@@ -244,27 +248,19 @@
 									<c:forEach items="${list}" var="list" varStatus="status">
 										<tr>
 											<td>
-												<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+												<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
 											</td>
-											<td>
-												<c:out value="${status.count }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGSeq }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGNameKor }"/>
-											</td>
-											<td>
-												<c:out value="${list.CGNameEng }"/>
-											</td>
-											<td>
-												<c:out value="${list.CCount }"/>
-											</td>
-											<td>
-											</td>
-											<td>
-											</td>
+											<td><c:out value="${status.count }"/></td>
+											<td><c:out value="${list.CCG_CGSeq }"/></td>
+											<td><c:out value="${list.CGName }"/></td>
+											<td><c:out value="${list.CSeq }"/></td>
+											<td></td>
+											<td><a><c:out value="${list.CNameKor }"/></a></td>
+											<td><c:out value="${list.CNameEng }"/></td>
+											<td><c:out value="${list.CUseNy }"/></td>
+											<td><c:out value="${list.COrder }"/></td>
+											<td></td>
+											<td></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -286,14 +282,14 @@
 							</div>
 							<div>
 								<div style="float: left;">
-									<button type="button" class="btn btn-danger" name="codeGroupTableDelect" id="codeGroupTableDelect" data-bs-toggle="modal" data-bs-target="#codeGroupTableDelectModal">
+									<button type="button" class="btn btn-danger" name="codeDelect" id="codeDelect" data-bs-toggle="modal" data-bs-target="#codeDelectModal">
 										<i class="fa-solid fa-trash"></i> 삭제
 									</button>
-									<div class="modal fade" id="codeGroupTableDelectModal" tabindex="-1" aria-labelledby="codeGroupTableDelectLabel" aria-hidden="true">
+									<div class="modal fade" id="codeDelectModal" tabindex="-1" aria-labelledby="#codeDelectModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="codeGroupTableDelectLabel">테이블에서 삭제하시겠습니까?</h5>
+													<h5 class="modal-title" id="codeDelectModalLabel">테이블에서 삭제하시겠습니까?</h5>
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
@@ -310,14 +306,14 @@
 											</div>
 										</div>
 									</div>
-									<button type="button" class="btn btn-outline-danger" id="codeGroupListDelect" data-bs-toggle="modal" data-bs-target="#codeGroupListDelectModal">
+									<button type="button" class="btn btn-outline-danger" id="codeListDelect" data-bs-toggle="modal" data-bs-target="#codeListDelectModal">
 										<i class="fa-regular fa-trash-can"></i> 삭제
 									</button>
-									<div class="modal fade" id="codeGroupListDelectModal" tabindex="-1" aria-labelledby="codeGroupListDelectLabel" aria-hidden="true">
+									<div class="modal fade" id="codeListDelectModal" tabindex="-1" aria-labelledby="codeListDelectLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="codeGroupListDelectLabel">리스트에서 삭제하시겠습니까?</h5>
+													<h5 class="modal-title" id="codeListDelectModalLabel">리스트에서 삭제하시겠습니까?</h5>
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
@@ -339,7 +335,7 @@
 									<button type="button" class="btn btn-success" id="listexecl">
 										<i class="fa-solid fa-file-excel"></i> 액셀
 									</button>
-									<a class="btn btn-primary" href="codeGroupRegForm" role="button" id="listregform">
+									<a class="btn btn-primary" href="memberRegForm.html" role="button" id="listregform">
 										<i class="fa-solid fa-square-plus"></i> 추가
 									</a>
 								</div>
@@ -351,28 +347,28 @@
 		</div>
 	</form>
 	<script type="text/javascript">
-	function checkSelectAll()  {
+		function checkSelectAll()  {
 
-		const checkboxes = document.querySelectorAll('input[name="codeGroupCheck"]');
+			const checkboxes = document.querySelectorAll('input[name="codeCheck"]');
 
-		const checked = document.querySelectorAll('input[name="codeGroupCheck"]:checked');
+			const checked = document.querySelectorAll('input[name="codeCheck"]:checked');
 
-		const selectAll = document.querySelector('input[name="allCodeGroupCheck"]');
-		  
-		if(checkboxes.length === checked.length)  {
-		  selectAll.checked = true;
-		}else {
-		  selectAll.checked = false;
+			const selectAll = document.querySelector('input[name="allCodeCheck"]');
+			  
+			if(checkboxes.length === checked.length)  {
+			  selectAll.checked = true;
+			}else {
+			  selectAll.checked = false;
+			}
+			
 		}
-		
-	}
-	function selectAll(selectall)  {
-		const checkboxes = document.getElementsByName('codeGroupCheck');
-		
-		checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectall.checked
-	  })
-	}
+		function selectAll(selectall)  {
+			const checkboxes = document.getElementsByName('codeCheck');
+			
+			checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectall.checked
+		  })
+		}
 		
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
