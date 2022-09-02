@@ -2,7 +2,7 @@ package com.kbbook.shop.modules.codeGroup;
 
 public class CodeGroupVo {
 	private String searchValue;
-	private String searchOption;
+	private Integer searchOption;
 	
 	public String getSearchValue() {
 		return searchValue;
@@ -10,10 +10,10 @@ public class CodeGroupVo {
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
 	}
-	public String getSearchOption() {
+	public Integer getSearchOption() {
 		return searchOption;
 	}
-	public void setSearchOption(String searchOption) {
+	public void setSearchOption(Integer searchOption) {
 		this.searchOption = searchOption;
 	}
 

@@ -189,7 +189,7 @@
 						<div class="row" style="margin-bottom: 10px;">
 							<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
 								<div class="col-lg-2">
-									<select class="form-select bg-light" id="codeGroupSearchType" name="codeGroupSearchType" aria-label="selectsearch">
+									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
 										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> selected>검색기준</option>
 										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
 										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
@@ -197,7 +197,7 @@
 									</select>
 								</div>
 								<div class="col-lg-2">
-									<input class="form-control" type="search" id="codeGroupSearchValue" name="codeGroupSearchValue" placeholder="검색어" aria-label="Search" >
+									<input class="form-control" type="search" id="searchValue" name="searchValue" value="<c:out value="${vo.searchValue }"/>" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
 									<button class="col-2 btn btn-outline-dark" type="submit" style="width:40px; height:38px; margin-right: 10px;">
@@ -215,7 +215,7 @@
 							<table class="table table-striped table-hover border" id="codeGroupTable" style="text-align:center;">
 								<caption style="caption-side: top;">
 									<div style="float: left;">
-										<span>total: 42</span>
+										<span>total: </span>
 									</div>
 									<div style="float:right;">
 										<select class="form-select" id="showBoard" name="showBoard">
