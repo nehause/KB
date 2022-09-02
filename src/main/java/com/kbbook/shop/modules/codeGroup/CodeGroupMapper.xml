@@ -20,6 +20,7 @@
 		FROM CCG a
 		WHERE 1=1
 			AND CGDelNy = 0
+			AND CGNameKor LIKE CONCAT('%', #{searchValue}, '%')
 	</select>
 
 </mapper>	

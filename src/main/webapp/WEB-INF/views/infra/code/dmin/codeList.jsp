@@ -165,10 +165,9 @@
 						<!-- 빈공간을 위해 col은 10까지만 -->
 						<div class="row" style="margin-top: 10px;">
 							<div class="col-2">
-								<select class="form-select bg-light" id="codeUse" name="codeUse" aria-label="codeUse">
-									<option value="" selected>N</option>
-									<option value="CodeUseAsc">오름차순</option>
-									<option value="CodeUseDes">내림차순</option>
+								<select class="form-select bg-light" id="codeDel" name="codeDel" aria-label="codeDel">
+									<option value="0" selected>N</option>
+									<option value="1">Y</option>
 								</select>
 							</div>
 							<div class="col-2">
@@ -245,24 +244,49 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list}" var="list" varStatus="status">
-										<tr>
-											<td>
-												<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
-											</td>
-											<td><c:out value="${status.count }"/></td>
-											<td><c:out value="${list.CCG_CGSeq }"/></td>
-											<td><c:out value="${list.CGName }"/></td>
-											<td><c:out value="${list.CSeq }"/></td>
-											<td></td>
-											<td><a><c:out value="${list.CNameKor }"/></a></td>
-											<td><c:out value="${list.CNameEng }"/></td>
-											<td><c:out value="${list.CUseNy }"/></td>
-											<td><c:out value="${list.COrder }"/></td>
-											<td></td>
-											<td></td>
-										</tr>
-									</c:forEach>
+										<c:forEach items="${list}" var="list" varStatus="status">
+											<tr>
+												<td>
+													<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
+												</td>
+												<td><c:out value="${status.count }"/></td>
+												<td><c:out value="${list.CCG_CGSeq }"/></td>
+												<td><c:out value="${list.CGName }"/></td>
+												<td><c:out value="${list.CSeq }"/></td>
+												<td></td>
+												<td><a><c:out value="${list.CNameKor }"/></a></td>
+												<td><c:out value="${list.CNameEng }"/></td>
+												<td><c:out value="${list.CUseNy }"/></td>
+												<td><c:out value="${list.COrder }"/></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</c:forEach>
+									<%-- <c:choose>
+										<c:when test="${fn:length(list) eq 20}"> <!-- length(list)가 0이면 이걸 하고 -->
+											<td class="text-center" colspan="9">There is no data!</td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${list}" var="list" varStatus="status">
+												<tr>
+													<td>
+														<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
+													</td>
+													<td><c:out value="${status.count }"/></td>
+													<td><c:out value="${list.CCG_CGSeq }"/></td>
+													<td><c:out value="${list.CGName }"/></td>
+													<td><c:out value="${list.CSeq }"/></td>
+													<td></td>
+													<td><a><c:out value="${list.CNameKor }"/></a></td>
+													<td><c:out value="${list.CNameEng }"/></td>
+													<td><c:out value="${list.CUseNy }"/></td>
+													<td><c:out value="${list.COrder }"/></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose> --%>
 								</tbody>
 							</table>
 							<div class="d-flex justify-content-center">
