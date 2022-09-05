@@ -13,7 +13,18 @@
 			a.*
 		FROM member a
 		WHERE 1=1
-			AND memberDelNy = 0
+			<!-- AND memberDelNy = 0 -->
+			<if test="searchDelNy != null and !searchDelNy.equals('')">AND memberDelNy = #{searchDelNy}</if>
+			<if test="searchGender != null and !searchGender.equals('')">AND gender = #{searchGender}</if>
+			<if test="searchPrivacy != null and !searchPrivacy.equals('')">AND privacy = #{searchPrivacy}</if>
+			<choose>
+				<when test="searchOption == 1">AND memberSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND id LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 4">AND userName LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 5">AND email LIKE CONCAT('%',#{searchValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
 	</select>
 
 </mapper>	

@@ -16,5 +16,7 @@ public class MemberDao {
 	
 	private static String namespace = "com.kbbook.shop.modules.member.MemberMapper";
 	
-	public List<Member> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Member> selectList(MemberVo vo){ 
+		return sqlSession.selectList(namespace + ".selectList", vo); 
+	}
 }

@@ -16,7 +16,16 @@
 		JOIN CCG b on a.CCG_CGSeq = b.CGSeq
 		WHERE 1=1
 			<!-- AND a.CDelNy = 0 -->
+			<if test="searchDelNy != null and !searchDelNy.equals('')">AND CDelNy = #{searchDelNy}</if>
 			<choose>
+				<when test="searchOption == 1">AND CCG_CGSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND b.CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND CSeq = #{searchValue}</when>
+				<when test="searchOption == 4">AND CNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 5">AND CNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+			<!-- <choose>
 				<when test="searchDelNy == 0">
 					<choose>
 						<when test="searchOption == 1">
@@ -57,7 +66,7 @@
 					</choose>
 				</when>
 				<otherwise></otherwise>
-			</choose>
+			</choose> -->
 	</select>
 
 </mapper>

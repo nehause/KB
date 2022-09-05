@@ -21,7 +21,13 @@
 		WHERE 1=1
 			<!-- AND CGDelNy = 0 -->
 			<!-- AND CGNameKor LIKE CONCAT('%', #{searchValue}, '%') -->
-			<!-- <if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if> -->
+			<if test="searchDelNy != null and !searchDelNy.equals('')">AND CGDelNy = #{searchDelNy}</if>
+			<choose>
+				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
 			<!-- <choose>
 				<when test="searchDelNy == 0">AND CGDelNy = 0</when>
 				<when test="searchDelNy == 1">AND CGDelNy = 1</when>
@@ -35,7 +41,7 @@
 				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
 				<otherwise></otherwise>
 			</choose> -->
-			<choose>
+			<!-- <choose>
 				<when test="searchDelNy == 0">
 					<choose>
 						<when test="searchOption == 1">
@@ -76,7 +82,7 @@
 					</choose>
 				</when>
 				<otherwise></otherwise>
-			</choose>
+			</choose> -->
 	</select>
 
 </mapper>	

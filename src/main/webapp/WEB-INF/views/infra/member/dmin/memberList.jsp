@@ -189,44 +189,53 @@
 						<!-- 빈공간을 위해 col은 10까지만 -->
 						<div class="row" style="margin-top: 10px;">
 							<div class="col-2">
-								<select class="form-select bg-light" id="" name="memberDel" aria-label="memberDel">
-									<option value="0" selected>N</option>
-									<option value="1">Y</option>
+								<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="memberUse">
+									<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
+									<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
+									<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
 								</select>
 							</div>
 							<div class="col-2">
-								<select class="form-select bg-light" name="memberDoc" aria-label="memberDoc">
-									<option value="" selected>수정일</option>
-									<option value="memberAsc">오름차순</option>
-									<option value="memberDes">내림차순</option>
+								<select class="form-select bg-light" id="searchGender" name="searchGender" aria-label="memberUse">
+									<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>성별</option>
+									<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>남자</option>
+									<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>여자</option>
+								</select>
+							</div>
+							<div class="col-2">
+								<select class="form-select bg-light" id="searchPrivacy" name="searchPrivacy" aria-label="memberUse">
+									<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>개인정보 유효기간</option>
+									<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>1년</option>
+									<option value="2" <c:if test="${vo.searchDelNy eq 2}">selected</c:if>>3년</option>
+									<option value="3" <c:if test="${vo.searchDelNy eq 3}">selected</c:if>>5년</option>
+									<option value="4" <c:if test="${vo.searchDelNy eq 4}">selected</c:if>>탈퇴시까지</option>
 								</select>
 							</div>
 							<div class="col-2">
 								<input type="text" class="form-control" id="memberDos" name="memberDos" placeholder="시작일">
-							</div>
-							<div class="col-2">
-								<input type="text" class="form-control" id="memberDoe" name="memberDoe" placeholder="종료일">
 							</div>
 						</div>
 						<div class="row" style="height: 10px;"></div>
 						<div class="row" style="margin-bottom: 10px;">
 							<form class="d-flex" role="search">
 								<div class="col-lg-2">
-									<select class="form-select bg-light" id="memberSearchType" name="memberSearchType" aria-label="selectsearch">
-										<option selected>검색기준</option>
-										<option value="typemember">회원 번호</option>
-										<option value="typeGroupNameKor">회원 이름(한글)</option>
-										<option value="typeGroupNameEng">회원 이름(영문)</option>
+									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
+										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
+										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>멤버 번호</option>
+										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>이름</option>
+										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>아이디</option>
+										<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>닉네임</option>
+										<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>이메일</option>
 									</select>
 								</div>
 								<div class="col-lg-2">
 									<input class="form-control" type="search" id="memberSearchValue" name="memberSearchValue" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
-									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; margin-right: 10px;">
+									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
-									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; margin-right: 10px;">
+									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
 								</div>

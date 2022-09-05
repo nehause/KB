@@ -211,9 +211,11 @@
 								<div class="col-lg-2">
 									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
 										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> selected>검색기준</option>
-										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드 코드</option>
-										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드 이름(한글)</option>
-										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드 이름(영문)</option>
+										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
+										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드 코드</option>
+										<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>코드 이름(한글)</option>
+										<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>코드 이름(영문)</option>
 									</select>
 								</div>
 								<div class="col-lg-2">

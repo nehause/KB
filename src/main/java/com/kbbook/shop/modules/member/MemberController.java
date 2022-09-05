@@ -15,9 +15,15 @@ public class MemberController {
 	// new 역할
 
 	@RequestMapping(value = "memberList")
-	public String codeGroupList(Model model) throws Exception {
+	public String codeGroupList(Model model, MemberVo vo) throws Exception {
 
-		List<Member> list = service.selectList();
+		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
+		System.out.println("vo.getSearchPrivacy(): " + vo.getSearchPrivacy());
+		System.out.println("vo.getSearchGender(): " + vo.getSearchGender());
+		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
+		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
+		
+		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/member/dmin/memberList";
