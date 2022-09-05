@@ -147,6 +147,18 @@
 								</div>
 							</li>
 							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
+									작가 관리
+								</button>
+								<div class="collapse" id="writer-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">작가 추가</a></li>
+										<li><a href="#" class="link-dark rounded">작가 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
 								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#order-collapse" aria-expanded="false">
 									주문 관리
 								</button>
@@ -259,7 +271,7 @@
 									<c:forEach items="${list}" var="list" varStatus="status">
 										<tr>
 											<td>
-												<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
+												<input class="form-check-input" type="checkbox" name="memberCheck" value="memberChecked" onclick="checkSelectAll();">
 											</td>
 											<td><c:out value="${status.count }"/></td>
 											<td><c:out value="${list.memberSeq }"/></td>

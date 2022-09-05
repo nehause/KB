@@ -100,54 +100,74 @@
 					<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
 						<ul class="list-unstyled ps-0">
 							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-									Home
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#codeGroup-collapse" aria-expanded="true">
+									코드그룹 관리
 								</button>
-								<div class="collapse show" id="home-collapse">
+								<div class="collapse show" id="codeGroup-collapse">
 									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">Overview</a></li>
-										<li><a href="#" class="link-dark rounded">Updates</a></li>
-										<li><a href="#" class="link-dark rounded">Reports</a></li>
+										<li><a href="#" class="link-dark rounded">코드그룹 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">코드그룹 추가</a></li>
+										<li><a href="#" class="link-dark rounded">코드그룹 수정</a></li>
 									</ul>
 								</div>
 							</li>
 							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-									Dashboard
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
+									코드 관리
 								</button>
-								<div class="collapse" id="dashboard-collapse">
+								<div class="collapse show" id="code-collapse">
 									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">Overview</a></li>
-										<li><a href="#" class="link-dark rounded">Weekly</a></li>
-										<li><a href="#" class="link-dark rounded">Monthly</a></li>
-										<li><a href="#" class="link-dark rounded">Annually</a></li>
+										<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">코드 추가</a></li>
+										<li><a href="#" class="link-dark rounded">코드 수정</a></li>
 									</ul>
 								</div>
 							</li>
 							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-									Orders
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">
+									회원 관리
 								</button>
-								<div class="collapse" id="orders-collapse">
+								<div class="collapse" id="member-collapse">
 									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">New</a></li>
-										<li><a href="#" class="link-dark rounded">Processed</a></li>
-										<li><a href="#" class="link-dark rounded">Shipped</a></li>
-										<li><a href="#" class="link-dark rounded">Returned</a></li>
+										<li><a href="#" class="link-dark rounded">회원 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">회원 추가</a></li>
+										<li><a href="#" class="link-dark rounded">회원 수정</a></li>
 									</ul>
 								</div>
 							</li>
-							<li class="border-top my-3"></li>
 							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-									Account
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#book-collapse" aria-expanded="false">
+									책 관리
 								</button>
-								<div class="collapse" id="account-collapse">
+								<div class="collapse" id="book-collapse">
 									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">New...</a></li>
-										<li><a href="#" class="link-dark rounded">Profile</a></li>
-										<li><a href="#" class="link-dark rounded">Settings</a></li>
-										<li><a href="#" class="link-dark rounded">Sign out</a></li>
+										<li><a href="#" class="link-dark rounded">책 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">책 추가</a></li>
+										<li><a href="#" class="link-dark rounded">책 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
+									작가 관리
+								</button>
+								<div class="collapse" id="writer-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">작가 추가</a></li>
+										<li><a href="#" class="link-dark rounded">작가 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#order-collapse" aria-expanded="false">
+									주문 관리
+								</button>
+								<div class="collapse" id="order-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">주문 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">주문 추가</a></li>
+										<li><a href="#" class="link-dark rounded">주문 수정</a></li>
 									</ul>
 								</div>
 							</li>
