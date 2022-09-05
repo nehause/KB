@@ -18,12 +18,13 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
 		
-		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
+		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
+		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
-		
+		// list는 jsp에서 쓸 객체 변수의 이름
 		return "infra/codeGroup/dmin/codeGroupList";
 	}
 }

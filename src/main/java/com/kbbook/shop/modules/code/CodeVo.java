@@ -1,10 +1,9 @@
-package com.kbbook.shop.modules.codeGroup;
+package com.kbbook.shop.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 	private String searchValue;
 	private Integer searchOption;
 	private Integer searchDelNy;
-	
 	public String getSearchValue() {
 		return searchValue;
 	}
@@ -23,8 +22,6 @@ public class CodeGroupVo {
 	public void setSearchDelNy(Integer searchDelNy) {
 		this.searchDelNy = searchDelNy;
 	}
-	
-	
 	
 	
 }

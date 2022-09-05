@@ -181,33 +181,33 @@
 						<h1>코드 관리</h1>
 						<div class="row" style="height: 20px;"></div>
 					</div>
-					<div class="container-fluid border border-gray">
-						<!-- 빈공간을 위해 col은 10까지만 -->
-						<div class="row" style="margin-top: 10px;">
-							<div class="col-2">
-								<select class="form-select bg-light" id="" name="codeGroupUse" aria-label="codeGroupUse">
-									<option value="" selected>N</option>
-									<option value="ascCodeGroupUse">오름차순</option>
-									<option value="desCodeGroupUse">내림차순</option>
-								</select>
+					<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
+						<div class="container-fluid border border-gray">
+							<!-- 빈공간을 위해 col은 10까지만 -->
+							<div class="row" style="margin-top: 10px;">
+								<div class="col-2">
+									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="codeGroupUse">
+										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if> selected>삭제 여부</option>
+										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
+										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
+									</select>
+								</div>
+								<div class="col-2">
+									<select class="form-select bg-light" name="codeGroupDoc" aria-label="codeGroupDoc">
+										<option value="" selected>수정일</option>
+										<option value="codeGroupAsc">오름차순</option>
+										<option value="codeGroupDes">내림차순</option>
+									</select>
+								</div>
+								<div class="col-2">
+									<input type="text" class="form-control" id="codeGroupDos" name="codeGroupDos" placeholder="시작일">
+								</div>
+								<div class="col-2">
+									<input type="text" class="form-control" id="codeGroupDoe" name="codeGroupDoe" placeholder="종료일">
+								</div>
 							</div>
-							<div class="col-2">
-								<select class="form-select bg-light" name="codeGroupDoc" aria-label="codeGroupDoc">
-									<option value="" selected>수정일</option>
-									<option value="codeGroupAsc">오름차순</option>
-									<option value="codeGroupDes">내림차순</option>
-								</select>
-							</div>
-							<div class="col-2">
-								<input type="text" class="form-control" id="codeGroupDos" name="codeGroupDos" placeholder="시작일">
-							</div>
-							<div class="col-2">
-								<input type="text" class="form-control" id="codeGroupDoe" name="codeGroupDoe" placeholder="종료일">
-							</div>
-						</div>
-						<div class="row" style="height: 10px;"></div>
-						<div class="row" style="margin-bottom: 10px;">
-							<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
+							<div class="row" style="height: 10px;"></div>
+							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-lg-2">
 									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
 										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> selected>검색기준</option>
@@ -227,9 +227,9 @@
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
 								</div>
-							</form>	
+							</div>
 						</div>
-					</div>
+					</form>
 					<div class="row">
 						<div class="col">
 							<table class="table table-striped table-hover border" id="codeGroupTable" style="text-align:center;">
@@ -261,7 +261,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list}" var="list" varStatus="status">
+									<%-- <c:forEach items="${list}" var="list" varStatus="status">
 										<tr>
 											<td>
 												<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
@@ -286,7 +286,40 @@
 											<td>
 											</td>
 										</tr>
-									</c:forEach>
+									</c:forEach> --%>
+									<c:choose>
+										<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+											<td class="text-center" colspan="11">There is no data!</td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${list}" var="list" varStatus="status">
+												<tr>
+													<td>
+														<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
+													</td>
+													<td>
+														<c:out value="${status.count }"/>
+													</td>
+													<td>
+														<c:out value="${list.CGSeq }"/>
+													</td>
+													<td>
+														<c:out value="${list.CGNameKor }"/>
+													</td>
+													<td>
+														<c:out value="${list.CGNameEng }"/>
+													</td>
+													<td>
+														<c:out value="${list.CCount }"/>
+													</td>
+													<td>
+													</td>
+													<td>
+													</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</tbody>
 							</table>
 							<div class="d-flex justify-content-center">

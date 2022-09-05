@@ -10,6 +10,13 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	@Autowired
 	CodeGroupDao dao;
 	
+//	@Override
+//	public List<CodeGroup> selectList(CodeGroupVo vo) throws Exception {
+//		
+//		return dao.selectList(vo);	
+//	}
+//	이 줄은 축약되었다.
+	
 	@Override
 	public List<CodeGroup> selectList(CodeGroupVo vo) throws Exception {
 		

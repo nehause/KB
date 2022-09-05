@@ -15,7 +15,49 @@
 		FROM CG a
 		JOIN CCG b on a.CCG_CGSeq = b.CGSeq
 		WHERE 1=1
-			AND a.CDelNy = 0
+			<!-- AND a.CDelNy = 0 -->
+			<choose>
+				<when test="searchDelNy == 0">
+					<choose>
+						<when test="searchOption == 1">
+							AND CDelNy = #{searchDelNy}
+							AND CSeq = #{searchValue}
+						</when>
+						<when test="searchOption == 2">
+							AND CDelNy = #{searchDelNy}
+							AND CNameKor LIKE CONCAT('%',#{searchValue},'%')
+						</when>
+						<when test="searchOption == 3">
+							AND CDelNy = #{searchDelNy}
+							AND CNameEng LIKE CONCAT('%',#{searchValue},'%')
+						</when>
+						<otherwise>
+							AND CDelNy = #{searchDelNy}
+						</otherwise>
+					</choose>
+				</when>
+				<when test="searchDelNy == 1">
+					<choose>
+						<when test="searchOption == 1">
+							AND CDelNy = #{searchDelNy}
+							AND CSeq = #{searchValue}
+						</when>
+						<when test="searchOption == 2">
+							AND CDelNy = #{searchDelNy}
+							AND CNameKor LIKE CONCAT('%',#{searchValue},'%')
+						</when>
+						<when test="searchOption == 3">
+							AND CDelNy = #{searchDelNy}
+							AND CNameEng LIKE CONCAT('%',#{searchValue},'%')
+						</when>
+						<otherwise>
+							AND CDelNy = #{searchDelNy}
+						</otherwise>
+						
+					</choose>
+				</when>
+				<otherwise></otherwise>
+			</choose>
 	</select>
 
 </mapper>

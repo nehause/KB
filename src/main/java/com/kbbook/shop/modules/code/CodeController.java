@@ -15,9 +15,13 @@ public class CodeController {
 	// new 역할
 
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model) throws Exception {
+	public String codeList(Model model, CodeVo vo) throws Exception {
 
-		List<Code> list = service.selectList();
+		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
+		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
+		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
+		
+		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/code/dmin/codeList";

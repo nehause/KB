@@ -10,8 +10,14 @@ public class CodeServiceImpl implements CodeService {
 	@Autowired
 	CodeDao dao;
 	
+//	@Override
+//	public List<Code> selectList(CodeVo vo) throws Exception {
+//		List<Code> list = dao.selectList(vo);
+//		return list;
+//	}
+	
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList();
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo);
 	}
 }
