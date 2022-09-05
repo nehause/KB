@@ -27,10 +27,10 @@
 			<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDor} and #{SearchDoe}</if>-->
 			<choose>
 				<when test="searchDor == 0">
-					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDos} and #{SearchDoe}</if>
+					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{searchDos} and #{searchDoe}</if>
 				</when>
 				<when test="searchDor == 1">
-					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGCorrectation between #{SearchDos} and #{SearchDoe}</if>
+					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGCorrectation between #{searchDos} and #{searchDoe}</if>
 				</when>
 			</choose>
 			<choose>
