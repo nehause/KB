@@ -9,7 +9,7 @@ public class CodeGroup {
 	private Integer CGUseNy;
 	private Integer CGOrder;
 	private Integer CGDelNy;
-	private Date CGRegistartion;
+	private Date CGRegistration;
 	private Date CGCorrectation;
 	private Integer CCount;
 	public String getCGSeq() {
@@ -48,11 +48,12 @@ public class CodeGroup {
 	public void setCGDelNy(Integer cGDelNy) {
 		CGDelNy = cGDelNy;
 	}
-	public Date getCGRegistartion() {
-		return CGRegistartion;
+	
+	public Date getCGRegistration() {
+		return CGRegistration;
 	}
-	public void setCGRegistartion(Date cGRegistartion) {
-		CGRegistartion = cGRegistartion;
+	public void setCGRegistration(Date cGRegistration) {
+		CGRegistration = cGRegistration;
 	}
 	public Date getCGCorrectation() {
 		return CGCorrectation;

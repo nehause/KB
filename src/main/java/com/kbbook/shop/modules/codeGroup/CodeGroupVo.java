@@ -1,9 +1,14 @@
 package com.kbbook.shop.modules.codeGroup;
 
+import java.sql.Date;
+
 public class CodeGroupVo {
 	private String searchValue;
 	private Integer searchOption;
 	private Integer searchDelNy;
+	private Integer searchDor;
+	private Date searchDos;
+	private Date searchDoe;
 	
 	public String getSearchValue() {
 		return searchValue;
@@ -22,6 +27,25 @@ public class CodeGroupVo {
 	}
 	public void setSearchDelNy(Integer searchDelNy) {
 		this.searchDelNy = searchDelNy;
+	}
+	
+	public Integer getSearchDor() {
+		return searchDor;
+	}
+	public void setSearchDor(Integer searchDor) {
+		this.searchDor = searchDor;
+	}
+	public Date getSearchDos() {
+		return searchDos;
+	}
+	public void setSearchDos(Date searchDos) {
+		this.searchDos = searchDos;
+	}
+	public Date getSearchDoe() {
+		return searchDoe;
+	}
+	public void setSearchDoe(Date searchDoe) {
+		this.searchDoe = searchDoe;
 	}
 	
 	

@@ -182,7 +182,7 @@
 					<div class="row" style="height: 20px;"></div>
 					<div class="row" style="height: 100px;">
 						<div class="row" style="height: 20px;"></div>
-						<h1>코드 관리</h1>
+						<h1>멤버 관리</h1>
 						<div class="row" style="height: 20px;"></div>
 					</div>
 				<div class="container-fluid border border-gray">
@@ -277,24 +277,31 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list}" var="list" varStatus="status">
-										<tr>
-											<td>
-												<input class="form-check-input" type="checkbox" name="memberCheck" value="memberChecked" onclick="checkSelectAll();">
-											</td>
-											<td><c:out value="${status.count }"/></td>
-											<td><c:out value="${list.memberSeq }"/></td>
-											<td><c:out value="${list.name }"/></td>
-											<td><c:out value="${list.id }"/></td>
-											<td><c:out value="${list.userName }"/></td>
-											<td><c:out value="${list.gender }"/></td>
-											<td><a><c:out value="${list.dob }"/></a></td>
-											<td><c:out value="${list.number }"/></td>
-											<td><c:out value="${list.email }"/></td>
-											<td><c:out value="${list.privacy }"/></td>
-											<td><c:out value="${list.accmulate }"/></td>
-										</tr>
-									</c:forEach>
+									<c:choose>
+										<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+											<td class="text-center" colspan="12">There is no data!</td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${list}" var="list" varStatus="status">
+												<tr>
+													<td>
+														<input class="form-check-input" type="checkbox" name="memberCheck" value="memberChecked" onclick="checkSelectAll();">
+													</td>
+													<td><c:out value="${status.count }"/></td>
+													<td><c:out value="${list.memberSeq }"/></td>
+													<td><c:out value="${list.name }"/></td>
+													<td><c:out value="${list.id }"/></td>
+													<td><c:out value="${list.userName }"/></td>
+													<td><c:out value="${list.gender }"/></td>
+													<td><a><c:out value="${list.dob }"/></a></td>
+													<td><c:out value="${list.number }"/></td>
+													<td><c:out value="${list.email }"/></td>
+													<td><c:out value="${list.privacy }"/></td>
+													<td><c:out value="${list.accmulate }"/></td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</tbody>
 							</table>
 							<div class="d-flex justify-content-center">

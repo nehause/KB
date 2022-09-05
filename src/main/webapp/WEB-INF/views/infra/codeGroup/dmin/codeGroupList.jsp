@@ -21,7 +21,10 @@
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
 		$( function() {
-			$( "#datepicker" ).datepicker();
+			$( "#searchDos" ).datepicker({ dateFormat: 'yy-mm-dd' });
+		} );
+		$( function() {
+			$( "#searchDoe" ).datepicker({ dateFormat: 'yy-mm-dd' });
 		} );
 	</script>
 	<style> 
@@ -196,30 +199,30 @@
 							<div class="row" style="margin-top: 10px;">
 								<div class="col-2">
 									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="codeGroupUse">
-										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if> selected>삭제 여부</option>
+										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
 										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
 										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
 									</select>
 								</div>
 								<div class="col-2">
-									<select class="form-select bg-light" name="codeGroupDoc" aria-label="codeGroupDoc">
-										<option value="" selected>수정일</option>
-										<option value="codeGroupAsc">오름차순</option>
-										<option value="codeGroupDes">내림차순</option>
+									<select class="form-select bg-light" name="searchDor" aria-label="searchDor">
+										<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
+										<option value="0" <c:if test="${vo.searchDor eq 0}">selected</c:if>>등록일</option>
+										<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>수정일</option>
 									</select>
 								</div>
 								<div class="col-2">
-									<input type="text" class="form-control" id="codeGroupDos" name="codeGroupDos" placeholder="시작일">
+									<input type="text" class="form-control" id="searchDos" name="searchDos" value="<c:out value="${vo.searchDos }"/>" placeholder="시작일">
 								</div>
 								<div class="col-2">
-									<input type="text" class="form-control" id="codeGroupDoe" name="codeGroupDoe" placeholder="종료일">
+									<input type="text" class="form-control" id="searchDoe" name="searchDoe" value="<c:out value="${vo.searchDoe }"/>" placeholder="종료일">
 								</div>
 							</div>
 							<div class="row" style="height: 10px;"></div>
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-lg-2">
 									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
-										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> selected>검색기준</option>
+										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> >검색기준</option>
 										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
 										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드그룹 이름(영문)</option>
@@ -298,7 +301,7 @@
 									</c:forEach> --%>
 									<c:choose>
 										<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
-											<td class="text-center" colspan="11">There is no data!</td>
+											<td class="text-center" colspan="8">There is no data!</td>
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
@@ -322,8 +325,10 @@
 														<c:out value="${list.CCount }"/>
 													</td>
 													<td>
+														<c:out value="${list.CGRegistration }"/>
 													</td>
 													<td>
+														<c:out value="${list.CGCorrectation }"/>
 													</td>
 												</tr>
 											</c:forEach>

@@ -22,6 +22,17 @@
 			<!-- AND CGDelNy = 0 -->
 			<!-- AND CGNameKor LIKE CONCAT('%', #{searchValue}, '%') -->
 			<if test="searchDelNy != null and !searchDelNy.equals('')">AND CGDelNy = #{searchDelNy}</if>
+			<!-- <if test="searchDos != null and !searchDos.equals('')">AND CGRegistration <= #{SearchDos}</if>
+			<if test="searchDoe != null and !searchDoe.equals('')">AND CGRegistration >= #{SearchDoe}</if>
+			<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDor} and #{SearchDoe}</if>-->
+			<choose>
+				<when test="searchDor == 0">
+					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDos} and #{SearchDoe}</if>
+				</when>
+				<when test="searchDor == 1">
+					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGCorrectation between #{SearchDos} and #{SearchDoe}</if>
+				</when>
+			</choose>
 			<choose>
 				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
 				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>

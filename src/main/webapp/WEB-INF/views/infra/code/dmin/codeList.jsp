@@ -187,7 +187,7 @@
 							<div class="row" style="margin-top: 10px;">
 								<div class="col-2">
 									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="codeUse">
-										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if> selected>삭제 여부</option>
+										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
 										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
 										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
 									</select>
@@ -210,7 +210,7 @@
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-lg-2">
 									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
-										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if> selected>검색기준</option>
+										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
 										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
 										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드 코드</option>
