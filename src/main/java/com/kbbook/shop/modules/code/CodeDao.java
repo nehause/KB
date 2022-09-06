@@ -25,4 +25,14 @@ public class CodeDao {
 //		List<Code> list = sqlSession.selectList("com.kbbook.shop.modules.code.CodeMapper.selectList", vo);
 //		return list;
 		}
+	
+	public int insert(Code dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public List<Code> viewList(){
+		return sqlSession.selectList(namespace + ".viewList", "");
+	}
 }

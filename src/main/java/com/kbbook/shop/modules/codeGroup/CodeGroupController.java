@@ -30,4 +30,19 @@ public class CodeGroupController {
 		// list는 jsp에서 쓸 객체 변수의 이름
 		return "infra/codeGroup/dmin/codeGroupList";
 	}
+	
+	@RequestMapping(value = "codeGroupForm")
+	public String codeGroupForm() throws Exception {
+		
+		return "infra/codeGroup/dmin/codeGroupForm";
+	}
+	
+	@RequestMapping(value = "codeGroupInst")
+	public String codeGroupInst(CodeGroup dto) throws Exception {
+		
+		int result = service.insert(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
 }

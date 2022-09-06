@@ -27,4 +27,21 @@ public class CodeController {
 		return "infra/code/dmin/codeList";
 				//뿌리/쓰는 폴더/사용자,관리자/
 	}
+	
+	@RequestMapping(value="codeForm")
+	public String codeForm(Model model) throws Exception{
+	
+		List<Code> view = service.viewList();
+		model.addAttribute("view", view);
+		return "infra/code/dmin/codeForm";
+	}
+	
+	@RequestMapping(value = "codeInst")
+	public String codeInst(Code dto) throws Exception{
+		
+		int result = service.insert(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/code/codeInst";
+	}
 }

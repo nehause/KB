@@ -190,7 +190,7 @@
 					<div class="row" style="height: 20px;"></div>
 					<div class="row" style="height: 100px;">
 						<div class="row" style="height: 20px;"></div>
-						<h1>코드 관리</h1>
+						<h1>코드그룹 관리</h1>
 						<div class="row" style="height: 20px;"></div>
 					</div>
 					<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
@@ -406,7 +406,7 @@
 									<button type="button" class="btn btn-success" id="listexecl">
 										<i class="fa-solid fa-file-excel"></i> 액셀
 									</button>
-									<a class="btn btn-primary" href="codeGroupRegForm" role="button" id="listregform">
+									<a class="btn btn-primary" href="codeGroupForm" role="button" id="listregform">
 										<i class="fa-solid fa-square-plus"></i> 추가
 									</a>
 								</div>

@@ -68,5 +68,38 @@
 				<otherwise></otherwise>
 			</choose> -->
 	</select>
+	<insert id="insert">
+		INSERT INTO CG(
+			CCG_CGSeq
+			,CNameKor
+			,CNameEng
+			,CUseNy
+			,CDelNy
+			,COrder
+			,CRegistration
+		)
+		VALUES(
+			#{CCG_CGSeq}
+			,#{CNameKor}
+			,#{CNameEng}
+			,#{CUseNy}
+			,#{CDelNy}
+			,#{COrder}
+			,#{CRegistration}
+		)
+		<selectKey resultType="String" keyProperty="CSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="viewList" resultMap="resultMapObj">
+		SELECT
+		a.*
+			,b.CGNameKor as CGName
+		FROM CG a
+		JOIN CCG b on a.CCG_CGSeq = b.CGSeq
+		WHERE 1=1
+		GROUP BY CCG_CGSeq
+	</select>
 
 </mapper>

@@ -25,14 +25,15 @@
 			<!-- <if test="searchDos != null and !searchDos.equals('')">AND CGRegistration <= #{SearchDos}</if>
 			<if test="searchDoe != null and !searchDoe.equals('')">AND CGRegistration >= #{SearchDoe}</if>
 			<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDor} and #{SearchDoe}</if>-->
-			<choose>
+			<!-- <choose>
 				<when test="searchDor == 0">
 					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{searchDos} and #{searchDoe}</if>
 				</when>
 				<when test="searchDor == 1">
 					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGCorrectation between #{searchDos} and #{searchDoe}</if>
 				</when>
-			</choose>
+				<otherwise></otherwise>
+			</choose> -->
 			<choose>
 				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
 				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
@@ -95,5 +96,26 @@
 				<otherwise></otherwise>
 			</choose> -->
 	</select>
+	<insert id ="insert">
+		INSERT INTO CCG (
+			CGNameKor
+			,CGNameEng
+			,CGUseNy
+			,CGOrder
+			,CGDelNy
+			,CGRegistration
+		)
+		VALUES (
+			#{CGNameKor}
+			,#{CGNameEng}
+			,#{CGUseNy}
+			,#{CGOrder}
+			,#{CGDelNy}
+			,#{CGRegistration}
+		)
+		<selectKey resultType="String" keyProperty="CGSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 
 </mapper>	
