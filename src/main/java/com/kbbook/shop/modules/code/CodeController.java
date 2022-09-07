@@ -39,9 +39,15 @@ public class CodeController {
 	@RequestMapping(value = "codeInst")
 	public String codeInst(Code dto) throws Exception{
 		
+		System.out.println("dto.getCCG_CGSeq(): " + dto.getCCG_CGSeq());
+		System.out.println("dto.getCNameKor(): " + dto.getCNameKor());
+		System.out.println("dto.getCOrder(): " + dto.getCOrder());
+		
 		int result = service.insert(dto);
+		
+		
 		System.out.println("controller result: " + result);
 		
-		return "redirect:/code/codeInst";
+		return "redirect:/code/codeList";
 	}
 }

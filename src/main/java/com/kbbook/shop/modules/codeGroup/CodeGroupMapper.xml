@@ -110,7 +110,7 @@
 			,#{CGNameEng}
 			,#{CGUseNy}
 			,#{CGOrder}
-			,#{CGDelNy}
+			,0
 			,#{CGRegistration}
 		)
 		<selectKey resultType="String" keyProperty="CGSeq" order="AFTER">

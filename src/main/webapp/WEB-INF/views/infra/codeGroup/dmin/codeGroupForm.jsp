@@ -200,8 +200,8 @@
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CGUseNy">사용여부</label>
 							<select class="form-select" id="CGUseNy" name="CGUseNy">
-								<option value="0" <c:if test="${dto.CGUseNy eq 0}">selected</c:if>>N</option>
-								<option value="1" <c:if test="${dto.CGUseNy eq 1}">selected</c:if> selected>Y</option>
+								<option value="0" >N</option>
+								<option value="1" selected>Y</option>
 							</select>
 						</div>
 						<div class="col-sm-5 gy-4">
@@ -213,8 +213,8 @@
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CGDelNy">삭제여부</label>
 							<select class="form-select" id="CGDelNy" name="CGDelNy" disabled>
-								<option value="0" <c:if test="${dto.CGDelNy eq 0}">selected</c:if> selected>N</option>
-								<option value="1" <c:if test="${dto.CGDelNy eq 1}">selected</c:if>>Y</option>
+								<option value="0" selected>N</option>
+								<option value="1" >Y</option>
 							</select>
 						</div>
 					</div>
@@ -235,7 +235,7 @@
 							<button type="button" class="btn btn-danger">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" onclick="test();">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
 							<button type="submit" class="btn btn-success">
@@ -249,6 +249,24 @@
 	</div>
 
 <!-- end -->
+	<script type="text/javascript">
+		function test(){
+			
+			alert("test");
+			
+			alert(document.getElementById('CGNameKor').value);
+			alert(document.getElementById('CGNameEng').value);
+			alert(document.getElementById('CGUseNy').value);
+			alert(document.getElementById('CGOrder').value);
+			alert(document.getElementById('CGDelNy').value);
+			alert(document.getElementById('CGRegistration').value);
+			
+			
+			return false;
+			//이거 쓰면 저장 안된다.
+		}
+	
+	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

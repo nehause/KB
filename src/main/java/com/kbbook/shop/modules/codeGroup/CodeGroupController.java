@@ -40,6 +40,7 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroup dto) throws Exception {
 		
+		System.out.println("dto.getCGDelNy(): " + dto.getCGDelNy());
 		int result = service.insert(dto);
 		System.out.println("controller result: " + result);
 		

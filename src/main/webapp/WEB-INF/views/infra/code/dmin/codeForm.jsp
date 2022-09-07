@@ -185,8 +185,8 @@
 							<label for="CCG_CGSeq">코드그룹</label>
 							<select class="form-select" id="CCG_CGSeq" name="CCG_CGSeq">
 								<c:forEach items="${view}" var="view" varStatus="status">
-									<option>
-										<c:out value="${view.CGName }"/>
+									<option value="${view.CGSeq}">
+										<c:out value="${view.CGNameKor }"/>
 									</option>
 								</c:forEach>
 							</select>
@@ -199,7 +199,7 @@
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="COrder">순서</label>
-							<input type="text" class="form-control" id="COrder" value="<c:out value="${dto.COrder }"/>" placeholder="숫자">
+							<input type="text" class="form-control" id="COrder" name="COrder" value="<c:out value="${dto.COrder }"/>" placeholder="숫자">
 						</div>
 					</div>
 					<div class="row">
@@ -216,16 +216,16 @@
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CUseNy">사용여부</label>
 							<select class="form-select" id="CUseNy" name="CUseNy">
-								<option value="0" <c:if test="${dto.CUseNy eq 0}">selected</c:if>>N</option>
-								<option value="1" <c:if test="${dto.CUseNy eq 1}">selected</c:if> selected>Y</option>
+								<option value="0">N</option>
+								<option value="1" selected>Y</option>
 								
 							</select>
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="codeDelNy">삭제여부</label>
 							<select class="form-select" id="CDelNy" name="CDelNy" disabled>
-								<option value="0" <c:if test="${dto.CDelNy eq 0}">selected</c:if> selected>N</option>
-								<option value="1" <c:if test="${dto.CDelNy eq 1}">selected</c:if>>Y</option>
+								<option value="0" selected>N</option>
+								<option value="1">Y</option>
 							</select>
 						</div>
 					</div>

@@ -286,8 +286,8 @@
 													<td><c:out value="${list.CNameEng }"/></td>
 													<td><c:out value="${list.CUseNy }"/></td>
 													<td><c:out value="${list.COrder }"/></td>
-													<td></td>
-													<td></td>
+													<td><c:out value="${list.CRegistration }"/></td>
+													<td><c:out value="${list.CCorrectation }"/></td>
 												</tr>
 											</c:forEach>
 										</c:otherwise>

@@ -11,8 +11,10 @@ public class Code {
 	private Integer CDelNy;
 	private Integer COrder;
 	private Date CRegistration;
-	private Date CCorrection;
+	private Date CCorrectation;
 	private String CGName;
+	private String CGSeq;
+	private String CGNameKor;
 	/////////////////////////////////////////////////////////
 	public String getCSeq() {
 		return CSeq;
@@ -62,17 +64,30 @@ public class Code {
 	public void setCRegistration(Date cRegistration) {
 		CRegistration = cRegistration;
 	}
-	public Date getCCorrection() {
-		return CCorrection;
+	
+	public Date getCCorrectation() {
+		return CCorrectation;
 	}
-	public void setCCorrection(Date cCorrection) {
-		CCorrection = cCorrection;
+	public void setCCorrectation(Date cCorrectation) {
+		CCorrectation = cCorrectation;
 	}
 	public String getCGName() {
 		return CGName;
 	}
 	public void setCGName(String cGName) {
 		CGName = cGName;
+	}
+	public String getCGSeq() {
+		return CGSeq;
+	}
+	public void setCGSeq(String cGSeq) {
+		CGSeq = cGSeq;
+	}
+	public String getCGNameKor() {
+		return CGNameKor;
+	}
+	public void setCGNameKor(String cGNameKor) {
+		CGNameKor = cGNameKor;
 	}
 	
 	
