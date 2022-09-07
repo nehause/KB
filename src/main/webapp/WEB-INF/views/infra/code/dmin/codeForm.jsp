@@ -178,12 +178,15 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<form method="post" action="/code/codeInst">
+				<form method="post" action="/code/codeInst" id="regCodeForm" name="regCodeForm">
 					<div class="row">
 						<H1>코드 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CCG_CGSeq">코드그룹</label>
 							<select class="form-select" id="CCG_CGSeq" name="CCG_CGSeq">
+								<option value="">
+									코드그룹 선택
+								</option>
 								<c:forEach items="${view}" var="view" varStatus="status">
 									<option value="${view.CGSeq}">
 										<c:out value="${view.CGNameKor }"/>
@@ -249,7 +252,7 @@
 							<button type="button" class="btn btn-danger">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="submit" class="btn btn-success">
+							<button type="button" class="btn btn-success" onclick="check();">
 							<i class="fa-solid fa-bookmark"></i>
 							</button>
 						</div>
@@ -260,6 +263,55 @@
 	</div>
 
 <!-- end -->
+	<script type="text/javascript">
+	function check(){
+		
+		if(document.getElementById('CCG_CGSeq').value == '' || document.getElementById('CCG_CGSeq').value == null){
+			alert("코드그룹을 분류해주세요");
+			document.getElementById('CCG_CGSeq').value = "";
+			document.getElementById('CCG_CGSeq').focus();
+			return false;
+		}
+		
+		
+		if(document.getElementById('COrder').value == '' || document.getElementById('COrder').value == null){
+			alert("순서를 입력해주세요");
+			document.getElementById('COrder').value = "";
+			document.getElementById('COrder').focus();
+			return false;
+		}
+		
+		
+		if(document.getElementById('CNameKor').value == '' || document.getElementById('CNameKor').value == null){
+			alert("한글명을 입력해주세요");
+			document.getElementById('CNameKor').value = "";
+			document.getElementById('CNameKor').focus();
+			return false;
+		}
+		
+		
+		if(document.getElementById('CNameEng').value == '' || document.getElementById('CNameEng').value == null){
+			alert("영문명을 입력해주세요");
+			document.getElementById('CNameEng').value = "";
+			document.getElementById('CNameEng').focus();
+			return false;
+		}
+		
+		
+		if(document.getElementById('CRegistration').value == '' || document.getElementById('CRegistration').value == null){
+			alert("등록일을 입력해주세요");
+			document.getElementById('CRegistration').value = "";
+			document.getElementById('CRegistration').focus();
+			return false;
+		}
+		
+		document.getElementById('regCodeForm').submit();
+		return false;
+
+	}
+
+	
+	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

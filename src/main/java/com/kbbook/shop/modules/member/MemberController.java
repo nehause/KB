@@ -29,4 +29,19 @@ public class MemberController {
 		return "infra/member/dmin/memberList";
 				//뿌리/쓰는 폴더/사용자,관리자/
 	}
+	
+	@RequestMapping(value = "memberForm")
+	public String memberForm() throws Exception {
+		
+		return "infra/member/dmin/memberForm";
+	}
+	
+	@RequestMapping(value="memberInst")
+	public String memberInst(Member dto) throws Exception{
+		
+		int result = service.insert(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/member/memberList";
+	}
 }

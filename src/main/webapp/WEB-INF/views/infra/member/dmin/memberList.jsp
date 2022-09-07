@@ -374,7 +374,7 @@
 									<button type="button" class="btn btn-success" id="listexecl">
 										<i class="fa-solid fa-file-excel"></i> 액셀
 									</button>
-									<a class="btn btn-primary" href="memberRegForm.html" role="button" id="listregform">
+									<a class="btn btn-primary" href="memberForm" role="button" id="listregform">
 										<i class="fa-solid fa-square-plus"></i> 추가
 									</a>
 								</div>

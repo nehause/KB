@@ -178,7 +178,7 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<form method="post" action="/codeGroup/codeGroupInst">
+				<form method="post" action="/codeGroup/codeGroupInst" id="regCodeGroupForm" name="regCodeGroupForm">
 					<div class="row">
 					<H1>코드 그룹 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
@@ -235,10 +235,10 @@
 							<button type="button" class="btn btn-danger">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button type="button" class="btn btn-danger" onclick="test();">
+							<button type="button" class="btn btn-danger">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="submit" class="btn btn-success">
+							<button type="button" class="btn btn-success" onclick="test();">
 								<i class="fa-solid fa-bookmark"></i>
 							</button>
 						</div>
@@ -252,18 +252,36 @@
 	<script type="text/javascript">
 		function test(){
 			
-			alert("test");
+			if(document.getElementById('CGNameKor').value == '' || document.getElementById('CGNameKor').value == null){
+				alert("한글명을 입력해주세요");
+				document.getElementById('CGNameKor').value = "";
+				document.getElementById('CGNameKor').focus();
+				return false;
+			}
 			
-			alert(document.getElementById('CGNameKor').value);
-			alert(document.getElementById('CGNameEng').value);
-			alert(document.getElementById('CGUseNy').value);
-			alert(document.getElementById('CGOrder').value);
-			alert(document.getElementById('CGDelNy').value);
-			alert(document.getElementById('CGRegistration').value);
+			if(document.getElementById('CGNameEng').value == '' || document.getElementById('CGNameEng').value == null){
+				alert("영문명을 입력해주세요");
+				document.getElementById('CGNameEng').value = "";
+				document.getElementById('CGNameEng').focus();
+				return false;
+			}
 			
+			if(document.getElementById('CGOrder').value == '' || document.getElementById('CGOrder').value == null){
+				alert("순서를 입력해주세요");
+				document.getElementById('CGOrder').value = "";
+				document.getElementById('CGOrder').focus();
+				return false;
+			}
 			
+			if(document.getElementById('CGRegistration').value == '' || document.getElementById('CGRegistration').value == null){
+				alert("등록일을 입력해주세요");
+				document.getElementById('CGRegistration').value = "";
+				document.getElementById('CGRegistration').focus();
+				return false;
+			}
+			
+			document.getElementById('regCodeGroupForm').submit();
 			return false;
-			//이거 쓰면 저장 안된다.
 		}
 	
 	</script>

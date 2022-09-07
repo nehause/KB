@@ -26,5 +26,51 @@
 				<otherwise></otherwise>
 			</choose>
 	</select>
+	
+	<insert id ="insert">
+		INSERT INTO member (
+			id
+			,password
+			,name
+			,userName
+			,gender
+			,dob
+			,phone
+			,number
+			,email
+			,zip
+			,address1
+			,address2
+			,privacy
+			,email_ctr
+			,kakao_ctr
+			,sms_ctr
+			,accmulate
+			,memberDelNy
+		)
+		VALUES (
+			#{MId}
+			,#{MPassword}
+			,#{MName}
+			,#{MUserName}
+			,#{MGender}
+			,#{MDob}
+			,#{MPhone}
+			,#{MNumber}
+			,#{MEmail}
+			,#{MZip}
+			,#{MAddress1}
+			,#{MAddress2}
+			,#{MPrivacy}
+			,#{MEmail_ctr}
+			,#{MKakao_ctr}
+			,#{MSms_ctr}
+			,0
+			,0
+		)
+		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 
 </mapper>	
