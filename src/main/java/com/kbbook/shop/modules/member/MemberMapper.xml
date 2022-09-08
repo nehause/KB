@@ -49,22 +49,22 @@
 			,memberDelNy
 		)
 		VALUES (
-			#{MId}
-			,#{MPassword}
-			,#{MName}
-			,#{MUserName}
-			,#{MGender}
-			,#{MDob}
-			,#{MPhone}
-			,#{MNumber}
-			,#{MEmail}
-			,#{MZip}
-			,#{MAddress1}
-			,#{MAddress2}
-			,#{MPrivacy}
-			,#{MEmail_ctr}
-			,#{MKakao_ctr}
-			,#{MSms_ctr}
+			#{id}
+			,#{password}
+			,#{name}
+			,#{userName}
+			,#{gender}
+			,#{dob}
+			,#{phone}
+			,#{number}
+			,#{email}
+			,#{zip}
+			,#{address1}
+			,#{address2}
+			,#{privacy}
+			,#{email_ctr}
+			,#{kakao_ctr}
+			,#{sms_ctr}
 			,0
 			,0
 		)
