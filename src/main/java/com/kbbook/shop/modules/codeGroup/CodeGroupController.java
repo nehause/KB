@@ -37,6 +37,15 @@ public class CodeGroupController {
 		return "infra/codeGroup/dmin/codeGroupForm";
 	}
 	
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
+		
+		CodeGroup result = service.selectSeq(vo);
+		model.addAttribute("item", result);
+		return "infra/codeGroup/dmin/codeGroupView"; 
+		
+	}
+	
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroup dto) throws Exception {
 		

@@ -34,4 +34,13 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		
 	}
 	
+	@Override
+	public CodeGroup selectSeq(CodeGroupVo vo) throws Exception {
+		
+		CodeGroup result = dao.selectSeq(vo);
+		System.out.println("service result: " + result);
+		return result;
+		
+	}
+	
 }

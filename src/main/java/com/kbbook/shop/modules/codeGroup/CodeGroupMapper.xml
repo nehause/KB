@@ -117,5 +117,12 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<select id="selectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM CCG a
+		WHERE 1=1
+			AND	CGSeq = #{CGSeq}
+	</select>
 
 </mapper>	

@@ -305,7 +305,8 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr>
+												<!-- gateway?변수명 =값 -->
+												<tr onclick="location.href='/codeGroup/codeGroupView?CGSeq=<c:out value="${list.CGSeq }"/>'" style="cursor: pointer;">
 													<td>
 														<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
 													</td>

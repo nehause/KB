@@ -33,4 +33,9 @@ public class CodeGroupDao {
 		return result;
 	}
 	
+	public CodeGroup selectSeq(CodeGroupVo vo) {
+		CodeGroup result = sqlSession.selectOne(namespace + ".selectSeq", vo);
+		System.out.println("dao result: " + result);
+		return result;
+	}
 }

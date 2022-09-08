@@ -10,6 +10,8 @@ public class CodeGroupVo {
 	private Date searchDos;
 	private Date searchDoe;
 	
+	private String CGSeq;
+	
 	public String getSearchValue() {
 		return searchValue;
 	}
@@ -46,6 +48,12 @@ public class CodeGroupVo {
 	}
 	public void setSearchDoe(Date searchDoe) {
 		this.searchDoe = searchDoe;
+	}
+	public String getCGSeq() {
+		return CGSeq;
+	}
+	public void setCGSeq(String cGSeq) {
+		CGSeq = cGSeq;
 	}
 	
 	
