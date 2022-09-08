@@ -74,5 +74,15 @@ public class HomeController {
 		
 		return "codeGroupRegForm";
 	}
-
+	
+	@RequestMapping(value="/")
+	public String main() throws Exception {
+		
+		return "infra/member/user/main";
+	}
+	@RequestMapping(value="/loginForm")
+	public String LoginForm() throws Exception {
+		
+		return "infra/member/user/loginForm";
+	}
 }

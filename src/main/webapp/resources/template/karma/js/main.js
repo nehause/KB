@@ -54,7 +54,7 @@ $(document).ready(function(){
         autoplayTimeout: 5000,
         loop:true,
         nav:true,
-        navText:["<img src='../../template/karma/img/banner/prev.png'>","<img src='../../template/karma/img/banner/next.png'>"],
+        navText:["<img src='/resources/template/karma/img/banner/prev.png'>","<img src='/resources/template/karma/img/banner/next.png'>"],
         dots:false
     });
 
@@ -67,7 +67,7 @@ $(document).ready(function(){
         autoplayTimeout: 5000,
         loop:true,
         nav:true,
-        navText:["<img src='../../template/karma/img/product/prev.png'>","<img src='../../template/karma/img/product/next.png'>"],
+        navText:["<img src='/resources/template/karma/img/product/prev.png'>","<img src='/resources/template/karma/img/product/next.png'>"],
         dots:false
     });
 
@@ -92,7 +92,7 @@ $(document).ready(function(){
         autoplayTimeout: 5000,
         loop:true,
         nav:true,
-        navText:["<img src='../../template/karma/img/product/prev.png'>","<img src='../../template/karma/img/product/next.png'>"],
+        navText:["<img src='/resources/template/karma/img/product/prev.png'>","<img src='/resources/template/karma/img/product/next.png'>"],
         dots:false
     });
 

@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <html lang="zxx" class="no-js">
 
 <head>
@@ -19,17 +23,17 @@
 	<!--
 		CSS
 		============================================= -->
-	<link rel="stylesheet" href="../../template/karma/css/linearicons.css">
-	<link rel="stylesheet" href="../../template/karma/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../../template/karma/css/themify-icons.css">
-	<link rel="stylesheet" href="../../template/karma/css/bootstrap.css">
-	<link rel="stylesheet" href="../../template/karma/css/owl.carousel.css">
-	<link rel="stylesheet" href="../../template/karma/css/nice-select.css">
-	<link rel="stylesheet" href="../../template/karma/css/nouislider.min.css">
-	<link rel="stylesheet" href="../../template/karma/css/ion.rangeSlider.css" />
-	<link rel="stylesheet" href="../../template/karma/css/ion.rangeSlider.skinFlat.css" />
-	<link rel="stylesheet" href="../../template/karma/css/magnific-popup.css">
-	<link rel="stylesheet" href="../../template/karma/css/main.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/linearicons.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/themify-icons.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/owl.carousel.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/nice-select.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/nouislider.min.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="/resources/template/karma/css/ion.rangeSlider.skinFlat.css" />
+	<link rel="stylesheet" href="/resources/template/karma/css/magnific-popup.css">
+	<link rel="stylesheet" href="/resources/template/karma/css/main.css">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
@@ -53,7 +57,7 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="main.html">메인</a></li>
-							<li class="nav-item active"><a class="nav-link" href="loginForm.html">로그인</a></li>
+							<li class="nav-item active"><a class="nav-link" href="loginForm">로그인</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">국내도서</a>
@@ -120,7 +124,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="login_box_img">
-						<img class="img-fluid" src="../../template/karma/img/login.jpg" alt="">
+						<img class="img-fluid" src="/resources/template/karma/img/login.jpg" alt="">
 						<div class="hover">
 							<h4>이 사이트에 처음 오셨나요?</h4>
 							<p>이 사이트는 karma 템플릿을 이용한 프로젝트로 이용하시려면 회원가입 바랍니다.</p>
@@ -166,6 +170,95 @@
 			</div>
 		</div>
 	</section>
+	
+	<!-- start modal area -->
+	<section class="product_description_area" style="margin-top: 0px; padding-bottom: 0px;">
+		<div class="modal fade" id="findIdPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<ul class="nav nav-tabs col-lg-12" id="myTab" role="tablist">
+							<li class="col-lg-10">
+								<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: left;">아이디 / 비밀번호 찾기</h3>
+							</li>
+							<li>
+								<button type="button" class="border border-0" style="vertical-align: middle; background-color: #E8F0F2;" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x fa-2x"></i></button>
+							</li>
+							<li class="nav-item col-lg-5" style="margin:0px;">
+								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#findId" role="tab" aria-controls="findId" aria-selected="true">아이디 찾기</a>
+							</li>
+							<li class="nav-item col-lg-5">
+								<a class="nav-link" id="writer-tab" data-toggle="tab" href="#findPassword" role="tab" aria-controls="findPassword" aria-selected="false">비밀번호 찾기</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-body">
+						<form name="findIdPasswordForm" method="get" action="./loginForm.html" id="findIdPasswordForm">
+							<div class="tab-content" id="findIDPasswordContent">
+								<div class="tab-pane fade show active" id="findId" role="tabpanel" aria-labelledby="findIdTab">
+									<h5>등록된 휴대폰 번호로 찾기</h5>
+									<input type="text" class="form-control" id="findIdNumberName" name="findIdNumberName" placeholder="이름">
+									<input type="text" class="form-control" id="findIdNumberNumber" name="findIdNumberNumber" placeholder="전화번호 ex)01012345678">
+									<div style="height: 30px;"></div>
+									<h5>등록된 이메일로 찾기</h5>
+									<input type="text" class="form-control" id="findIdEmailName" name="findIdEmailName" placeholder="이름">
+									<div class="row">
+			                            <div class="col-md-4 form-group">
+			                                <input type="text" class="form-control" id="findIdEmailFirst" name="findIdEmailFirst" placeholder="이메일*">
+			                            </div>
+			                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
+			                            <div class="col-md-4 form-group">
+			                                <input type="text" class="form-control" id="findIdEmailLast" name="findIdEmailLast" placeholder="직접입력">
+			                            </div>
+			                            <div class="col-md-3 form-group" style="padding-left: 12px;">
+			                                <select class="country_select" id="findIdEmailLastSelect" name="findIdEmailLastSelect" style="width: 76px;" onchange="idSelectEmail();">
+			                                    <option value="">직접입력</option>
+			                                    <option value="naver.com">네이버</option>
+			                                    <option value="gmail.com">구글</option>
+			                                    <option value="kakao.com">카카오</option>
+			                                </select>
+			                            </div>
+		                            </div>
+								</div>
+								<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
+									<h5>등록된 휴대폰 번호로 찾기</h5>
+									<input type="text" class="form-control" id="findPasswordNumberId" name="findPasswordNumberId" placeholder="아이디">
+									<input type="text" class="form-control" id="findPasswordNumberName" name="findPasswordNumberName" placeholder="이름">
+									<input type="text" class="form-control" id="findPasswordNumberNumber" name="findPasswordNumberNumber" placeholder="전화번호 ex)01012345678">
+									<div style="height: 30px;"></div>
+									<h5>등록된 이메일로 찾기</h5>
+									<input type="text" class="form-control" id="findPasswordEmailId" name="findPasswordEmailId" placeholder="아이디">
+									<input type="text" class="form-control" id="findPasswordEmailName" name="findPasswordEmailName" placeholder="이름">
+									<div class="row">
+			                            <div class="col-md-4">
+			                                <input type="text" class="form-control" id="findPasswordEmailFirst" name="findPasswordEmailFirst" placeholder="이메일*">
+			                            </div>
+			                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
+			                            <div class="col-md-4">
+			                                <input type="text" class="form-control" id="findPasswordEmailLast" name="findPasswordEmailLast" placeholder="직접입력">
+			                            </div>
+			                            <div class="col-md-3" style="padding-left: 12px;">
+			                                <select class="country_select" id="findPasswordEmailLastSelect" name="findPasswordEmailLastSelect" onchange="passwordSelectEmail();">
+			                                    <option value="">직접입력</option>
+			                                    <option value="naver.com">네이버</option>
+			                                    <option value="gmail.com">구글</option>
+			                                    <option value="kakao.com">카카오</option>
+			                                </select>
+			                            </div>
+		                            </div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">확인</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end modal area -->
 	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
@@ -245,94 +338,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!-- End footer Area -->
 	
-	<!-- start modal area -->
-	<section class="product_description_area">
-	<div class="modal fade" id="findIdPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<ul class="nav nav-tabs col-lg-12" id="myTab" role="tablist">
-						<li class="col-lg-10">
-							<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: left;">아이디 / 비밀번호 찾기</h3>
-						</li>
-						<li>
-							<button type="button" class="border border-0" style="vertical-align: middle; background-color: #E8F0F2;" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x fa-2x"></i></button>
-						</li>
-						<li class="nav-item col-lg-5" style="margin:0px;">
-							<a class="nav-link active" id="home-tab" data-toggle="tab" href="#findId" role="tab" aria-controls="findId" aria-selected="true">아이디 찾기</a>
-						</li>
-						<li class="nav-item col-lg-5">
-							<a class="nav-link" id="writer-tab" data-toggle="tab" href="#findPassword" role="tab" aria-controls="findPassword" aria-selected="false">비밀번호 찾기</a>
-						</li>
-					</ul>
-				</div>
-				<div class="modal-body">
-					<form name="findIdPasswordForm" method="get" action="./loginForm.html" id="findIdPasswordForm">
-						<div class="tab-content" id="findIDPasswordContent">
-							<div class="tab-pane fade show active" id="findId" role="tabpanel" aria-labelledby="findIdTab">
-								<h5>등록된 휴대폰 번호로 찾기</h5>
-								<input type="text" class="form-control" id="findIdNumberName" name="findIdNumberName" placeholder="이름">
-								<input type="text" class="form-control" id="findIdNumberNumber" name="findIdNumberNumber" placeholder="전화번호 ex)01012345678">
-								<div style="height: 30px;"></div>
-								<h5>등록된 이메일로 찾기</h5>
-								<input type="text" class="form-control" id="findIdEmailName" name="findIdEmailName" placeholder="이름">
-								<div class="row">
-		                            <div class="col-md-4 form-group">
-		                                <input type="text" class="form-control" id="findIdEmailFirst" name="findIdEmailFirst" placeholder="이메일*">
-		                            </div>
-		                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
-		                            <div class="col-md-4 form-group">
-		                                <input type="text" class="form-control" id="findIdEmailLast" name="findIdEmailLast" placeholder="직접입력">
-		                            </div>
-		                            <div class="col-md-3 form-group" style="padding-left: 12px;">
-		                                <select class="country_select" id="findIdEmailLastSelect" name="findIdEmailLastSelect" style="width: 76px;" onchange="idSelectEmail();">
-		                                    <option value="">직접입력</option>
-		                                    <option value="naver.com">네이버</option>
-		                                    <option value="gmail.com">구글</option>
-		                                    <option value="kakao.com">카카오</option>
-		                                </select>
-		                            </div>
-	                            </div>
-							</div>
-							<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
-								<h5>등록된 휴대폰 번호로 찾기</h5>
-								<input type="text" class="form-control" id="findPasswordNumberId" name="findPasswordNumberId" placeholder="아이디">
-								<input type="text" class="form-control" id="findPasswordNumberName" name="findPasswordNumberName" placeholder="이름">
-								<input type="text" class="form-control" id="findPasswordNumberNumber" name="findPasswordNumberNumber" placeholder="전화번호 ex)01012345678">
-								<div style="height: 30px;"></div>
-								<h5>등록된 이메일로 찾기</h5>
-								<input type="text" class="form-control" id="findPasswordEmailId" name="findPasswordEmailId" placeholder="아이디">
-								<input type="text" class="form-control" id="findPasswordEmailName" name="findPasswordEmailName" placeholder="이름">
-								<div class="row">
-		                            <div class="col-md-4">
-		                                <input type="text" class="form-control" id="findPasswordEmailFirst" name="findPasswordEmailFirst" placeholder="이메일*">
-		                            </div>
-		                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
-		                            <div class="col-md-4">
-		                                <input type="text" class="form-control" id="findPasswordEmailLast" name="findPasswordEmailLast" placeholder="직접입력">
-		                            </div>
-		                            <div class="col-md-3" style="padding-left: 12px;">
-		                                <select class="country_select" id="findPasswordEmailLastSelect" name="findPasswordEmailLastSelect" onchange="passwordSelectEmail();">
-		                                    <option value="">직접입력</option>
-		                                    <option value="naver.com">네이버</option>
-		                                    <option value="gmail.com">구글</option>
-		                                    <option value="kakao.com">카카오</option>
-		                                </select>
-		                            </div>
-	                            </div>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">확인</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section>
-	<!-- end modal area -->
+	
 	<script type="text/javascript">
 	
 	function idSelectEmail() {
@@ -347,21 +353,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	</script>
 
-	<script src="../../template/karma/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
-	<script src="../../template/karma/js/vendor/bootstrap.min.js"></script>
-	<script src="../../template/karma/js/jquery.ajaxchimp.min.js"></script>
-	<script src="../../template/karma/js/jquery.nice-select.min.js"></script>
-	<script src="../../template/karma/js/jquery.sticky.js"></script>
-	<script src="../../template/karma/js/nouislider.min.js"></script>
-	<script src="../../template/karma/js/countdown.js"></script>
-	<script src="../../template/karma/js/jquery.magnific-popup.min.js"></script>
-	<script src="../../template/karma/js/owl.carousel.min.js"></script>
+	<script src="/resources/template/karma/js/vendor/bootstrap.min.js"></script>
+	<script src="/resources/template/karma/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/resources/template/karma/js/jquery.nice-select.min.js"></script>
+	<script src="/resources/template/karma/js/jquery.sticky.js"></script>
+	<script src="/resources/template/karma/js/nouislider.min.js"></script>
+	<script src="/resources/template/karma/js/countdown.js"></script>
+	<script src="/resources/template/karma/js/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/template/karma/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="../../template/karma/js/gmaps.min.js"></script>
-	<script src="../../template/karma/js/main.js"></script>
+	<script src="/resources/template/karma/js/gmaps.min.js"></script>
+	<script src="/resources/template/karma/js/main.js"></script>
 </body>
 
 </html>
