@@ -48,12 +48,12 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 	@RequestMapping(value="/")
 	public String main() throws Exception {
 		
-		return "infra/member/user/main";
+		return "infra/member/main/main";
 	}
 	@RequestMapping(value="/loginForm")
 	public String LoginForm() throws Exception {
 		
-		return "infra/member/user/loginForm";
+		return "infra/member/main/loginForm";
 	}
 	
 }
