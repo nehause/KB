@@ -44,5 +44,11 @@ public class MemberController {
 		
 		return "redirect:/member/memberList";
 	}
+	
+	@RequestMapping(value="memberRegForm")
+	public String memberRegForm() throws Exception {
+		
+		return "infra/member/user/memberRegForm";
+	}
 
 }

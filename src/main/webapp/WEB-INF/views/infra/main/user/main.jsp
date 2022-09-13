@@ -23,6 +23,15 @@
 	<!--
 		CSS
 		============================================= -->
+	<style>
+	.crossCenter {
+    	padding-left: 2px;
+   		padding-top: 17px;
+
+	}
+	
+	</style>
+		
 	<link rel="stylesheet" href="/resources/template/karma/css/linearicons.css">
 	<link rel="stylesheet" href="/resources/template/karma/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/template/karma/css/themify-icons.css">
@@ -111,7 +120,7 @@
 									<h1>절대 읽지마라! <br>죽을때까지 순리자로 살고싶으면</h1>
 									<p>오타쿠 흙수저에서 월 1억 자동 수익을 실현한 무자본 연쇄창업마, 라이프해커 자청의 인생 역주행 공식 대공개!</p>
 									<div class="add-bag d-flex align-items-center">
-										<a class="add-btn" href="../book/bookView.html"><span class="lnr lnr-cross"></span></a>
+										<a class="add-btn crossCenter" href="../book/bookView.html"><span class="lnr lnr-cross"></span></a>
 										<span class="add-text text-uppercase">구매하러가기</span>
 									</div>
 								</div>
@@ -133,7 +142,7 @@
 									<p>영화 각본이 선사하는 즐거움 중 하나는 촬영과 편집을 마친 최종 결과물과의 차이를 발견하는 것이다.<br>
 									  『헤어질 결심 각본』은 특히 이런 발견의 즐거움을 풍부하게 담고 있다.</p>
 									<div class="add-bag d-flex align-items-center">
-										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+										<a class="add-btn crossCenter" href=""><span class="lnr lnr-cross"></span></a>
 										<span class="add-text text-uppercase">구매하러가기</span>
 									</div>
 								</div>
