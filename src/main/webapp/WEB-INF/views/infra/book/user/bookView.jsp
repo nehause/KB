@@ -123,8 +123,8 @@
 				<div class="col-lg-6">
 					<div class="single-deal">
 						<div class="overlay"></div>
-						<img class="img-fluid" src="images/bp1.png" alt="">
-						<a href="images/bp1.png" class="img-pop-up" target="_blank">
+						<img class="img-fluid" src="/resources/images/bp1.png" alt="">
+						<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
 							<div class="deal-details">
 								<h6 class="deal-title">이미지 보기</h6>
 							</div>
