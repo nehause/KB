@@ -1,5 +1,5 @@
 package com.kbbook.shop.modules.myRoom;
 
-public class myRoom {
+public class MyRoom {
 
 }
