@@ -124,5 +124,42 @@
 		WHERE 1=1
 			AND	CGSeq = #{CGSeq}
 	</select>
+	
+	<update id="update">
+		UPDATE CCG
+		SET
+			CGSeq = #{CGSeq}
+			,CGNameKor = #{CGNameKor}
+			,CGNameEng = #{CGNameEng}
+			,CGUseNy = #{CGUseNy}
+			,CGOrder = #{CGOrder}
+			,CGDelNy = #{CGDelNy}
+			,CGRegistration = #{CGRegistration}
+		WHERE 1=1
+			AND	CGSeq = #{CGSeq}
+	</update>
+	
+	<update id = "uelete">
+		UPDATE CCG
+		SET
+			CGDelNy = 1
+		WHERE 1=1
+			AND	CGSeq = #{CGSeq}
+	</update>
+
+	<delete id = "delete">
+		DELETE FROM CCG WHERE WHERE 1=1 AND	CGSeq = #{CGSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.CGSeq
+			,a.CGNameKor
+		FROM CCG a
+		WHERE 1=1
+			AND CGDelNy = 0
+			AND CGUseNy = 1
+		ORDER NY a.CGSeq DESC
+	</select>
 
 </mapper>	

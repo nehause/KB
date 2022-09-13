@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -178,12 +179,12 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<form method="post" action="/codeGroup/codeGroupInst" id="regCodeGroupForm" name="regCodeGroupForm">
+				<form method="post" id="codeGroupViewForm" name="codeGroupViewForm" autocomplete="off" enctype="multipart/form-data">
 					<div class="row">
-					<H1>코드 그룹 관리</H1>
+						<H1>코드 그룹 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="codeGroupCode">코드그룹 코드</label>
-							<input type="text" class="form-control" id="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성" disabled>
+							<input type="text" class="form-control" id="CGSeq" name="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성">
 						</div>
 					</div>
 					<div class="row">
@@ -232,13 +233,13 @@
 							</button>
 						</div>
 						<div style="float:right;">
-							<button type="button" class="btn btn-danger">
+							<button type="submit" class="btn btn-danger" id="btnUel" name="btnUel">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button type="button" class="btn btn-danger">
+							<button type="submit" class="btn btn-danger" id="btnDel" name="btnDel">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="modForm();">
+							<button type="button" class="btn btn-success" id="btnUpdt" name="btnUpdt">
 								<i class="fa-solid fa-bookmark"></i>
 							</button>
 						</div>
@@ -249,44 +250,63 @@
 	</div>
 
 <!-- end -->
-	<script type="text/javascript">
-		/* function test(){
-			
-			if(document.getElementById('CGNameKor').value == '' || document.getElementById('CGNameKor').value == null){
-				alert("한글명을 입력해주세요");
-				document.getElementById('CGNameKor').value = "";
-				document.getElementById('CGNameKor').focus();
-				return false;
-			}
-			
-			if(document.getElementById('CGNameEng').value == '' || document.getElementById('CGNameEng').value == null){
-				alert("영문명을 입력해주세요");
-				document.getElementById('CGNameEng').value = "";
-				document.getElementById('CGNameEng').focus();
-				return false;
-			}
-			
-			if(document.getElementById('CGOrder').value == '' || document.getElementById('CGOrder').value == null){
-				alert("순서를 입력해주세요");
-				document.getElementById('CGOrder').value = "";
-				document.getElementById('CGOrder').focus();
-				return false;
-			}
-			
-			if(document.getElementById('CGRegistration').value == '' || document.getElementById('CGRegistration').value == null){
-				alert("등록일을 입력해주세요");
-				document.getElementById('CGRegistration').value = "";
-				document.getElementById('CGRegistration').focus();
-				return false;
-			}
-			
-			document.getElementById('regCodeGroupForm').submit();
-			return false;
-		} */
-		function modForm(){
-			   location.href = "codeGroupModForm";
-		}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+		var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+		var goUrlUel = "/codeGroup/codeGroupUel";				/* #-> */
+		var goUrlDel = "/codeGroup/codeGroupDel";				/* #-> */
+		
+		var seq = $("input:hidden[name=CGSeq]");				/* #-> */
+		
+		var form = $("form[name=codeGroupViewForm]"); 
+		var formVo = $("form[name=formVo]");
+		
+		$("#btnUpdt").on("click", function(){
+			if (seq.val() == "0" || seq.val() == ""){
+		   		// insert
+		   		if (validationInst() == false) return false;
+		   		form.attr("action", goUrlInst).submit();
+		   	} else {
+		   		// update
+		   		/* keyName.val(atob(keyName.val())); */
+		   		if (validationUpdt() == false) return false;
+		   		form.attr("action", goUrlUpdt).submit();
+		   	}
+		}); 
+		
+		$("#btnUel").on("click", function(){
+			$("input:hidden[name=exDeleteType]").val(1);
+			$(".modal-title").text("확 인");
+			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+			$("#btnModalUelete").show();
+			$("#btnModalDelete").hide();
+			$("#modalConfirm").modal("show");
+		});
+		
 	
+		$("#btnDel").on("click", function(){
+			$("input:hidden[name=exDeleteType]").val(2);
+			$(".modal-title").text("확 인");
+			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+			$("#btnModalUelete").hide();
+			$("#btnModalDelete").show();
+			$("#modalConfirm").modal("show");
+		});
+		
+		
+		$("#btnModalUelete").on("click", function(){
+			$("#modalConfirm").modal("hide");
+			formVo.attr("action", goUrlUel).submit();
+		});
+		
+		
+		$("#btnModalDelete").on("click", function(){
+			$("#modalConfirm").modal("hide");
+			formVo.attr("action", goUrlDel).submit();
+		});
+		
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
