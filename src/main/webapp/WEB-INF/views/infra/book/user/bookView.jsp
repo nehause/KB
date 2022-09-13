@@ -298,7 +298,7 @@
 					<div>
 						<h4>상세 이미지</h4>	
 						<div class="detailImages" id="detailImages" name="detailImages" style="display: block;">
-							<img alt="" src="images/bv1.png">  <!-- 이미지 크기는 가로 1050px -->
+							<img alt="" src="/resources/images/bv1.png">  <!-- 이미지 크기는 가로 1050px -->
 						</div>
 						<input type='button' id="DIBtn" value='닫기' onclick="DIShow()">
 					</div>
