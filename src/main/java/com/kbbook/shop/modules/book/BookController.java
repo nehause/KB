@@ -16,4 +16,11 @@ public class BookController {
 		return "infra/book/user/bookIndex";
 	}
 	
+	@RequestMapping(value="/bookView")
+	public String BookView() throws Exception {
+		
+		return "infra/book/user/bookView";
+	}
+	
+	
 }
