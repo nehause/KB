@@ -45,7 +45,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/resources/member/main.html" style="font-family: 'Pacifico', cursive; color: orange;">JHJ</a>
+					<a class="navbar-brand logo_h" href="/" style="font-family: 'Pacifico', cursive; color: orange;">JHJ</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -55,25 +55,24 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/resources/member/main.html">메인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/resources/member/loginForm.html">로그인</a></li>
-							<li class="nav-item submenu dropdown active">
+							<li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
+							<li class="nav-item"><a class="nav-link" href="loginForm">로그인</a></li>
+							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">국내도서</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/resources/book/bookList.html">책 목록</a></li>
-									<li class="nav-item"><a class="nav-link" href="/resources/book/bookView.html">책 상세</a></li>
+									<li class="nav-item"><a class="nav-link" href="/book/bookIndex">책 목록</a></li>
+									<li class="nav-item"><a class="nav-link" href="/book/bookView">책 상세</a></li>
 								</ul>
 							</li>
-							<!-- <li class="nav-item"><a class="nav-link" href="/resources/member/memberRoomForm.html">마이룸</a></li> -->
-							<li class="nav-item submenu dropdown"> 
+							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">마이룸</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/resources/member/memberRoomForm.html">주문/배송 조회</a></li>
-									<li class="nav-item"><a class="nav-link" href="/resources/member/memberModCheckForm.html">회원정보 수정</a></li>
-									<li class="nav-item"><a class="nav-link" href="/resources/member/memberModPasswordForm.html">비밀번호 변경</a></li>
-									<li class="nav-item"><a class="nav-link" href="/resources/member/memberTransport.html">나의 주소록</a></li>
+									<li class="nav-item"><a class="nav-link" href="/member/memberMyRoom/">주문/배송 조회</a></li>
+									<li class="nav-item"><a class="nav-link" href="/member/memberRoomModCheck">회원정보 수정</a></li>
+									<li class="nav-item"><a class="nav-link" href="/member/memberRoomModPassword">비밀번호 변경</a></li>
+									<li class="nav-item"><a class="nav-link" href="/member/memberRoomTransportForm">나의 주소록</a></li>
 								</ul>
 							</li>
 						</ul>
