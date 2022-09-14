@@ -60,7 +60,7 @@ public class CodeGroupController {
 	}
 	
 	@SuppressWarnings(value= {"all"})
-	@RequestMapping(value="codeGroupUpdt")
+	@RequestMapping(value="codeGroupUpdate")
 	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		System.out.println("dto.getCGSeq(): " + dto.getCGSeq());
@@ -76,14 +76,14 @@ public class CodeGroupController {
 		return "redirect:/codeGroup/codeGroupList";
 	}
 	
-	@RequestMapping(value = "codeGroupUel")
+	@RequestMapping(value = "codeGroupUelete")
 	public String codeGroupUel(CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
 		service.uelete(dto);
 		
 		return "redirect:/codeGroup/codeGroupList";
 	}
 	
-	@RequestMapping(value = "codeGroupDel")
+	@RequestMapping(value = "codeGroupDelete")
 	public String codeGroupDel(CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		service.delete(vo);
 		

@@ -105,7 +105,10 @@
 	</update>
 
 	<delete id = "delete">
-		DELETE FROM CCG WHERE WHERE 1=1 AND	CGSeq = #{CGSeq}
+		DELETE 
+		FROM CCG 
+		WHERE 1=1 
+			AND	CGSeq = #{CGSeq}
 	</delete>
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">

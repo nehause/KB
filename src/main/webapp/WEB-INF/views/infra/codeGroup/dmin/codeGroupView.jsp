@@ -14,7 +14,6 @@
 	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<style> 
 		th {
@@ -94,93 +93,93 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container-fluid">
-		<div class="row" style="padding-left: 20px; padding-right: 20px;">
-			<div class="col-lg-2">
-				<div class="flex-shrink-0 p-3 bg-white">
-					<ul class="list-unstyled ps-0">
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#codeGroup-collapse" aria-expanded="true">
-								코드그룹 관리
-							</button>
-							<div class="collapse show" id="codeGroup-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">코드그룹 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">코드그룹 추가</a></li>
-									<li><a href="#" class="link-dark rounded">코드그룹 수정</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
-								코드 관리
-							</button>
-							<div class="collapse show" id="code-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">코드 추가</a></li>
-									<li><a href="#" class="link-dark rounded">코드 수정</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">
-								회원 관리
-							</button>
-							<div class="collapse" id="member-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">회원 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">회원 추가</a></li>
-									<li><a href="#" class="link-dark rounded">회원 수정</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#book-collapse" aria-expanded="false">
-								책 관리
-							</button>
-							<div class="collapse" id="book-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">책 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">책 추가</a></li>
-									<li><a href="#" class="link-dark rounded">책 수정</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
-								작가 관리
-							</button>
-							<div class="collapse" id="writer-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">작가 추가</a></li>
-									<li><a href="#" class="link-dark rounded">작가 수정</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#order-collapse" aria-expanded="false">
-								주문 관리
-							</button>
-							<div class="collapse" id="order-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">주문 리스트</a></li>
-									<li><a href="#" class="link-dark rounded">주문 추가</a></li>
-									<li><a href="#" class="link-dark rounded">주문 수정</a></li>
-								</ul>
-							</div>
-						</li>
-					</ul>
+	<form method="post" id="CGVForm" name="CGVForm" autocomplete="off">
+		<div class="container-fluid">
+			<div class="row" style="padding-left: 20px; padding-right: 20px;">
+				<div class="col-lg-2">
+					<div class="flex-shrink-0 p-3 bg-white">
+						<ul class="list-unstyled ps-0">
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#codeGroup-collapse" aria-expanded="true">
+									코드그룹 관리
+								</button>
+								<div class="collapse show" id="codeGroup-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">코드그룹 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">코드그룹 추가</a></li>
+										<li><a href="#" class="link-dark rounded">코드그룹 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
+									코드 관리
+								</button>
+								<div class="collapse show" id="code-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">코드 추가</a></li>
+										<li><a href="#" class="link-dark rounded">코드 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">
+									회원 관리
+								</button>
+								<div class="collapse" id="member-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">회원 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">회원 추가</a></li>
+										<li><a href="#" class="link-dark rounded">회원 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#book-collapse" aria-expanded="false">
+									책 관리
+								</button>
+								<div class="collapse" id="book-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">책 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">책 추가</a></li>
+										<li><a href="#" class="link-dark rounded">책 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
+									작가 관리
+								</button>
+								<div class="collapse" id="writer-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">작가 추가</a></li>
+										<li><a href="#" class="link-dark rounded">작가 수정</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="mb-1">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#order-collapse" aria-expanded="false">
+									주문 관리
+								</button>
+								<div class="collapse" id="order-collapse">
+									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										<li><a href="#" class="link-dark rounded">주문 리스트</a></li>
+										<li><a href="#" class="link-dark rounded">주문 추가</a></li>
+										<li><a href="#" class="link-dark rounded">주문 수정</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div>
+				    	<button class="navbar-toggler" style="width:100%; height:80px; text-align: left;" type="button" onclick="logOut();">
+				      		로그아웃 <i class="fa-solid fa-right-from-bracket"></i>
+				      	</button>
+					</div>
 				</div>
-				<div>
-			    	<button class="navbar-toggler" style="width:100%; height:80px; text-align: left;" type="button" onclick="logOut();">
-			      		로그아웃 <i class="fa-solid fa-right-from-bracket"></i>
-			      	</button>
-				</div>
-			</div>
-			<div class="col-lg-10">
-				<form id="CGVForm" name="CGVForm" method="post" autocomplete="off" enctype="multipart/form-data">
+				<div class="col-lg-10">
 					<div class="row">
 						<H1>코드 그룹 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
@@ -234,78 +233,85 @@
 							</button>
 						</div>
 						<div style="float:right;">
-							<button class="btn btn-danger" id="btnUel" name="btnUel">
+							<button class="btn btn-danger" id="ueleteModalBtn" name="ueleteModalBtn" data-bs-toggle="modal" data-bs-target="#ueleteModal" type="button">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button class="btn btn-danger" id="btnDel" name="btnDel">
+							<button class="btn btn-danger" id="deleteModalBtn" name="deleteModalBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button class="btn btn-success" id="btnUpdt" name="btnUpdt">
+							<button class="btn btn-success" id="updateBtn" name="updateBtn" type="button">
 								<i class="fa-solid fa-bookmark"></i>
 							</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
-	</div>
-
-<!-- end -->	
-	<script>
-		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
-		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
-		var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
-		var goUrlUel = "/codeGroup/codeGroupUel";				/* #-> */
-		var goUrlDel = "/codeGroup/codeGroupDel";				/* #-> */
+		<div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModallabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="ueleteModalLabel">리스트에서 삭제하시겠습니까?</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+		        	<i class="fa-solid fa-x"></i> 취소
+		        </button>
+		        <button type="button" class="btn btn-outline-danger" id="ueleteBtn" name="ueleteBtn">
+		        	<i class="fa-solid fa-trash-can"></i> 삭제
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="delectModallabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="delectModalLabel">데이터를 삭제하시겠습니까?</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        테이블에서 데이터가 삭제 됩니다 삭제하시겠습니까?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+		        	<i class="fa-solid fa-x"></i> 취소
+		        </button>
+		        <button type="button" class="btn btn-outline-danger" id="deleteBtn" name="deleteBtn">
+		        	<i class="fa-solid fa-trash-can"></i> 삭제
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		
-		var seq = $("input:hidden[name=CGSeq]");				/* #-> */
+	</form>
+<!-- end -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+		var goUrlUpdate = "/codeGroup/codeGroupUpdate";				/* #-> */
+		var goUrlUelete = "/codeGroup/codeGroupUelete";				/* #-> */
+		var goUrlDelete = "/codeGroup/codeGroupDelete";				/* #-> */
 		
 		var form = $("form[name=CGVForm]"); 
-		var formVo = $("form[name=formVo]");
 		
-		$("#btnUpdt").on("click", function(){
-			if (seq.val() == "0" || seq.val() == ""){
-		   		// insert
-		   		if (validationInst() == false) return false;
-		   		form.attr("action", goUrlInst).submit();
-		   	} else {
-		   		// update
-		   		/* keyName.val(atob(keyName.val())); */
-		   		if (validationUpdt() == false return false;
-		   		form.attr("action", goUrlUpdt).submit();
-		   	}
+		$("#updateBtn").on("click", function(){
+		   		form.attr("action", goUrlUpdate).submit();
 		}); 
 		
-		$("#btnUel").on("click", function(){
-			$("input:hidden[name=exDeleteType]").val(1);
-			$(".modal-title").text("확 인");
-			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
-			$("#btnModalUelete").show();
-			$("#btnModalDelete").hide();
-			$("#modalConfirm").modal("show");
-		});
+		$("#deleteBtn").on("click", function(){
+	   		form.attr("action", goUrlDelete).submit();
+		}); 
 		
-	
-		$("#btnDel").on("click", function(){
-			$("input:hidden[name=exDeleteType]").val(2);
-			$(".modal-title").text("확 인");
-			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
-			$("#btnModalUelete").hide();
-			$("#btnModalDelete").show();
-			$("#modalConfirm").modal("show");
-		});
+		$("#ueleteBtn").on("click", function(){
+	   		form.attr("action", goUrlUelete).submit();
+		}); 
 		
-		
-		$("#btnModalUelete").on("click", function(){
-			$("#modalConfirm").modal("hide");
-			formVo.attr("action", goUrlUel).submit();
-		});
-		
-		
-		$("#btnModalDelete").on("click", function(){
-			$("#modalConfirm").modal("hide");
-			formVo.attr("action", goUrlDel).submit();
-		});
 		
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
