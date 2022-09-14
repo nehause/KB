@@ -128,8 +128,7 @@
 	<update id="update">
 		UPDATE CCG
 		SET
-			CGSeq = #{CGSeq}
-			,CGNameKor = #{CGNameKor}
+			CGNameKor = #{CGNameKor}
 			,CGNameEng = #{CGNameEng}
 			,CGUseNy = #{CGUseNy}
 			,CGOrder = #{CGOrder}

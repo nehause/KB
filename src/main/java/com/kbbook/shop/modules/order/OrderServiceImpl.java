@@ -1,4 +1,4 @@
-package com.kbbook.shop.modules.myRoom;
+package com.kbbook.shop.modules.order;
 
 import java.util.List;
 
@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyRoomServiceImpl implements MyRoomService {
+public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
-	MyRoomDao dao;
+	OrderDao dao;
 	
 	@Override
-	public List<MyRoom> selectList() throws Exception{
+	public List<Order> selectList() throws Exception{
 		return dao.selectList();
 	}
-
 }

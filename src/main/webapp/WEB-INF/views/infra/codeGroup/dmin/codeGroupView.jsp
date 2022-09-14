@@ -179,11 +179,11 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<form method="post" id="codeGroupViewForm" name="codeGroupViewForm" autocomplete="off" enctype="multipart/form-data">
+				<form id="CGVForm" name="CGVForm" method="post" autocomplete="off" enctype="multipart/form-data">
 					<div class="row">
 						<H1>코드 그룹 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="codeGroupCode">코드그룹 코드</label>
+							<label for="CGSeq">코드그룹 코드</label>
 							<input type="text" class="form-control" id="CGSeq" name="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성">
 						</div>
 					</div>
@@ -233,10 +233,10 @@
 							</button>
 						</div>
 						<div style="float:right;">
-							<button type="submit" class="btn btn-danger" id="btnUel" name="btnUel">
+							<button type="button" class="btn btn-danger" id="btnUel" name="btnUel">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button type="submit" class="btn btn-danger" id="btnDel" name="btnDel">
+							<button type="button" class="btn btn-danger" id="btnDel" name="btnDel">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
 							<button type="button" class="btn btn-success" id="btnUpdt" name="btnUpdt">
@@ -260,7 +260,7 @@
 		
 		var seq = $("input:hidden[name=CGSeq]");				/* #-> */
 		
-		var form = $("form[name=codeGroupViewForm]"); 
+		var form = $("form[name=CGVForm]"); 
 		var formVo = $("form[name=formVo]");
 		
 		$("#btnUpdt").on("click", function(){
@@ -271,7 +271,7 @@
 		   	} else {
 		   		// update
 		   		/* keyName.val(atob(keyName.val())); */
-		   		if (validationUpdt() == false) return false;
+		   		if (validationUpdt() == false return false;
 		   		form.attr("action", goUrlUpdt).submit();
 		   	}
 		}); 

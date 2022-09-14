@@ -45,10 +45,36 @@ public class MemberController {
 		return "redirect:/member/memberList";
 	}
 	
+	
 	@RequestMapping(value="memberRegForm")
 	public String memberRegForm() throws Exception {
 		
 		return "infra/member/user/memberRegForm";
+	}
+	
+	@RequestMapping(value="memberMyRoom")
+	public String memberMyRoom() throws Exception {
+		return "infra/member/user/memberMyRoom";
+	}
+	
+	@RequestMapping(value="memberRoomModCheck")
+	public String memberRoomModCheck() throws Exception {
+		return "infra/member/user/memberRoomModCheck";
+	}
+	
+	@RequestMapping(value="memberRoomModForm")
+	public String memberRoomModForm() throws Exception {
+		return "infra/member/user/memberRoomModForm";
+	}
+	
+	@RequestMapping(value="memberRoomModPassword")
+	public String memberRoomModPassword() throws Exception {
+		return "infra/member/user/memberRoomModPassword";
+	}
+	
+	@RequestMapping(value="memberRoomTransportForm")
+	public String memberRoomTransportForm() throws Exception {
+		return "infra/member/user/memberRoomTransportForm";
 	}
 
 }

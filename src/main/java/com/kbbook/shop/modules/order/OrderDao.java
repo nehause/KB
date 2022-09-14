@@ -1,4 +1,4 @@
-package com.kbbook.shop.modules.myRoom;
+package com.kbbook.shop.modules.order;
 
 import java.util.List;
 
@@ -9,14 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MyRoomDao {
+public class OrderDao {
+	
 	@Inject
 	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.kbbook.shop.modules.myRoom.MyRoomMapper";
+	private static String namespace = "com.kbbook.shop.modules.order.OrderMapper";
 	
-	public List<MyRoom> selectList() {
+	public List<Order> selectList(){
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
+
 }

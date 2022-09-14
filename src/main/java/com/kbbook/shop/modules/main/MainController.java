@@ -19,33 +19,32 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
-	}
-	
-	@RequestMapping(value = "/codeGroupList", method = RequestMethod.GET)
-	public String codeGroupList(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		return "codeGroupList";
-	}
-	
-	@RequestMapping(value = "/codeGroupRegForm", method = RequestMethod.GET)
-	public String codeGroupRegForm(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		return "codeGroupRegForm";
-	}
+	/*
+	 * @RequestMapping(value = "/home", method = RequestMethod.GET) public String
+	 * home(Locale locale, Model model) {
+	 * logger.info("Welcome home! The client locale is {}.", locale);
+	 * 
+	 * Date date = new Date(); DateFormat dateFormat =
+	 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	 * 
+	 * String formattedDate = dateFormat.format(date);
+	 * 
+	 * model.addAttribute("serverTime", formattedDate );
+	 * 
+	 * return "home"; }
+	 * 
+	 * @RequestMapping(value = "/codeGroupList", method = RequestMethod.GET) public
+	 * String codeGroupList(Locale locale, Model model) {
+	 * logger.info("Welcome home! The client locale is {}.", locale);
+	 * 
+	 * return "codeGroupList"; }
+	 * 
+	 * @RequestMapping(value = "/codeGroupRegForm", method = RequestMethod.GET)
+	 * public String codeGroupRegForm(Locale locale, Model model) {
+	 * logger.info("Welcome home! The client locale is {}.", locale);
+	 * 
+	 * return "codeGroupRegForm"; }
+	 */
 	
 	@RequestMapping(value="/")
 	public String main() throws Exception {
