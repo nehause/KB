@@ -18,14 +18,14 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	<script>
+	<!-- <script>
 		$( function() {
 			$( "#searchDos" ).datepicker({ dateFormat: 'yy-mm-dd' });
 		} );
 		$( function() {
 			$( "#searchDoe" ).datepicker({ dateFormat: 'yy-mm-dd' });
 		} );
-	</script>
+	</script> -->
 	<style> 
 		
 		th {
@@ -211,10 +211,12 @@
 									</select>
 								</div>
 								<div class="col-2">
-									<input type="text" class="form-control" id="searchDos" name="searchDos" value="<c:out value="${vo.searchDos }"/>" placeholder="시작일">
+									<%-- <input type="text" class="form-control" id="searchDos" name="searchDos" value="<c:out value="${vo.searchDos }"/>" placeholder="시작일"> --%>
+									<input type="text" class="form-control" id="searchDos" name="searchDos" placeholder="시작일">
 								</div>
 								<div class="col-2">
-									<input type="text" class="form-control" id="searchDoe" name="searchDoe" value="<c:out value="${vo.searchDoe }"/>" placeholder="종료일">
+									<%-- <input type="text" class="form-control" id="searchDoe" name="searchDoe" value="<c:out value="${vo.searchDoe }"/>" placeholder="종료일"> --%>
+									<input type="text" class="form-control" id="searchDoe" name="searchDoe" placeholder="종료일">
 								</div>
 							</div>
 							<div class="row" style="height: 10px;"></div>

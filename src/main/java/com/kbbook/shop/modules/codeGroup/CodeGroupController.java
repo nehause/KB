@@ -25,8 +25,8 @@ public class CodeGroupController {
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		System.out.println("vo.getSearchDor(): " + vo.getSearchDor());
-		System.out.println("vo.getSearchDos(): " + vo.getSearchDos());
-		System.out.println("vo.getSearchDoe(): " + vo.getSearchDoe());
+//		System.out.println("vo.getSearchDos(): " + vo.getSearchDos());
+//		System.out.println("vo.getSearchDoe(): " + vo.getSearchDoe());
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
