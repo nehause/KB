@@ -19,7 +19,7 @@ public class CodeGroupController {
 	
 
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
@@ -30,7 +30,7 @@ public class CodeGroupController {
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
-		// list는 jsp에서 쓸 객체 변수의 이름
+		
 		return "infra/codeGroup/dmin/codeGroupList";
 	}
 	

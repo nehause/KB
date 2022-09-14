@@ -192,7 +192,7 @@
 						<h1>코드그룹 관리</h1>
 						<div class="row" style="height: 20px;"></div>
 					</div>
-					<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
+					<form method="post" id="CGLForm" name="CGLForm" class="d-flex" role="search">
 						<div class="container-fluid border border-gray">
 							<!-- 빈공간을 위해 col은 10까지만 -->
 							<div class="row" style="margin-top: 10px;">
@@ -231,10 +231,10 @@
 									<input class="form-control" type="search" id="searchValue" name="searchValue" value="<c:out value="${vo.searchValue }"/>" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
-									<button class="col-2 btn btn-outline-dark" type="submit" style="width:40px; height:38px; margin-right: 10px;">
+									<button class="col-2 btn btn-outline-dark" type="submit" id="searchBtn" name="searchBtn" style="width:40px; height:38px; margin-right: 10px;">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
-									<button class="col-2 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+									<button class="col-2 btn btn-warning" type="reset" id="resetBtn" name="resetBtn" style="width: 40px; height:38px; margin-right: 10px;">
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
 								</div>
@@ -441,6 +441,19 @@
 	  })
 	}
 		
+	</script>
+	
+	<script>
+	var goUrlList = "/codeGroup/codeGroupList";
+	
+	var form = $("form[name=CGLForm]"); 
+	
+	$("#searchBtn").on("click", function(){
+	   		form.attr("action", goUrlList).submit();
+	}); 
+	$("#resetBtn").on("click", function(){
+		$(location).attr("href", goUrlList);
+	}); 
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>

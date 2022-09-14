@@ -14,6 +14,7 @@
 	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<style> 
 		th {
@@ -233,13 +234,13 @@
 							</button>
 						</div>
 						<div style="float:right;">
-							<button type="button" class="btn btn-danger" id="btnUel" name="btnUel">
+							<button class="btn btn-danger" id="btnUel" name="btnUel">
 								<i class="fa-solid fa-x"></i>
 							</button>
-							<button type="button" class="btn btn-danger" id="btnDel" name="btnDel">
+							<button class="btn btn-danger" id="btnDel" name="btnDel">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success" id="btnUpdt" name="btnUpdt">
+							<button class="btn btn-success" id="btnUpdt" name="btnUpdt">
 								<i class="fa-solid fa-bookmark"></i>
 							</button>
 						</div>
@@ -249,8 +250,7 @@
 		</div>
 	</div>
 
-<!-- end -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+<!-- end -->	
 	<script>
 		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
 		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */

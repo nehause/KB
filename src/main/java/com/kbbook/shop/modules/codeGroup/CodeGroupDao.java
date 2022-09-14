@@ -22,9 +22,9 @@ public class CodeGroupDao {
 
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ 
-		return sqlSession.selectList(namespace + ".selectList", vo); 
-//		List<CodeGroup> list = sqlSession.selectList("com.kbbook.shop.modules.codeGroup.CodeGroupMapper.selectList", vo);
-//		return list;
+//		return sqlSession.selectList(namespace + ".selectList", vo); 
+		List<CodeGroup> list = sqlSession.selectList("com.kbbook.shop.modules.codeGroup.CodeGroupMapper.selectList", vo);
+		return list;
 	}
 	
 	public int insert(CodeGroup dto){
