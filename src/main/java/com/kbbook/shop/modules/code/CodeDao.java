@@ -20,6 +20,10 @@ public class CodeDao {
 //	return sqlSession.selectList(namespace + ".selectList", vo); 
 //}
 	
+	public List<Code> selectGroup(){
+		return sqlSession.selectList(namespace + ".selectGroup", "");
+	}
+	
 	public List<Code> selectList(CodeVo vo){ 
 		return sqlSession.selectList(namespace + ".selectList", vo); 
 //		List<Code> list = sqlSession.selectList("com.kbbook.shop.modules.code.CodeMapper.selectList", vo);

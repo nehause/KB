@@ -25,49 +25,20 @@
 				<when test="searchOption == 5">AND CNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
 				<otherwise></otherwise>
 			</choose>
-			<!-- <choose>
-				<when test="searchDelNy == 0">
-					<choose>
-						<when test="searchOption == 1">
-							AND CDelNy = #{searchDelNy}
-							AND CSeq = #{searchValue}
-						</when>
-						<when test="searchOption == 2">
-							AND CDelNy = #{searchDelNy}
-							AND CNameKor LIKE CONCAT('%',#{searchValue},'%')
-						</when>
-						<when test="searchOption == 3">
-							AND CDelNy = #{searchDelNy}
-							AND CNameEng LIKE CONCAT('%',#{searchValue},'%')
-						</when>
-						<otherwise>
-							AND CDelNy = #{searchDelNy}
-						</otherwise>
-					</choose>
-				</when>
-				<when test="searchDelNy == 1">
-					<choose>
-						<when test="searchOption == 1">
-							AND CDelNy = #{searchDelNy}
-							AND CSeq = #{searchValue}
-						</when>
-						<when test="searchOption == 2">
-							AND CDelNy = #{searchDelNy}
-							AND CNameKor LIKE CONCAT('%',#{searchValue},'%')
-						</when>
-						<when test="searchOption == 3">
-							AND CDelNy = #{searchDelNy}
-							AND CNameEng LIKE CONCAT('%',#{searchValue},'%')
-						</when>
-						<otherwise>
-							AND CDelNy = #{searchDelNy}
-						</otherwise>
-						
-					</choose>
-				</when>
-				<otherwise></otherwise>
-			</choose> -->
 	</select>
+	<select id="selectGroup" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM CCG a
+			WHERE 1=1
+	</select>
+	<select id="selectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM CG a
+		WHERE 1=1
+			AND	CSeq = #{CSeq}
+	</select>	
 	<insert id="insert">
 		INSERT INTO CG(
 			CCG_CGSeq
