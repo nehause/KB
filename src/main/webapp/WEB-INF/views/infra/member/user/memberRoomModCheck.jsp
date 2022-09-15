@@ -197,7 +197,9 @@
 	                    		</td>
 	                    	</tr>
 	                    </table>
-	                    <button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modCheckFormSubmit" onclick="modCheckSubmit();"> 확인 </button>
+	                    <a href="/member/memberRoomModForm/">
+	                    	<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modCheckFormSubmit" onclick="modCheckSubmit();"> 확인 </button>
+                    	</a>
                     </form>
                 </div>
             </div>
