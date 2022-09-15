@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kbbook.shop.common.base.BaseController;
+
 
 //codeGroup - 중간 주소
 @Controller
 @RequestMapping(value = "/codeGroup/")
-public class CodeGroupController {
+public class CodeGroupController extends BaseController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
@@ -28,6 +30,8 @@ public class CodeGroupController {
 //		System.out.println("vo.getSearchDos(): " + vo.getSearchDos());
 //		System.out.println("vo.getSearchDoe(): " + vo.getSearchDoe());
 		
+
+		vo.setParamsPaging(service.selectOneCount(vo));
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
@@ -38,6 +42,10 @@ public class CodeGroupController {
 	public String codeGroupForm() throws Exception {
 		
 		return "infra/codeGroup/dmin/codeGroupForm";
+	}
+	
+	public void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	
 	@RequestMapping(value = "codeGroupView")
@@ -61,7 +69,7 @@ public class CodeGroupController {
 	
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value="codeGroupUpdate")
-	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
+	public String codeGroupUpdate(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		System.out.println("dto.getCGSeq(): " + dto.getCGSeq());
 		System.out.println("dto.getCGNameKor(): " + dto.getCGNameKor());

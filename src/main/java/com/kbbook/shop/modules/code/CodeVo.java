@@ -4,6 +4,7 @@ public class CodeVo {
 	private String searchValue;
 	private Integer searchOption;
 	private Integer searchDelNy;
+	
 	public String getSearchValue() {
 		return searchValue;
 	}

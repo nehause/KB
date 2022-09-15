@@ -31,7 +31,29 @@ public class CodeServiceImpl implements CodeService {
 	}
 	
 	@Override
-	public List<Code> viewList() throws Exception{
-		return dao.viewList();
+	public Code selectSeq(CodeVo vo) throws Exception {
+		Code result = dao.selectSeq(vo);
+		System.out.println("service result: " + result);
+		return result;
+	}
+	
+	@Override
+	public int update(Code dto) throws Exception{
+		return dao.update(dto);
+	}
+	
+	@Override
+	public int uelete(Code dto) throws Exception{
+		return dao.uelete(dto);
+	}
+	
+	@Override
+	public int delete(CodeVo vo) throws Exception{
+		return dao.delete(vo);
+	}
+	
+	@Override
+	public List<Code> selectListWithoutPaging() throws Exception{
+		return dao.selectListWithoutPaging();
 	}
 }

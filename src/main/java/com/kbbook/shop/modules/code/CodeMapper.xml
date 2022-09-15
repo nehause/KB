@@ -91,12 +91,53 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+
 	
-	<select id="viewList" resultMap="resultMapObj">
+	<select id="selectSeq" resultMap="resultMapObj">
 		SELECT
-		a.*
-		FROM CCG a
+			a.*
+		FROM CG a
 		WHERE 1=1
+			AND	CSeq = #{CSeq}
+	</select>
+	
+	<update id="update">
+		UPDATE CG
+		SET
+			CNameKor = #{CNameKor}
+			,CNameEng = #{CNameEng}
+			,CUseNy = #{CUseNy}
+			,COrder = #{COrder}
+			,CDelNy = #{CDelNy}
+			,CRegistration = #{CRegistration}
+		WHERE 1=1
+			AND	CSeq = #{CSeq}
+	</update>
+	
+	<update id = "uelete">
+		UPDATE CG
+		SET
+			CDelNy = 1
+		WHERE 1=1
+			AND	CSeq = #{CSeq}
+	</update>
+
+	<delete id = "delete">
+		DELETE 
+		FROM CG 
+		WHERE 1=1 
+			AND	CSeq = #{CSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.CSeq
+			,a.CNameKor
+		FROM CG a
+		WHERE 1=1
+			AND CDelNy = 0
+			AND CUseNy = 1
+		ORDER NY a.CSeq DESC
 	</select>
 
 </mapper>

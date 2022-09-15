@@ -213,7 +213,7 @@
 							<table class="table table-striped table-hover border" id="codeGroupTable" style="text-align:center;">
 								<caption style="caption-side: top;">
 									<div style="float: left;">
-										<span>total: 42</span>
+										<span>total: <c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></span>
 									</div>
 									<div style="float:right;">
 										<select class="form-select" id="showBoard" name="showBoard">

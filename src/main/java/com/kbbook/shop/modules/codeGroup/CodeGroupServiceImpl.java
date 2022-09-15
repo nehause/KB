@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kbbook.shop.common.base.BaseVo;
+
 @Service
 public class CodeGroupServiceImpl implements CodeGroupService {
 	@Autowired
@@ -58,5 +60,8 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	public List<CodeGroup> selectListWithoutPaging() throws Exception{
 		return dao.selectListWithoutPaging();
 	}
-	
+	@Override
+	public int selectOneCount(BaseVo vo) throws Exception{
+		return dao.selectOneCount(vo);
+	}
 }

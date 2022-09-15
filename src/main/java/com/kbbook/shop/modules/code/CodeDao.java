@@ -32,7 +32,25 @@ public class CodeDao {
 		return result;
 	}
 	
-	public List<Code> viewList(){
-		return sqlSession.selectList(namespace + ".viewList", "");
+	public Code selectSeq(CodeVo vo) {
+		Code result = sqlSession.selectOne(namespace + ".selectSeq", vo);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public int update(Code dto) {
+		return sqlSession.update(namespace + ".update", dto);
+	}
+	
+	public int uelete(Code dto) {
+		return sqlSession.update(namespace + ".uelete", dto);
+	}
+	
+	public int delete(CodeVo vo) {
+		return sqlSession.delete(namespace + ".delete", vo);
+	}
+	
+	public List<Code> selectListWithoutPaging(){
+		return sqlSession.selectList(namespace + ".selectListWithoutPaging", "");
 	}
 }

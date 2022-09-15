@@ -8,7 +8,7 @@
 
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.codeGroup.CodeGroup"></resultMap>
 	
-	<select id="selectList" resultMap="resultMapObj">
+	<!-- <select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
 			,(select 
@@ -17,15 +17,15 @@
 			WHERE 1=1
 				and CCG_CGSeq = a.CGseq
 			) as CCount
-		FROM CCG a
-		WHERE 1=1
-			<!-- AND CGDelNy = 0 -->
-			<!-- AND CGNameKor LIKE CONCAT('%', #{searchValue}, '%') -->
+			FROM CCG a
+			WHERE 1=1
 			<if test="searchDelNy != null and !searchDelNy.equals('')">AND CGDelNy = #{searchDelNy}</if>
-<!-- 			<if test="searchDos != null and !searchDos.equals('')">AND CGRegistration <= #{SearchDos}</if>
-			<if test="searchDoe != null and !searchDoe.equals('')">AND CGRegistration >= #{SearchDoe}</if>
-			<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{SearchDor} and #{SearchDoe}</if> -->
-			<!-- <choose>
+			<choose>
+				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
+			</choose>
+			<choose>
 				<when test="searchDor == 0">
 					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGRegistration between #{searchDos} and #{searchDoe}</if>
 				</when>
@@ -33,27 +33,24 @@
 					<if test="searchDos != null and !searchDos.equals('') and searchDoe != null and !searchDoe.equals('')">AND CGCorrectation between #{searchDos} and #{searchDoe}</if>
 				</when>
 				<otherwise></otherwise>
-			</choose> -->
-			<choose>
-				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
-				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
-				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
-				<otherwise></otherwise>
 			</choose>
-			<!-- <choose>
-				<when test="searchDelNy == 0">AND CGDelNy = 0</when>
-				<when test="searchDelNy == 1">AND CGDelNy = 1</when>
-				<otherwise></otherwise>
-			</choose> -->
-			<!-- <choose>
-				<when test="searchDelNy == 0">AND CGDelNy = 0</when>
-				<when test="searchDelNy == 1">AND CGDelNy = 1</when>
-				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
-				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
-				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
-				<otherwise></otherwise>
-			</choose> -->
+	</select> -->
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+				,(select 
+					count(b.CSeq)
+					FROM CG b
+					WHERE 1=1
+						and b.CCG_CGSeq = a.CGseq
+					) as CCount
+			<include refid="selectCommon" />
+			ORDER BY a.CGSeq DESC
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
+	
 	<insert id ="insert">
 		INSERT INTO CCG (
 			CGNameKor
@@ -121,5 +118,23 @@
 			AND CGUseNy = 1
 		ORDER NY a.CGSeq DESC
 	</select>
+	
+	
+	<sql id ="selectCommon">
+		FROM CCG a
+		WHERE 1=1
+			<if test="searchDelNy != null and !searchDelNy.equals('')">AND CGDelNy = #{searchDelNy}</if>
+			<choose>
+				<when test="searchOption == 1">AND CGSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND CGNameKor LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND CGNameEng LIKE CONCAT('%',#{searchValue},'%')</when>
+			</choose>
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+
 
 </mapper>	
