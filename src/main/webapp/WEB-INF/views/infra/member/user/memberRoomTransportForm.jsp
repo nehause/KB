@@ -143,7 +143,7 @@
                             <h4 class="widget_title">일반상품 주문관리</h4>
                             <ul class="list cat-list">
                                 <li>
-                                    <a href="memberRoomForm.html" class="d-flex justify-content-between">
+                                    <a href="/member/memberMyRoom/" class="d-flex justify-content-between">
                                         <p>주문/배송 조회</p>
                                     </a>
                                 </li>
@@ -153,23 +153,22 @@
                             <h4 class="widget_title">회원정보관리</h4>
                             <ul class="list cat-list">
                                 <li>
-                                    <a href="memberModCheckForm.html" class="d-flex justify-content-between">
+                                    <a href="/member/memberRoomModCheck" class="d-flex justify-content-between">
                                         <p>회원정보수정</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="memberModPasswordForm.html" class="d-flex justify-content-between">
+                                    <a href="/member/memberRoomModPassword" class="d-flex justify-content-between">
                                         <p>비밀번호 변경</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="memberTransport.html" class="d-flex justify-content-between">
+                                    <a href="/member/memberRoomTransportForm" class="d-flex justify-content-between">
                                         <p>나의 주소록</p>
                                     </a>
                                 </li>
                             </ul>
                         </aside>
-                        
                     </div>
                 </div>
                 <div class="col-lg-9">

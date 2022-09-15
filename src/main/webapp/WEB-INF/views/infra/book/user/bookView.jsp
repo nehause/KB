@@ -165,14 +165,14 @@
 							<label for="qty">수량:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+							 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
 							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/resources/order/orderPayment.html">구매하기</a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="primary-btn" href="/order/orderPurchase">구매하기</a>
+							<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a>
+							<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
 				</div>

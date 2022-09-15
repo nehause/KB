@@ -9,7 +9,7 @@
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="../images/fav_jhj.png">
+	<link rel="shortcut icon" href="/resources/images/fav_jhj.png">
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
@@ -124,7 +124,7 @@
 						<div class="hover">
 							<h4>이 사이트에 처음 오셨나요?</h4>
 							<p>이 사이트는 karma 템플릿을 이용한 프로젝트로 이용하시려면 회원가입 바랍니다.</p>
-							<a class="primary-btn" href="memberRegForm.html">회원 가입</a>
+							<a class="primary-btn" href="/member/memberRegForm">회원 가입</a>
 						</div>
 					</div>
 				</div>
@@ -189,7 +189,7 @@
 						</ul>
 					</div>
 					<div class="modal-body">
-						<form name="findIdPasswordForm" method="get" action="./loginForm.html" id="findIdPasswordForm">
+						<form name="findIdPasswordForm" method="get" action="loginForm" id="findIdPasswordForm">
 							<div class="tab-content" id="findIDPasswordContent">
 								<div class="tab-pane fade show active" id="findId" role="tabpanel" aria-labelledby="findIdTab">
 									<h5>등록된 휴대폰 번호로 찾기</h5>
@@ -300,14 +300,14 @@
 					<div class="single-footer-widget mail-chimp">
 						<h6 class="mb-20">Retouch by J</h6>
 						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="../images/footer/fi1.png" alt=""></li>
-							<li><img src="../images/footer/fi2.png" alt=""></li>
-							<li><img src="../images/footer/fi3.png" alt=""></li>
-							<li><img src="../images/footer/fi4.png" alt=""></li>
-							<li><img src="../images/footer/fi5.png" alt=""></li>
-							<li><img src="../images/footer/fi6.png" alt=""></li>
-							<li><img src="../images/footer/fi7.png" alt=""></li>
-							<li><img src="../images/footer/fi8.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi1.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi2.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi3.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi4.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi5.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi6.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi7.png" alt=""></li>
+							<li><img src="/resources/images/footer/fi8.png" alt=""></li>
 						</ul>
 					</div>
 				</div>
