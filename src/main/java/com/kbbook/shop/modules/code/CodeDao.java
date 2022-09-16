@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kbbook.shop.common.base.BaseVo;
+
 @Repository
 public class CodeDao {
 	@Inject
@@ -56,5 +58,9 @@ public class CodeDao {
 	
 	public List<Code> selectListWithoutPaging(){
 		return sqlSession.selectList(namespace + ".selectListWithoutPaging", "");
+	}
+	
+	public int selectOneCount(BaseVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 }

@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kbbook.shop.common.base.BaseController;
 
 
 //codeGroup - 중간 주소
 @Controller
 @RequestMapping(value = "/codeGroup/")
-public class CodeGroupController extends BaseController {
+public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	

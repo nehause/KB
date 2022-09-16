@@ -1,28 +1,18 @@
 package com.kbbook.shop.modules.code;
 
-public class CodeVo {
-	private String searchValue;
-	private Integer searchOption;
-	private Integer searchDelNy;
+import com.kbbook.shop.common.base.BaseVo;
+
+public class CodeVo extends BaseVo{
+	private String CSeq;
 	
-	public String getSearchValue() {
-		return searchValue;
+	
+	public String getCSeq() {
+		return CSeq;
 	}
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
+	public void setCSeq(String cSeq) {
+		CSeq = cSeq;
 	}
-	public Integer getSearchOption() {
-		return searchOption;
-	}
-	public void setSearchOption(Integer searchOption) {
-		this.searchOption = searchOption;
-	}
-	public Integer getSearchDelNy() {
-		return searchDelNy;
-	}
-	public void setSearchDelNy(Integer searchDelNy) {
-		this.searchDelNy = searchDelNy;
-	}
+	
 	
 	
 }

@@ -188,7 +188,7 @@
 									코드그룹 선택
 								</option>
 								<c:forEach items="${view}" var="view" varStatus="status">
-									<option value="${view.CGSeq}"  <c:if test="${item.CGSeq}">selected</c:if>>
+									<option value="${view.CGSeq}"  <c:if test="${view.CGSeq eq item.CGSeq }">selected</c:if>>
 										<c:out value="${view.CGNameKor }"/>
 									</option>
 								</c:forEach>
@@ -198,7 +198,7 @@
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CSeq">코드 번호</label>
-							<input type="text" class="form-control" id="CSeq" name="CSeq" placeholder="자동생성" disabled>
+							<input type="text" class="form-control" id="CSeq" name="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성">
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="COrder">순서</label>
@@ -226,7 +226,7 @@
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="codeDelNy">삭제여부</label>
-							<select class="form-select" id="CDelNy" name="CDelNy" disabled>
+							<select class="form-select" id="CDelNy" name="CDelNy">
 								<option value="0" <c:if test="${item.CDelNy eq 0 }">selected</c:if>>N</option>
 								<option value="1" <c:if test="${item.CDelNy eq 1 }">selected</c:if>>Y</option>
 							</select>

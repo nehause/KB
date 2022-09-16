@@ -18,12 +18,13 @@ public class CodeController {
 	// new 역할
 
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model, CodeVo vo) throws Exception {
+	public String codeList(@ModelAttribute("vo") Model model, CodeVo vo) throws Exception {
 
 		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		
+		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
@@ -40,7 +41,9 @@ public class CodeController {
 	
 	@RequestMapping(value="codeView")
 	public String codeForm(@ModelAttribute("vo") Code dto, CodeVo vo, Model model) throws Exception{
-	
+		
+		List<Code> Group = service.selectGroup();
+		model.addAttribute("view", Group);
 		Code result = service.selectSeq(vo);
 		model.addAttribute("item", result);
 		return "infra/code/dmin/codeView";

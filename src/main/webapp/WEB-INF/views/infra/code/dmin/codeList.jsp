@@ -39,61 +39,61 @@
 </head>
 <body>
 <!-- start -->
-	<form>
-		<div class="header">
-			<div class="row" style="height: 50px;">
-				<div class="col-sm-2 offset-1">
-					<h1>KAIONEX</h1>
+	<div class="header">
+		<div class="row" style="height: 50px;">
+			<div class="col-sm-2 offset-1">
+				<h1>KAIONEX</h1>
+			</div>
+			<div class="col-sm-2 gy-3">
+				<span><b>ABC Management System</b></span>
+			</div>
+			<div class="col-sm-2 offset-3">
+				<div style="float:left">
+					<i class="fa-solid fa-circle-user" style="font-size:50px; padding-right: 20px;"></i>
 				</div>
-				<div class="col-sm-2 gy-3">
-					<span><b>ABC Management System</b></span>
-				</div>
-				<div class="col-sm-2 offset-3">
-					<div style="float:left">
-						<i class="fa-solid fa-circle-user" style="font-size:50px; padding-right: 20px;"></i>
-					</div>
-					<span style="text-align: center;"> Hwijae Jin <br> administrator </span>			
-				</div>
-				<div class="col-sm-1">
-					<select class="form-select">
-						<option>언어</option>
-						<option>한국어</option>
-						<option>영어</option>
-						<option>일본어</option>
-					</select>
-				</div>
+				<span style="text-align: center;"> Hwijae Jin <br> administrator </span>			
+			</div>
+			<div class="col-sm-1">
+				<select class="form-select">
+					<option>언어</option>
+					<option>한국어</option>
+					<option>영어</option>
+					<option>일본어</option>
+				</select>
 			</div>
 		</div>
-		<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">회원관리</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">서비스관리</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">사이트관리</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">로그관리</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">시스템관리</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">시스템관리</a>
-						</li>
-					</ul>
-				</div>
+	</div>
+	<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">회원관리</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">서비스관리</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">사이트관리</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">로그관리</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">시스템관리</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">시스템관리</a>
+					</li>
+				</ul>
 			</div>
-		</nav>
+		</div>
+	</nav>
+	<form method="post" id="CLForm" name="CLForm" class="d-flex" role="search">
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -181,63 +181,61 @@
 						<h1>코드 관리</h1>
 						<div class="row" style="height: 20px;"></div>
 					</div>
-					<form method="post" action="/codeGroup/codeGroupList" class="d-flex" role="search">
-						<div class="container-fluid border border-gray">
-							<!-- 빈공간을 위해 col은 10까지만 -->
-							<div class="row" style="margin-top: 10px;">
-								<div class="col-2">
-									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="codeUse">
-										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
-										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
-										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
-									</select>
-								</div>
-								<div class="col-2">
-									<select class="form-select bg-light" id="codeDoc" name="codeDoc" aria-label="codeDoc"> <!-- doc = "day of correction" -->
-										<option value="" selected>수정일</option>
-										<option value="codeDocAsc">오름차순</option>
-										<option value="codeDocDes">내림차순</option>
-									</select>
-								</div>
-								<div class="col-2">
-									<input type="text" class="form-control" id="codeDos" name="codeDos" placeholder="시작일"> <!-- dos = "day of start" -->
-								</div>
-								<div class="col-2">
-									<input type="text" class="form-control" id="codeDoe" name="codeDoe" placeholder="종료일"> <!-- doe = "day of end" -->
-								</div>
+					<div class="container-fluid border border-gray">
+						<!-- 빈공간을 위해 col은 10까지만 -->
+						<div class="row" style="margin-top: 10px;">
+							<div class="col-2">
+								<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="codeUse">
+									<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
+									<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
+									<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
+								</select>
 							</div>
-							<div class="row" style="height: 10px;"></div>
-							<div class="row" style="margin-bottom: 10px;">
-								<div class="col-lg-2">
-									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
-										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
-										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
-										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
-										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드 코드</option>
-										<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>코드 이름(한글)</option>
-										<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>코드 이름(영문)</option>
-									</select>
-								</div>
-								<div class="col-lg-2">
-									<input type="search" class="form-control" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
-								</div>
-								<div class="col-lg-2">
-									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
-										<i class="fa fa-search" aria-hidden="true"></i>
-									</button>
-									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
-										<i class="fa-solid fa-arrow-rotate-right"></i>
-									</button>
-								</div>
+							<div class="col-2">
+								<select class="form-select bg-light" id="codeDoc" name="codeDoc" aria-label="codeDoc"> <!-- doc = "day of correction" -->
+									<option value="" selected>수정일</option>
+									<option value="codeDocAsc">오름차순</option>
+									<option value="codeDocDes">내림차순</option>
+								</select>
+							</div>
+							<div class="col-2">
+								<input type="text" class="form-control" id="codeDos" name="codeDos" placeholder="시작일"> <!-- dos = "day of start" -->
+							</div>
+							<div class="col-2">
+								<input type="text" class="form-control" id="codeDoe" name="codeDoe" placeholder="종료일"> <!-- doe = "day of end" -->
 							</div>
 						</div>
-					</form>	
+						<div class="row" style="height: 10px;"></div>
+						<div class="row" style="margin-bottom: 10px;">
+							<div class="col-lg-2">
+								<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
+									<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
+									<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>코드그룹 코드</option>
+									<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+									<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>코드 코드</option>
+									<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>코드 이름(한글)</option>
+									<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>코드 이름(영문)</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								<input type="search" class="form-control" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
+							</div>
+							<div class="col-lg-2">
+								<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+								<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa-solid fa-arrow-rotate-right"></i>
+								</button>
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col">
 							<table class="table table-striped table-hover border" id="codeTable" style="text-align:center;">
 								<caption style="caption-side: top;">
 									<div style="float: left;">
-										<span>total: 42</span>
+										<span>total: <c:out value="${vo.totalRows}"/></span>
 									</div>
 									<div style="float:right;">
 										<select class="form-select" id="showBoard" name="showBoard">
@@ -273,7 +271,7 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr>
+												<tr onclick="location.href='/code/codeView?CSeq=<c:out value="${list.CSeq }"/>'" style="cursor: pointer;">
 													<td>
 														<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
 													</td>
@@ -319,71 +317,17 @@
 									</c:choose> --%>
 								</tbody>
 							</table>
-							<div class="d-flex justify-content-center">
-								<nav aria-label="Page navigation example">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="#"><<</a></li>
-										<li class="page-item"><a class="page-link" href="#"><</a></li>
-										<li class="page-item active"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">5</a></li>
-										<li class="page-item"><a class="page-link" href="#">></a></li>
-										<li class="page-item"><a class="page-link" href="#">>></a></li>
-									</ul>
-								</nav>
-							</div>
+							<!-- pagination s -->
+							<%@include file="../../../common/dmin/include/pagination.jsp"%>
+							<!-- pagination e -->
 							<div>
 								<div style="float: left;">
-									<button type="button" class="btn btn-danger" name="codeDelect" id="codeDelect" data-bs-toggle="modal" data-bs-target="#codeDelectModal">
+									<button type="button" class="btn btn-danger" name="codeDelect" id="codeUelect" data-bs-toggle="modal" data-bs-target="#codeUelectModal">
 										<i class="fa-solid fa-trash"></i> 삭제
 									</button>
-									<div class="modal fade" id="codeDelectModal" tabindex="-1" aria-labelledby="#codeDelectModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="codeDelectModalLabel">테이블에서 삭제하시겠습니까?</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													테이블 뷰에서 보이지 않게 됩니다 삭제하시겠습니까?
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-														<i class="fa-solid fa-x"></i> 취소
-													</button>
-													<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-														<i class="fa-solid fa-trash"></i> 삭제
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<button type="button" class="btn btn-outline-danger" id="codeListDelect" data-bs-toggle="modal" data-bs-target="#codeListDelectModal">
+									<button type="button" class="btn btn-outline-danger" id="codeDelect" data-bs-toggle="modal" data-bs-target="#codeDelectModal">
 										<i class="fa-regular fa-trash-can"></i> 삭제
 									</button>
-									<div class="modal fade" id="codeListDelectModal" tabindex="-1" aria-labelledby="codeListDelectLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="codeListDelectModalLabel">리스트에서 삭제하시겠습니까?</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-														<i class="fa-solid fa-x"></i> 취소
-													</button>
-													<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-														<i class="fa-solid fa-trash-can"></i> 삭제
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 								<div style="float: right;">
 									<button type="button" class="btn btn-success" id="listexecl">
@@ -392,6 +336,48 @@
 									<a class="btn btn-primary" href="/code/codeForm" role="button" id="listregform">
 										<i class="fa-solid fa-square-plus"></i> 추가
 									</a>
+								</div>
+								<div class="modal fade" id="codeUelectModal" tabindex="-1" aria-labelledby="#codeUelectModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="codeUelectModalLabel">테이블에서 삭제하시겠습니까?</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												테이블 뷰에서 보이지 않게 됩니다 삭제하시겠습니까?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+													<i class="fa-solid fa-x"></i> 취소
+												</button>
+												<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+													<i class="fa-solid fa-trash"></i> 삭제
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="codeDelectModal" tabindex="-1" aria-labelledby="#codeDelectModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="codeDelectModalLabel">리스트에서 삭제하시겠습니까?</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+													<i class="fa-solid fa-x"></i> 취소
+												</button>
+												<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+													<i class="fa-solid fa-trash-can"></i> 삭제
+												</button>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -424,6 +410,24 @@
 		  })
 		}
 		
+	</script>
+	<script>
+	var goUrlList = "/codeGroup/codeGroupList";
+	
+	var form = $("form[name=CLForm]"); 
+	
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+	}
+	
+	$("#searchBtn").on("click", function(){
+	   		form.attr("action", goUrlList).submit();
+	}); 
+	$("#resetBtn").on("click", function(){
+		$(location).attr("href", goUrlList);
+	}); 
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
