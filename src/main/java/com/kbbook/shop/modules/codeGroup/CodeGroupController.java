@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kbbook.shop.common.constants.Constants;
+
+
 
 
 //codeGroup - 중간 주소
@@ -29,6 +32,7 @@ public class CodeGroupController {
 //		System.out.println("vo.getSearchDos(): " + vo.getSearchDos());
 //		System.out.println("vo.getSearchDoe(): " + vo.getSearchDoe());
 		
+		setSearchAndPaging(vo);
 
 		vo.setParamsPaging(service.selectOneCount(vo));
 		List<CodeGroup> list = service.selectList(vo);
@@ -38,32 +42,50 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupForm() throws Exception {
+	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		return "infra/codeGroup/dmin/codeGroupForm";
 	}
 	
 	public void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+		vo.setSearchDor(vo.getSearchDor() == null ? 2 : vo.getSearchDor());
+//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	
 	@RequestMapping(value = "codeGroupView")
-	public String codeGroupView(@ModelAttribute("vo") CodeGroup dto, CodeGroupVo vo, Model model) throws Exception {
+	public String codeGroupView(CodeGroup dto, @ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
-		CodeGroup result = service.selectSeq(vo);
-		model.addAttribute("item", result);
-		//model.addAttribute("vo", vo); = @ModelAttribute("vo") 
+		System.out.println("vo.getCGSeq(): " + vo.getCGSeq());
+		
+		if(vo.getCGSeq().equals("0") || vo.getCGSeq().equals("")) {
+			//insert
+		} else {
+			CodeGroup result = service.selectSeq(vo);
+			model.addAttribute("item", result);
+		}
 		return "infra/codeGroup/dmin/codeGroupView"; 
 		
 	}
-	
+	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "codeGroupInst")
-	public String codeGroupInst(CodeGroup dto) throws Exception {
+	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-		int result = service.insert(dto);
-		System.out.println("controller result: " + result);
+		service.insert(dto);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		System.out.println("dto.getCGSeq(): " + dto.getCGSeq());
+		vo.setCGSeq(dto.getCGSeq());
+		System.out.println("vo.getCGSeq(): " + vo.getCGSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		if(Constants.INSERT_AFTER_TYPE == 1) {
+			return "redirect:/codeGroup/codeGroupView";
+		} else {
+			return "redirect:/codeGroup/codeGroupList";
+		}
+		
+		
 	}
 	
 	@SuppressWarnings(value= {"all"})

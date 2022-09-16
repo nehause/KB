@@ -19,6 +19,7 @@ public class BaseVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
+	private String mainKey;
 	
 // search
 	
@@ -166,7 +167,18 @@ public class BaseVo {
 	public void setStartRnumForMysql(int startRnumForMysql) {
 		this.startRnumForMysql = startRnumForMysql;
 	}
+
 	
+	public String getMainKey() {
+		return mainKey;
+	}
+
+	public void setMainKey(String mainKey) {
+		this.mainKey = mainKey;
+	}
+	
+	//search
+
 	public String getSearchValue() {
 		return searchValue;
 	}

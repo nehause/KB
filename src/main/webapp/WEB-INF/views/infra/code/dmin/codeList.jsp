@@ -116,10 +116,10 @@
 								</div>
 							</li>
 							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
+								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="false">
 									코드 관리
 								</button>
-								<div class="collapse show" id="code-collapse">
+								<div class="collapse" id="code-collapse">
 									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 										<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
 										<li><a href="#" class="link-dark rounded">코드 추가</a></li>
@@ -196,10 +196,11 @@
 								</select>
 							</div>
 							<div class="col-2">
-								<select class="form-select bg-light" id="codeDoc" name="codeDoc" aria-label="codeDoc"> <!-- doc = "day of correction" -->
-									<option value="" selected>수정일</option>
-									<option value="codeDocAsc">오름차순</option>
-									<option value="codeDocDes">내림차순</option>
+								<select class="form-select bg-light" name="searchDor" aria-label="searchDor">
+									<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
+									<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>등록일</option>
+									<option value="2" <c:if test="${vo.searchDor eq 2}">selected</c:if>>수정일</option>
+									<option value="3" <c:if test="${vo.searchDor eq 3}">selected</c:if>>생일</option>
 								</select>
 							</div>
 							<div class="col-2">

@@ -16,6 +16,13 @@ public class CodeController {
 	@Autowired
 	CodeServiceImpl service;
 	// new 역할
+	
+	public void setSearchAndPaging(CodeVo vo) throws Exception {
+		vo.setSearchDor(vo.getSearchDor() == null ? 2 : vo.getSearchDor());
+//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		vo.setParamsPaging(service.selectOneCount(vo));
+	}
 
 	@RequestMapping(value = "codeList")
 	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
@@ -24,6 +31,7 @@ public class CodeController {
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		
+		setSearchAndPaging(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);

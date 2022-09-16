@@ -94,6 +94,10 @@
 		</div>
 	</nav>
 	<form method="post" id="CGVForm" name="CGVForm" autocomplete="off">
+		<input type="hidden" id="mainKey" name="mainKey">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeGroupVo.jsp"%>
+		<!-- *Vo.jsp e -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -184,7 +188,7 @@
 						<H1>코드 그룹 관리</H1>
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CGSeq">코드그룹 코드</label>
-							<input type="text" class="form-control" id="CGSeq" name="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성">
+							<input type="text" class="form-control" id="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성">
 						</div>
 					</div>
 					<div class="row">
@@ -228,7 +232,7 @@
 					<div style="height: 20px;"></div>
 					<div class="col-lg-10 offset-1">
 						<div style="float:left;">
-							<button type="button"  class="btn btn-secondary">
+							<button type="button"  class="btn btn-secondary" id="listBtn" name="listBtn" type="button">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
@@ -293,14 +297,25 @@
 <!-- end -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
+		var goUrlList = "/codeGroup/codeGroupList";					/* #-> */
+		var goUrlInsert = "/codeGroup/codeGroupInst";				/* #-> */
 		var goUrlUpdate = "/codeGroup/codeGroupUpdate";				/* #-> */
 		var goUrlUelete = "/codeGroup/codeGroupUelete";				/* #-> */
 		var goUrlDelete = "/codeGroup/codeGroupDelete";				/* #-> */
 		
+		var seq = $("input:hidden[name=CGSeq]");
+		
 		var form = $("form[name=CGVForm]"); 
 		
+		$("#listBtn").on("click", function(){
+			$(location).attr("href", goUrlList);
+		}); 
 		$("#updateBtn").on("click", function(){
-		   		form.attr("action", goUrlUpdate).submit();
+			if(seq.val() == "0" || seq.val() == ""){
+				form.attr("action", goUrlInsert).submit();
+			} else{
+				form.attr("action", goUrlUpdate).submit();	
+			}
 		}); 
 		
 		$("#deleteBtn").on("click", function(){

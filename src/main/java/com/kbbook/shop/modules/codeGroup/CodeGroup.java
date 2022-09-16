@@ -12,6 +12,8 @@ public class CodeGroup {
 	private Date CGRegistration;
 	private Date CGCorrectation;
 	private Integer CCount;
+	
+	
 	public String getCGSeq() {
 		return CGSeq;
 	}

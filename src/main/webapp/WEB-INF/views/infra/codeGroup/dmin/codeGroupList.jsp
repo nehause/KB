@@ -105,10 +105,13 @@
 				</div>
 			</nav>
 			<form method="post" id="CGLForm" name="CGLForm" class="d-flex" role="search">
-				<input type="hidden" name="mainKey">
+				<input type="hidden" id="mainKey" name="mainKey" value="">
 				<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 				<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 				<input type="hidden" name="checkboxSeqArray">
+				<!-- *Vo.jsp s -->
+				<%@include file="codeGroupVo.jsp"%>
+				<!-- *Vo.jsp e -->
 				<div class="container-fluid">
 					<div class="row" style="padding-left: 20px; padding-right: 20px;">
 						<div class="col-lg-2">
@@ -209,8 +212,9 @@
 										<div class="col-2">
 											<select class="form-select bg-light" name="searchDor" aria-label="searchDor">
 												<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
-												<option value="0" <c:if test="${vo.searchDor eq 0}">selected</c:if>>등록일</option>
-												<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>수정일</option>
+												<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>등록일</option>
+												<option value="2" <c:if test="${vo.searchDor eq 2}">selected</c:if>>수정일</option>
+												<option value="3" <c:if test="${vo.searchDor eq 3}">selected</c:if>>생일</option>
 											</select>
 										</div>
 										<div class="col-2">
@@ -276,32 +280,6 @@
 											</tr>
 										</thead>
 										<tbody>
-											<%-- <c:forEach items="${list}" var="list" varStatus="status">
-												<tr>
-													<td>
-														<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
-													</td>
-													<td>
-														<c:out value="${status.count }"/>
-													</td>
-													<td>
-														<c:out value="${list.CGSeq }"/>
-													</td>
-													<td>
-														<c:out value="${list.CGNameKor }"/>
-													</td>
-													<td>
-														<c:out value="${list.CGNameEng }"/>
-													</td>
-													<td>
-														<c:out value="${list.CCount }"/>
-													</td>
-													<td>
-													</td>
-													<td>
-													</td>
-												</tr>
-											</c:forEach> --%>
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
 													<td class="text-center" colspan="8">There is no data!</td>
@@ -309,7 +287,7 @@
 												<c:otherwise>
 													<c:forEach items="${list}" var="list" varStatus="status">
 														<!-- gateway?변수명 =값 -->
-														<tr onclick="location.href='/codeGroup/codeGroupView?CGSeq=<c:out value="${list.CGSeq }"/>'" style="cursor: pointer;">
+														<tr onclick="location.href='javascript:goView(<c:out value="${list.CGSeq }"/>)'" style="cursor: pointer;">
 															<td>
 																<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
 															</td>
@@ -415,9 +393,9 @@
 											<button type="button" class="btn btn-success" id="listexecl">
 												<i class="fa-solid fa-file-excel"></i> 액셀
 											</button>
-											<a class="btn btn-primary" href="codeGroupForm" role="button" id="listregform">
+											<button class="btn btn-primary" type="button" id="regBtn" name="regBtn">
 												<i class="fa-solid fa-square-plus"></i> 추가
-											</a>
+											</button>
 										</div>
 									</div>
 								</div>
@@ -454,18 +432,27 @@
 	
 	<script>
 	var goUrlList = "/codeGroup/codeGroupList";
+	var goUrlView = "/codeGroup/codeGroupView";
+	var seq = $("input:hidden[name=CGSeq]"); 
 	
 	var form = $("form[name=CGLForm]"); 
-	
 	
 	goList = function(thisPage){
 		$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();
 	}
 	
-	$("#searchBtn").on("click", function(){
-	   		form.attr("action", goUrlList).submit();
+	goView = function(seqValue) {
+		seq.val(seqValue);
+		form.attr("action", goUrlView).submit();
+	}
+	
+	$("#regBtn").on("click", function(){
+	   		goView(0);
 	}); 
+	$("#searchBtn").on("click", function(){
+   		form.attr("action", goUrlList).submit();
+}); 
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
 	}); 
