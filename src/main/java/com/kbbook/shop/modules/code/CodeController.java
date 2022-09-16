@@ -18,7 +18,7 @@ public class CodeController {
 	// new 역할
 
 	@RequestMapping(value = "codeList")
-	public String codeList(@ModelAttribute("vo") Model model, CodeVo vo) throws Exception {
+	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 
 		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
@@ -85,13 +85,13 @@ public class CodeController {
 	public String codeUel(Code dto, RedirectAttributes redirectAttributes) throws Exception{
 		service.uelete(dto);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		return "redirect:/code/codeList";
 	}
 	
 	@RequestMapping(value = "codeDelete")
 	public String codeDel(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		service.delete(vo);
 		
-		return "redirect:/code/codepList";
+		return "redirect:/code/codeList";
 	}
 }

@@ -94,6 +94,10 @@
 		</div>
 	</nav>
 	<form method="post" id="CLForm" name="CLForm" class="d-flex" role="search">
+		<input type="hidden" name="mainKey">
+		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+		<input type="hidden" name="checkboxSeqArray">
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -221,10 +225,10 @@
 								<input type="search" class="form-control" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
 							</div>
 							<div class="col-lg-2">
-								<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
+								<button class="col-1 btn btn-outline-dark" type="button" id="searchBtn" name="searchBtn" style="width: 40px; height:38px; margin-right: 10px;">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</button>
-								<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+								<button class="col-1 btn btn-warning" type="button" id="resetBtn" name="resetBtn" style="width: 40px; height:38px; margin-right: 10px;">
 									<i class="fa-solid fa-arrow-rotate-right"></i>
 								</button>
 							</div>
@@ -411,8 +415,9 @@
 		}
 		
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
-	var goUrlList = "/codeGroup/codeGroupList";
+	var goUrlList = "/code/codeList";
 	
 	var form = $("form[name=CLForm]"); 
 	
