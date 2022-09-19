@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kbbook.shop.common.constants.Constants;
+
+
 
 @Controller
 @RequestMapping(value = "/code/")
@@ -48,28 +51,39 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value="codeView")
-	public String codeForm(@ModelAttribute("vo") Code dto, CodeVo vo, Model model) throws Exception{
+	public String codeForm(Code dto, @ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
 		List<Code> Group = service.selectGroup();
 		model.addAttribute("view", Group);
-		Code result = service.selectSeq(vo);
-		model.addAttribute("item", result);
+		
+		System.out.println("vo.getCSeq(): " + vo.getCSeq());
+		
+		if(vo.getCSeq().equals("0") || vo.getCSeq().equals("")) {
+			//insert
+		} else {
+			Code result = service.selectSeq(vo);
+			model.addAttribute("item", result);
+		}
+		
 		return "infra/code/dmin/codeView";
 	}
-	
+	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "codeInst")
-	public String codeInst(Code dto) throws Exception{
+	public String codeInst(Code dto, CodeVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		
-		System.out.println("dto.getCCG_CGSeq(): " + dto.getCCG_CGSeq());
-		System.out.println("dto.getCNameKor(): " + dto.getCNameKor());
-		System.out.println("dto.getCOrder(): " + dto.getCOrder());
+		service.insert(dto);
 		
-		int result = service.insert(dto);
+		System.out.println("dto.getCSeq(): " + dto.getCSeq());
+		vo.setCSeq(dto.getCSeq());
+		System.out.println("vo.getCSeq(): " + vo.getCSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		
-		System.out.println("controller result: " + result);
-		
-		return "redirect:/code/codeList";
+		if(Constants.INSERT_AFTER_TYPE == 1) {
+			return "redirect:/code/codeView";
+		} else {
+			return "redirect:/code/codeList";
+		}
 	}
 	
 	@SuppressWarnings(value= {"all"})

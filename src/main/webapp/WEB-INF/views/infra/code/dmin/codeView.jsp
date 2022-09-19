@@ -92,7 +92,11 @@
 			</div>
 		</div>
 	</nav>
-	<form method="post" id="CVForm" name="CVForm" autocomplete="">
+	<form method="post" id="CVForm" name="CVForm" autocomplete="off">
+		<input type="hidden" id="mainKey" name="mainKey">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>
+		<!-- *Vo.jsp e -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -188,7 +192,7 @@
 									코드그룹 선택
 								</option>
 								<c:forEach items="${view}" var="view" varStatus="status">
-									<option value="${view.CGSeq}"  <c:if test="${view.CGSeq eq item.CGSeq }">selected</c:if>>
+									<option value="${view.CGSeq}"  <c:if test="${view.CGSeq eq item.CCG_CGSeq}">selected</c:if>>
 										<c:out value="${view.CGNameKor }"/>
 									</option>
 								</c:forEach>
@@ -198,7 +202,7 @@
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="CSeq">코드 번호</label>
-							<input type="text" class="form-control" id="CSeq" name="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성">
+							<input type="text" class="form-control" id="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성">
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="COrder">순서</label>
@@ -241,7 +245,7 @@
 					<div style="height: 20px;"></div>
 					<div class="col-lg-10 offset-1">
 						<div style="float:left;">
-							<button type="button" class="btn btn-secondary">
+							<button type="button" class="btn btn-secondary" id="listBtn" name="listBtn">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
@@ -305,7 +309,7 @@
 	</form>
 
 <!-- end -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	function check(){
 		
 		if(document.getElementById('CCG_CGSeq').value == '' || document.getElementById('CCG_CGSeq').value == null){
@@ -351,18 +355,31 @@
 		return false;
 
 	}
-	</script>
+	</script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
+		var goUrlList = "/code/codeList";					/* #-> */
+		var goUrlInsert = "/code/codeInst";				/* #-> */
 		var goUrlUpdate = "/code/codeUpdate";				/* #-> */
 		var goUrlUelete = "/code/codeUelete";				/* #-> */
 		var goUrlDelete = "/code/codeDelete";				/* #-> */
 		
+		var seq = $("input:hidden[name=CSeq]");
+		
 		var form = $("form[name=CVForm]"); 
 		
-		$("#updateBtn").on("click", function(){
-		   		form.attr("action", goUrlUpdate).submit();
+		
+		$("#listBtn").on("click", function(){
+			$(location).attr("href", goUrlList);
 		}); 
+		
+		$("#updateBtn").on("click", function(){
+			if(seq.val() == "0" || seq.val() == ""){
+				form.attr("action", goUrlInsert).submit();
+			} else{
+				form.attr("action", goUrlUpdate).submit();	
+			}
+		});
 		
 		$("#deleteBtn").on("click", function(){
 	   		form.attr("action", goUrlDelete).submit();

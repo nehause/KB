@@ -98,6 +98,9 @@
 		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="checkboxSeqArray">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>
+		<!-- *Vo.jsp e -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -276,7 +279,7 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr onclick="location.href='/code/codeView?CSeq=<c:out value="${list.CSeq }"/>'" style="cursor: pointer;">
+												<tr onclick="location.href='javascript:goView(<c:out value="${list.CSeq }"/>)'" style="cursor: pointer;">
 													<td>
 														<input class="form-check-input" type="checkbox" name="codeCheck" value="codeChecked" onclick="checkSelectAll();">
 													</td>
@@ -335,10 +338,10 @@
 									</button>
 								</div>
 								<div style="float: right;">
-									<button type="button" class="btn btn-success" id="listexecl">
+									<button type="button" class="btn btn-success" id="excelBtn" name="excelBtn">
 										<i class="fa-solid fa-file-excel"></i> 액셀
 									</button>
-									<a class="btn btn-primary" href="/code/codeForm" role="button" id="listregform">
+									<a class="btn btn-primary" role="button" id="regBtn" name="regBtn">
 										<i class="fa-solid fa-square-plus"></i> 추가
 									</a>
 								</div>
@@ -419,6 +422,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
 	var goUrlList = "/code/codeList";
+	var goUrlView = "/code/codeView"
+	var seq = $("input:hidden[name=CSeq]");
 	
 	var form = $("form[name=CLForm]"); 
 	
@@ -427,6 +432,15 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();
 	}
+	
+	goView = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlView).submit();
+	}
+	
+	$("#regBtn").on("click", function(){
+		goView(0);
+	});
 	
 	$("#searchBtn").on("click", function(){
 	   		form.attr("action", goUrlList).submit();

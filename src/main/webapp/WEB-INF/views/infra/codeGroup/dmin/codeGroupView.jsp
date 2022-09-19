@@ -232,7 +232,7 @@
 					<div style="height: 20px;"></div>
 					<div class="col-lg-10 offset-1">
 						<div style="float:left;">
-							<button type="button"  class="btn btn-secondary" id="listBtn" name="listBtn" type="button">
+							<button type="button" class="btn btn-secondary" id="listBtn" name="listBtn">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
