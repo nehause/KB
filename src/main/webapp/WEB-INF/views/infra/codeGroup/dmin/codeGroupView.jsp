@@ -294,6 +294,12 @@
 		  </div>
 		</div>
 	</form>
+	<form name="CGVFormVo" id="CGVFormVo" method="post">
+	<!-- *Vo.jsp s -->
+	<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+	<!-- *Vo.jsp e -->
+	</form>
+	
 <!-- end -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
@@ -306,10 +312,12 @@
 		var seq = $("input:hidden[name=CGSeq]");
 		
 		var form = $("form[name=CGVForm]"); 
+		var formVo = $("form[name=CGVFormVo]"); 
 		
-		$("#listBtn").on("click", function(){
-			$(location).attr("href", goUrlList);
-		}); 
+		$("#btnList").on("click", function(){
+			formVo.attr("action", goUrlList).submit();
+		});
+		
 		$("#updateBtn").on("click", function(){
 			if(seq.val() == "0" || seq.val() == ""){
 				form.attr("action", goUrlInsert).submit();
