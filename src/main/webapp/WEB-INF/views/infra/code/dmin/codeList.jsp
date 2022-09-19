@@ -95,12 +95,10 @@
 	</nav>
 	<form method="post" id="CLForm" name="CLForm" class="d-flex" role="search">
 		<input type="hidden" name="mainKey">
+		<input type="hidden" name="CSeq">
 		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="checkboxSeqArray">
-		<!-- *Vo.jsp s -->
-		<%@include file="codeVo.jsp"%>
-		<!-- *Vo.jsp e -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -207,10 +205,10 @@
 								</select>
 							</div>
 							<div class="col-2">
-								<input type="text" class="form-control" id="codeDos" name="codeDos" placeholder="시작일"> <!-- dos = "day of start" -->
+								<input type="text" class="form-control" id="searchDos" name="searchDos" placeholder="시작일"> <!-- dos = "day of start" -->
 							</div>
 							<div class="col-2">
-								<input type="text" class="form-control" id="codeDoe" name="codeDoe" placeholder="종료일"> <!-- doe = "day of end" -->
+								<input type="text" class="form-control" id="searchDoe" name="searchDoe" placeholder="종료일"> <!-- doe = "day of end" -->
 							</div>
 						</div>
 						<div class="row" style="height: 10px;"></div>
@@ -226,7 +224,7 @@
 								</select>
 							</div>
 							<div class="col-lg-2">
-								<input type="search" class="form-control" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
+								<input type="search" class="form-control" id="searchValue" name="searchValue" value="<c:out value="${vo.searchValue }"/>" placeholder="검색어" aria-label="Search">
 							</div>
 							<div class="col-lg-2">
 								<button class="col-1 btn btn-outline-dark" type="button" id="searchBtn" name="searchBtn" style="width: 40px; height:38px; margin-right: 10px;">

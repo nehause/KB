@@ -34,7 +34,6 @@ public class CodeGroupController {
 		
 		setSearchAndPaging(vo);
 
-		vo.setParamsPaging(service.selectOneCount(vo));
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		

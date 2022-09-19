@@ -10,12 +10,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<title>그룹 코드 관리</title>
-	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<!-- <script>
@@ -106,12 +104,10 @@
 			</nav>
 			<form method="post" id="CGLForm" name="CGLForm" class="d-flex" role="search">
 				<input type="hidden" id="mainKey" name="mainKey" value="">
+				<input type="hidden" id="CGSeq" name="CGSeq" value="">
 				<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 				<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 				<input type="hidden" name="checkboxSeqArray">
-				<!-- *Vo.jsp s -->
-				<%@include file="codeGroupVo.jsp"%>
-				<!-- *Vo.jsp e -->
 				<div class="container-fluid">
 					<div class="row" style="padding-left: 20px; padding-right: 20px;">
 						<div class="col-lg-2">
@@ -210,7 +206,7 @@
 											</select>
 										</div>
 										<div class="col-2">
-											<select class="form-select bg-light" name="searchDor" aria-label="searchDor">
+											<select class="form-select bg-light" id="searchDor" name="searchDor" aria-label="searchDor">
 												<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
 												<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>등록일</option>
 												<option value="2" <c:if test="${vo.searchDor eq 2}">selected</c:if>>수정일</option>
@@ -457,11 +453,10 @@
 		$(location).attr("href", goUrlList);
 	}); 
 	</script>
-	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	
 <!-- end -->
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

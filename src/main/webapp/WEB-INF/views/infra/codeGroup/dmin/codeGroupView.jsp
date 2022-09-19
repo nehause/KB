@@ -314,7 +314,7 @@
 		var form = $("form[name=CGVForm]"); 
 		var formVo = $("form[name=CGVFormVo]"); 
 		
-		$("#btnList").on("click", function(){
+		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
 		});
 		
