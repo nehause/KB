@@ -131,4 +131,16 @@
 		<include refid="selectCommon" />
 	</select>
 
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			COrder
+			,CNameKor
+			,CCG_CGSeq
+		FROM
+			CG
+		WHERE 1=1
+			AND CDelNy = 0
+		    AND CUseNy = 1
+    </select>
+
 </mapper>

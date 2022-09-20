@@ -1,6 +1,8 @@
 package com.kbbook.shop.modules.code;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Code {
 	private String CSeq;
@@ -15,7 +17,13 @@ public class Code {
 	private String CGName;
 	private String CGSeq;
 	private String CGNameKor;
+	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
+	
 	/////////////////////////////////////////////////////////
+	
+	
 	public String getCSeq() {
 		return CSeq;
 	}

@@ -63,4 +63,9 @@ public class CodeDao {
 	public int selectOneCount(BaseVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+//	for cache
+	public List<Code> selectListCachedCodeArrayList(){
+		return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); 
+	}
 }
