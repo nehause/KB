@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<title>코드 관리</title>
+	<title>멤버 추가</title>
 	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
@@ -92,11 +92,7 @@
 			</div>
 		</div>
 	</nav>
-	<form method="post" id="CVForm" name="CVForm" autocomplete="off">
-		<input type="hidden" id="mainKey" name="mainKey">
-		<!-- *Vo.jsp s -->
-		<%@include file="codeVo.jsp"%>
-		<!-- *Vo.jsp e -->
+	<form method="post" id="MVForm" name="MVForm" autocomplete="off">
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -184,62 +180,122 @@
 				</div>
 				<div class="col-lg-10">
 					<div class="row">
-						<H1>코드 관리</H1>
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="CCG_CGSeq">코드그룹</label>
-							<select class="form-select" id="CCG_CGSeq" name="CCG_CGSeq">
-								<option value="">
-									코드그룹 선택
-								</option>
-								<c:forEach items="${view}" var="view" varStatus="status">
-									<option value="${view.CGSeq}"  <c:if test="${view.CGSeq eq item.CCG_CGSeq}">selected</c:if>>
-										<c:out value="${view.CGNameKor }"/>
-									</option>
-								</c:forEach>
-							</select>
-						</div>
+						<h1>멤버 관리</h1>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="CSeq">코드 번호</label>
-							<input type="text" class="form-control" id="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성">
+							<label for="id">아이디</label>
+							<input type="text" class="form-control" id="id" name="id" value="<c:out value="${item.id }"/>">
 						</div>
 						<div class="col-sm-5 gy-4">
-							<label for="COrder">순서</label>
-							<input type="text" class="form-control" id="COrder" name="COrder" value="<c:out value="${item.COrder }"/>" placeholder="숫자">
+							<label for="password">비밀번호</label>
+							<input type="text" class="form-control" id="password" name="password" value="<c:out value="${item.password }"/>" placeholder="영문(대소문자),숫자">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="CNameKor">코드 이름(한글)</label>
-							<input type="text" class="form-control" id="CNameKor" name="CNameKor" value="<c:out value="${item.CNameKor }"/>" placeholder="한글, 숫자">
+							<label for="name">이름</label>
+							<input type="text" class="form-control" id="name" name="name" value="<c:out value="${item.name }"/>" placeholder="한글, 숫자">
 						</div>
 						<div class="col-sm-5 gy-4">
-							<label for="CNameEng">코드 이름(영문)</label>
-							<input type="text" class="form-control" id="CNameEng" name="CNameEng" value="<c:out value="${item.CNameEng }"/>" placeholder="영문(대소문자), 숫자">
+							<label for="userName">닉네임</label>
+							<input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${item.userName }"/>" placeholder="영문(대소문자), 숫자">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="CUseNy">사용여부</label>
-							<select class="form-select" id="CUseNy" name="CUseNy">
-								<option value="0" <c:if test="${item.CUseNy eq 0 }">selected</c:if>>N</option>
-								<option value="1" <c:if test="${item.CUseNy eq 1 }">selected</c:if>>Y</option>
-								
-							</select>
+							<div style="padding-bottom: 10px;">
+								성별
+							</div>
+							<input type="radio" class="col-sm-1" id="genderMan" name="gender" value="0">
+							<label for="MGenderMan">남성</label>
+							<input type="radio" class="col-sm-1" id="genderWoman" name="gender" value="1">
+							<label for="MGenderWoman">여성</label>
 						</div>
 						<div class="col-sm-5 gy-4">
-							<label for="codeDelNy">삭제여부</label>
-							<select class="form-select" id="CDelNy" name="CDelNy">
-								<option value="0" <c:if test="${item.CDelNy eq 0 }">selected</c:if>>N</option>
-								<option value="1" <c:if test="${item.CDelNy eq 1 }">selected</c:if>>Y</option>
-							</select>
+							<label for="dob">생일</label>
+							<input type="text" class="form-control" id="dob" name="dob" value="<c:out value="${item.dob }"/>" placeholder="숫자">
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<label for="phone">휴대폰 번호</label>
+							<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="숫자">
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="number">집전화 번호</label>
+							<input type="text" class="form-control" id="number" name="number" value="<c:out value="${item.number }"/>" placeholder="숫자">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="CRegistration">등록일</label>
-							<input type="text" class="form-control" id="CRegistration" name="CRegistration" value="<c:out value="${item.CRegistration }"/>" placeholder="숫자">
+							<label for="email">이메일</label>
+							<input type="text" class="form-control" id="email" name="email" value="<c:out value="${item.email }"/>" placeholder="영문(대소문자), 숫자">
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="zip">우편번호</label>
+							<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="영문(대소문자), 숫자">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<label for="address1">주소</label>
+							<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="숫자">
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="address2">상세주소</label>
+							<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="숫자">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<div style="padding-bottom: 10px;">
+	                            <span>개인정보 유효기간</span>
+	                        </div>
+	                        <input type="radio" class="col-sm-1" id="privacy1" name="privacy" value="1">
+	                        <label for="privacy1">1년</label>
+	                   
+	                        <input type="radio" class="col-sm-1" id="privacy2" name="privacy" value="2">
+	                        <label for="privacy2">3년</label>
+	                      
+	                        <input type="radio" class="col-sm-1" id="privacy3" name="privacy" value="3">
+	                        <label for="privacy3">5년</label>
+	               
+	                        <input type="radio" class="col-sm-1" id="privacy4" name="privacy" value="4">
+	                        <label for="privacy4">탈퇴시까지</label>
+	                      </div>
+						<div class="col-sm-5 gy-4">
+                            <div style="padding-bottom: 10px;">
+                                 <input type="checkbox" id="adAllReceive" name="adAllReceive" value="adAllReceive" onclick="selectAll(this);">
+                                 <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
+                             </div>
+                             <div style="display:inline;">
+                                 <input type="checkbox" id="email_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <label for="email_ctr">이메일 수신</label>
+                             </div>
+                             <div style="display:inline; margin-left: 20px;">
+                                 <input type="checkbox" id="kakao_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <label for="kakao_ctr">카카오톡 수신</label>
+                             </div>
+                             <div style="display:inline; margin-left: 20px;">
+                                 <input type="checkbox" id="sms_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <label for="sms_ctr">SMS 수신 동의</label>
+                             </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<label for="codeSpareInt3">적립금</label>
+							<input type="text" class="form-control" id="accmulate" name="accmulate" value="<c:out value="${item.accmulate }"/>" placeholder="숫자">
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="useCodeUseNy">삭제 여부</label>
+							<select class="form-select" id="memberDelNy" name="memberDelNy">
+								<option>선택하세요</option>
+								<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>Y</option>
+								<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>N</option>
+							</select>
 						</div>
 					</div>
 					<div style="height: 20px;"></div>
@@ -307,72 +363,133 @@
 		  </div>
 		</div>
 	</form>
-	<form name="CVFormVo" id="CVFormVo" method="post">
+	<form name="MVFormVo" id="MVFormVo" method="post">
 	<!-- *Vo.jsp s -->
-	<%@include file="codeVo.jsp"%>		<!-- #-> -->
+	<%@include file="memberVo.jsp"%>		<!-- #-> -->
 	<!-- *Vo.jsp e -->
 	</form>
+	<script type="text/javascript">
+		function checkSelectAll()  {
 
-<!-- end -->
+			const checkboxes = document.querySelectorAll('input[name="adReceive"]');
+
+			const checked = document.querySelectorAll('input[name="adReceive"]:checked');
+
+			const selectAll = document.querySelector('input[name="adAllReceive"]');
+			  
+			if(checkboxes.length === checked.length)  {
+			  selectAll.checked = true;
+			}else {
+			  selectAll.checked = false;
+			}
+		}
+		function selectAll(selectAll)  {
+			const checkboxes = document.getElementsByName('adReceive');
+			
+			checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	</script>
 	<!-- <script type="text/javascript">
-	function check(){
-		
-		if(document.getElementById('CCG_CGSeq').value == '' || document.getElementById('CCG_CGSeq').value == null){
-			alert("코드그룹을 분류해주세요");
-			document.getElementById('CCG_CGSeq').value = "";
-			document.getElementById('CCG_CGSeq').focus();
+		function check(){
+			
+			if(document.getElementById('id').value == '' || document.getElementById('id').value == null){
+				alert("아이디를 입력해주세요");
+				document.getElementById('id').value = "";
+				document.getElementById('id').focus();
+				return false;
+			}
+			if(document.getElementById('password').value == '' || document.getElementById('password').value == null){
+				alert("비밀번호를 입력해주세요");
+				document.getElementById('password').value = "";
+				document.getElementById('password').focus();
+				return false;
+			}
+			if(document.getElementById('name').value == '' || document.getElementById('name').value == null){
+				alert("이름을 입력해주세요");
+				document.getElementById('name').value = "";
+				document.getElementById('name').focus();
+				return false;
+			}
+			if(document.getElementById('userName').value == '' || document.getElementById('userName').value == null){
+				alert("닉네임을 입력해주세요");
+				document.getElementById('userName').value = "";
+				document.getElementById('userName').focus();
+				return false;
+			}
+			if(document.querySelector('intput[name="gender"]').checked == false){
+				alert("성별을 입력해주세요");
+				document.querySelector("intput[name='gender']").focus();
+				return false;
+			}
+			if(document.getElementById('dob').value == '' || document.getElementById('dob').value == null){
+				alert("생일을 입력해주세요");
+				document.getElementById('dob').value = "";
+				document.getElementById('dob').focus();
+				return false;
+			}
+			if(document.getElementById('phone').value == '' || document.getElementById('phone').value == null){
+				alert("휴대전화번호를 입력해주세요");
+				document.getElementById('phone').value = "";
+				document.getElementById('phone').focus();
+				return false;
+			}
+			if(document.getElementById('number').value == '' || document.getElementById('number').value == null){
+				alert("집전화번호를 입력해주세요");
+				document.getElementById('number').value = "";
+				document.getElementById('number').focus();
+				return false;
+			}
+			if(document.getElementById('email').value == '' || document.getElementById('email').value == null){
+				alert("이메일을 입력해주세요");
+				document.getElementById('email').value = "";
+				document.getElementById('email').focus();
+				return false;
+			}
+			if(document.getElementById('zip').value == '' || document.getElementById('zip').value == null){
+				alert("우편번호를 입력해주세요");
+				document.getElementById('zip').value = "";
+				document.getElementById('zip').focus();
+				return false;
+			}
+			if(document.getElementById('address1').value == '' || document.getElementById('address1').value == null){
+				alert("주소를 선택해주세요");
+				document.getElementById('address1').value = "";
+				document.getElementById('address1').focus();
+				return false;
+			}
+			if(document.getElementById('address2').value == '' || document.getElementById('address2').value == null){
+				alert("상세주소를 입력해주세요");
+				document.getElementById('address2').value = "";
+				document.getElementById('address2').focus();
+				return false;
+			}
+			if(document.querySelector("intput[name='privacy']:unchecked")){
+				alert("개인정보 유효기간을 선택해주세요");
+				document.querySelector("intput[name='privacy']:unchecked").focus();
+				return false;
+			}
+			
+			
+			document.getElementById("memberForm").submit;
 			return false;
+			
 		}
-		
-		
-		if(document.getElementById('COrder').value == '' || document.getElementById('COrder').value == null){
-			alert("순서를 입력해주세요");
-			document.getElementById('COrder').value = "";
-			document.getElementById('COrder').focus();
-			return false;
-		}
-		
-		
-		if(document.getElementById('CNameKor').value == '' || document.getElementById('CNameKor').value == null){
-			alert("한글명을 입력해주세요");
-			document.getElementById('CNameKor').value = "";
-			document.getElementById('CNameKor').focus();
-			return false;
-		}
-		
-		
-		if(document.getElementById('CNameEng').value == '' || document.getElementById('CNameEng').value == null){
-			alert("영문명을 입력해주세요");
-			document.getElementById('CNameEng').value = "";
-			document.getElementById('CNameEng').focus();
-			return false;
-		}
-		
-		
-		if(document.getElementById('CRegistration').value == '' || document.getElementById('CRegistration').value == null){
-			alert("등록일을 입력해주세요");
-			document.getElementById('CRegistration').value = "";
-			document.getElementById('CRegistration').focus();
-			return false;
-		}
-		
-		document.getElementById('regCodeForm').submit();
-		return false;
-
-	}
+	
 	</script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
-		var goUrlList = "/code/codeList";					/* #-> */
-		var goUrlInsert = "/code/codeInst";				/* #-> */
-		var goUrlUpdate = "/code/codeUpdate";				/* #-> */
-		var goUrlUelete = "/code/codeUelete";				/* #-> */
-		var goUrlDelete = "/code/codeDelete";				/* #-> */
+		var goUrlList = "/member/memberList";					/* #-> */
+		var goUrlInsert = "/member/memberInst";				/* #-> */
+		var goUrlUpdate = "/member/memberUpdate";				/* #-> */
+		var goUrlUelete = "/member/memberUelete";				/* #-> */
+		var goUrlDelete = "/member/memberDelete";				/* #-> */
 		
-		var seq = $("input:hidden[name=CSeq]");
+		var seq = $("input:hidden[name=memberSeq]");
 		
-		var form = $("form[name=CVForm]"); 
-		var formVo = $("form[name=CVFormVo]");
+		var form = $("form[name=MVForm]"); 
+		var formVo = $("form[name=MVFormVo]");
 		
 		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
@@ -394,7 +511,7 @@
 	   		form.attr("action", goUrlUelete).submit();
 		}); 
 	</script>
-	
+<!-- end -->
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

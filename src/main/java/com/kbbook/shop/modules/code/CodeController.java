@@ -35,7 +35,6 @@ public class CodeController {
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		
 		setSearchAndPaging(vo);
-		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
@@ -51,7 +50,7 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value="codeView")
-	public String codeForm(Code dto, @ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+	public String codeView(Code dto, @ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
 		List<Code> Group = service.selectGroup();
 		model.addAttribute("view", Group);

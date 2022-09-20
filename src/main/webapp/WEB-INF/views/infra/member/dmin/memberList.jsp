@@ -202,6 +202,16 @@
 									<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>여자</option>
 								</select>
 							</div>
+							
+							<div class="col-2">
+								<input type="text" class="form-control" id="memberDos" name="memberDos" placeholder="시작일">
+							</div>
+							<div class="col-2">
+								<input type="text" class="form-control" id="memberDoe" name="memberDoe" placeholder="종료일">
+							</div>
+						</div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row" style="margin-bottom: 10px;">
 							<div class="col-2">
 								<select class="form-select bg-light" id="searchPrivacy" name="searchPrivacy" aria-label="memberUse">
 									<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>개인정보 유효기간</option>
@@ -211,35 +221,27 @@
 									<option value="4" <c:if test="${vo.searchDelNy eq 4}">selected</c:if>>탈퇴시까지</option>
 								</select>
 							</div>
-							<div class="col-2">
-								<input type="text" class="form-control" id="memberDos" name="memberDos" placeholder="시작일">
+							<div class="col-lg-2">
+								<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
+									<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
+									<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>멤버 번호</option>
+									<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>이름</option>
+									<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>아이디</option>
+									<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>닉네임</option>
+									<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>이메일</option>
+								</select>
 							</div>
-						</div>
-						<div class="row" style="height: 10px;"></div>
-						<div class="row" style="margin-bottom: 10px;">
-							<form class="d-flex" role="search">
-								<div class="col-lg-2">
-									<select class="form-select bg-light" id="searchOption" name="searchOption" aria-label="selectsearch">
-										<option value="" <c:if test="${empty vo.searchOption}">selected</c:if>>검색기준</option>
-										<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>멤버 번호</option>
-										<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>이름</option>
-										<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>아이디</option>
-										<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>닉네임</option>
-										<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>이메일</option>
-									</select>
-								</div>
-								<div class="col-lg-2">
-									<input class="form-control" type="search" id="memberSearchValue" name="memberSearchValue" placeholder="검색어" aria-label="Search" >
-								</div>
-								<div class="col-lg-2">
-									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
-										<i class="fa fa-search" aria-hidden="true"></i>
-									</button>
-									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
-										<i class="fa-solid fa-arrow-rotate-right"></i>
-									</button>
-								</div>
-							</form>	
+							<div class="col-lg-2">
+								<input class="form-control" type="search" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
+							</div>
+							<div class="col-lg-2">
+								<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+								<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa-solid fa-arrow-rotate-right"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 					<div class="row">

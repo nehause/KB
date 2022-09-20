@@ -1,30 +1,14 @@
 package com.kbbook.shop.modules.member;
 
-public class MemberVo {
-	private String searchValue;
-	private Integer searchOption;
-	private Integer searchDelNy;
+import com.kbbook.shop.common.base.BaseVo;
+
+public class MemberVo  extends BaseVo{
+	
 	private Integer searchPrivacy;
 	private Integer searchGender;
 	
-	public String getSearchValue() {
-		return searchValue;
-	}
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
-	}
-	public Integer getSearchOption() {
-		return searchOption;
-	}
-	public void setSearchOption(Integer searchOption) {
-		this.searchOption = searchOption;
-	}
-	public Integer getSearchDelNy() {
-		return searchDelNy;
-	}
-	public void setSearchDelNy(Integer searchDelNy) {
-		this.searchDelNy = searchDelNy;
-	}
+	private String memberSeq;
+	
 	public Integer getSearchPrivacy() {
 		return searchPrivacy;
 	}
@@ -37,5 +21,13 @@ public class MemberVo {
 	public void setSearchGender(Integer searchGender) {
 		this.searchGender = searchGender;
 	}
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
+	
+	
 	
 }

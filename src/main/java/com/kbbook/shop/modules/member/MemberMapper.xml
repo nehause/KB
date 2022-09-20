@@ -9,22 +9,20 @@
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.member.Member"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		SELECT
+			a.*
+		<include refid="selectCommon" />
+		ORDER BY a.memberSeq DESC
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectSeq" resultMap="resultMapObj">
 		SELECT
 			a.*
 		FROM member a
 		WHERE 1=1
-			<!-- AND memberDelNy = 0 -->
-			<if test="searchDelNy != null and !searchDelNy.equals('')">AND memberDelNy = #{searchDelNy}</if>
-			<if test="searchGender != null and !searchGender.equals('')">AND gender = #{searchGender}</if>
-			<if test="searchPrivacy != null and !searchPrivacy.equals('')">AND privacy = #{searchPrivacy}</if>
-			<choose>
-				<when test="searchOption == 1">AND memberSeq = #{searchValue}</when>
-				<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
-				<when test="searchOption == 3">AND id LIKE CONCAT('%',#{searchValue},'%')</when>
-				<when test="searchOption == 4">AND userName LIKE CONCAT('%',#{searchValue},'%')</when>
-				<when test="searchOption == 5">AND email LIKE CONCAT('%',#{searchValue},'%')</when>
-				<otherwise></otherwise>
-			</choose>
+			AND	memberSeq = #{memberSeq}
 	</select>
 	
 	<insert id ="insert">
@@ -47,6 +45,7 @@
 			,sms_ctr
 			,accmulate
 			,memberDelNy
+			,memberUseNy
 		)
 		VALUES (
 			#{id}
@@ -67,10 +66,86 @@
 			,#{sms_ctr}
 			,0
 			,0
+			,1
 		)
 		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<update id="update">
+		UPDATE member
+		SET
+			id = #{id}
+			,password = #{password}
+			,name = #{name}
+			,userName = #{userName}
+			,gender = #{gender}
+			,dob = #{dob}
+			,phone = #{phone}
+			,number = #{number}
+			,email = #{email}
+			,zip = #{zip}
+			,address1 = #{address1}
+			,address2 = #{address2}
+			,privacy = #{privacy}
+			,email_ctr = #{email_ctr}
+			,kakao_ctr = #{kakao_ctr}
+			,sms_ctr = #{sms_ctr}
+			,accmulate = #{accmulate}
+			,memberDelNy = #{memberDelNy}
+			,memberUseNy = #{memberUseNy}
+						
+		WHERE 1=1
+			AND	memberSeq = #{memberSeq}
+	</update>
+	
+	<update id = "uelete">
+		UPDATE member
+		SET
+			memberDelNy = 1
+		WHERE 1=1
+			AND	memberSeq = #{memberSeq}
+	</update>
+
+	<delete id = "delete">
+		DELETE 
+		FROM member 
+		WHERE 1=1 
+			AND	memberSeq = #{memberSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.memberSeq
+			,a.name
+		FROM member a
+		WHERE 1=1
+			AND memberDelNy = 0
+			AND memberUseNy = 1
+		ORDER NY a.memberSeq DESC
+	</select>
+	
+	<sql id="selectCommon">
+		FROM member a
+		WHERE 1=1
+			<!-- AND memberDelNy = 0 -->
+			<if test="searchDelNy != null and !searchDelNy.equals('')">AND memberDelNy = #{searchDelNy}</if>
+			<if test="searchGender != null and !searchGender.equals('')">AND gender = #{searchGender}</if>
+			<if test="searchPrivacy != null and !searchPrivacy.equals('')">AND privacy = #{searchPrivacy}</if>
+			<choose>
+				<when test="searchOption == 1">AND memberSeq = #{searchValue}</when>
+				<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 3">AND id LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 4">AND userName LIKE CONCAT('%',#{searchValue},'%')</when>
+				<when test="searchOption == 5">AND email LIKE CONCAT('%',#{searchValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
 
 </mapper>	
