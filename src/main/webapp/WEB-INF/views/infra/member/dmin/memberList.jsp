@@ -207,7 +207,14 @@
 										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>여자</option>
 									</select>
 								</div>
-								
+								<div class="col-2">
+									<select class="form-select bg-light" id="searchDor" name="searchDor" aria-label="memberUse">
+										<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
+										<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>등록일</option>
+										<option value="2" <c:if test="${vo.searchDor eq 2}">selected</c:if>>수정일</option>
+										<option value="3" <c:if test="${vo.searchDor eq 3}">selected</c:if>>생일</option>
+									</select>
+								</div>
 								<div class="col-2">
 									<input type="text" class="form-control" id="memberDos" name="memberDos" placeholder="시작일">
 								</div>
@@ -254,7 +261,7 @@
 								<table class="table table-striped table-hover border" id="memberTable" style="text-align:center;">
 									<caption style="caption-side: top;">
 										<div style="float: left;">
-											<span>total: total</span>
+											<span>total: <c:out value="${vo.totalRows}"/></span>
 										</div>
 										<div style="float:right;">
 											<select class="form-select" id="showBoard" name="showBoard">
@@ -285,6 +292,7 @@
 									</thead>
 									<tbody>
 										<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+										<c:set var="listCodePrivacy" value="${CodeServiceImpl.selectListCachedCode('4')}"/>
 										<c:choose>
 											<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
 												<td class="text-center" colspan="12">There is no data!</td>
@@ -306,9 +314,13 @@
 															</c:forEach>
 														</td>
 														<td><c:out value="${list.dob }"/></td>
-														<td><c:out value="${list.number }"/></td>
+														<td><c:out value="${list.phone }"/></td>
 														<td><c:out value="${list.email }"/></td>
-														<td><c:out value="${list.privacy }"/></td>
+														<td>
+															<c:forEach items="${listCodePrivacy}" var="listPrivacy" varStatus="statusPrivacy">
+																<c:if test="${list.privacy eq listPrivacy.COrder}"><c:out value="${listPrivacy.CNameKor }"/></c:if>
+															</c:forEach>
+														</td>
 														<td><c:out value="${list.accmulate }"/></td>
 													</tr>
 												</c:forEach>

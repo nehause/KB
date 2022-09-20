@@ -133,7 +133,8 @@
 
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
-			COrder
+			CSeq
+			,COrder
 			,CNameKor
 			,CCG_CGSeq
 		FROM

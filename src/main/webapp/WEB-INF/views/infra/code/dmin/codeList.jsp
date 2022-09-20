@@ -201,7 +201,6 @@
 									<option value="" <c:if test="${empty vo.searchDor}">selected</c:if>>날짜 기준</option>
 									<option value="1" <c:if test="${vo.searchDor eq 1}">selected</c:if>>등록일</option>
 									<option value="2" <c:if test="${vo.searchDor eq 2}">selected</c:if>>수정일</option>
-									<option value="3" <c:if test="${vo.searchDor eq 3}">selected</c:if>>생일</option>
 								</select>
 							</div>
 							<div class="col-2">
