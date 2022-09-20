@@ -442,6 +442,7 @@
 	$("#searchBtn").on("click", function(){
 	   		form.attr("action", goUrlList).submit();
 	}); 
+	
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
 	}); 

@@ -422,8 +422,39 @@
 	}
 		
 	</script>
-	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="/resources/dmin/js/sidebar.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlList = "/member/memberList";
+	var goUrlView = "/member/memberView"
+	var seq = $("input:hidden[name=memberSeq]");
+	
+	var form = $("form[name=MLForm]"); 
+	
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+	}
+	
+	goView = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlView).submit();
+	}
+	
+	$("#regBtn").on("click", function(){
+		goView(0);
+	});
+	
+	$("#searchBtn").on("click", function(){
+	   		form.attr("action", goUrlList).submit();
+	}); 
+	
+	$("#resetBtn").on("click", function(){
+		$(location).attr("href", goUrlList);
+	}); 
+	
+	</script>
+	<script src="/resources/dmin/js/sidebar.js"></script>
 	
 <!-- end -->
 
