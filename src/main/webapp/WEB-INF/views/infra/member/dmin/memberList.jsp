@@ -244,7 +244,7 @@
 									</select>
 								</div>
 								<div class="col-lg-2">
-									<input class="form-control" type="search" id="searchValue" name="searchValue" placeholder="검색어" aria-label="Search" >
+									<input class="form-control" type="search" id="searchValue" name="searchValue" value="<c:out value="${vo.searchValue}"/>" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
 									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
@@ -299,7 +299,7 @@
 											</c:when>
 											<c:otherwise>
 												<c:forEach items="${list}" var="list" varStatus="status">
-													<tr>
+													<tr onclick="location.href='javascript:goView(<c:out value="${list.memberSeq }"/>)'" style="cursor: pointer;">
 														<td>
 															<input class="form-check-input" type="checkbox" name="memberCheck" value="memberChecked" onclick="checkSelectAll();">
 														</td>
@@ -336,59 +336,59 @@
 										<button type="button" class="btn btn-danger" name="memberTableDelect" id="memberTableDelect" data-bs-toggle="modal" data-bs-target="#memberTableDelectModal">
 											<i class="fa-solid fa-trash"></i> 삭제
 										</button>
-										<div class="modal fade" id="memberTableDelectModal" tabindex="-1" aria-labelledby="memberTableDelectLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="memberTableDelectLabel">테이블에서 삭제하시겠습니까?</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														테이블 뷰에서 보이지 않게 됩니다 삭제하시겠습니까?
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-															<i class="fa-solid fa-x"></i> 취소
-														</button>
-														<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-															<i class="fa-solid fa-trash"></i> 삭제
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
 										<button type="button" class="btn btn-outline-danger" id="memberListDelect" data-bs-toggle="modal" data-bs-target="#memberListDelectModal">
 											<i class="fa-regular fa-trash-can"></i> 삭제
 										</button>
-										<div class="modal fade" id="memberListDelectModal" tabindex="-1" aria-labelledby="memberListDelectLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="memberListDelectLabel">리스트에서 삭제하시겠습니까?</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-															<i class="fa-solid fa-x"></i> 취소
-														</button>
-														<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-															<i class="fa-solid fa-trash-can"></i> 삭제
-														</button>
-													</div>
+									</div>
+									<div style="float: right;">
+										<button type="button" class="btn btn-success" id="excelBtn" name="excelBtn">
+											<i class="fa-solid fa-file-excel"></i> 액셀
+										</button>
+										<a class="btn btn-primary" role="button" id="regBtn" name="regBtn">
+											<i class="fa-solid fa-square-plus"></i> 추가
+										</a>
+									</div>
+									<div class="modal fade" id="memberTableDelectModal" tabindex="-1" aria-labelledby="memberTableDelectLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="memberTableDelectLabel">테이블에서 삭제하시겠습니까?</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													테이블 뷰에서 보이지 않게 됩니다 삭제하시겠습니까?
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+														<i class="fa-solid fa-x"></i> 취소
+													</button>
+													<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+														<i class="fa-solid fa-trash"></i> 삭제
+													</button>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div style="float: right;">
-										<button type="button" class="btn btn-success" id="listexecl">
-											<i class="fa-solid fa-file-excel"></i> 액셀
-										</button>
-										<a class="btn btn-primary" href="memberForm" role="button" id="listregform">
-											<i class="fa-solid fa-square-plus"></i> 추가
-										</a>
+									<div class="modal fade" id="memberListDelectModal" tabindex="-1" aria-labelledby="memberListDelectLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="memberListDelectLabel">리스트에서 삭제하시겠습니까?</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+														<i class="fa-solid fa-x"></i> 취소
+													</button>
+													<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+														<i class="fa-solid fa-trash-can"></i> 삭제
+													</button>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
