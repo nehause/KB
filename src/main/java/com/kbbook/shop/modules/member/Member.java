@@ -25,6 +25,10 @@ public class Member {
 	private Integer sms_ctr;
 	private Integer accmulate;
 	private Integer memberCount;
+	private Integer memberDelNy;
+	private Integer memberUseNy;
+	private Date registration;
+	
 	public String getMemberSeq() {
 		return memberSeq;
 	}
@@ -150,6 +154,24 @@ public class Member {
 	}
 	public void setMemberCount(Integer memberCount) {
 		this.memberCount = memberCount;
+	}
+	public Integer getMemberDelNy() {
+		return memberDelNy;
+	}
+	public void setMemberDelNy(Integer memberDelNy) {
+		this.memberDelNy = memberDelNy;
+	}
+	public Integer getMemberUseNy() {
+		return memberUseNy;
+	}
+	public void setMemberUseNy(Integer memberUseNy) {
+		this.memberUseNy = memberUseNy;
+	}
+	public Date getRegistration() {
+		return registration;
+	}
+	public void setRegistration(Date registration) {
+		this.registration = registration;
 	}
 	
 	

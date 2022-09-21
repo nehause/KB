@@ -12,4 +12,4 @@
 <input type="hidden" name="searchOption" value="<c:out value="${vo.searchOption}"/>"/>
 <input type="hidden" name="searchValue" value="<c:out value="${vo.searchValue}"/>"/>
 
-<input type="hidden" name="CGSeq" value="<c:out value="${vo.memberSeq}"/>"/>
+<input type="hidden" name="memberSeq" value="<c:out value="${vo.memberSeq}"/>"/>

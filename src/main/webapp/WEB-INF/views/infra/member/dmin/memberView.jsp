@@ -93,6 +93,9 @@
 		</div>
 	</nav>
 	<form method="post" id="MVForm" name="MVForm" autocomplete="off">
+		<!-- *Vo.jsp s -->
+		<%@include file="memberVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<div class="col-lg-2">
@@ -184,6 +187,12 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
+							<label for="memberSeq">회원 번호</label>
+							<input type="text" class="form-control" id="memberSeq" value="<c:out value="${item.memberSeq }"/>" readonly>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
 							<label for="id">아이디</label>
 							<input type="text" class="form-control" id="id" name="id" value="<c:out value="${item.id }"/>">
 						</div>
@@ -207,9 +216,9 @@
 							<div style="padding-bottom: 10px;">
 								성별
 							</div>
-							<input type="radio" class="col-sm-1" id="genderMan" name="gender" value="0">
+							<input type="radio" class="col-sm-1" id="genderMan" name="gender" value="1" <c:if test="${item.gender eq 1 }">checked</c:if>>
 							<label for="MGenderMan">남성</label>
-							<input type="radio" class="col-sm-1" id="genderWoman" name="gender" value="1">
+							<input type="radio" class="col-sm-1" id="genderWoman" name="gender" value="2" <c:if test="${item.gender eq 2 }">checked</c:if>>
 							<label for="MGenderWoman">여성</label>
 						</div>
 						<div class="col-sm-5 gy-4">
@@ -233,19 +242,31 @@
 							<label for="email">이메일</label>
 							<input type="text" class="form-control" id="email" name="email" value="<c:out value="${item.email }"/>" placeholder="영문(대소문자), 숫자">
 						</div>
-						<div class="col-sm-5 gy-4">
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
 							<label for="zip">우편번호</label>
-							<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="영문(대소문자), 숫자">
+							<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="우편번호" readonly>
+						</div>
+						<div class="col-sm-2 gy-4" style="margin-top: 48px;">
+							<label for="searchTransport"> </label>
+							<button type="button" class="btn btn-success" id="searchTransport" name="searchTransport" onclick="PostCode()">
+								<i class="fa-solid fa-map"></i> 주소검색
+							</button>
+						</div>
+						<div class="col-sm-3 gy-4">
+							<label for="extraaddress">참고항목</label>
+							<input type="text" class="form-control" id="extraaddress" name="extraaddress" value="" placeholder=" 참고항목" readonly>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="address1">주소</label>
-							<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="숫자">
+							<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="주소" readonly>
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="address2">상세주소</label>
-							<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="숫자">
+							<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="상세주소">
 						</div>
 					</div>
 					<div class="row">
@@ -253,16 +274,16 @@
 							<div style="padding-bottom: 10px;">
 	                            <span>개인정보 유효기간</span>
 	                        </div>
-	                        <input type="radio" class="col-sm-1" id="privacy1" name="privacy" value="1">
+	                        <input type="radio" class="col-sm-1" id="privacy1" name="privacy" value="1" <c:if test="${item.privacy eq 1 }">checked</c:if>>
 	                        <label for="privacy1">1년</label>
 	                   
-	                        <input type="radio" class="col-sm-1" id="privacy2" name="privacy" value="2">
+	                        <input type="radio" class="col-sm-1" id="privacy2" name="privacy" value="2" <c:if test="${item.privacy eq 2 }">checked</c:if>>
 	                        <label for="privacy2">3년</label>
 	                      
-	                        <input type="radio" class="col-sm-1" id="privacy3" name="privacy" value="3">
+	                        <input type="radio" class="col-sm-1" id="privacy3" name="privacy" value="3" <c:if test="${item.privacy eq 3 }">checked</c:if>>
 	                        <label for="privacy3">5년</label>
 	               
-	                        <input type="radio" class="col-sm-1" id="privacy4" name="privacy" value="4">
+	                        <input type="radio" class="col-sm-1" id="privacy4" name="privacy" value="4" <c:if test="${item.privacy eq 4 }">checked</c:if>>
 	                        <label for="privacy4">탈퇴시까지</label>
 	                      </div>
 						<div class="col-sm-5 gy-4">
@@ -271,31 +292,49 @@
                                  <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
                              </div>
                              <div style="display:inline;">
-                                 <input type="checkbox" id="email_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <input type="checkbox" id="email_ctr" name="email_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
                                  <label for="email_ctr">이메일 수신</label>
                              </div>
                              <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="kakao_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <input type="checkbox" id="kakao_ctr" name="kakao_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
                                  <label for="kakao_ctr">카카오톡 수신</label>
                              </div>
                              <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="sms_ctr" name="adReceive" onclick="checkSelectAll();">
+                                 <input type="checkbox" id="sms_ctr" name="sms_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
                                  <label for="sms_ctr">SMS 수신 동의</label>
                              </div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="codeSpareInt3">적립금</label>
-							<input type="text" class="form-control" id="accmulate" name="accmulate" value="<c:out value="${item.accmulate }"/>" placeholder="숫자">
-						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="useCodeUseNy">삭제 여부</label>
+							<label for="memberDelNy">삭제 여부</label>
 							<select class="form-select" id="memberDelNy" name="memberDelNy">
-								<option>선택하세요</option>
 								<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>Y</option>
 								<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>N</option>
 							</select>
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="memberUseNy">사용 여부</label>
+							<select class="form-select" id="memberUseNy" name="memberUseNy">
+								<option value="0" <c:if test="${item.memberUseNy eq 0 }">selected</c:if>>Y</option>
+								<option value="1" <c:if test="${item.memberUseNy eq 1 }">selected</c:if>>N</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<label for="registration">등록일</label>
+							<input type="text" class="form-control" id="registration" name="registration" value="<c:out value="${item.registration }"/>" placeholder="등록일">
+						</div>
+						<%-- <div class="col-sm-5 gy-4">
+							<label for="correctation">수정일</label>
+							<input type="text" class="form-control" id="correctation" name="correctation" value="<c:out value="${item.correctation }"/>" placeholder="수정일">
+						</div> --%>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
+							<label for="accmulate">적립금</label>
+							<input type="text" class="form-control" id="accmulate" name="accmulate" value="<c:out value="${item.accmulate }"/>" placeholder="숫자">
 						</div>
 					</div>
 					<div style="height: 20px;"></div>
@@ -371,9 +410,9 @@
 	<script type="text/javascript">
 		function checkSelectAll()  {
 
-			const checkboxes = document.querySelectorAll('input[name="adReceive"]');
+			const checkboxes = document.querySelectorAll('input[class="adReceive"]');
 
-			const checked = document.querySelectorAll('input[name="adReceive"]:checked');
+			const checked = document.querySelectorAll('input[class="adReceive"]:checked');
 
 			const selectAll = document.querySelector('input[name="adAllReceive"]');
 			  
@@ -384,7 +423,7 @@
 			}
 		}
 		function selectAll(selectAll)  {
-			const checkboxes = document.getElementsByName('adReceive');
+			const checkboxes = document.getElementsByClassName('adReceive');
 			
 			checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked
@@ -478,8 +517,60 @@
 		}
 	
 	</script> -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    function PostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("extraaddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("extraaddress").value = '';
+	                }
+	
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('zip').value = data.zonecode;
+	                document.getElementById("address1").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("address2").focus();
+	            }
+	        }).open();
+	    }
+	</script>
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
+	
 		var goUrlList = "/member/memberList";					/* #-> */
 		var goUrlInsert = "/member/memberInst";				/* #-> */
 		var goUrlUpdate = "/member/memberUpdate";				/* #-> */
@@ -490,6 +581,10 @@
 		
 		var form = $("form[name=MVForm]"); 
 		var formVo = $("form[name=MVFormVo]");
+	
+		$('input[type="checkbox"]').change(function(){
+		    this.value = (Number(this.checked));
+		});
 		
 		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
@@ -510,6 +605,7 @@
 		$("#ueleteBtn").on("click", function(){
 	   		form.attr("action", goUrlUelete).submit();
 		}); 
+		
 	</script>
 <!-- end -->
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
