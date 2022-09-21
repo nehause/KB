@@ -54,6 +54,9 @@ public class MemberController {
 		dto.setEmail_ctr(dto.getEmail_ctr() == null ? 0 : dto.getEmail_ctr());
 		dto.setKakao_ctr(dto.getKakao_ctr() == null ? 0 : dto.getKakao_ctr());
 		dto.setSms_ctr(dto.getSms_ctr() == null ? 0 : dto.getSms_ctr());
+		dto.setEmail_ctr(dto.getEmail_ctr() != null ? 1 : dto.getEmail_ctr());
+		dto.setKakao_ctr(dto.getKakao_ctr() != null ? 1 : dto.getKakao_ctr());
+		dto.setSms_ctr(dto.getSms_ctr() != null ? 1 : dto.getSms_ctr());
 	}
 	
 	@RequestMapping(value="memberView")
