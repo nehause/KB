@@ -253,6 +253,9 @@
 							<button type="button" class="btn btn-success" id="searchTransport" name="searchTransport" onclick="PostCode()">
 								<i class="fa-solid fa-map"></i> 주소검색
 							</button>
+							<button class="btn btn-warning" type="button" id="transportClearBtn" name="transportClearBtn" style="width: 40px; height:38px; margin-right: 10px;">
+								<i class="fa-solid fa-arrow-rotate-right"></i>
+							</button>
 						</div>
 						<div class="col-sm-3 gy-4">
 							<label for="extraaddress">참고항목</label>
@@ -585,6 +588,13 @@
 		$('input[type="checkbox"]').change(function(){
 		    this.value = (Number(this.checked));
 		});
+		
+		$("#transportClearBtn").on("click", function(){
+			$("#zip").val('');
+			$("#extraaddress").val('');
+			$("#address1").val('');
+			$("#address2").val('');
+		}); 
 		
 		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();

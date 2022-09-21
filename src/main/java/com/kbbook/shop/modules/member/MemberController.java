@@ -50,10 +50,18 @@ public class MemberController {
 		return "infra/member/dmin/memberForm";
 	}
 	
+	public void setCheckboxNull(Member dto) throws Exception {
+		dto.setEmail_ctr(dto.getEmail_ctr() == null ? 0 : dto.getEmail_ctr());
+		dto.setKakao_ctr(dto.getKakao_ctr() == null ? 0 : dto.getKakao_ctr());
+		dto.setSms_ctr(dto.getSms_ctr() == null ? 0 : dto.getSms_ctr());
+	}
+	
 	@RequestMapping(value="memberView")
 	public String MemerView(Member dto, @ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
 		System.out.println("vo.getMemberSeq(): " + vo.getMemberSeq());
+		
+		setCheckboxNull(dto);
 		
 		if(vo.getMemberSeq().equals("0") || vo.getMemberSeq().equals("")) {
 			//insert
