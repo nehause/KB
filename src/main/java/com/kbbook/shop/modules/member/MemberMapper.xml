@@ -46,6 +46,7 @@
 			,accmulate
 			,memberDelNy
 			,memberUseNy
+			,registration
 		)
 		VALUES (
 			#{id}
@@ -67,6 +68,7 @@
 			,0
 			,0
 			,1
+			,#{registration}
 		)
 		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -95,6 +97,7 @@
 			,accmulate = #{accmulate}
 			,memberDelNy = #{memberDelNy}
 			,memberUseNy = #{memberUseNy}
+			,registration = #{registration}
 						
 		WHERE 1=1
 			AND	memberSeq = #{memberSeq}

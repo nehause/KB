@@ -202,9 +202,9 @@
 								</div>
 								<div class="col-2">
 									<select class="form-select bg-light" id="searchGender" name="searchGender" aria-label="memberUse">
-										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>성별</option>
-										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>남자</option>
-										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>여자</option>
+										<option value="" <c:if test="${empty vo.searchGender}">selected</c:if>>성별</option>
+										<option value="1" <c:if test="${vo.searchGender eq 1}">selected</c:if>>남자</option>
+										<option value="2" <c:if test="${vo.searchGender eq 2}">selected</c:if>>여자</option>
 									</select>
 								</div>
 								<div class="col-2">
@@ -226,11 +226,11 @@
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-2">
 									<select class="form-select bg-light" id="searchPrivacy" name="searchPrivacy" aria-label="memberUse">
-										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>개인정보 유효기간</option>
-										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>1년</option>
-										<option value="2" <c:if test="${vo.searchDelNy eq 2}">selected</c:if>>3년</option>
-										<option value="3" <c:if test="${vo.searchDelNy eq 3}">selected</c:if>>5년</option>
-										<option value="4" <c:if test="${vo.searchDelNy eq 4}">selected</c:if>>탈퇴시까지</option>
+										<option value="" <c:if test="${empty vo.searchPrivacy}">selected</c:if>>개인정보 유효기간</option>
+										<option value="1" <c:if test="${vo.searchPrivacy eq 1}">selected</c:if>>1년</option>
+										<option value="2" <c:if test="${vo.searchPrivacy eq 2}">selected</c:if>>3년</option>
+										<option value="3" <c:if test="${vo.searchPrivacy eq 3}">selected</c:if>>5년</option>
+										<option value="4" <c:if test="${vo.searchPrivacy eq 4}">selected</c:if>>탈퇴시까지</option>
 									</select>
 								</div>
 								<div class="col-lg-2">
@@ -247,10 +247,10 @@
 									<input class="form-control" type="search" id="searchValue" name="searchValue" value="<c:out value="${vo.searchValue}"/>" placeholder="검색어" aria-label="Search" >
 								</div>
 								<div class="col-lg-2">
-									<button class="col-1 btn btn-outline-dark" type="submit" style="width: 40px; height:38px; margin-right: 10px;">
+									<button class="col-1 btn btn-outline-dark" type="button" id="searchBtn" name="searchBtn" style="width: 40px; height:38px; margin-right: 10px;">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
-									<button class="col-1 btn btn-warning" type="reset" style="width: 40px; height:38px; margin-right: 10px;">
+									<button class="col-1 btn btn-warning" type="button" id="resetBtn" name="resetBtn" style="width: 40px; height:38px; margin-right: 10px;">
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
 								</div>

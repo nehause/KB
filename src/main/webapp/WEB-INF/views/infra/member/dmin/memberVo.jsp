@@ -8,7 +8,8 @@
 
 <%-- <input type="hidden" name="searchDos" value="<c:out value="${vo.searchDos}"/>"/>
 <input type="hidden" name="searchDoe" value="<c:out value="${vo.searchDoe}"/>"/> --%>
-
+<input type="hidden" name="searchPrivacy" value="<c:out value="${vo.searchPrivacy}"/>"/>
+<input type="hidden" name="searchGender" value="<c:out value="${vo.searchGender}"/>"/>
 <input type="hidden" name="searchOption" value="<c:out value="${vo.searchOption}"/>"/>
 <input type="hidden" name="searchValue" value="<c:out value="${vo.searchValue}"/>"/>
 

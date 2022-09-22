@@ -93,6 +93,7 @@
 		</div>
 	</nav>
 	<form method="post" id="MVForm" name="MVForm" autocomplete="off">
+	<input type="hidden" id="mainKey" name="mainKey">
 		<!-- *Vo.jsp s -->
 		<%@include file="memberVo.jsp"%>		<!-- #-> -->
 		<!-- *Vo.jsp e -->
@@ -274,6 +275,16 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
+							<label for="lag">위도</label>
+							<input type="text" class="form-control" id="lag" name="lag" value="<c:out value="${item.lag }"/>" placeholder="위도" readonly>
+						</div>
+						<div class="col-sm-5 gy-4">
+							<label for="lat">경도</label>
+							<input type="text" class="form-control" id="lat" name="lat" value="<c:out value="${item.lat }"/>" placeholder="경도" readonly>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 gy-4 offset-1">
 							<div style="padding-bottom: 10px;">
 	                            <span>개인정보 유효기간</span>
 	                        </div>
@@ -295,15 +306,15 @@
                                  <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
                              </div>
                              <div style="display:inline;">
-                                 <input type="checkbox" id="email_ctr" name="email_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
+                                 <input type="checkbox" id="email_ctr" name="email_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
                                  <label for="email_ctr">이메일 수신</label>
                              </div>
                              <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="kakao_ctr" name="kakao_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
+                                 <input type="checkbox" id="kakao_ctr" name="kakao_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
                                  <label for="kakao_ctr">카카오톡 수신</label>
                              </div>
                              <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="sms_ctr" name="sms_ctr" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
+                                 <input type="checkbox" id="sms_ctr" name="sms_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
                                  <label for="sms_ctr">SMS 수신 동의</label>
                              </div>
 						</div>
@@ -521,6 +532,7 @@
 	
 	</script> -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
 	<script>
 	    function PostCode() {
 	        new daum.Postcode({
@@ -531,6 +543,7 @@
 	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 	                var addr = ''; // 주소 변수
 	                var extraAddr = ''; // 참고항목 변수
+	                var geocoder = new daum.maps.services.Geocoder(); // 주소-좌표 변환 객체
 	
 	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -560,16 +573,34 @@
 	                } else {
 	                    document.getElementById("extraaddress").value = '';
 	                }
-	
+	                
+	                geocoder.addressSearch(data.address, function(results, status) {
+	                    // 정상적으로 검색이 완료됐으면
+	                    if (status === daum.maps.services.Status.OK) {
+
+	                        var result = results[0]; //첫번째 결과의 값을 활용
+
+	                        // 해당 주소에 대한 좌표를 받아서
+	                        var coords = new daum.maps.LatLng(result.y, result.x);
+	    	                document.getElementById("lag").value = coords.getLat(); // 위도 
+	    	                document.getElementById("lat").value = coords.getLng(); // 경도
+	    	                
+//	    	                //위의 것과 같다
+//	    	                document.getElementById("lag").value = result[0].y; // 위도
+//	    	                document.getElementById("lat").value = result[0].x; // 경도
+	    	                
+	                    }
+	                });
+	               
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('zip').value = data.zonecode;
-	                document.getElementById("address1").value = addr;
+	                document.getElementById('zip').value = data.zonecode; // 우편번호
+	                document.getElementById("address1").value = addr; // 주소
 	                // 커서를 상세주소 필드로 이동한다.
 	                document.getElementById("address2").focus();
+
 	            }
 	        }).open();
 	    }
-	</script>
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>

@@ -29,6 +29,8 @@ public class BaseVo {
 	private Integer searchDor;
 //	private Date searchDos;
 //	private Date searchDoe;
+	private Integer searchPrivacy;
+	private Integer searchGender;
 	
 	public void setParamsPaging(int totalRows) {
 			
@@ -216,6 +218,22 @@ public class BaseVo {
 //	public void setSearchDoe(Date searchDoe) {
 //		this.searchDoe = searchDoe;
 //	}
+
+	public Integer getSearchPrivacy() {
+		return searchPrivacy;
+	}
+
+	public void setSearchPrivacy(Integer searchPrivacy) {
+		this.searchPrivacy = searchPrivacy;
+	}
+
+	public Integer getSearchGender() {
+		return searchGender;
+	}
+
+	public void setSearchGender(Integer searchGender) {
+		this.searchGender = searchGender;
+	}
 	
 	
 }

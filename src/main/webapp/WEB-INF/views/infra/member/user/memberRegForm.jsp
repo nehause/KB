@@ -111,178 +111,199 @@
 		</div>
 	</section>
 	<!-- End Banner Area -->
-	<form name="memberRegForm" method="get" action="/resources/loginForm.html" id="memberRegForm">
+	<form method="post" id="UMRForm" name="UMRForm">
+		<input type="hidden" id="mainKey" name="mainKey">
 		<section class="memberRegFormArea section_gap">
 			<div class="billing_details">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <h3>회원가입</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                        	<div class="row mb-3">
-	                            <div class="col-md-4 gy-3 form-group p_star">
-	                                <input type="text" class="form-control" id="regName" name="regName" placeholder="이름*">
-	                            </div>
-	                            <div class="col-md-1 gy-3 form-group">
-	                            	<span class="align-self-center">성별</span>
-	                            </div>
-	                            <div class="col-md-2 gy-3 form-group">
-	                                <div class="adReceive">
-	                                    <input type="radio" id="regGenderMan" name="regGender" value="man">
-	                                    <label for="regGenderMan">남성</label>
-	                                </div>
-	                            </div>    
-	                            <div class="col-md-2 gy-3 form-group">
-	                                <div class="adReceive">
-	                                    <input type="radio" id="regGenderWoman" name="regGender" value="woman">
-	                                    <label for="regGenderWoman">여성</label>
-	                                </div>
-	                            </div>
+                       	<div class="row mb-3">
+                            <div class="col-md-4 gy-3 form-group p_star">
+                                <input type="text" class="form-control" id="regName" name="regName" placeholder="이름*">
                             </div>
-                            <div class="row mb-3">
-                            	<div class="col-md-4 form-group p_star">
-	                                <input type="text" class="form-control" id="regId" name="regId" placeholder="아이디*">
-	                            </div>
-	                            <div class="col-md-2 form-group">
-        	                        <input type="button" class="form-control genric-btn primary" id="regIdOverlap" name="regIdOverlap" value="중복확인">
-    	                        </div>
+                            <div class="col-md-1 gy-3 form-group">
+                            	<span class="align-self-center">성별</span>
                             </div>
-                            <div class="row mb-3">
-                            	<div class="col-md-4 form-group p_star">
-	                                <input type="text" class="form-control" id="regUserName" name="regUserName" placeholder="닉네임*">
-	                            </div>
-	                            <div class="col-md-2 form-group">
-        	                        <input type="button" class="form-control genric-btn primary" id="regUserNameOverlap" name="regUserNameOverlap" value="중복확인">
-    	                        </div>
+                            <div class="col-md-2 gy-3 form-group">
+                                <div class="adReceive">
+                                    <input type="radio" id="regGenderMan" name="regGender" value="man">
+                                    <label for="regGenderMan">남성</label>
+                                </div>
+                            </div>    
+                            <div class="col-md-2 gy-3 form-group">
+                                <div class="adReceive">
+                                    <input type="radio" id="regGenderWoman" name="regGender" value="woman">
+                                    <label for="regGenderWoman">여성</label>
+                                </div>
+                            </div>
+                           </div>
+                           <div class="row mb-3">
+                           	<div class="col-md-4 form-group p_star">
+                                <input type="text" class="form-control" id="regId" name="regId" placeholder="아이디*">
+                            </div>
+                            <div class="col-md-2 form-group">
+       	                        <input type="button" class="form-control genric-btn primary" id="regIdOverlap" name="regIdOverlap" value="중복확인">
+   	                        </div>
+                           </div>
+                           <div class="row mb-3">
+                           	<div class="col-md-4 form-group p_star">
+                                <input type="text" class="form-control" id="regUserName" name="regUserName" placeholder="닉네임*">
+                            </div>
+                            <div class="col-md-2 form-group">
+       	                        <input type="button" class="form-control genric-btn primary" id="regUserNameOverlap" name="regUserNameOverlap" value="중복확인">
+   	                        </div>
+                           </div>
+                           <div class="row">
+                            <div class="col-md-5 form-group p_star">
+                                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="비밀번호*">
+                            </div>
+                            <div class="col-md-5 form-group p_star">
+                                <input type="password" class="form-control" id="regPasswordCheck" name="regPasswordCheck" placeholder="비밀번호 확인*" onkeyup="regPasswordCk();">
+                                <label><div name="checkWord" id="checkWord" style="display: none; color:red;">동일한 암호를 입력하세요.</div></label>
+                            </div>
+                           </div>
+                           <div class="row mb-3">
+                           	<div class="col-md-5 form-group p_star">
+                                <input type="text" class="form-control" id="regBirth" name="regBirth" placeholder="생년월일 (ex:19990506)*" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
+                       
+                            </div>
+                            <div class="col-md-5 form-group p_star">
+                                <input type="text" class="form-control" id="regPhone" name="regPhone" placeholder="휴대폰번호 (ex:01012345678)*" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
+                            </div>
+                           </div>
+                           <div class="row mb-3">
+                            <div class="col-md-4 form-group p_star">
+                                <input type="text" class="form-control" id="regEmailFirst" name="regEmailFirst" placeholder="이메일*">
+                            </div>
+                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
+                            <div class="col-md-4 form-group p_star">
+                                <input type="text" class="form-control" id="regEmailLast" name="regEmailLast" placeholder="직접입력">
+                            </div>
+                            <div class="col-md-3 form-group p_star">
+                                <select class="country_select" id="regEmailLastSelect" name="regEmailLastSelect" onchange="selectEmail();">
+                                    <option value="">직접입력</option>
+                                    <option value="naver.com">네이버</option>
+                                    <option value="gmail.com">구글</option>
+                                    <option value="kakao.com">카카오</option>
+                                </select>
+                            </div>
+                           </div>
+                           <div class="row">
+                            <div class="col-md-3 form-group">
+                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호">
+                           	</div>
+                           	<div class="col-md-2 form-group">
+                                <input type="button" class="form-control genric-btn primary" id="regAddressSearch" name="regAddressSearch" value="주소검색">
+                            </div>
                             </div>
                             <div class="row">
-	                            <div class="col-md-5 form-group p_star">
-	                                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="비밀번호*">
-	                            </div>
-	                            <div class="col-md-5 form-group p_star">
-	                                <input type="password" class="form-control" id="regPasswordCheck" name="regPasswordCheck" placeholder="비밀번호 확인*" onkeyup="regPasswordCk();">
-	                                <label><div name="checkWord" id="checkWord" style="display: none; color:red;">동일한 암호를 입력하세요.</div></label>
-	                            </div>
+                            <div class="col-md-7 form-group p_star">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="주소">
                             </div>
-                            <div class="row mb-3">
-                            	<div class="col-md-5 form-group p_star">
-	                                <input type="text" class="form-control" id="regBirth" name="regBirth" placeholder="생년월일 (ex:19990506)*" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
-	                       
-	                            </div>
-	                            <div class="col-md-5 form-group p_star">
-	                                <input type="text" class="form-control" id="regPhone" name="regPhone" placeholder="휴대폰번호 (ex:01012345678)*" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
-	                            </div>
+                            <div class="col-md-2 form-group">
+                                <input type="hidden" class="form-control" id="extraAddress" name="extraAddress">
                             </div>
-                            <div class="row mb-3">
-	                            <div class="col-md-4 form-group p_star">
-	                                <input type="text" class="form-control" id="regEmailFirst" name="regEmailFirst" placeholder="이메일*">
-	                            </div>
-	                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
-	                            <div class="col-md-4 form-group p_star">
-	                                <input type="text" class="form-control" id="regEmailLast" name="regEmailLast" placeholder="직접입력">
-	                            </div>
-	                            <div class="col-md-3 form-group p_star">
-	                                <select class="country_select" id="regEmailLastSelect" name="regEmailLastSelect" onchange="selectEmail();">
-	                                    <option value="">직접입력</option>
-	                                    <option value="naver.com">네이버</option>
-	                                    <option value="gmail.com">구글</option>
-	                                    <option value="kakao.com">카카오</option>
-	                                </select>
-	                            </div>
+                            <div class="col-md-7 form-group p_star">
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소">
                             </div>
-                            <div class="row">
-	                            <div class="col-md-3 form-group">
-	                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호">
-	                           	</div>
-	                           	<div class="col-md-2 form-group">
-	                                <input type="button" class="form-control genric-btn primary" id="regAddressSearch" name="regAddressSearch" value="주소검색">
-	                            </div>
-	                            </div>
-	                            <div class="row">
-	                            <div class="col-md-7 form-group p_star">
-	                                <input type="text" class="form-control" id="regAddress" name="regAddress" placeholder="주소">
-	                            </div>
-	                            <div class="col-md-7 form-group p_star">
-	                                <input type="text" class="form-control" id="regAddressDetail" name="regAddressDetail" placeholder="상세주소">
-	                            </div>
+                           </div>
+                           <div class="row" style="height: 30px;"></div>
+                           <div class="row mb-5">
+                            <div class="col-md-12 form-group">
+                                <div class="Privacy">
+                                    <span class="align-self-center" style="font-weight: bolder;">개인정보 유효기간</span>
+                                </div>
                             </div>
-                            <div class="row" style="height: 30px;"></div>
-                            <div class="row mb-5">
-	                            <div class="col-md-12 form-group">
-	                                <div class="regPrivacy">
-	                                    <span class="align-self-center" style="font-weight: bolder;">개인정보 유효기간</span>
-	                                </div>
-	                            </div>
-	                            <div class="col-md-2 form-group">
-	                                <div class="regPrivacy">
-	                                    <input type="radio" id="regPrivacy1" name="regPrivacy" value="1">
-	                                    <label for="regPrivacy1">1년</label>
-	                                </div>
-	                            </div>    
-	                            <div class="col-md-2 form-group">
-	                                <div class="regPrivacy">
-	                                    <input type="radio" id="regPrivacy2" name="regPrivacy" value="2">
-	                                    <label for="regPrivacy2">3년</label>
-	                                </div>
-	                            </div>
-	                            <div class="col-md-2 form-group">
-	                                <div class="regPrivacy">
-	                                    <input type="radio" id="regPrivacy3" name="regPrivacy" value="3">
-	                                    <label for="regPrivacy3">5년</label>
-	                                </div>
-	                            </div>
-	                            <div class="col-md-2 form-group">
-	                                <div class="regPrivacy">
-	                                    <input type="radio" id="regPrivacy4" name="regPrivacy" value="4">
-	                                    <label for="regPrivacy4">탈퇴시까지</label>
-	                                </div>
-	                            </div>
-	                        </div>
-                            <div class="row mb-5">
-	                            <div class="col-md-12 form-group">
-	                                <div class="adReceive">
-	                                    <input type="checkbox" id="adAllReceive" name="adAllReceive" value="adAllReceive" onclick="selectAll(this);">
-	                                    <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
-	                                </div>
-	                            </div>
-	                            <div class="col-md-2 form-group">
-	                                <div class="adReceive">
-	                                    <input type="checkbox" id="adEmailReceive" name="adReceive" onclick="checkSelectAll();">
-	                                    <label for="adEmailReceive">이메일 수신</label>
-	                                </div>
-	                            </div>    
-	                            <div class="col-md-2 form-group">
-	                                <div class="adReceive">
-	                                    <input type="checkbox" id="adKakaoReceive" name="adReceive" onclick="checkSelectAll();">
-	                                    <label for="adKakaoReceive">카카오톡 수신</label>
-	                                </div>
-	                            </div>
-	                            <div class="col-md-2 form-group">
-	                                <div class="adReceive">
-	                                    <input type="checkbox" id="adSmsReceive" name="adReceive" onclick="checkSelectAll();">
-	                                    <label for="adSmsReceive">SMS 수신 동의</label>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row" style="height: 40px;"></div>
-	                        <div class="row mb-5">
-							   <div class="col-2">
-							      <button type="button" class="genric-btn danger" id="regFormCancel" data-toggle="modal" data-target="#regCancelModal">
-							      	<i class="fa-solid fa-xmark"></i> 취소
-							      </button>
-							   </div>
-							   <div class="col-2 offset-8">
-							     <button type="button" class="genric-btn primary" id="regFormSubmit" onclick="regSubmit();">
-							    	 <i class="fa-solid fa-plus"></i> 가입
-							     </button>
-							   </div>
-							</div>
-                        </form>
+                            <div class="col-md-2 form-group">
+                                <div class="Privacy">
+                                    <input type="radio" id="privacy1" name="privacy" value="1">
+                                    <label for="Privacy1">1년</label>
+                                </div>
+                            </div>    
+                            <div class="col-md-2 form-group">
+                                <div class="Privacy">
+                                    <input type="radio" id="privacy2" name="privacy" value="2">
+                                    <label for="Privacy2">3년</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <div class="Privacy">
+                                    <input type="radio" id="privacy3" name="privacy" value="3">
+                                    <label for="Privacy3">5년</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <div class="Privacy">
+                                    <input type="radio" id="privacy4" name="privacy" value="4">
+                                    <label for="Privacy4">탈퇴시까지</label>
+                                </div>
+                            </div>
+                        </div>
+                           <div class="row mb-5">
+                            <div class="col-md-12 form-group">
+                                <div>
+                                    <input type="checkbox" id="adAllReceive" name="adAllReceive" value="adAllReceive" onclick="selectAll(this);">
+                                    <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <div>
+                                    <input type="checkbox" value="1" id="email_ctr" name="email_ctr" class="adReceive" onclick="checkSelectAll();">
+                                    <label for="email_ctr">이메일 수신</label>
+                                </div>
+                            </div>    
+                            <div class="col-md-2 form-group">
+                                <div>
+                                    <input type="checkbox" value="1" id="kakao_ctr" name="kakao_ctr" class="adReceive" onclick="checkSelectAll();">
+                                    <label for="kakao_ctr">카카오톡 수신</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <div>
+                                    <input type="checkbox" value="1" id="sms_ctr" name="sms_ctr" class="adReceive" onclick="checkSelectAll();">
+                                    <label for="sms_ctr">SMS 수신 동의</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 40px;"></div>
+                        <div class="row mb-5">
+						   <div class="col-2">
+						      <button type="button" class="genric-btn danger" id="cancelModalBtn" name="cancelModalBtn" data-toggle="modal" data-target="#cancelModal">
+						      	<i class="fa-solid fa-xmark"></i> 취소
+						      </button>
+						   </div>
+						   <div class="col-2 offset-8">
+						     <button type="button" class="genric-btn primary" id="insertBtn" name="insertBtn">
+						    	 <i class="fa-solid fa-plus"></i> 가입
+						     </button>
+						   </div>
+						</div>
                     </div>
                 </div>
              </div>
 		</section>
 	</form>
-		<!-- start footer Area -->
+	<!-- start modal area -->
+	<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="cancelModalLabel">돌아가시겠습니까?</h5>
+	        <button type="button" class="border-0" style="background-color: white;" data-dismiss="modal"><i class="fa-solid fa-xmark fa-2x" style="color:gray"></i></button>
+	      </div>
+	      <div class="modal-body">
+	        <span>지금까지 기입한 정보가 전부 초기화 됩니다. 돌아가시겠습니까?</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
+	        <button type="button" class="genric-btn danger" id="cancelBtn" name="cancelBtn">취소</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- end modal area -->
+	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -361,25 +382,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!-- End footer Area -->
 	
-	<!-- start modal area -->
-	<div class="modal fade" id="regCancelModal" tabindex="-1" aria-labelledby="regCancelModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="regCancelModalLabel">돌아가시겠습니까?</h5>
-	        <button type="button" class="border-0" style="background-color: white;" data-dismiss="modal"><i class="fa-solid fa-xmark fa-2x" style="color:gray"></i></button>
-	      </div>
-	      <div class="modal-body">
-	        <span>지금까지 기입한 정보가 전부 초기화 됩니다. 돌아가시겠습니까?</span>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
-	        <button type="button" class="genric-btn danger" onclick="regCancel();">취소</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- end modal area -->
+	
 	
 	<script type="text/javascript">
 		function selectEmail() {
@@ -427,6 +430,60 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		  })
 		}
 
+	</script>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
+	<script>
+	    function PostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	                var geocoder = new daum.maps.services.Geocoder(); // 주소-좌표 변환 객체
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("extraaddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("extraaddress").value = '';
+	                }
+	                
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('zip').value = data.zonecode; // 우편번호
+	                document.getElementById("address1").value = addr; // 주소
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("address2").focus();
+
+	            }
+	        }).open();
+	    }
 	</script>
 	
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>

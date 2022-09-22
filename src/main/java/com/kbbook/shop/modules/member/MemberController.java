@@ -28,7 +28,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "memberList")
-	public String codeGroupList(@ModelAttribute("vo") MemberVo vo,Model model) throws Exception {
+	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 
 		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchPrivacy(): " + vo.getSearchPrivacy());
@@ -54,17 +54,12 @@ public class MemberController {
 		dto.setEmail_ctr(dto.getEmail_ctr() == null ? 0 : dto.getEmail_ctr());
 		dto.setKakao_ctr(dto.getKakao_ctr() == null ? 0 : dto.getKakao_ctr());
 		dto.setSms_ctr(dto.getSms_ctr() == null ? 0 : dto.getSms_ctr());
-		dto.setEmail_ctr(dto.getEmail_ctr() != null ? 1 : dto.getEmail_ctr());
-		dto.setKakao_ctr(dto.getKakao_ctr() != null ? 1 : dto.getKakao_ctr());
-		dto.setSms_ctr(dto.getSms_ctr() != null ? 1 : dto.getSms_ctr());
 	}
 	
 	@RequestMapping(value="memberView")
 	public String MemerView(Member dto, @ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
 		System.out.println("vo.getMemberSeq(): " + vo.getMemberSeq());
-		
-		setCheckboxNull(dto);
 		
 		if(vo.getMemberSeq().equals("0") || vo.getMemberSeq().equals("")) {
 			//insert
@@ -79,6 +74,8 @@ public class MemberController {
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value="memberInst")
 	public String memberInst(Member dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		setCheckboxNull(dto);
 		
 		int result = service.insert(dto);
 		
@@ -101,6 +98,7 @@ public class MemberController {
 	@RequestMapping(value="memberUpdate")
 	public String memberUpdate(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception{
 		
+		setCheckboxNull(dto);
 		service.update(dto);
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
@@ -126,7 +124,7 @@ public class MemberController {
 	//usermapper
 	
 	@RequestMapping(value="memberRegForm")
-	public String memberRegForm() throws Exception {
+	public String memberRegForm(Member dto) throws Exception {
 		
 		return "infra/member/user/memberRegForm";
 	}
