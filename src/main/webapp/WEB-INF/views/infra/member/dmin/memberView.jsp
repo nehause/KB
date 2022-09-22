@@ -276,11 +276,11 @@
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
 							<label for="lag">위도</label>
-							<input type="text" class="form-control" id="lag" name="lag" value="<c:out value="${item.lag }"/>" placeholder="위도" readonly>
+							<input type="text" class="form-control" id="lag" name="lag" value="" placeholder="위도" readonly>
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="lat">경도</label>
-							<input type="text" class="form-control" id="lat" name="lat" value="<c:out value="${item.lat }"/>" placeholder="경도" readonly>
+							<input type="text" class="form-control" id="lat" name="lat" value="" placeholder="경도" readonly>
 						</div>
 					</div>
 					<div class="row">
