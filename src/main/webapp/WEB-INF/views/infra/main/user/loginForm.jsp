@@ -166,7 +166,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- start modal area -->
 	<section class="product_description_area" style="margin-top: 0px; padding-bottom: 0px;">
 		<div class="modal fade" id="findIdPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -347,6 +347,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		
 	}
 	
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	var goUrlList = "/member/memberList";
+	$("#Seoul").on("click", function(){
+		$(location).attr("href",goUrlList);
+	}); 
 	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
