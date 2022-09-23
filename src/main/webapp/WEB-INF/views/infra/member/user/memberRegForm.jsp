@@ -180,18 +180,18 @@
                            </div>
                            <div class="row mb-3">
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailStart" name="emailStart" value="" placeholder="이메일*">
+                                <input type="text" class="form-control" id="emailStart" name="emailStart" placeholder="이메일*">
                             </div>
                             <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
                             <div class="col-md-4 form-group p_star">
                                 <input type="text" class="form-control" id="emailEnd" name="emailEnd" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
-                                <select class="country_select" id="emailSelect" name="emailSelect">
+                                <select class="country_select" id="emailLast" name="emailLast">
                                     <option value="1">직접입력</option>
-                                    <option value="naver.com">네이버</option>
-                                    <option value="google.com">구글</option>
-                                    <option value="kakao.com">카카오</option>
+                                    <option value="2">네이버</option>
+                                    <option value="3">구글</option>
+                                    <option value="4">카카오</option>
                                 </select>
                             </div>
                             <input type="hidden" id="email" name="email" value="<c:out value="${dto.email }" />">
@@ -500,20 +500,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		
 		$(function(){
 			$(document).ready(function(){
-				$('select[name=emailSelect]').change(function() {
+				$('select[name=emailLast]').change(function() {
 					if($(this).val()=="1"){				
 						$('#emailEnd').val("");		
 						$("#emailEnd").attr("readonly", false);	
-					} else {				
-						$('#emailEnd').val($(this).val());				
+					} else if($(this).val()=="2") {				
+						$('#emailEnd').val('naver.com');				
 						$("#emailEnd").attr("readonly", true);			
-						}		
+					} else if($(this).val()=="3") {				
+						$('#emailEnd').val('google.com');				
+						$("#emailEnd").attr("readonly", true);			
+					} else {		
+						$('#emailEnd').val('kakao.com');				
+						$("#emailEnd").attr("readonly", true);	
+					}
 				});	
 			});
-		});
+		});	
 		
+		var emailStart = $("#emailStart").val();
+		var emailEnd = $("#emailEnd").val();
+		var mail = "";
+		 mail = emailStart+"@"+emailEnd;
 		
-		$("#email").val($("#emailStart").val() + "@" + $("#emailEnd").val());//hidden email.value
+		$("#email").val(mail);//hidden email.value
 		
 		$("#idOverlap").on("click", function(){
 			/* if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
