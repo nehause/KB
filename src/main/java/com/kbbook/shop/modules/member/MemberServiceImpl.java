@@ -61,4 +61,9 @@ public class MemberServiceImpl implements MemberService {
 	public int selectOneIdCheck(Member dto) throws Exception{
 		return dao.selectOneIdCheck(dto);
 	}
+	
+	@Override
+	public int selectOneUserNameCheck(Member dto) throws Exception{
+		return dao.selectOneUserNameCheck(dto);
+	}
 }	

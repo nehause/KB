@@ -157,4 +157,12 @@
 		FROM member
 			WHERE id = #{id}
 	</select>
+	
+	<select id="selectOneUserNameCheck" resultType="Integer">
+		SELECT
+			 COUNT(userName) 
+		FROM member
+			WHERE userName = #{userName}
+	</select>
+	
 </mapper>	

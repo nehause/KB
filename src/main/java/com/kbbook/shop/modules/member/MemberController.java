@@ -122,6 +122,8 @@ public class MemberController {
 		return "redirect:/member/memberList";
 	}
 	
+	// ajax
+	
 	@ResponseBody
 	@RequestMapping(value = "checkId")
 	public Map<String, Object> checkId(Member dto) throws Exception {
@@ -129,6 +131,22 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		int result = service.selectOneIdCheck(dto);
+
+		if (result > 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "checkUserName")
+	public Map<String, Object> checkUserName(Member dto) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.selectOneUserNameCheck(dto);
 
 		if (result > 0) {
 			returnMap.put("rt", "fail");

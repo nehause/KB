@@ -60,4 +60,8 @@ public class MemberDao {
 	public int selectOneIdCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);
 	}
+	
+	public int selectOneUserNameCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".selectOneUserNameCheck", dto);
+	}
 }

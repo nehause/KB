@@ -151,10 +151,12 @@
                            </div>
                            <div class="row mb-3">
                            	<div class="col-md-4 form-group p_star">
+                           		<input type="hidden" id="userNameAllowedNy" name="userNameAllowedNy" value="0">
                                 <input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${dto.userName }" />" placeholder="닉네임*">
+                                <div class="invalid-feedback" id="userNameFeedback"></div>
                             </div>
                             <div class="col-md-2 form-group">
-       	                        <input type="button" class="form-control genric-btn primary" id="regUserNameOverlap" name="regUserNameOverlap" value="중복확인">
+       	                        <input type="button" class="form-control genric-btn primary" id="userNameOverlap" name="userNameOverlap" value="중복확인">
    	                        </div>
                            </div>
                            <div class="row">
@@ -185,7 +187,7 @@
                                 <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
-                                <select class="country_select" id="emailLast" name="emailLast">
+                                <select class="country_select" id="emailSelect" name="emailSelect">
                                     <option value="">직접입력</option>
                                     <option value="naver.com">네이버</option>
                                     <option value="google.com">구글</option>
@@ -474,7 +476,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 		var goUrlInsert = "/member/memberInst";				/* #-> */
 		var goUrlLogin = "/loginForm";
-		
+		var emailSelect = $("#emailSelect")
+		var emailEnd = $("#emailEnd")
 		var seq = $("input:hidden[name=memberSeq]");
 		var form = $("form[name=UMRForm]"); 
 	
@@ -497,14 +500,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				form.attr("action", goUrlInsert).submit();
 		}); 
 		
-		$("#emailLast").on("change",function(){
-			
+		$("#emailSelect").on("change", function(){
+			if(emailSelect.val() == ""){
+		        emailEnd.attr('readonly', false);
+		        emailEnd.val('');
+		    } else {
+		        emailEnd.attr('readonly', true);
+		        emailEnd.val(emailSelect.val());
+		    }
 		});
 		
 		$("#email").val($("#emailStart").val() + "@" + $("#emailEnd").val());//hidden email.value
 		
 		$("#idOverlap").on("click", function(){
-			
+			/* if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+				return false;
+			} else { */
 			$.ajax({
 				async: true 
 				,cache: false
@@ -515,20 +526,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				,data : { "id" : $("#id").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
+						document.getElementById("id").classList.remove('is-invalid');
 						document.getElementById("id").classList.add('is-valid');
 	
 						document.getElementById("idFeedback").classList.remove('invalid-feedback');
 						document.getElementById("idFeedback").classList.add('valid-feedback');
-						document.getElementById("idFeedback").innerText = "사용 가능 합니다.";
+						document.getElementById("idFeedback").innerText = "사용 가능한 아이디 입니다.";
 						
 						document.getElementById("idAllowedNy").value = 1;
 						
 					} else {
+						document.getElementById("id").classList.remove('is-valid');
 						document.getElementById("id").classList.add('is-invalid');
 						
 						document.getElementById("idFeedback").classList.remove('valid-feedback');
 						document.getElementById("idFeedback").classList.add('invalid-feedback');
-						document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
+						document.getElementById("idFeedback").innerText = "사용 불가능한 닉네임 입니다";
 						
 						document.getElementById("idAllowedNy").value = 0;
 					}
@@ -548,23 +561,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				/* ,dataType:"json" */
 				,url: "/member/checkUserName"
 				/* ,data : $("#formLogin").serialize() */
-				,data : { "id" : $("#id").val() }
+				,data : { "userName" : $("#userName").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
+						document.getElementById("userName").classList.remove('is-invalid');
 						document.getElementById("userName").classList.add('is-valid');
 	
 						document.getElementById("userNameFeedback").classList.remove('invalid-feedback');
 						document.getElementById("userNameFeedback").classList.add('valid-feedback');
-						document.getElementById("userNameFeedback").innerText = "사용 가능 합니다.";
+						document.getElementById("userNameFeedback").innerText = "사용 가능한 닉네임 입니다.";
 						
 						document.getElementById("userNameAllowedNy").value = 1;
 						
 					} else {
+						document.getElementById("userName").classList.remove('is-valid');
 						document.getElementById("userName").classList.add('is-invalid');
 						
 						document.getElementById("userNameFeedback").classList.remove('valid-feedback');
 						document.getElementById("userNameFeedback").classList.add('invalid-feedback');
-						document.getElementById("userNameFeedback").innerText = "사용 불가능 합니다";
+						document.getElementById("userNameFeedback").innerText = "사용 불가능한 닉네임 입니다";
 						
 						document.getElementById("userNameAllowedNy").value = 0;
 					}
