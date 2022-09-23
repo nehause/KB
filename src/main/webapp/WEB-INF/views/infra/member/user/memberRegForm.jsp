@@ -184,11 +184,11 @@
                             </div>
                             <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="" placeholder="직접입력">
+                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
                                 <select class="country_select" id="emailSelect" name="emailSelect">
-                                    <option value="">직접입력</option>
+                                    <option value="1">직접입력</option>
                                     <option value="naver.com">네이버</option>
                                     <option value="google.com">구글</option>
                                     <option value="kakao.com">카카오</option>
@@ -392,7 +392,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	
 	<script type="text/javascript">
-		
+
 		function checkSelectAll()  {
 
 			const checkboxes = document.querySelectorAll('input[name="adReceive"]');
@@ -476,8 +476,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 		var goUrlInsert = "/member/memberInst";				/* #-> */
 		var goUrlLogin = "/loginForm";
-		var emailSelect = $("#emailSelect")
-		var emailEnd = $("#emailEnd")
 		var seq = $("input:hidden[name=memberSeq]");
 		var form = $("form[name=UMRForm]"); 
 	
@@ -500,15 +498,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				form.attr("action", goUrlInsert).submit();
 		}); 
 		
-		$("#emailSelect").on("change", function(){
-			if(emailSelect.val() == ""){
-		        emailEnd.attr('readonly', false);
-		        emailEnd.val('');
-		    } else {
-		        emailEnd.attr('readonly', true);
-		        emailEnd.val(emailSelect.val());
-		    }
+		$(function(){
+			$(document).ready(function(){
+				$('select[name=emailSelect]').change(function() {
+					if($(this).val()=="1"){				
+						$('#emailEnd').val("");		
+						$("#emailEnd").attr("readonly", false);	
+					} else {				
+						$('#emailEnd').val($(this).val());				
+						$("#emailEnd").attr("readonly", true);			
+						}		
+				});	
+			});
 		});
+		
 		
 		$("#email").val($("#emailStart").val() + "@" + $("#emailEnd").val());//hidden email.value
 		
