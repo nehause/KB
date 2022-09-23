@@ -219,9 +219,9 @@
 								</div>
 								<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
 									<h5>등록된 휴대폰 번호로 찾기</h5>
-									<input type="text" class="form-control" id="findPasswordNumberId" name="findPasswordNumberId" placeholder="아이디">
-									<input type="text" class="form-control" id="findPasswordNumberName" name="findPasswordNumberName" placeholder="이름">
-									<input type="text" class="form-control" id="findPasswordNumberNumber" name="findPasswordNumberNumber" placeholder="전화번호 ex)01012345678">
+									<input type="text" class="form-control" id="id" name="id" <%-- value="<c:out value="${dto.id }" />" --%> placeholder="아이디">
+									<input type="text" class="form-control" id="password" name="password" <%-- value="<c:out value="${dto.password }" />" --%> placeholder="이름">
+									<input type="text" class="form-control" id="number" name="number" placeholder="전화번호 ex)01012345678">
 									<div style="height: 30px;"></div>
 									<h5>등록된 이메일로 찾기</h5>
 									<input type="text" class="form-control" id="findPasswordEmailId" name="findPasswordEmailId" placeholder="아이디">

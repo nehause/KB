@@ -56,4 +56,8 @@ public class MemberDao {
 	public int selectOneCount(BaseVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+	public int selectOneIdCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);
+	}
 }

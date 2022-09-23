@@ -103,8 +103,8 @@
 				<div class="col-first">
 					<h1>회원가입</h1>
 					<nav class="d-flex align-items-center">
-						<a href="main.html">메인<span class="lnr lnr-arrow-right"></span></a>
-						<a href="loginForm.html">회원가입</a>
+						<a href="/">메인<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/loginForm">회원가입</a>
 					</nav>
 				</div>
 			</div>
@@ -113,6 +113,7 @@
 	<!-- End Banner Area -->
 	<form method="post" id="UMRForm" name="UMRForm">
 		<input type="hidden" id="mainKey" name="mainKey">
+		<input type="hidden" id="memberSeq" name="memberSeq" value="0">
 		<section class="memberRegFormArea section_gap">
 			<div class="billing_details">
                 <div class="row justify-content-center">
@@ -120,35 +121,37 @@
                         <h3>회원가입</h3>
                        	<div class="row mb-3">
                             <div class="col-md-4 gy-3 form-group p_star">
-                                <input type="text" class="form-control" id="regName" name="regName" placeholder="이름*">
+                                <input type="text" class="form-control" id="name" name="name" value="<c:out value="${dto.name }" />" placeholder="이름*">
                             </div>
                             <div class="col-md-1 gy-3 form-group">
                             	<span class="align-self-center">성별</span>
                             </div>
                             <div class="col-md-2 gy-3 form-group">
-                                <div class="adReceive">
-                                    <input type="radio" id="regGenderMan" name="regGender" value="man">
-                                    <label for="regGenderMan">남성</label>
+                                <div>
+                                    <input type="radio" id="genderMan" name="gender" value="1">
+                                    <label for="genderMan">남성</label>
                                 </div>
                             </div>    
                             <div class="col-md-2 gy-3 form-group">
-                                <div class="adReceive">
-                                    <input type="radio" id="regGenderWoman" name="regGender" value="woman">
-                                    <label for="regGenderWoman">여성</label>
+                                <div>
+                                    <input type="radio" id="genderWoman" name="gender" value="2">
+                                    <label for="genderWoman">여성</label>
                                 </div>
                             </div>
                            </div>
                            <div class="row mb-3">
                            	<div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="regId" name="regId" placeholder="아이디*">
+                           		<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
+                                <input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }"/>" placeholder="영대소문자, 숫자, 특수문자(-_.),4~20자리" maxlength="20" >
+                            	<div class="invalid-feedback" id="idFeedback"></div>
                             </div>
                             <div class="col-md-2 form-group">
-       	                        <input type="button" class="form-control genric-btn primary" id="regIdOverlap" name="regIdOverlap" value="중복확인">
+       	                        <input type="button" class="form-control genric-btn primary" id="idOverlap" name="idOverlap" value="중복확인">
    	                        </div>
                            </div>
                            <div class="row mb-3">
                            	<div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="regUserName" name="regUserName" placeholder="닉네임*">
+                                <input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${dto.userName }" />" placeholder="닉네임*">
                             </div>
                             <div class="col-md-2 form-group">
        	                        <input type="button" class="form-control genric-btn primary" id="regUserNameOverlap" name="regUserNameOverlap" value="중복확인">
@@ -156,56 +159,58 @@
                            </div>
                            <div class="row">
                             <div class="col-md-5 form-group p_star">
-                                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="비밀번호*">
+                                <input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" placeholder="비밀번호*">
                             </div>
                             <div class="col-md-5 form-group p_star">
-                                <input type="password" class="form-control" id="regPasswordCheck" name="regPasswordCheck" placeholder="비밀번호 확인*" onkeyup="regPasswordCk();">
+                                <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인*" onkeyup="regPasswordCk();">
                                 <label><div name="checkWord" id="checkWord" style="display: none; color:red;">동일한 암호를 입력하세요.</div></label>
                             </div>
                            </div>
                            <div class="row mb-3">
                            	<div class="col-md-5 form-group p_star">
-                                <input type="text" class="form-control" id="regBirth" name="regBirth" placeholder="생년월일 (ex:19990506)*" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
+                                <input type="text" class="form-control" id="dob" name="dob" value="<c:out value="${dto.dob }" />" placeholder="ex)1999-01-23">
+                                <!-- <input type="text" class="form-control" id="dob" name="dob" placeholder="생년월일 (ex:19990506)*" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');"> -->
                        
                             </div>
                             <div class="col-md-5 form-group p_star">
-                                <input type="text" class="form-control" id="regPhone" name="regPhone" placeholder="휴대폰번호 (ex:01012345678)*" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
+                                <input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${dto.phone }" />" placeholder="휴대폰번호 (ex:01012345678)*" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\/resources/g, '$1');">
                             </div>
                            </div>
                            <div class="row mb-3">
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="regEmailFirst" name="regEmailFirst" placeholder="이메일*">
+                                <input type="text" class="form-control" id="emailStart" name="emailStart" value="" placeholder="이메일*">
                             </div>
                             <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="regEmailLast" name="regEmailLast" placeholder="직접입력">
+                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
-                                <select class="country_select" id="regEmailLastSelect" name="regEmailLastSelect" onchange="selectEmail();">
+                                <select class="country_select" id="emailLast" name="emailLast">
                                     <option value="">직접입력</option>
                                     <option value="naver.com">네이버</option>
-                                    <option value="gmail.com">구글</option>
+                                    <option value="google.com">구글</option>
                                     <option value="kakao.com">카카오</option>
                                 </select>
                             </div>
+                            <input type="hidden" id="email" name="email" value="<c:out value="${dto.email }" />">
                            </div>
                            <div class="row">
                             <div class="col-md-3 form-group">
-                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호">
+                                <input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${dto.zip }"/>" placeholder="우편번호">
                            	</div>
                            	<div class="col-md-2 form-group">
-                                <input type="button" class="form-control genric-btn primary" id="regAddressSearch" name="regAddressSearch" value="주소검색">
+                                <input type="button" class="form-control genric-btn primary" id="searchTransport" name="searchTransport" value="주소검색" onclick="PostCode()">
                             </div>
                             </div>
                             <div class="row">
                             <div class="col-md-7 form-group p_star">
-                                <input type="text" class="form-control" id="address" name="address" placeholder="주소">
+                                <input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${dto.address1 }"/>" placeholder="주소">
                             </div>
                             <div class="col-md-2 form-group">
                                 <input type="hidden" class="form-control" id="extraAddress" name="extraAddress">
                             </div>
                             <div class="col-md-7 form-group p_star">
-                                <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소">
+                                <input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${dto.address2 }"/>" placeholder="상세주소">
                             </div>
                            </div>
                            <div class="row" style="height: 30px;"></div>
@@ -385,28 +390,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	
 	<script type="text/javascript">
-		function selectEmail() {
-			document.memberRegForm.regEmailLast.value = document.memberRegForm.regEmailLastSelect.value
-			
-		}
-		function regCancel() {
-			location.href='loginForm.html';
-		}
-		
-		function regSubmit() {
-			document.getElementById("memberRegForm").submit();
-		}
-		// 함수는 아이디와 같은 이름으로 하면 안됩니다. 바보야
-		function regPasswordCk(){
-			var password = document.getElementById("regPassword");
-			var passwordCheck = document.getElementById("regPasswordCheck")
-		 	var warning = document.getElementById('checkWord')
-			if(password.value != passwordCheck.value) {
-			  warning.style.display="block";
-		  } else {
-			  warning.style.display="none";
-		  }
-		}
 		
 		function checkSelectAll()  {
 
@@ -469,10 +452,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	                        extraAddr = ' (' + extraAddr + ')';
 	                    }
 	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("extraaddress").value = extraAddr;
+	                    document.getElementById("extraAddress").value = extraAddr;
 	                
 	                } else {
-	                    document.getElementById("extraaddress").value = '';
+	                    document.getElementById("extraAddress").value = '';
 	                }
 	                
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
@@ -484,6 +467,114 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	            }
 	        }).open();
 	    }
+	</script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	
+		var goUrlInsert = "/member/memberInst";				/* #-> */
+		var goUrlLogin = "/loginForm";
+		
+		var seq = $("input:hidden[name=memberSeq]");
+		var form = $("form[name=UMRForm]"); 
+	
+		$('input[type="checkbox"]').change(function(){
+		    this.value = (Number(this.checked));
+		});
+		
+/* 		$("#transportClearBtn").on("click", function(){
+			$("#zip").val('');
+			$("#extraaddress").val('');
+			$("#address1").val('');
+			$("#address2").val('');
+		});  */
+		
+		$("#cancelBtn").on("click", function(){
+			$(location).attr("href", goUrlLogin);
+		});  
+		
+		$("#insertBtn").on("click", function(){
+				form.attr("action", goUrlInsert).submit();
+		}); 
+		
+		$("#emailLast").on("change",function(){
+			
+		});
+		
+		$("#email").val($("#emailStart").val() + "@" + $("#emailEnd").val());//hidden email.value
+		
+		$("#idOverlap").on("click", function(){
+			
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/member/checkId"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("id").classList.add('is-valid');
+	
+						document.getElementById("idFeedback").classList.remove('invalid-feedback');
+						document.getElementById("idFeedback").classList.add('valid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("idAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("id").classList.add('is-invalid');
+						
+						document.getElementById("idFeedback").classList.remove('valid-feedback');
+						document.getElementById("idFeedback").classList.add('invalid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("idAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+		
+		$("#userNameOverlap").on("click", function(){
+			
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/member/checkUserName"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("userName").classList.add('is-valid');
+	
+						document.getElementById("userNameFeedback").classList.remove('invalid-feedback');
+						document.getElementById("userNameFeedback").classList.add('valid-feedback');
+						document.getElementById("userNameFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("userNameAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("userName").classList.add('is-invalid');
+						
+						document.getElementById("userNameFeedback").classList.remove('valid-feedback');
+						document.getElementById("userNameFeedback").classList.add('invalid-feedback');
+						document.getElementById("userNameFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("userNameAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+		
 	</script>
 	
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>

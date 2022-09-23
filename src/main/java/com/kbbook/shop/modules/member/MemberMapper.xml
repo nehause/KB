@@ -150,5 +150,11 @@
 		SELECT COUNT(*)
 		<include refid="selectCommon" />
 	</select>
-
+	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			 COUNT(id) 
+		FROM member
+			WHERE id = #{id}
+	</select>
 </mapper>	
