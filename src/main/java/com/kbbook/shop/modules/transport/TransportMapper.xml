@@ -36,7 +36,7 @@
 			,zip
 			,address1
 			,address2
-			,lag
+			,lng
 			,lat
 			,useNy
 			,delNy
@@ -51,7 +51,7 @@
 			,#{zip}
 			,#{address1}
 			,#{address2}
-			,#{lag}
+			,#{lng}
 			,#{lat}
 			,1
 			,0
@@ -73,7 +73,7 @@
 		,zip = #{zip}
 		,address1 = #{address1}
 		,address2 = #{address2}
-		,lag = #{lag}
+		,lng = #{lng}
 		,lat = #{lat}
 		,useNy = #{useNy}
 		,delNy = #{delNy}

@@ -4,6 +4,7 @@
 <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 
 <input type="hidden" name="searchDelNy" value="<c:out value="${vo.searchDelNy}"/>"/>
+<input type="hidden" name="searchUseNy" value="<c:out value="${vo.searchUseNy}"/>"/>
 <input type="hidden" name="searchDor" value="<c:out value="${vo.searchDor}"/>"/>
 
 <%-- <input type="hidden" name="searchDos" value="<c:out value="${vo.searchDos}"/>"/>

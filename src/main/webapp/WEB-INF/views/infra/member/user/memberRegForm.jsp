@@ -499,11 +499,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				form.attr("action", goUrlInsert).submit();
 		}); 
 		
-		$("#emailStart").blur(function(){
+/* 		$("#emailStart").blur(function(){
+			alert("a");
 			mail();	
 		});
-		
-		$("#emailEnd").change(function(){
+		 */
+			$("#emailEnd").on("change", function(){
+//		$("#emailEnd").change(function(){
+			alert("b");
 			mail();	
 		});
 
@@ -511,8 +514,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			const emailStart = $("#emailStart").val();
 			const emailMiddle = $("#emailMiddle").text();
 			const emailEnd = $("#emailEnd").val();
-			if(email != "" && address != "") {
-				email.val(emailStart+emailMiddle+emailEnd);
+			
+			alert(emailStart);
+			alert(emailMiddle);
+			alert(emailEnd);
+			if(emailStart != "" && emailEnd != "") {
+				mail.val(emailStart+emailMiddle+emailEnd);
+				alert(mail);
 			}
 		};
 

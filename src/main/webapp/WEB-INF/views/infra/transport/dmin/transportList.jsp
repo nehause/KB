@@ -194,21 +194,21 @@
 							<!-- 빈공간을 위해 col은 10까지만 -->
 							<div class="row" style="margin-top: 10px;">
 								<div class="col-2">
-									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="transportUse">
+									<select class="form-select bg-light" id="searchDelNy" name="searchDelNy" aria-label="searchDelNy">
 										<option value="" <c:if test="${empty vo.searchDelNy}">selected</c:if>>삭제 여부</option>
 										<option value="0" <c:if test="${vo.searchDelNy eq 0}">selected</c:if>>N</option>
 										<option value="1" <c:if test="${vo.searchDelNy eq 1}">selected</c:if>>Y</option>
 									</select>
 								</div>
 								<div class="col-2">
-									<select class="form-select bg-light" id="searchUseNy" name="searchDelNy" aria-label="transportUse">
+									<select class="form-select bg-light" id="searchUseNy" name="searchUseNy" aria-label="searchDelNy">
 										<option value="" <c:if test="${empty vo.searchUseNy}">selected</c:if>>사용 여부</option>
 										<option value="0" <c:if test="${vo.searchUseNy eq 0}">selected</c:if>>N</option>
 										<option value="1" <c:if test="${vo.searchUseNy eq 1}">selected</c:if>>Y</option>
 									</select>
 								</div>
 								<div class="col-2">
-									<select class="form-select bg-light" id="searchDiv" name="searchDiv" aria-label="transportUse">
+									<select class="form-select bg-light" id="searchDiv" name="searchDiv" aria-label="searchDiv">
 										<option value="" <c:if test="${empty vo.searchDiv}">selected</c:if>>주소 구분</option>
 										<option value="1" <c:if test="${vo.searchDiv eq 1}">selected</c:if>>집</option>
 										<option value="2" <c:if test="${vo.searchDiv eq 2}">selected</c:if>>그 외</option>
@@ -304,7 +304,6 @@
 														<td><c:out value="${list.transportSeq }"/></td>
 														<td><c:out value="${list.member_memberSeq }"/></td>
 														<td><c:out value="${list.name }"/></td>
-														<td><c:out value="${list.transportDiv }"/></td>
 														<td>
 															<c:forEach items="${listCodeTransportDiv}" var="listTransportDiv" varStatus="statusTransportDiv">
 																<c:if test="${list.transportDiv eq listTransportDiv.COrder}"><c:out value="${listTransportDiv.CNameKor }"/></c:if>
@@ -316,6 +315,7 @@
 														<td><c:out value="${list.address1 }"/></td>
 														<td><c:out value="${list.address2 }"/></td>
 														<td><c:out value="${list.registration }"/></td>
+														<td></td>
 													</tr>
 												</c:forEach>
 											</c:otherwise>

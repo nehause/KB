@@ -246,8 +246,8 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
-							<label for="lag">위도</label>
-							<input type="text" class="form-control" id="lag" name="lag" value="<c:out value="${item.lag }"/>" placeholder="위도" readonly>
+							<label for="lng">위도</label>
+							<input type="text" class="form-control" id="lng" name="lng" value="<c:out value="${item.lng }"/>" placeholder="위도" readonly>
 						</div>
 						<div class="col-sm-5 gy-4">
 							<label for="lat">경도</label>
@@ -488,11 +488,11 @@
 
 	                        // 해당 주소에 대한 좌표를 받아서
 	                        var coords = new daum.maps.LatLng(result.y, result.x);
-	    	                document.getElementById("lag").value = coords.getLat(); // 위도 
+	    	                document.getElementById("lng").value = coords.getLat(); // 위도 
 	    	                document.getElementById("lat").value = coords.getLng(); // 경도
 	    	                
 //	    	                //위의 것과 같다
-//	    	                document.getElementById("lag").value = result[0].y; // 위도
+//	    	                document.getElementById("lng").value = result[0].y; // 위도
 //	    	                document.getElementById("lat").value = result[0].x; // 경도
 	    	                
 	                    }

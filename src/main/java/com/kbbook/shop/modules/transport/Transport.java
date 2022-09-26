@@ -12,7 +12,7 @@ public class Transport {
 	private String zip;
 	private String address1;
 	private String address2;
-	private String lag;
+	private String lng;
 	private String lat;
 	private Integer useNy;
 	private Integer delNy;
@@ -21,95 +21,122 @@ public class Transport {
 	//join
 	
 	private String name;
-	
+
 	public String getTransportSeq() {
 		return transportSeq;
 	}
+
 	public void setTransportSeq(String transportSeq) {
 		this.transportSeq = transportSeq;
 	}
+
 	public String getMember_memberSeq() {
 		return member_memberSeq;
 	}
+
 	public void setMember_memberSeq(String member_memberSeq) {
 		this.member_memberSeq = member_memberSeq;
 	}
+
 	public Integer getTransportDiv() {
 		return transportDiv;
 	}
+
 	public void setTransportDiv(Integer transportDiv) {
 		this.transportDiv = transportDiv;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getHome() {
 		return home;
 	}
+
 	public void setHome(String home) {
 		this.home = home;
 	}
+
 	public String getZip() {
 		return zip;
 	}
+
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
 	public String getAddress1() {
 		return address1;
 	}
+
 	public void setAddress1(String address1) {
 		this.address1 = address1;
 	}
+
 	public String getAddress2() {
 		return address2;
 	}
+
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public String getLag() {
-		return lag;
+
+	public String getLng() {
+		return lng;
 	}
-	public void setLag(String lag) {
-		this.lag = lag;
+
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
+
 	public String getLat() {
 		return lat;
 	}
+
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
+
 	public Integer getUseNy() {
 		return useNy;
 	}
+
 	public void setUseNy(Integer useNy) {
 		this.useNy = useNy;
 	}
+
 	public Integer getDelNy() {
 		return delNy;
 	}
+
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
+
 	public Date getRegistration() {
 		return registration;
 	}
+
 	public void setRegistration(Date registration) {
 		this.registration = registration;
 	}
+
 	
-	//join
-	
+	// join
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+
 	
 	
 }
