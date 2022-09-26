@@ -180,21 +180,21 @@
                            </div>
                            <div class="row mb-3">
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailStart" name="emailStart" placeholder="이메일*">
+                                <input type="text" class="form-control" id="emailStart" name="emailStart" value="" placeholder="이메일*">
                             </div>
                             <span class="align-self-center" style="margin-bottom: 20px" id="emailMiddle" name="emailMiddle">@</span>
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" placeholder="직접입력">
+                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
-                                <select class="country_select" id="emailSelect" name="emailSelect">
+                                <select class="country_select" id="emailLast" name="emailLast">
                                     <option value="1">직접입력</option>
                                     <option value="2">네이버</option>
                                     <option value="3">구글</option>
                                     <option value="4">카카오</option>
                                 </select>
                             </div>
-                            <input type="hidden" id="email" name="email" value="<c:out value="${dto.email }" />">
+                            <input type="hidden" id="email" name="email" value="<c:out value="${dto.email }"/>">
                            </div>
                            <div class="row">
                             <div class="col-md-3 form-group">
@@ -499,18 +499,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				form.attr("action", goUrlInsert).submit();
 		}); 
 		
-/* 		$("#emailStart").blur(function(){
+/*  		$("#emailStart").blur(function(){
 			alert("a");
 			mail();	
 		});
-		 */
-			$("#emailEnd").on("change", function(){
-//		$("#emailEnd").change(function(){
+ 		
+ 		$("#emailEnd").blur(function(){
 			alert("b");
-			mail();	
 		});
-
-		function mail() {
+*/
+		function setMail() {
 			const emailStart = $("#emailStart").val();
 			const emailMiddle = $("#emailMiddle").text();
 			const emailEnd = $("#emailEnd").val();
@@ -520,26 +518,32 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			alert(emailEnd);
 			if(emailStart != "" && emailEnd != "") {
 				mail.val(emailStart+emailMiddle+emailEnd);
-				alert(mail);
 			}
 		};
-
+		
+		$("#emailStart").change(function(){
+			setMail()
+		});
 		
 		$(function(){
 			$(document).ready(function(){
-				$('select[name=emailSelect]').change(function() {
+				$('select[name=emailLast]').change(function() {
 					if($(this).val()=="1"){				
 						$('#emailEnd').val("");		
-						$("#emailEnd").attr("readonly", false);	
+						$("#emailEnd").attr("readonly", false);
+						setMail();
 					} else if($(this).val()=="2") {				
 						$('#emailEnd').val('naver.com');				
-						$("#emailEnd").attr("readonly", true);	
+						$("#emailEnd").attr("readonly", true);
+						setMail();
 					} else if($(this).val()=="3") {				
 						$('#emailEnd').val('google.com');				
-						$("#emailEnd").attr("readonly", true);	
+						$("#emailEnd").attr("readonly", true);
+						setMail();
 					} else {		
 						$('#emailEnd').val('kakao.com');				
-						$("#emailEnd").attr("readonly", true);	
+						$("#emailEnd").attr("readonly", true);
+						setMail();
 					}
 				});	
 			});
