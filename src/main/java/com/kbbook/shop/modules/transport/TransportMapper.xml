@@ -86,7 +86,7 @@
 	UPDATE transport
 	SET
 		delNy = 1
-		useNy = 0
+		,useNy = 0
 	WHERE 1=1
 		AND transportSeq = #{transportSeq}
 	

@@ -184,7 +184,7 @@
 				</div>
 				<div class="col-lg-10">
 					<div class="row">
-						<h1>멤버 관리</h1>
+						<h1>주소 관리</h1>
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">

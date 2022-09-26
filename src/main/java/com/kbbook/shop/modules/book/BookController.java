@@ -10,13 +10,18 @@ public class BookController {
 	@Autowired
 	BookServiceImpl service;
 	
-	@RequestMapping(value="/bookIndex")
+	@RequestMapping(value="bookList")
+	public String BookList() throws Exception{
+		return "infra/book/dmin/bookList";
+	}
+	
+	@RequestMapping(value="bookIndex")
 	public String BookIndex() throws Exception {
 		
 		return "infra/book/user/bookIndex";
 	}
 	
-	@RequestMapping(value="/bookView")
+	@RequestMapping(value="bookView")
 	public String BookView() throws Exception {
 		
 		return "infra/book/user/bookView";
