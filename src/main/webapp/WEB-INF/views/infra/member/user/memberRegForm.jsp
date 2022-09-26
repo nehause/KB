@@ -182,12 +182,12 @@
                             <div class="col-md-4 form-group p_star">
                                 <input type="text" class="form-control" id="emailStart" name="emailStart" placeholder="이메일*">
                             </div>
-                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
+                            <span class="align-self-center" style="margin-bottom: 20px" id="emailMiddle" name="emailMiddle">@</span>
                             <div class="col-md-4 form-group p_star">
                                 <input type="text" class="form-control" id="emailEnd" name="emailEnd" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
-                                <select class="country_select" id="emailLast" name="emailLast">
+                                <select class="country_select" id="emailSelect" name="emailSelect">
                                     <option value="1">직접입력</option>
                                     <option value="2">네이버</option>
                                     <option value="3">구글</option>
@@ -478,6 +478,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		var goUrlLogin = "/loginForm";
 		var seq = $("input:hidden[name=memberSeq]");
 		var form = $("form[name=UMRForm]"); 
+		var mail = $("input:hidden[name=email]");
 	
 		$('input[type="checkbox"]').change(function(){
 		    this.value = (Number(this.checked));
@@ -498,18 +499,36 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				form.attr("action", goUrlInsert).submit();
 		}); 
 		
+		$("#emailStart").blur(function(){
+			mail();	
+		});
+		
+		$("#emailEnd").change(function(){
+			mail();	
+		});
+
+		function mail() {
+			const emailStart = $("#emailStart").val();
+			const emailMiddle = $("#emailMiddle").text();
+			const emailEnd = $("#emailEnd").val();
+			if(email != "" && address != "") {
+				email.val(emailStart+emailMiddle+emailEnd);
+			}
+		};
+
+		
 		$(function(){
 			$(document).ready(function(){
-				$('select[name=emailLast]').change(function() {
+				$('select[name=emailSelect]').change(function() {
 					if($(this).val()=="1"){				
 						$('#emailEnd').val("");		
 						$("#emailEnd").attr("readonly", false);	
 					} else if($(this).val()=="2") {				
 						$('#emailEnd').val('naver.com');				
-						$("#emailEnd").attr("readonly", true);			
+						$("#emailEnd").attr("readonly", true);	
 					} else if($(this).val()=="3") {				
 						$('#emailEnd').val('google.com');				
-						$("#emailEnd").attr("readonly", true);			
+						$("#emailEnd").attr("readonly", true);	
 					} else {		
 						$('#emailEnd').val('kakao.com');				
 						$("#emailEnd").attr("readonly", true);	
@@ -518,12 +537,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			});
 		});	
 		
-		var emailStart = $("#emailStart").val();
-		var emailEnd = $("#emailEnd").val();
-		var mail = "";
-		 mail = emailStart+"@"+emailEnd;
-		
-		$("#email").val(mail);//hidden email.value
 		
 		$("#idOverlap").on("click", function(){
 			/* if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {

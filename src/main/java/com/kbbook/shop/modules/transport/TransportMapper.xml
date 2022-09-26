@@ -9,11 +9,127 @@
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.transport.Transport"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-	SELECT
-		a.*
-	FROM transport a
-	WHERE 1=1
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+				,b.name
+		<include refid="selectCommon" />
+			ORDER BY a.transportSeq DESC
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
 	
+	<select id="selectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM transport a
+		
+		WHERE 1=1
+			AND transportSeq = #{transportSeq}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO transport (
+			member_memberSeq
+			,transportDiv
+			,phone
+			,home
+			,zip
+			,address1
+			,address2
+			,lag
+			,lat
+			,useNy
+			,delNy
+			,registration
+		)
+		VALUES (
+		
+			#{member_memberSeq}
+			,#{transportDiv}
+			,#{phone}
+			,#{home}
+			,#{zip}
+			,#{address1}
+			,#{address2}
+			,#{lag}
+			,#{lat}
+			,1
+			,0
+			,#{registration}
+		
+		)
+		<selectKey resultType="String" keyProperty="transportSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="update">
+	UPDATE transport
+	SET
+		member_memberSeq = #{member_memberSeq}
+		,transportDiv = #{transportDiv}
+		,phone = #{phone}
+		,home = #{home}
+		,zip = #{zip}
+		,address1 = #{address1}
+		,address2 = #{address2}
+		,lag = #{lag}
+		,lat = #{lat}
+		,useNy = #{useNy}
+		,delNy = #{delNy}
+		,registration = #{registration}
+	WHERE 1=1
+		AND transportSeq = #{transportSeq}
+	</update>
+	
+	<update id="uelete">
+	UPDATE transport
+	SET
+		delNy = 1
+		useNy = 0
+	WHERE 1=1
+		AND transportSeq = #{transportSeq}
+	
+	</update>
+	
+	<delete id = "delete">
+		DELETE
+		FROM transport
+		WHERE 1=1
+			AND transportSeq = #{transportSeq}
+	</delete>
+	
+	<sql id ="selectCommon">
+	FROM transport a
+	JOIN member b on a.member_memberSeq = b.memberSeq
+	WHERE 1=1
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<if test="searchUseNy != null and !searchUseNy.equals('')">AND useNy = #{searchUseNy}</if>
+		<if test="searchDiv != null and !searchDiv.equals('')">AND transportDiv = #{searchDiv}</if>
+		<choose>
+			<when test="searchOption == 1">AND transportSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND member_memberSeq = #{searchValue}</when>
+			<when test="searchOption == 3">AND b.name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 4">AND phone LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 5">AND home LIKE CONCAT('%',#{searchValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.transportSeq
+			,a.member_memberSeq
+		FROM transport a
+		WHERE 1=1
+			AND delNy = 0
+			AND useNy = 1
+		ORDER NY a.transportSeq DESC
 	</select>
 
 </mapper>	

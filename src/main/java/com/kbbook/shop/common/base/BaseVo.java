@@ -26,11 +26,13 @@ public class BaseVo {
 	private String searchValue;
 	private Integer searchOption;
 	private Integer searchDelNy;
+	private Integer searchUseNy;
 	private Integer searchDor;
 //	private Date searchDos;
 //	private Date searchDoe;
 	private Integer searchPrivacy;
 	private Integer searchGender;
+	private Integer searchDiv;
 	
 	public void setParamsPaging(int totalRows) {
 			
@@ -200,6 +202,14 @@ public class BaseVo {
 		this.searchDelNy = searchDelNy;
 	}
 	
+	public Integer getSearchUseNy() {
+		return searchUseNy;
+	}
+
+	public void setSearchUseNy(Integer searchUseNy) {
+		this.searchUseNy = searchUseNy;
+	}
+
 	public Integer getSearchDor() {
 		return searchDor;
 	}
@@ -233,6 +243,14 @@ public class BaseVo {
 
 	public void setSearchGender(Integer searchGender) {
 		this.searchGender = searchGender;
+	}
+
+	public Integer getSearchDiv() {
+		return searchDiv;
+	}
+
+	public void setSearchDiv(Integer searchDiv) {
+		this.searchDiv = searchDiv;
 	}
 	
 	
