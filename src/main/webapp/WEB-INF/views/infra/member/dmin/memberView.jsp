@@ -239,10 +239,23 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
+						<div class="col-sm-3 gy-4 offset-1">
 							<label for="email">이메일</label>
-							<input type="text" class="form-control" id="email" name="email" value="<c:out value="${item.email }"/>" placeholder="영문(대소문자), 숫자">
+							<input type="text" class="form-control" id="emailStart" name="email" value="<c:out value="${item.emailStart }"/>" placeholder="이메일">
 						</div>
+						<div class="col-1" style="margin-top: 52px; text-align: center;"><span id="emailMiddle" name="emailMiddle">@</span></div>
+						<div class="col-sm-3 gy-4" style="margin-top: 48px;">
+							<input type="text" class="form-control" id="emailEnd" name="emailEnd" value="<c:out value="${item.emailEnd }"/>" placeholder="직접입력">
+						</div>
+						<div class="col-sm-3 gy-4" style="margin-top: 48px;">
+							<select class="form-select" id="emailLast" name="emailLast">
+								<option value="1" <c:if test="${item.emailLast eq 1 }">selected</c:if>>직접입력</option>
+								<option value="2" <c:if test="${item.emailLast eq 2 }">selected</c:if>>네이버</option>
+								<option value="3" <c:if test="${item.emailLast eq 3 }">selected</c:if>>구글</option>
+								<option value="4" <c:if test="${item.emailLast eq 4 }">selected</c:if>>카카오</option>
+							</select>
+						</div>
+						<input type="hidden" id="email" name="email" value="<c:out value="${item.email }"/>">
 					</div>
 					<div class="row">
 						<div class="col-sm-5 gy-4 offset-1">
@@ -626,6 +639,47 @@
 			$("#address1").val('');
 			$("#address2").val('');
 		}); 
+		
+		 function setMail() {
+			const emailStart = $("#emailStart").val();
+			const emailMiddle = $("#emailMiddle").text();
+			const emailEnd = $("#emailEnd").val();
+			
+			alert(emailStart);
+			alert(emailMiddle);
+			alert(emailEnd);
+			if(emailStart != "" && emailEnd != "") {
+				mail.val(emailStart+emailMiddle+emailEnd);
+			}
+		};
+		
+		$("#emailStart").change(function(){
+			setMail()
+		});
+		
+		$(function(){
+			$(document).ready(function(){
+				$('select[name=emailLast]').change(function() {
+					if($(this).val()=="1"){				
+						$('#emailEnd').val("");		
+						$("#emailEnd").attr("readonly", false);
+						setMail();
+					} else if($(this).val()=="2") {				
+						$('#emailEnd').val('naver.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					} else if($(this).val()=="3") {				
+						$('#emailEnd').val('google.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					} else {		
+						$('#emailEnd').val('kakao.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					}
+				});	
+			});
+		});
 		
 		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();

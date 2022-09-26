@@ -180,11 +180,11 @@
                            </div>
                            <div class="row mb-3">
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailStart" name="emailStart" value="" placeholder="이메일*">
+                                <input type="text" class="form-control" id="emailStart" name="emailStart" value="<c:out value="${dto.emailStart }"/>" placeholder="이메일*">
                             </div>
                             <span class="align-self-center" style="margin-bottom: 20px" id="emailMiddle" name="emailMiddle">@</span>
                             <div class="col-md-4 form-group p_star">
-                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="" placeholder="직접입력">
+                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" value="<c:out value="${dto.emailEnd }"/>" placeholder="직접입력">
                             </div>
                             <div class="col-md-3 form-group p_star">
                                 <select class="country_select" id="emailLast" name="emailLast">
@@ -512,10 +512,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			const emailStart = $("#emailStart").val();
 			const emailMiddle = $("#emailMiddle").text();
 			const emailEnd = $("#emailEnd").val();
-			
-			alert(emailStart);
-			alert(emailMiddle);
-			alert(emailEnd);
 			if(emailStart != "" && emailEnd != "") {
 				mail.val(emailStart+emailMiddle+emailEnd);
 			}

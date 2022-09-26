@@ -36,6 +36,9 @@
 			,phone
 			,number
 			,email
+			,emailStart
+			,emailEnd
+			,emailLast
 			,zip
 			,address1
 			,address2
@@ -58,6 +61,9 @@
 			,#{phone}
 			,#{number}
 			,#{email}
+			,#{emailStart}
+			,#{emailEnd}
+			,#{emailLast}
 			,#{zip}
 			,#{address1}
 			,#{address2}
@@ -87,6 +93,9 @@
 			,phone = #{phone}
 			,number = #{number}
 			,email = #{email}
+			,emailStart = #{emailStart}
+			,emailEnd = #{emailEnd}
+			,emailLast = #{emailLast}
 			,zip = #{zip}
 			,address1 = #{address1}
 			,address2 = #{address2}

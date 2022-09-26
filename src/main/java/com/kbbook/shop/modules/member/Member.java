@@ -15,6 +15,8 @@ public class Member {
 	private String phone;
 	private String number;
 	private String email;
+	private String emailStart;
+	private String emailEnd;
 	private Integer emailLast;
 	private String zip;
 	private String address1;
@@ -94,6 +96,18 @@ public class Member {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getEmailStart() {
+		return emailStart;
+	}
+	public void setEmailStart(String emailStart) {
+		this.emailStart = emailStart;
+	}
+	public String getEmailEnd() {
+		return emailEnd;
+	}
+	public void setEmailEnd(String emailEnd) {
+		this.emailEnd = emailEnd;
 	}
 	public Integer getEmailLast() {
 		return emailLast;
