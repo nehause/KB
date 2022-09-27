@@ -131,12 +131,12 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>로그인 해주세요</h3>
-						<form class="row login_form" method="post" id="loginForm" name="loginForm" novalidate="novalidate">
+						<form class="row login_form" method="post" id="loginForm" name="loginForm" novalidate="novalidate" onsubmit="return false">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
+								<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
+								<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -219,8 +219,8 @@
 								</div>
 								<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
 									<h5>등록된 휴대폰 번호로 찾기</h5>
-									<input type="text" class="form-control" id="id" name="id" <%-- value="<c:out value="${dto.id }" />" --%> placeholder="아이디">
-									<input type="text" class="form-control" id="password" name="password" <%-- value="<c:out value="${dto.password }" />" --%> placeholder="이름">
+									<input type="text" class="form-control" id="FindPhoneId" name="FindPhoneId" placeholder="아이디">
+									<input type="text" class="form-control" id="FindPhonepassword" name="password" placeholder="이름">
 									<input type="text" class="form-control" id="number" name="number" placeholder="전화번호 ex)01012345678">
 									<div style="height: 30px;"></div>
 									<h5>등록된 이메일로 찾기</h5>
@@ -334,24 +334,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- End footer Area -->
-	
-	
-	<script type="text/javascript">
-	
-	function idSelectEmail() {
-		document.findIdPasswordForm.findIdEmailLast.value = document.findIdPasswordForm.findIdEmailLastSelect.value
-		
-	}
-	
-	function passwordSelectEmail() {
-		document.findIdPasswordForm.findPasswordEmailLast.value = document.findIdPasswordForm.findPasswordEmailLastSelect.value
-		
-	}
-	
-	</script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
-	var URL_MAIN = "/"
+	var URL_MAIN = "/";
 	
 	$("#loginBtn").on("click", function(){
 		/* if(validation() == false) return false; */

@@ -70,6 +70,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Member selectOneLogin(Member dto) throws Exception{
+		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
 		return dao.selectOneLogin(dto);
 	}
 	

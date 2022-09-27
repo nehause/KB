@@ -1,9 +1,5 @@
 package com.kbbook.shop.modules.member;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,10 +160,10 @@ public class MemberController {
 	
 	
 	//usermapper
-	@RequestMapping(value="/loginForm")
+	@RequestMapping(value="loginForm")
 	public String LoginForm() throws Exception {
 		
-		return "infra/main/user/loginForm";
+		return "infra/member/user/loginForm";
 	}
 	
 	@RequestMapping(value="memberRegForm")
@@ -258,6 +254,16 @@ public class MemberController {
 
 			returnMap.put("rt", "fail");
 		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		/* UtilCookie.deleteCookie(); */
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 

@@ -162,23 +162,23 @@
 	
 	<select id="selectOneId" resultMap="resultMapObj">
 		SELECT
-			a.memberSeq
-			a.id
+			memberSeq
+			,id
 		FROM
 			member a
 		WHERE 1=1
-			AND a.id = #{id}
+			AND id = #{id}
 	</select>
 	
 	<select id="selectOneLogin" resultMap="resultMapObj">
 		SELECT
-			a.memberSeq
-			,a.id
-			,a.name
+			memberSeq
+			,id
+			,name
 		FROM
 			member a
 		WHERE 1=1
-			AND a.id = #{id}
+			AND id = #{id}
 			<if test="password != null and !password.equals('')">AND a.password = #{password}</if>
 	</select>
 	

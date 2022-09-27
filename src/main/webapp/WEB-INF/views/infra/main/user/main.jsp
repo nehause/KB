@@ -65,8 +65,16 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/member/loginForm">로그인</a></li>
+							<c:choose>
+								<c:when test="${sessSeq eq null}">
+									<li class="nav-item"><a class="nav-link" href="/member/loginForm">로그인</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="nav-item" style="padding-top: 10px;"><b><c:out value="${sessName }"/></b>님 안녕하세요</li>
+									<li class="nav-item"><a class="nav-link" id="logoutBtn" name="logoutBtn" onclick="logOut();" style="cursor: pointer;">로그아웃</a></li>
+								</c:otherwise>
+							</c:choose>
+							
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">국내도서</a>
@@ -161,6 +169,12 @@
 		</div>
 	</section>
 	<!-- End banner Area -->
+	
+	<div style="display:none;">
+		sessSeq: <c:out value="${sessSeq }"/><br>
+		sessName: <c:out value="${sessName }"/><br>
+		sessId: <c:out value="${sessId }"/><br>
+	</div>
 
 	<!-- start features Area -->
 	<section class="features-area section_gap">
@@ -651,7 +665,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- End footer Area -->
-
+	<script>
+	var URL_MAIN = "/";
+	function logOut(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/logoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else {
+						location.href = URL_MAIN;
+					} */
+					location.href = URL_MAIN;
+					
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
