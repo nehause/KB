@@ -32,6 +32,15 @@
           font-size: 3.5rem;
         }
       }
+      
+      .overskip{
+	      overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  width: 30px;
+		  height: 20px;
+      
+      }
 	</style>
 	
 	<link href="/resources/dmin/css/sideBar.css" rel="stylesheet">

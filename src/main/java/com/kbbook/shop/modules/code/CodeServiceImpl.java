@@ -12,6 +12,7 @@ import com.kbbook.shop.common.base.BaseVo;
 
 @Service
 public class CodeServiceImpl implements CodeService {
+	
 	@Autowired
 	CodeDao dao;
 	
