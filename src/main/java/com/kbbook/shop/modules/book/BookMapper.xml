@@ -12,6 +12,13 @@
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			a.*
+			,(SELECT
+			GROUP_CONCAT(c.name SEPARATOR ', ')
+			FROM writer c
+	        JOIN book_writer b on b.writer_writerSeq = c.writerSeq
+	        where 1=1
+				and  b.book_bookSeq = a.bookSeq 
+	            ) as writer
 			<include refid="selectCommon" />
 			ORDER BY a.bookSeq DESC
 			<include refid="Base.selectListLowerForMysql" />
@@ -19,6 +26,7 @@
 	
 	<sql id ="selectCommon">
 	FROM book a
+	JOIN book_writer b on b.book_bookSeq = a.bookSeq 
 	WHERE 1=1
 		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
 		<choose>
