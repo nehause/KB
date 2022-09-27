@@ -275,7 +275,7 @@
 									<thead>
 										<tr style="background-color: black">
 											<td class="checkboxsize"> 
-												<input class="form-check-input" type="checkbox" name="allmemberCheck" value="allMemeberChecked" onclick="selectAll(this);">
+												<input class="form-check-input" type="checkbox" name="allmemberCheck" value="allMemberChecked" onclick="selectAll(this);">
 											</td>
 											<th>#</th>
 											<th>번호</th>

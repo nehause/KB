@@ -23,6 +23,11 @@ public class Book {
 	private String rop;
 	private Integer stock;
 	private Integer amount;
+	private Integer delNy;
+	
+	// join
+	private String writer;
+	
 	public String getBookSeq() {
 		return bookSeq;
 	}
@@ -143,6 +148,23 @@ public class Book {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	//join
+
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	
+
+	
 	
 	
 }
