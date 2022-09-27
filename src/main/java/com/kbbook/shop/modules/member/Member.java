@@ -31,6 +31,8 @@ public class Member {
 	private Integer memberUseNy;
 	private Date registration;
 	
+	private boolean autoLogin;
+	
 	public String getMemberSeq() {
 		return memberSeq;
 	}
@@ -186,6 +188,12 @@ public class Member {
 	}
 	public void setRegistration(Date registration) {
 		this.registration = registration;
+	}
+	public boolean isAutoLogin() {
+		return autoLogin;
+	}
+	public void setAutoLogin(boolean autoLogin) {
+		this.autoLogin = autoLogin;
 	}
 	
 	

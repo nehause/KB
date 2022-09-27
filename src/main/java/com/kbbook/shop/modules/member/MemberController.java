@@ -1,8 +1,14 @@
 package com.kbbook.shop.modules.member;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -158,7 +164,11 @@ public class MemberController {
 	
 	
 	//usermapper
-	
+	@RequestMapping(value="/loginForm")
+	public String LoginForm() throws Exception {
+		
+		return "infra/main/user/loginForm";
+	}
 	
 	@RequestMapping(value="memberRegForm")
 	public String memberRegForm(Member dto) throws Exception {
@@ -189,6 +199,66 @@ public class MemberController {
 	@RequestMapping(value="memberRoomTransportForm")
 	public String memberRoomTransportForm() throws Exception {
 		return "infra/member/user/memberRoomTransportForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "loginProc")
+	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		Member rtMember = service.selectOneId(dto);
+
+		if (rtMember != null) {
+			Member rtMember2 = service.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				
+				/*
+				 * if(dto.getAutoLogin() == true) {
+				 * UtilCookie.createCookie(Constants.COOKIE_NAME_SEQ, rtMember2.getMemberSeq(),
+				 * Constants.COOKIE_DOMAIN, Constants.COOKIE_PATH, Constants.COOKIE_MAXAGE); }
+				 * else { // by pass }
+				 */ 
+				// UtilCookie가 없어서 autoLogin은 사용할수 없다 
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
+				httpSession.setAttribute("sessId", rtMember2.getId());
+				httpSession.setAttribute("sessName", rtMember2.getName());
+
+				/*
+				 * rtMember2.setIflgResultNy(1); service.insertLogLogin(rtMember2);
+				 */
+
+				/*
+				 * Date date = rtMember2.getIfmmPwdModDate(); LocalDateTime
+				 * ifmmPwdModDateLocalDateTime = LocalDateTime.ofInstant(date.toInstant(),
+				 * ZoneId.systemDefault());
+				 */
+				
+				/*
+				 * if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime,
+				 * UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
+				 * returnMap.put("changePwd", "true"); }
+				 */
+
+				returnMap.put("rt", "success");
+			} else {
+				/*
+				 * dto.setIfmmSeq(rtMember.getIfmmSeq()); dto.setIflgResultNy(0);
+				 * service.insertLogLogin(dto);
+				 */
+
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			/*
+			 * dto.setIflgResultNy(0); service.insertLogLogin(dto);
+			 */
+
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
 	}
 
 }

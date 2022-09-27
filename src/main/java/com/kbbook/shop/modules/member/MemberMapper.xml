@@ -160,6 +160,28 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	<select id="selectOneId" resultMap="resultMapObj">
+		SELECT
+			a.memberSeq
+			a.id
+		FROM
+			member a
+		WHERE 1=1
+			AND a.id = #{id}
+	</select>
+	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			a.memberSeq
+			,a.id
+			,a.name
+		FROM
+			member a
+		WHERE 1=1
+			AND a.id = #{id}
+			<if test="password != null and !password.equals('')">AND a.password = #{password}</if>
+	</select>
+	
 	<select id="selectOneIdCheck" resultType="Integer">
 		SELECT
 			 COUNT(id) 

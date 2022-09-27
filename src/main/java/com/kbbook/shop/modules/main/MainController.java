@@ -51,10 +51,5 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 		
 		return "infra/main/user/main";
 	}
-	@RequestMapping(value="/loginForm")
-	public String LoginForm() throws Exception {
-		
-		return "infra/main/user/loginForm";
-	}
 	
 }

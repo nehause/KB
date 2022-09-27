@@ -57,7 +57,7 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/member/loginForm">로그인</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">국내도서</a>
@@ -131,21 +131,21 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>로그인 해주세요</h3>
-						<form class="row login_form" action="#" method="post" id="loginForm" novalidate="novalidate">
+						<form class="row login_form" method="post" id="loginForm" name="loginForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="loginName" name="loginName" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
+								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="loginPassword" name="loginPassword" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
+								<input type="text" class="form-control" id="password" name="password" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-									<input type="checkbox" id="loginMaintain" name="loginMaintain">
+									<input type="checkbox" id="autoLogin" name="autoLogin">
 									<label for="loginMaintain">로그인 상태 유지</label>
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">로그인</button>
+								<button type="button" id="loginBtn" name="loginBtn" class="primary-btn">로그인</button>
 								<a href="#findIdPassword" data-toggle="modal" data-target="#findIdPassword" style="margin-top: 10px; margin-bottom: 10px;">아이디/비밀번호 찾기</a>
 								<button type="submit" value="kakao" class="primary-btn genric-btn warning">
 									<i class="fa-solid fa-comment"></i> 카카오
@@ -350,7 +350,40 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	var URL_MAIN = "/"
 	
+	$("#loginBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/loginProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else {
+						location.href = URL_MAIN;
+					} */
+					location.href = URL_MAIN;
+					
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

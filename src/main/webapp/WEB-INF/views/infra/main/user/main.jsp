@@ -66,7 +66,7 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/member/loginForm">로그인</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">국내도서</a>
