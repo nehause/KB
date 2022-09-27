@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kbbook.shop.common.base.BaseVo;
+import com.kbbook.shop.common.util.UtilSecurity;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -19,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception{
+		
+		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
+//    	dto.setIfmmName(dto.getIfmmLastName() + dto.getIfmmFirstName());
+//    	dto.setIfmmPwdModDate(UtilDateTime.nowDate());
+		
 		int result = dao.insert(dto);
 		System.out.println("service result: " + result );
 		

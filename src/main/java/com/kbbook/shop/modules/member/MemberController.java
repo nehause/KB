@@ -80,7 +80,7 @@ public class MemberController {
 		
 		setCheckboxNull(dto);
 		
-		int result = service.insert(dto);
+		service.insert(dto);
 		
 		System.out.println("dto.getMemberSeq(): " + dto.getMemberSeq());
 		

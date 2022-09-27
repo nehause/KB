@@ -103,7 +103,7 @@ public class TransportController {
 		return "redirect:/transport/transportList";
 	}
 	
-	// userpage
+	// userPage
 	
 	@RequestMapping(value= "transportForm")
 	public String TransportForm() throws Exception {
