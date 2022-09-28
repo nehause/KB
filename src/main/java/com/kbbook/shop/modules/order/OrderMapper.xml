@@ -11,9 +11,98 @@
 	<select id="selectList" resultMap="resultMapObj">
 	SELECT
 		a.*
+		,b,name
 	FROM purchase a
+	JOIN member b on b.memberSeq = a.member_memberSeq
 	WHERE 1=1
 	
+	</select>
+	
+	<sql id ="selectCommon">
+	FROM book a
+	JOIN book_writer b on b.book_bookSeq = a.bookSeq 
+	WHERE 1=1
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<choose>
+			<when test="searchOption == 1">AND bookSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 3">AND publisher LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 4">AND cost = #{searchValue}</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+	
+	<select id="selectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM purchase a
+		WHERE 1=1
+			AND	purchaseSeq = #{purchaseSeq}
+	</select>	
+	
+	<insert id="insert">
+		INSERT INTO book(
+			member_memberSeq
+			,transport_transportSeq
+			,payment
+			,time
+			,purchaseStatus
+			,delNy
+		)
+		VALUES(
+			#{member_memberSeq}
+			,#{transport_transportSeq}
+			,#{payment}
+			,#{time}
+			,#{purchaseStatus}
+			,#{delNy}
+			,0
+		)
+		<selectKey resultType="String" keyProperty="bookSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE book
+		SET
+			member_memberSeq
+			,transport_transportSeq
+			,payment
+			,time
+			,purchaseStatus
+			,delNy
+		WHERE 1=1
+			AND	bookSeq = #{bookSeq}
+	</update>
+	
+	<update id = "uelete">
+		UPDATE book
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND	bookSeq = #{bookSeq}
+	</update>
+	
+	<delete id = "delete">
+		DELETE 
+		FROM book 
+		WHERE 1=1 
+			AND	bookSeq = #{bookSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.name
+		FROM book a
+		WHERE 1=1
+			AND delNy = 0
+		ORDER NY a.bookSeq DESC
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(DISTINCT bookSeq)
+		<include refid="selectCommon" />
 	</select>
 
 </mapper>	

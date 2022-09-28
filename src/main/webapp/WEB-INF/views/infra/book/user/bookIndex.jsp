@@ -262,6 +262,7 @@
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<form method="post" id="BIForm" name="BIForm">
+					<input type="hidden" id="bookSeq" name="bookSeq">
 					<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 					<section class="lattest-product-area pb-40 category-list">

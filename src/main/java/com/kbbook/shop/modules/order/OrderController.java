@@ -11,15 +11,15 @@ public class OrderController {
 	@Autowired
 	OrderServiceImpl service;
 	
-	@RequestMapping(value="/orderPurchase/")
+	@RequestMapping(value="orderPurchase")
 	public String OrderPurchase() throws Exception {
 		
-		return "infra/order/user/OrderPurchase";
+		return "infra/order/user/orderPurchase";
 	}
 	
-	@RequestMapping(value="/orderFin/")
+	@RequestMapping(value="orderFin")
 	public String OrderFin() throws Exception {
 		
-		return "infra/order/user/OrderFin";
+		return "infra/order/user/orderFin";
 	}
 }
