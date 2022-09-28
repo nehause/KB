@@ -123,7 +123,10 @@
     <section class="blog_area">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-3">
+            	<!-- myRoomSidebar Start -->
+     			<%@include file="../../../common/user/include/myRoomSidebar.jsp"%>
+     			<!-- myRoomSidebar End -->
+            	<!-- <div class="col-lg-3">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
                             <h2><b>마이룸</b></h2>
@@ -160,7 +163,7 @@
                             </ul>
                         </aside>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-9">
                 	<form name="memberModPasswordForm" method="get" action="/resources/memberRoomForm.html" id="memberModPasswordForm">
 	                	<div style="height: 20px;"></div>

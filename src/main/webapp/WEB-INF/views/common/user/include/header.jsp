@@ -67,3 +67,36 @@
 		sessId: <c:out value="${sessId }"/><br>
 	</div>
 	<!-- End Header Area -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var URL_MAIN = "/";
+	function logOut(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/logoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else {
+						location.href = URL_MAIN;
+					} */
+					location.href = URL_MAIN;
+					
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	</script>

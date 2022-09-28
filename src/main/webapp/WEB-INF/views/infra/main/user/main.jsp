@@ -296,9 +296,13 @@
 	</section>
 	<!-- End category Area -->
 
+	<!-- bestNewList Start -->
+	<%@include file="../../../common/user/include/bestNewList.jsp"%>
+	<!-- bestNewList End -->
+
 	<!-- start product Area -->
-	<section class="owl-carousel active-product-area section_gap">
-		<!-- single product slide -->
+	<!-- <section class="owl-carousel active-product-area section_gap">
+		single product slide
 		<div class="single-product-slider">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -310,7 +314,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<a href="../book/bookView.html">
@@ -344,7 +348,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/pb2.png" alt="">
@@ -376,7 +380,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/pb3.png" alt="">
@@ -408,7 +412,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/pb4.png" alt="">
@@ -443,7 +447,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- single product slide -->
+		single product slide
 		<div class="single-product-slider">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -455,7 +459,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/ib1.png" alt="">
@@ -487,7 +491,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/ib2.png" alt="">
@@ -519,7 +523,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/ib3.png" alt="">
@@ -551,7 +555,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single product -->
+					single product
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="/resources/images/product/ib4.png" alt="">
@@ -586,7 +590,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<!-- end product Area -->
 
 
@@ -668,7 +672,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- End footer Area -->
-	<script>
+	<!-- <script>
 	var URL_MAIN = "/";
 	function logOut(){
 		/* if(validation() == false) return false; */
@@ -698,7 +702,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			}
 		});
 	}
-	</script>
+	</script> -->
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
