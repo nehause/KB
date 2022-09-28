@@ -44,63 +44,6 @@
 	<!-- pagination s -->
 	<%@include file="../../../common/user/include/header.jsp"%>
 	<!-- pagination e -->
-	<!-- Start Header Area -->
-<!-- 	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					Brand and toggle get grouped for better mobile display
-					<a class="navbar-brand logo_h" href="/" style="font-family: 'Pacifico', cursive; color: orange;">JHJ</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					Collect the nav links, forms, and other content for toggling
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">국내도서</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/book/bookIndex">책 목록</a></li>
-									<li class="nav-item"><a class="nav-link" href="/book/bookView">책 상세</a></li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">마이룸</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/member/memberMyRoom/">주문/배송 조회</a></li>
-									<li class="nav-item"><a class="nav-link" href="/member/memberRoomModCheck">회원정보 수정</a></li>
-									<li class="nav-item"><a class="nav-link" href="/member/memberRoomModPassword">비밀번호 변경</a></li>
-									<li class="nav-item"><a class="nav-link" href="/member/memberRoomTransportForm">나의 주소록</a></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="검색어를 입력해주세요">
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header> -->
-	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -127,44 +70,6 @@
      			<%@include file="../../../common/user/include/myRoomSidebar.jsp"%>
      			<!-- myRoomSidebar End -->
             
-          	  <!-- <div class="col-lg-3">
-                    <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
-                            <h2><b>마이룸</b></h2>
-                            <hr>
-                        </aside>
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">일반상품 주문관리</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="/member/memberMyRoom/" class="d-flex justify-content-between">
-                                        <p>주문/배송 조회</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">회원정보관리</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="/member/memberRoomModCheck" class="d-flex justify-content-between">
-                                        <p>회원정보수정</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/member/memberRoomModPassword" class="d-flex justify-content-between">
-                                        <p>비밀번호 변경</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/member/memberRoomTransportForm" class="d-flex justify-content-between">
-                                        <p>나의 주소록</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-                    </div>
-                </div> -->
                 <div class="col-lg-9">
                 	<form name="memberModForm" method="get" action="/resources/memberRoomForm.html" id="memberModForm">
 	                	<div style="height: 20px;"></div>
