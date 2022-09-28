@@ -101,7 +101,7 @@ public class BookController {
 		return "redirect:/book/bookList";
 	}
 	
-	@RequestMapping(value = "codeDelete")
+	@RequestMapping(value = "bookDelete")
 	public String bookDel(BookVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		service.delete(vo);
 		
@@ -112,13 +112,24 @@ public class BookController {
 	//userPage
 	
 	@RequestMapping(value="bookIndex")
-	public String BookIndex() throws Exception {
+	public String BookIndex(@ModelAttribute("vo") BookVo vo, Model model) throws Exception {
+		
+		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
+		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
+		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
+		
+		setSearchAndPaging(vo);
+		List<Book> list = service.selectList(vo);
+		model.addAttribute("list", list);
 		
 		return "infra/book/user/bookIndex";
 	}
 	
 	@RequestMapping(value="bookDetail")
-	public String BookDetail() throws Exception {
+	public String BookDetail(@ModelAttribute("vo") BookVo vo, Model model) throws Exception {
+		
+		Book result = service.selectSeq(vo);
+		model.addAttribute("item", result);
 		
 		return "infra/book/user/bookDetail";
 	}

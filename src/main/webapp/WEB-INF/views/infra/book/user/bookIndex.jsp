@@ -261,202 +261,56 @@
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
-					<div class="row">
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<a href="bookDetail.html">
-									<img class="img-fluid" src="/resources/images/product/pb1.png" alt="">
-								</a>
-								<div class="product-details">
-									<h6>역행자</h6>
-									<div class="price">
-										<h6>₩15,750</h6>
-										<h6 class="l-through">₩17,000</h6>
-									</div>
-									<div class="prd-bottom">
-										<a href="bookView.html" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="/resources/book/bookView.html" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
+				<form method="post" id="BIForm" name="BIForm">
+					<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+					<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+					<section class="lattest-product-area pb-40 category-list">
+						<div class="row">
+							<!-- single product -->
+							<c:choose>
+								<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+									<span style="text-align: center;">조건에 맞는 책이 없습니다</span>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${list}" var="list" varStatus="status">
+										<div class="col-lg-4 col-md-6">
+											<div class="single-product">
+												<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)">
+													<c:out value="${list.sign }"/>
+												</a>
+												<div class="product-details">
+													<h6><c:out value="${list.name }"/></h6>
+													<div class="price">
+														<h6>₩<c:out value="${list.price }"/></h6>
+														<h6 class="l-through">₩<c:out value="${list.cost }"/></h6>
+													</div>
+													<div class="prd-bottom">
+														<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)" class="social-info">
+															<span class="ti-bag"></span>
+															<p class="hover-text">구매하기</p>
+														</a>
+														<a href="" class="social-info">
+															<span class="lnr lnr-heart"></span>
+															<p class="hover-text">관심상품</p>
+														</a>
+														<a href="" class="social-info">
+															<span class="lnr lnr-sync"></span>
+															<p class="hover-text">리스트가기</p>
+														</a>
+														<a herf="" class="social-info">
+															<span class="lnr lnr-move"></span>
+															<p class="hover-text">상세보기</p>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</div>
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/resources/images/product/pb2.png" alt="">
-								<div class="product-details">
-									<h6>헤어질 결심 각본</h6>
-									<div class="price">
-										<h6>₩13,500</h6>
-										<h6 class="l-through">₩15,000</h6>
-									</div>
-									<div class="prd-bottom">
-										<a href="" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/resources/images/product/pb3.png" alt="">
-								<div class="product-details">
-									<h6>세상의 마지막 기차역</h6>
-									<div class="price">
-										<h6>₩12,600</h6>
-										<h6 class="l-through">₩14,000</h6>
-									</div>
-									<div class="prd-bottom">
-	
-										<a href="" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/resources/images/product/pb4.png" alt="">
-								<div class="product-details">
-									<h6>호감 가는 말투에는 비밀이 있다</h6>
-									<div class="price">
-										<h6>₩15,120</h6>
-										<h6 class="l-through">₩16,800</h6>
-									</div>
-									<div class="prd-bottom">
-	
-										<a href="" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/resources/images/product/ib1.png" alt="">
-								<div class="product-details">
-									<h6>비비안 마이어</h6>
-									<div class="price">
-										<h6>₩28,800</h6>
-										<h6 class="l-through">₩32,000</h6>
-									</div>
-									<div class="prd-bottom">
-	
-										<a href="" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/resources/images/product/ib2.png" alt="">
-								<div class="product-details">
-									<h6>세 번째 위기, 세 번째 기회</h6>
-									<div class="price">
-										<h6>₩16,200</h6>
-										<h6 class="l-through">₩18,000</h6>
-									</div>
-									<div class="prd-bottom">
-	
-										<a href="" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-move"></span>
-											<p class="hover-text">상세보기</p>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
+					</section>
+				</form>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
@@ -491,7 +345,25 @@
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
 	
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlDetail = "/book/bookDetail";
+	var goUrlIndex = "/book/bookIndex";
+	var seq = $("input:hidden[name=bookSeq]");
+	var form = $("form[name=BIForm]"); 
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlIndex).submit();
+	}
+	
+	goDetail = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlDetail).submit();
+	}
+	
+	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

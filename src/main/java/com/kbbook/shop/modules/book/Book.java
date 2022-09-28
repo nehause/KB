@@ -24,6 +24,9 @@ public class Book {
 	private Integer stock;
 	private Integer amount;
 	private Integer delNy;
+	private String writer_writerSeq;
+	
+	private int price;
 	
 	// join
 	private String writer;
@@ -162,8 +165,21 @@ public class Book {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
+	public String getWriter_writerSeq() {
+		return writer_writerSeq;
+	}
+	public void setWriter_writerSeq(String writer_writerSeq) {
+		this.writer_writerSeq = writer_writerSeq;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
-
+	
+	
 	
 	
 	

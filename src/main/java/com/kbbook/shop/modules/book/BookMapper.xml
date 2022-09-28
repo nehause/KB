@@ -8,11 +8,23 @@
 
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.book.Book"></resultMap>
 
+	<select id="selectWriter" resultMap="resultMapObj">
+		SELECT
+			a.book_bookSeq
+			a.writer_writerSeq
+		FROM book_writer a
+		JOIN book b on a.book_bookSeq = b.bookSeq
+		WHERE 1=1
+			AND bookSeq = #{bookSeq}
+	
+	</select>
+
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			DISTINCT
 			a.*
+			, cost*(1-sale) as price
 			,(SELECT
 			GROUP_CONCAT(c.name SEPARATOR ', ')
 			FROM writer c
@@ -48,7 +60,7 @@
 	</select>	
 	
 	<insert id="insert">
-		INSERT INTO CG(
+		INSERT INTO book(
 			sign
 			,name
 			,subName
@@ -68,6 +80,7 @@
 			,rop
 			,stock
 			,amount
+			,delNy
 		)
 		VALUES(
 			#{sign}
@@ -89,6 +102,7 @@
 			,#{rop}
 			,#{stock}
 			,0
+			,0
 		)
 		<selectKey resultType="String" keyProperty="bookSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -96,7 +110,7 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE CG
+		UPDATE book
 		SET
 			sign = #{sign}
 			,name = #{name}

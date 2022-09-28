@@ -72,26 +72,20 @@
 	<script>
 	var URL_MAIN = "/";
 	function logOut(){
-		/* if(validation() == false) return false; */
 		
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
-			/* ,dataType:"json" */
 			,url: "/member/logoutProc"
-			/* ,data : $("#formLogin").serialize() */
+			,data: {}
 			,success: function(response) {
 				if(response.rt == "success") {
-					/* if(response.changePwd == "true") {
-						location.href = URL_CHANGE_PWD_FORM;
-					} else {
-						location.href = URL_MAIN;
-					} */
+					
 					location.href = URL_MAIN;
 					
 				} else {
-					alert("회원없음");
+					//by pass
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
