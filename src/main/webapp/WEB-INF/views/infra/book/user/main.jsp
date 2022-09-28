@@ -49,7 +49,11 @@
 
 <body>
 
-	<!-- Start Header Area -->
+	<!-- pagination s -->
+	<%@include file="../../../common/user/include/header.jsp"%>
+	<!-- pagination e -->
+
+	<%-- <!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -112,8 +116,13 @@
 				</form>
 			</div>
 		</div>
+		<div style="display:none;">
+			sessSeq: <c:out value="${sessSeq }"/><br>
+			sessName: <c:out value="${sessName }"/><br>
+			sessId: <c:out value="${sessId }"/><br>
+		</div>
 	</header>
-	<!-- End Header Area -->
+	<!-- End Header Area --> --%>
 
 	<!-- start banner Area -->
 	<section class="banner-area">
@@ -169,12 +178,6 @@
 		</div>
 	</section>
 	<!-- End banner Area -->
-	
-	<div style="display:none;">
-		sessSeq: <c:out value="${sessSeq }"/><br>
-		sessName: <c:out value="${sessName }"/><br>
-		sessId: <c:out value="${sessId }"/><br>
-	</div>
 
 	<!-- start features Area -->
 	<section class="features-area section_gap">
