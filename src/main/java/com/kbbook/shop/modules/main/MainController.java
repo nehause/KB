@@ -45,10 +45,8 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 	 * 
 	 * return "codeGroupRegForm"; }
 	 */
-	
 	@RequestMapping(value="/")
-	public String main() throws Exception {
-		
+	public String Main() throws Exception{
 		return "infra/main/user/main";
 	}
 	

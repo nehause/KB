@@ -33,7 +33,7 @@
 										<li class="nav-item"><a class="nav-link" href="/member/memberMyRoom/">주문/배송 조회</a></li>
 										<li class="nav-item"><a class="nav-link" href="/member/memberRoomModCheck">회원정보 수정</a></li>
 										<li class="nav-item"><a class="nav-link" href="/member/memberRoomModPassword">비밀번호 변경</a></li>
-										<li class="nav-item"><a class="nav-link" href="/transport/memberRoomTransportForm">나의 주소록</a></li>
+										<li class="nav-item"><a class="nav-link" href="/transport/transportForm">나의 주소록</a></li>
 									</ul>
 								</li>
 								</c:otherwise>
