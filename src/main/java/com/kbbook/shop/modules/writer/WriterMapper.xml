@@ -12,7 +12,6 @@
 		<include refid="Base.selectListUpperForMysql" />
 		select
 			a.*
-		    ,b.book_bookSeq as bookSeq
 			,(select
 			case	
 			when count(c.name) = 1 then c.name
@@ -30,7 +29,6 @@
 	
 	<sql id ="selectCommon">
 	from writer a
-	   join book_writer b on a.writerSeq = b.writer_writerSeq
 	   where 1=1
 		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
 		<choose>

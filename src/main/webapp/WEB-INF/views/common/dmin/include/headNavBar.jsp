@@ -9,22 +9,25 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">회원관리</a>
+					<a class="nav-link active" href="/member/memberList">회원관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">서비스관리</a>
+					<a class="nav-link active" href="/transport/transportList">주소 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">사이트관리</a>
+					<a class="nav-link active" href="/book/bookList">책 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">로그관리</a>
+					<a class="nav-link active" href="/order/orderList">주문 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">시스템관리</a>
+					<a class="nav-link active" href="/writer/writerList">작가 관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">시스템관리</a>
+					<a class="nav-link active" href="/codeGroup/codeGroupList">코드 그룹 관리</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="/code/codeList">코드 관리</a>
 				</li>
 			</ul>
 		</div>
