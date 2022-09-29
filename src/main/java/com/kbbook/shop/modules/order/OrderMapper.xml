@@ -9,26 +9,53 @@
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.order.Order"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-	SELECT
-		a.*
-		,b,name
-	FROM purchase a
-	JOIN member b on b.memberSeq = a.member_memberSeq
-	WHERE 1=1
-	
+		<include refid="Base.selectListUpperForMysql" />
+		SELECT
+			a.*
+		   ,b.name as memberName
+		   ,(select
+		   case
+		   when count(d.name) = 1 then d.name
+		   when count(d.name) > 1 then concat(min(d.name) , ' 외 ' , cast(COUNT(name) as char)-1 , ' 건' )
+		   end
+		   FROM purchase_book c
+		   JOIN book d on d.bookSeq = c.book_bookSeq
+		   where 1=1
+			and purchase_purchaseSeq = purchaseSeq
+		   )as purchaseBook
+		   ,(select
+			case	
+			when count(c.count) = 1 then concat(c.count, '권')
+		    when count(c.count) > 1 then concat(max(c.count) , '권 외 ' , cast(COUNT(name) as char)-1 , ' 건' )
+			end
+		   FROM purchase_book c
+		   JOIN book d on d.bookSeq = c.book_bookSeq
+		   where 1=1
+			and purchase_purchaseSeq = purchaseSeq
+		   )as purchaseCount
+		   ,(select
+		   sum(c.price)
+		   from purchase_book c
+		   where 1=1
+			and purchase_purchaseSeq = purchaseSeq
+		   group by purchaseSeq
+		   ) as priceSum
+		<include refid="selectCommon" />
+		ORDER BY purchaseSeq DESC
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<sql id ="selectCommon">
-	FROM book a
-	JOIN book_writer b on b.book_bookSeq = a.bookSeq 
-	WHERE 1=1
-		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+	FROM purchase a
+	JOIN member b on a.member_memberSeq = b.memberSeq
+	where 1=1
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND a.delNy = #{searchDelNy}</if>
+		<if test="searchPayment != null and !searchPayment.equals('')">AND a.payment = #{searchPayment}</if>
+		<if test="searchPurchaseStatus != null and !searchPurchaseStatus.equals('')">AND a.purchaseStatus = #{searchPurchaseStatus}</if>
 		<choose>
-			<when test="searchOption == 1">AND bookSeq = #{searchValue}</when>
-			<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
-			<when test="searchOption == 3">AND publisher LIKE CONCAT('%',#{searchValue},'%')</when>
-			<when test="searchOption == 4">AND cost = #{searchValue}</when>
-			<otherwise></otherwise>
+			<when test="searchOption == 1">AND a.purchaseSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND a.member_memberSeq = #{searchValue} </when>
+			<when test="searchOption == 3">AND b.name LIKE CONCAT('%',#{searchValue},'%')</when>
 		</choose>
 	</sql>
 	
@@ -41,7 +68,7 @@
 	</select>	
 	
 	<insert id="insert">
-		INSERT INTO book(
+		INSERT INTO purchase(
 			member_memberSeq
 			,transport_transportSeq
 			,payment
@@ -55,29 +82,28 @@
 			,#{payment}
 			,#{time}
 			,#{purchaseStatus}
-			,#{delNy}
 			,0
 		)
-		<selectKey resultType="String" keyProperty="bookSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="purchaseSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
-	
+	<!-- 구매시 책의 이름 책의 숫자까지 기입 가능해야함 -->
 	<update id="update">
-		UPDATE book
+		UPDATE purchase
 		SET
-			member_memberSeq
-			,transport_transportSeq
-			,payment
-			,time
-			,purchaseStatus
-			,delNy
+			member_memberSeq = member_memberSeq
+			,transport_transportSeq = transport_transportSeq
+			,payment = payment
+			,time = time
+			,purchaseStatus = purchaseStatus
+			,delNy = delNy
 		WHERE 1=1
 			AND	bookSeq = #{bookSeq}
 	</update>
 	
 	<update id = "uelete">
-		UPDATE book
+		UPDATE purchase
 		SET
 			delNy = 1
 		WHERE 1=1
@@ -86,23 +112,33 @@
 	
 	<delete id = "delete">
 		DELETE 
-		FROM book 
+		FROM purchase 
 		WHERE 1=1 
-			AND	bookSeq = #{bookSeq}
+			AND	purchaseSeq = #{purchaseSeq}
 	</delete>
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
-			a.name
-		FROM book a
+			a.purchaseSeq
+		FROM purchase a
 		WHERE 1=1
 			AND delNy = 0
-		ORDER NY a.bookSeq DESC
+		ORDER NY a.purchaseSeq DESC
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">
-		SELECT COUNT(DISTINCT bookSeq)
-		<include refid="selectCommon" />
+		SELECT COUNT(*)
+		FROM purchase a
+		JOIN member b on a.member_memberSeq = b.memberSeq
+		where 1=1
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<if test="searchPayment != null and !searchPayment.equals('')">AND payment = #{searchPayment}</if>
+		<if test="searchPurchaseStatus != null and !searchPurchaseStatus.equals('')">AND purchaseStatus = #{searchPurchaseStatus}</if>
+		<choose>
+			<when test="searchOption == 1">AND purchaseSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND member_memberSeq = #{searchValue} </when>
+			<when test="searchOption == 3">AND b.name LIKE CONCAT('%',#{searchValue},'%')</when>
+		</choose>
 	</select>
 
 </mapper>	

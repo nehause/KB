@@ -13,8 +13,11 @@ public class Order {
 	private Integer delNy;
 	
 	//join
-	
 	private String memberName;
+	private String purchaseBook;
+	private String purchaseCount;
+	private Integer priceSum;
+	
 	
 	public String getPurchaseSeq() {
 		return purchaseSeq;
@@ -53,8 +56,6 @@ public class Order {
 		this.purchaseStatus = purchaseStatus;
 	}
 	
-	
-	
 	public Integer getDelNy() {
 		return delNy;
 	}
@@ -68,6 +69,25 @@ public class Order {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	public String getPurchaseBook() {
+		return purchaseBook;
+	}
+	public void setPurchaseBook(String purchaseBook) {
+		this.purchaseBook = purchaseBook;
+	}
+	public String getPurchaseCount() {
+		return purchaseCount;
+	}
+	public void setPurchaseCount(String purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
+	public Integer getPriceSum() {
+		return priceSum;
+	}
+	public void setPriceSum(Integer priceSum) {
+		this.priceSum = priceSum;
+	}
+	
 	
 
 }

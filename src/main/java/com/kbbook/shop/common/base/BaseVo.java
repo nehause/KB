@@ -30,9 +30,15 @@ public class BaseVo {
 	private Integer searchDor;
 //	private Date searchDos;
 //	private Date searchDoe;
+	//search member
 	private Integer searchPrivacy;
 	private Integer searchGender;
+	//search transport
 	private Integer searchDiv;
+	//search order
+	private Integer searchPayment;
+	private Integer searchPurchaseStatus;
+	
 	
 	public void setParamsPaging(int totalRows) {
 			
@@ -251,6 +257,22 @@ public class BaseVo {
 
 	public void setSearchDiv(Integer searchDiv) {
 		this.searchDiv = searchDiv;
+	}
+
+	public Integer getSearchPayment() {
+		return searchPayment;
+	}
+
+	public void setSearchPayment(Integer searchPayment) {
+		this.searchPayment = searchPayment;
+	}
+
+	public Integer getSearchPurchaseStatus() {
+		return searchPurchaseStatus;
+	}
+
+	public void setSearchPurchaseStatus(Integer searchPurchaseStatus) {
+		this.searchPurchaseStatus = searchPurchaseStatus;
 	}
 	
 	

@@ -5,6 +5,7 @@ import com.kbbook.shop.common.base.BaseVo;
 public class OrderVo extends BaseVo {
 	
 	private String purchaseSeq;
+	
 
 	public String getPurchaseSeq() {
 		return purchaseSeq;

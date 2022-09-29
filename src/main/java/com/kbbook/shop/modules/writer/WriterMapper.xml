@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbbook.shop.modules.writer.WriterMapper">
+
+    <resultMap id="resultMapObj" type="com.kbbook.shop.modules.writer.Writer"></resultMap>
+
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		select
+			a.*
+		    ,b.book_bookSeq as bookSeq
+			,(select
+			case	
+			when count(c.name) = 1 then c.name
+		    when count(c.name) > 1 then concat(max(c.name) , ' 외 ' , cast(COUNT(c.name) as char)-1 , ' 권' )
+			end
+		   FROM book_writer b
+		   JOIN book c on c.bookSeq = b.book_bookSeq
+		   where 1=1
+			and writer_writerSeq = a.writerSeq
+		   ) as writtenBook
+		   	<include refid="selectCommon" />
+			ORDER BY a.writerSeq DESC
+			<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<sql id ="selectCommon">
+	from writer a
+	   join book_writer b on a.writerSeq = b.writer_writerSeq
+	   where 1=1
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<choose>
+			<when test="searchOption == 1">AND writerSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+	
+	<select id="selectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM writer a
+		WHERE 1=1
+			AND	writerSeq = #{writerSeq}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO writer(
+			image
+			,introduce
+			,delNy
+		)
+		VALUES(
+			image
+			,introduce
+			,0
+		)
+		<selectKey resultType="String" keyProperty="writerSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>	
+	
+	<update id="update">
+		UPDATE writer
+		SET
+			image = #{image}
+			,introduce = #{introduce}
+			,delNy = #{delNy}
+		WHERE 1=1
+			AND	writerSeq = #{writerSeq}
+	</update>
+	
+	<update id = "uelete">
+		UPDATE writer
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND	writerSeq = #{writerSeq}
+	</update>
+	
+	<delete id = "delete">
+		DELETE 
+		FROM writer 
+		WHERE 1=1 
+			AND	writerSeq = #{writerSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.name
+		FROM writer a
+		WHERE 1=1
+			AND delNy = 0
+		ORDER NY a.writerSeq DESC
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
+</mapper>	
