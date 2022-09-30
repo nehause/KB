@@ -395,6 +395,11 @@
 			setMail()
 		});
 		
+		//직접 입력용
+		$("#emailEnd").change(function(){
+			setMail()
+		});
+		
 		$(function(){
 			$(document).ready(function(){
 				$('select[name=emailLast]').change(function() {

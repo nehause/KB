@@ -2,7 +2,9 @@ package com.kbbook.shop.modules.member;
 
 import java.sql.Date;
 
-public class Member {
+import com.kbbook.shop.modules.order.Order;
+
+public class Member extends Order{
 	
 	private String memberSeq;
 	private String id;
@@ -32,6 +34,18 @@ public class Member {
 	private Date registration;
 	
 	private boolean autoLogin;
+	
+	// favorite table
+	
+	private String bookSign;
+	private String bookName;
+	private Integer bookPrice;
+	private Integer bookCost;
+	
+	//httpsession
+	
+	private String sessSeq;
+	
 	
 	public String getMemberSeq() {
 		return memberSeq;
@@ -195,6 +209,41 @@ public class Member {
 	public void setAutoLogin(boolean autoLogin) {
 		this.autoLogin = autoLogin;
 	}
+	
+	//favorite table
+	
+	public String getBookSign() {
+		return bookSign;
+	}
+	public void setBookSign(String bookSign) {
+		this.bookSign = bookSign;
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public Integer getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(Integer bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	public Integer getBookCost() {
+		return bookCost;
+	}
+	public void setBookCost(Integer bookCost) {
+		this.bookCost = bookCost;
+	}
+	//httpSession
+	public String getSessSeq() {
+		return sessSeq;
+	}
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
+	}
+	
 	
 	
 

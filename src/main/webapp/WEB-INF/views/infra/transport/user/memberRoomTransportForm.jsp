@@ -91,11 +91,11 @@
 						<table class="col-lg-12	border-top border-bottom">
 							<tr>
 								<td class="col-lg-3">
-									<div class="user_name">회원님 (회원등급)</div>
+									<div class="user_name"><b><c:out value="${sessName }"/></b> 회원님</div>
 								</td>
 								<td>
 									<span>통합 포인트</span><br>
-									<strong>10000</strong><span><b> p</b></span>
+									<strong><c:out value="${item.accmulate }"/></strong><span><b> p</b></span>
 								</td>
 							</tr>
 						</table>

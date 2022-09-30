@@ -83,4 +83,14 @@ public class MemberServiceImpl implements MemberService {
 	public int selectOneUserNameCheck(Member dto) throws Exception{
 		return dao.selectOneUserNameCheck(dto);
 	}
+	
+	@Override
+	public List<Member> memberOrderList(Member dto) throws Exception{
+		return dao.memberOrderList(dto);
+	}
+	
+	@Override
+	public List<Member> favorite(Member dto) throws Exception{
+		return dao.favorite(dto);
+	}
 }	

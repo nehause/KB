@@ -72,4 +72,12 @@ public class MemberDao {
 	public int selectOneUserNameCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneUserNameCheck", dto);
 	}
+	
+	public List<Member> memberOrderList(Member dto) {
+		return sqlSession.selectList(namespace + ".memberOrderList", dto);
+	}
+	
+	public List<Member> favorite(Member dto) {
+		return sqlSession.selectList(namespace + ".favorite", dto);
+	}
 }

@@ -83,7 +83,7 @@
 								<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
+								<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" onkeyup="enterLogin()">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -207,6 +207,40 @@
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	<script type="text/javascript">
+	
+	function enterLogin() {
+        if (window.event.keyCode == 13) {
+            // 엔터키가 눌렸을 때 실행할 내용
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/member/loginProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+				,success: function(response) {
+					if(response.rt == "success") {
+						/* if(response.changePwd == "true") {
+							location.href = URL_CHANGE_PWD_FORM;
+						} else {
+							location.href = URL_MAIN;
+						} */
+						location.href = URL_MAIN;
+						
+					} else {
+						alert("회원없음");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+        }
+	}
+	
+	</script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>

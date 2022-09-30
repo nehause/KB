@@ -173,7 +173,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberMyRoom")
-	public String memberMyRoom() throws Exception {
+	public String memberMyRoom(Member dto, MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+		//String sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		dto.setSessSeq((String) httpSession.getAttribute("sessSeq"));
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		
+		Member result = service.selectSeq(vo);
+		model.addAttribute("item", result);
+		
+		List<Member> order = service.memberOrderList(dto);
+		model.addAttribute("order", order);
+		
+		List<Member> favorite = service.favorite(dto);
+		model.addAttribute("favorite", favorite);
+
+				
 		return "infra/member/user/memberMyRoom";
 	}
 	

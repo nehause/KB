@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.kbbook.shop.modules.code.CodeServiceImpl"/>
 
 <html lang="zxx" class="no-js">
 
@@ -76,17 +77,17 @@
 							<table class="col-lg-12	border-top border-bottom">
 								<tr>
 									<td class="col-lg-3">
-										<div class="user_name">회원님 (회원등급)</div>
+										<div class="user_name"><b><c:out value="${sessName }"/></b> 회원님</div>
 									</td>
 									<td>
 										<span>통합 포인트</span><br>
-										<strong>10000</strong><span><b> p</b></span>
+										<strong><c:out value="${item.accmulate }"/></strong><span><b> p</b></span>
 									</td>
 								</tr>
 							</table>
 							<div style="height: 20px;"></div>
 							<table class="col-lg-12" style="text-align: center;">
-								<caption style="caption-side: top"><h3>나의 최근 주문현황</h3><hr></caption>
+								<caption style="caption-side: top"><h3>나의 주문현황</h3><hr></caption>
 								<tbody>
 								<tr style="border-left: thick;">
 									<td class="first">
@@ -139,47 +140,55 @@
 				                            </tr>
 				                        </thead>
 				                        <tbody>
-				                            <tr>
-				                                <td>
-				                                    <h5>1</h5>
-				                                </td>
-				                                <td>
-				                                    <h5>₩15,750</h5>
-				                                </td>
-				                                <td>
-				                                    <div class="media">
-				                                        <div class="d-flex">
-				                                            <a href="/resources/book/bookView.html"><img src="/resources/images/product/pb1.png" alt="" style="width: 50px;"></a>
-				                                        </div>
-				                                        <div class="media-body">
-				                                            <a href="/resources/book/bookView.html" style="color: gray;"><p style="width: 240px;">[국내도서] 역행자</p></a>
-				                                        </div>
-				                                    </div>
-				                                </td>
-				                                <td>
-				                                    <h5>1개</h5>
-				                                </td>
-				                                <td>
-				                                	<h5>배송 준비중</h5>
-				                                </td>
-				                            </tr>
-				                            <tr>
-				                            	<td>
-												</td>
-												<td>	
-				                           		</td>
-				                           		<td>
-					                           		<a href="#"><b><i class="fa-solid fa-angles-left"></i></b></a>
-					                           		<a href="#"><b><i class="fa-solid fa-angle-left"></i></b></a>
-					                           		<a href="#"><b><i class="fa-solid fa-angle-right"></i></b></a>
-					                           		<a href="#"><b><i class="fa-solid fa-angles-right"></i></b></a>
-				                           		</td>
-				                           		<td>
-				                           		</td>
-				                           		<td>
-				                           		</td>
-				                            </tr>
-			                        </tbody>
+				                        	<c:set var="listCodePayment" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
+											<c:set var="listCodePurchaseStatus" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
+											<c:choose>
+												<c:when test="${fn:length(order) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+													<td class="text-center" colspan="12">최근주문내용 목록이 없습니다.</td>
+												</c:when>
+												<c:otherwise>
+													<c:forEach items="${order}" var="order" varStatus="status">
+							                            <tr>
+							                                <td>
+							                                    <h5><c:out value="${order.purchaseSeq }"/></h5>
+							                                </td>
+							                                <td>
+							                                    <h5>₩<c:out value="${order.priceSum }"/></h5>
+							                                </td>
+							                                <td>
+							                                    <h5><c:out value="${order.purchaseBook }"/></h5>
+							                                </td>
+							                                <td>
+							                                    <h5><c:out value="${order.purchaseCount }"/></h5>
+							                                </td>
+							                                <td>
+							                                	<h5>
+								                                	<c:forEach items="${listCodePurchaseStatus}" var="listPurchaseStatus" varStatus="statusPurchaseStatus">
+																		<c:if test="${order.purchaseStatus eq listPurchaseStatus.COrder}"><c:out value="${listPurchaseStatus.CNameKor }"/></c:if>
+																	</c:forEach>
+																</h5>
+							                                </td>
+							                            </tr>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+		                   	 		    </tbody>
+		                   			     <tr>
+			                            	<td>
+											</td>
+											<td>	
+			                           		</td>
+			                           		<td>
+				                           		<a href="#"><b><i class="fa-solid fa-angles-left"></i></b></a>
+				                           		<a href="#"><b><i class="fa-solid fa-angle-left"></i></b></a>
+				                           		<a href="#"><b><i class="fa-solid fa-angle-right"></i></b></a>
+				                           		<a href="#"><b><i class="fa-solid fa-angles-right"></i></b></a>
+			                           		</td>
+			                           		<td>
+			                           		</td>
+			                           		<td>
+			                           		</td>
+			                            </tr>
 			                    </table>
 			                </div>
 						</div>
@@ -197,7 +206,7 @@
 															<!-- single product -->
 															<div class="col-lg-4 col-md-6">
 																<div class="single-product">
-																	<img class="img-fluid" src="/resources/images/product/pb1.png" alt="">
+																	<img class="img-fluid" src="../images/product/pb1.png" alt="">
 																	<div class="product-details">
 																		<h6>역행자</h6>
 																		<div class="price">
@@ -210,7 +219,7 @@
 															<!-- single product -->
 															<div class="col-lg-4 col-md-6">
 																<div class="single-product">
-																	<img class="img-fluid" src="/resources/images/product/pb2.png" alt="">
+																	<img class="img-fluid" src="../images/product/pb2.png" alt="">
 																	<div class="product-details">
 																		<h6>헤어질 결심 각본</h6>
 																		<div class="price">
@@ -223,7 +232,7 @@
 															<!-- single product -->
 															<div class="col-lg-4 col-md-6">
 																<div class="single-product">
-																	<img class="img-fluid" src="/resources/images/product/pb3.png" alt="">
+																	<img class="img-fluid" src="../images/product/pb3.png" alt="">
 																	<div class="product-details">
 																		<h6>세상의 마지막 기차역</h6>
 																		<div class="price">
@@ -241,7 +250,7 @@
 												<!-- single product -->
 												<div class="col-lg-4 col-md-6">
 													<div class="single-product">
-														<img class="img-fluid" src="/resources/images/product/pb4.png" alt="">
+														<img class="img-fluid" src="../images/product/pb4.png" alt="">
 														<div class="product-details">
 															<h6>호감 가는 말투에는 비밀이 있다</h6>
 															<div class="price">
@@ -254,7 +263,7 @@
 												<!-- single product -->
 												<div class="col-lg-4 col-md-6">
 													<div class="single-product">
-														<img class="img-fluid" src="/resources/images/product/ib1.png" alt="">
+														<img class="img-fluid" src="../images/product/ib1.png" alt="">
 														<div class="product-details">
 															<h6>비비안 마이어</h6>
 															<div class="price">
@@ -267,7 +276,7 @@
 												<!-- single product -->
 												<div class="col-lg-4 col-md-6">
 													<div class="single-product">
-														<img class="img-fluid" src="/resources/images/product/ib2.png" alt="">
+														<img class="img-fluid" src="../images/product/ib2.png" alt="">
 														<div class="product-details">
 															<h6>세 번째 위기, 세 번째 기회</h6>
 															<div class="price">
@@ -282,7 +291,7 @@
 												<!-- single product -->
 												<div class="col-lg-4 col-md-6">
 													<div class="single-product">
-														<img class="img-fluid" src="/resources/images/product/ib3.png" alt="">
+														<img class="img-fluid" src="../images/product/ib3.png" alt="">
 														<div class="product-details">
 															<h6>파칭코 1</h6>
 															<div class="price">
@@ -295,7 +304,7 @@
 												<!-- single product -->
 												<div class="col-lg-4 col-md-6">
 													<div class="single-product">
-														<img class="img-fluid" src="/resources/images/product/ib4.png" alt="">
+														<img class="img-fluid" src="../images/product/ib4.png" alt="">
 														<div class="product-details">
 															<h6>때로는 행복 대신 불행을 택하기도 한다</h6>
 															<div class="price">
