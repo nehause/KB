@@ -62,373 +62,211 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">회원관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">서비스관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">사이트관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">로그관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">시스템관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">시스템관리</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<form method="post" id="MVForm" name="MVForm" autocomplete="off">
-	<input type="hidden" id="mainKey" name="mainKey">
-		<!-- *Vo.jsp s -->
-		<%@include file="memberVo.jsp"%>		<!-- #-> -->
-		<!-- *Vo.jsp e -->
+	<!-- navBar start -->
+	<%@include file="../../../common/dmin/include/headNavBar.jsp"%>
+	<!-- navBar end -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
-				<div class="col-lg-2">
-					<div class="flex-shrink-0 p-3 bg-white">
-						<ul class="list-unstyled ps-0">
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#codeGroup-collapse" aria-expanded="true">
-									코드그룹 관리
-								</button>
-								<div class="collapse show" id="codeGroup-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">코드그룹 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">코드그룹 추가</a></li>
-										<li><a href="#" class="link-dark rounded">코드그룹 수정</a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
-									코드 관리
-								</button>
-								<div class="collapse show" id="code-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">코드 추가</a></li>
-										<li><a href="#" class="link-dark rounded">코드 수정</a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">
-									회원 관리
-								</button>
-								<div class="collapse" id="member-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">회원 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">회원 추가</a></li>
-										<li><a href="#" class="link-dark rounded">회원 수정</a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#book-collapse" aria-expanded="false">
-									책 관리
-								</button>
-								<div class="collapse" id="book-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">책 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">책 추가</a></li>
-										<li><a href="#" class="link-dark rounded">책 수정</a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
-									작가 관리
-								</button>
-								<div class="collapse" id="writer-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">작가 추가</a></li>
-										<li><a href="#" class="link-dark rounded">작가 수정</a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="mb-1">
-								<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#order-collapse" aria-expanded="false">
-									주문 관리
-								</button>
-								<div class="collapse" id="order-collapse">
-									<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-										<li><a href="#" class="link-dark rounded">주문 리스트</a></li>
-										<li><a href="#" class="link-dark rounded">주문 추가</a></li>
-										<li><a href="#" class="link-dark rounded">주문 수정</a></li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div>
-				    	<button class="navbar-toggler" style="width:100%; height:80px; text-align: left;" type="button" onclick="logOut();">
-				      		로그아웃 <i class="fa-solid fa-right-from-bracket"></i>
-				      	</button>
-					</div>
-				</div>
+				<!-- navBar start -->
+				<%@include file="../../../common/dmin/include/dminSideBar.jsp"%>
+				<!-- navBar end -->
 				<div class="col-lg-10">
-					<div class="row">
-						<h1>멤버 관리</h1>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="memberSeq">회원 번호</label>
-							<input type="text" class="form-control" id="memberSeq" value="<c:out value="${item.memberSeq }"/>" readonly>
+					<form method="post" id="MVForm" name="MVForm" autocomplete="off">
+						<input type="hidden" id="mainKey" name="mainKey">
+						<!-- *Vo.jsp s -->
+						<%@include file="memberVo.jsp"%>		<!-- #-> -->
+						<!-- *Vo.jsp e -->
+						<div class="row">
+							<h1>멤버 관리</h1>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="id">아이디</label>
-							<input type="text" class="form-control" id="id" name="id" value="<c:out value="${item.id }"/>">
-						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="password">비밀번호</label>
-							<input type="text" class="form-control" id="password" name="password" value="<c:out value="${item.password }"/>" placeholder="영문(대소문자),숫자">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="name">이름</label>
-							<input type="text" class="form-control" id="name" name="name" value="<c:out value="${item.name }"/>" placeholder="한글, 숫자">
-						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="userName">닉네임</label>
-							<input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${item.userName }"/>" placeholder="영문(대소문자), 숫자">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<div style="padding-bottom: 10px;">
-								성별
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="memberSeq">회원 번호</label>
+								<input type="text" class="form-control" id="memberSeq" value="<c:out value="${item.memberSeq }"/>" readonly>
 							</div>
-							<input type="radio" class="col-sm-1" id="genderMan" name="gender" value="1" <c:if test="${item.gender eq 1 }">checked</c:if>>
-							<label for="MGenderMan">남성</label>
-							<input type="radio" class="col-sm-1" id="genderWoman" name="gender" value="2" <c:if test="${item.gender eq 2 }">checked</c:if>>
-							<label for="MGenderWoman">여성</label>
 						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="dob">생일</label>
-							<input type="text" class="form-control" id="dob" name="dob" value="<c:out value="${item.dob }"/>" placeholder="숫자">
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="id">아이디</label>
+								<input type="text" class="form-control" id="id" name="id" value="<c:out value="${item.id }"/>">
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="password">비밀번호</label>
+								<input type="text" class="form-control" id="password" name="password" value="<c:out value="${item.password }"/>" placeholder="영문(대소문자),숫자">
+							</div>
 						</div>
-						
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="phone">휴대폰 번호</label>
-							<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="숫자">
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="name">이름</label>
+								<input type="text" class="form-control" id="name" name="name" value="<c:out value="${item.name }"/>" placeholder="한글, 숫자">
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="userName">닉네임</label>
+								<input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${item.userName }"/>" placeholder="영문(대소문자), 숫자">
+							</div>
 						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="number">집전화 번호</label>
-							<input type="text" class="form-control" id="number" name="number" value="<c:out value="${item.number }"/>" placeholder="숫자">
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<div style="padding-bottom: 10px;">
+									성별
+								</div>
+								<input type="radio" class="col-sm-1" id="genderMan" name="gender" value="1" <c:if test="${item.gender eq 1 }">checked</c:if>>
+								<label for="MGenderMan">남성</label>
+								<input type="radio" class="col-sm-1" id="genderWoman" name="gender" value="2" <c:if test="${item.gender eq 2 }">checked</c:if>>
+								<label for="MGenderWoman">여성</label>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="dob">생일</label>
+								<input type="text" class="form-control" id="dob" name="dob" value="<c:out value="${item.dob }"/>" placeholder="숫자">
+							</div>
+							
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3 gy-4 offset-1">
-							<label for="email">이메일</label>
-							<input type="text" class="form-control" id="emailStart" name="email" value="<c:out value="${item.emailStart }"/>" placeholder="이메일">
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="phone">휴대폰 번호</label>
+								<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="숫자">
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="number">집전화 번호</label>
+								<input type="text" class="form-control" id="number" name="number" value="<c:out value="${item.number }"/>" placeholder="숫자">
+							</div>
 						</div>
-						<div class="col-1" style="margin-top: 52px; text-align: center;"><span id="emailMiddle" name="emailMiddle">@</span></div>
-						<div class="col-sm-3 gy-4" style="margin-top: 48px;">
-							<input type="text" class="form-control" id="emailEnd" name="emailEnd" value="<c:out value="${item.emailEnd }"/>" placeholder="직접입력">
+						<div class="row">
+							<div class="col-sm-3 gy-4 offset-1">
+								<label for="email">이메일</label>
+								<input type="text" class="form-control" id="emailStart" name="emailStart" value="<c:out value="${item.emailStart }"/>" placeholder="이메일">
+							</div>
+							<div class="col-1" style="margin-top: 52px; text-align: center;"><span id="emailMiddle" name="emailMiddle">@</span></div>
+							<div class="col-sm-3 gy-4" style="margin-top: 48px;">
+								<input type="text" class="form-control" id="emailEnd" name="emailEnd" value="<c:out value="${item.emailEnd }"/>" placeholder="직접입력">
+							</div>
+							<div class="col-sm-3 gy-4" style="margin-top: 48px;">
+								<select class="form-select" id="emailLast" name="emailLast">
+									<option value="1" <c:if test="${item.emailLast eq 1 }">selected</c:if>>직접입력</option>
+									<option value="2" <c:if test="${item.emailLast eq 2 }">selected</c:if>>네이버</option>
+									<option value="3" <c:if test="${item.emailLast eq 3 }">selected</c:if>>구글</option>
+									<option value="4" <c:if test="${item.emailLast eq 4 }">selected</c:if>>카카오</option>
+								</select>
+							</div>
+							<input type="hidden" id="email" name="email" value="<c:out value="${item.email }"/>">
 						</div>
-						<div class="col-sm-3 gy-4" style="margin-top: 48px;">
-							<select class="form-select" id="emailLast" name="emailLast">
-								<option value="1" <c:if test="${item.emailLast eq 1 }">selected</c:if>>직접입력</option>
-								<option value="2" <c:if test="${item.emailLast eq 2 }">selected</c:if>>네이버</option>
-								<option value="3" <c:if test="${item.emailLast eq 3 }">selected</c:if>>구글</option>
-								<option value="4" <c:if test="${item.emailLast eq 4 }">selected</c:if>>카카오</option>
-							</select>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="zip">우편번호</label>
+								<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="우편번호" readonly>
+							</div>
+							<div class="col-sm-2 gy-4" style="margin-top: 48px;">
+								<label for="searchTransport"> </label>
+								<button type="button" class="btn btn-success" id="searchTransport" name="searchTransport" onclick="PostCode()">
+									<i class="fa-solid fa-map"></i> 주소검색
+								</button>
+								<button class="btn btn-warning" type="button" id="transportClearBtn" name="transportClearBtn" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa-solid fa-arrow-rotate-right"></i>
+								</button>
+							</div>
+							<div class="col-sm-3 gy-4">
+								<label for="extraaddress">참고항목</label>
+								<input type="text" class="form-control" id="extraaddress" name="extraaddress" value="" placeholder=" 참고항목" readonly>
+							</div>
 						</div>
-						<input type="hidden" id="email" name="email" value="<c:out value="${item.email }"/>">
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="zip">우편번호</label>
-							<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="우편번호" readonly>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="address1">주소</label>
+								<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="주소" readonly>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="address2">상세주소</label>
+								<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="상세주소">
+							</div>
 						</div>
-						<div class="col-sm-2 gy-4" style="margin-top: 48px;">
-							<label for="searchTransport"> </label>
-							<button type="button" class="btn btn-success" id="searchTransport" name="searchTransport" onclick="PostCode()">
-								<i class="fa-solid fa-map"></i> 주소검색
-							</button>
-							<button class="btn btn-warning" type="button" id="transportClearBtn" name="transportClearBtn" style="width: 40px; height:38px; margin-right: 10px;">
-								<i class="fa-solid fa-arrow-rotate-right"></i>
-							</button>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="lag">위도</label>
+								<input type="text" class="form-control" id="lag" name="lag" value="" placeholder="위도" readonly>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="lat">경도</label>
+								<input type="text" class="form-control" id="lat" name="lat" value="" placeholder="경도" readonly>
+							</div>
 						</div>
-						<div class="col-sm-3 gy-4">
-							<label for="extraaddress">참고항목</label>
-							<input type="text" class="form-control" id="extraaddress" name="extraaddress" value="" placeholder=" 참고항목" readonly>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<div style="padding-bottom: 10px;">
+		                            <span>개인정보 유효기간</span>
+		                        </div>
+		                        <input type="radio" class="col-sm-1" id="privacy1" name="privacy" value="1" <c:if test="${item.privacy eq 1 }">checked</c:if>>
+		                        <label for="privacy1">1년</label>
+		                   
+		                        <input type="radio" class="col-sm-1" id="privacy2" name="privacy" value="2" <c:if test="${item.privacy eq 2 }">checked</c:if>>
+		                        <label for="privacy2">3년</label>
+		                      
+		                        <input type="radio" class="col-sm-1" id="privacy3" name="privacy" value="3" <c:if test="${item.privacy eq 3 }">checked</c:if>>
+		                        <label for="privacy3">5년</label>
+		               
+		                        <input type="radio" class="col-sm-1" id="privacy4" name="privacy" value="4" <c:if test="${item.privacy eq 4 }">checked</c:if>>
+		                        <label for="privacy4">탈퇴시까지</label>
+		                      </div>
+							<div class="col-sm-5 gy-4">
+	                            <div style="padding-bottom: 10px;">
+	                                 <input type="checkbox" id="adAllReceive" name="adAllReceive" value="adAllReceive" onclick="selectAll(this);">
+	                                 <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
+	                             </div>
+	                             <div style="display:inline;">
+	                                 <input type="checkbox" id="email_ctr" name="email_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
+	                                 <label for="email_ctr">이메일 수신</label>
+	                             </div>
+	                             <div style="display:inline; margin-left: 20px;">
+	                                 <input type="checkbox" id="kakao_ctr" name="kakao_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
+	                                 <label for="kakao_ctr">카카오톡 수신</label>
+	                             </div>
+	                             <div style="display:inline; margin-left: 20px;">
+	                                 <input type="checkbox" id="sms_ctr" name="sms_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
+	                                 <label for="sms_ctr">SMS 수신 동의</label>
+	                             </div>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="address1">주소</label>
-							<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="주소" readonly>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="memberDelNy">삭제 여부</label>
+								<select class="form-select" id="memberDelNy" name="memberDelNy">
+									<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>Y</option>
+									<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>N</option>
+								</select>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="memberUseNy">사용 여부</label>
+								<select class="form-select" id="memberUseNy" name="memberUseNy">
+									<option value="0" <c:if test="${item.memberUseNy eq 0 }">selected</c:if>>Y</option>
+									<option value="1" <c:if test="${item.memberUseNy eq 1 }">selected</c:if>>N</option>
+								</select>
+							</div>
 						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="address2">상세주소</label>
-							<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="상세주소">
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="registration">등록일</label>
+								<input type="text" class="form-control" id="registration" name="registration" value="<c:out value="${item.registration }"/>" placeholder="등록일">
+							</div>
+							<%-- <div class="col-sm-5 gy-4">
+								<label for="correctation">수정일</label>
+								<input type="text" class="form-control" id="correctation" name="correctation" value="<c:out value="${item.correctation }"/>" placeholder="수정일">
+							</div> --%>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="lag">위도</label>
-							<input type="text" class="form-control" id="lag" name="lag" value="" placeholder="위도" readonly>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="accmulate">적립금</label>
+								<input type="text" class="form-control" id="accmulate" name="accmulate" value="<c:out value="${item.accmulate }"/>" placeholder="숫자">
+							</div>
 						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="lat">경도</label>
-							<input type="text" class="form-control" id="lat" name="lat" value="" placeholder="경도" readonly>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<div style="padding-bottom: 10px;">
-	                            <span>개인정보 유효기간</span>
-	                        </div>
-	                        <input type="radio" class="col-sm-1" id="privacy1" name="privacy" value="1" <c:if test="${item.privacy eq 1 }">checked</c:if>>
-	                        <label for="privacy1">1년</label>
-	                   
-	                        <input type="radio" class="col-sm-1" id="privacy2" name="privacy" value="2" <c:if test="${item.privacy eq 2 }">checked</c:if>>
-	                        <label for="privacy2">3년</label>
-	                      
-	                        <input type="radio" class="col-sm-1" id="privacy3" name="privacy" value="3" <c:if test="${item.privacy eq 3 }">checked</c:if>>
-	                        <label for="privacy3">5년</label>
-	               
-	                        <input type="radio" class="col-sm-1" id="privacy4" name="privacy" value="4" <c:if test="${item.privacy eq 4 }">checked</c:if>>
-	                        <label for="privacy4">탈퇴시까지</label>
-	                      </div>
-						<div class="col-sm-5 gy-4">
-                            <div style="padding-bottom: 10px;">
-                                 <input type="checkbox" id="adAllReceive" name="adAllReceive" value="adAllReceive" onclick="selectAll(this);">
-                                 <label for="adAllReceive" style="font-weight: bolder;">광고 전체 수신 동의</label>
-                             </div>
-                             <div style="display:inline;">
-                                 <input type="checkbox" id="email_ctr" name="email_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
-                                 <label for="email_ctr">이메일 수신</label>
-                             </div>
-                             <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="kakao_ctr" name="kakao_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
-                                 <label for="kakao_ctr">카카오톡 수신</label>
-                             </div>
-                             <div style="display:inline; margin-left: 20px;">
-                                 <input type="checkbox" id="sms_ctr" name="sms_ctr" value="1" class="adReceive" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
-                                 <label for="sms_ctr">SMS 수신 동의</label>
-                             </div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="memberDelNy">삭제 여부</label>
-							<select class="form-select" id="memberDelNy" name="memberDelNy">
-								<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>Y</option>
-								<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>N</option>
-							</select>
-						</div>
-						<div class="col-sm-5 gy-4">
-							<label for="memberUseNy">사용 여부</label>
-							<select class="form-select" id="memberUseNy" name="memberUseNy">
-								<option value="0" <c:if test="${item.memberUseNy eq 0 }">selected</c:if>>Y</option>
-								<option value="1" <c:if test="${item.memberUseNy eq 1 }">selected</c:if>>N</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="registration">등록일</label>
-							<input type="text" class="form-control" id="registration" name="registration" value="<c:out value="${item.registration }"/>" placeholder="등록일">
-						</div>
-						<%-- <div class="col-sm-5 gy-4">
-							<label for="correctation">수정일</label>
-							<input type="text" class="form-control" id="correctation" name="correctation" value="<c:out value="${item.correctation }"/>" placeholder="수정일">
-						</div> --%>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 gy-4 offset-1">
-							<label for="accmulate">적립금</label>
-							<input type="text" class="form-control" id="accmulate" name="accmulate" value="<c:out value="${item.accmulate }"/>" placeholder="숫자">
-						</div>
-					</div>
-					<div style="height: 20px;"></div>
-					<div class="col-lg-10 offset-1">
-						<div style="float:left;">
-							<button type="button" class="btn btn-secondary" id="listBtn" name="listBtn">
-								<i class="fa-solid fa-bars"></i>
-							</button>
-						</div>
-						<div style="float:right;">
-							<button class="btn btn-danger" id="ueleteModalBtn" name="ueleteModalBtn" data-bs-toggle="modal" data-bs-target="#ueleteModal" type="button">
-								<i class="fa-solid fa-x"></i>
-							</button>
-							<button class="btn btn-danger" id="deleteModalBtn" name="deleteModalBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button">
-								<i class="fa-solid fa-trash-can"></i>
-							</button>
-							<button class="btn btn-success" id="updateBtn" name="updateBtn" type="button">
-								<i class="fa-solid fa-bookmark"></i>
-							</button>
-						</div>
-					</div>
+						<!-- viewBtn start -->
+						<%@include file="../../../common/dmin/include/viewBtn.jsp"%>
+						<!-- viewBtn end -->
+					</form>
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModallabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="ueleteModalLabel">리스트에서 삭제하시겠습니까?</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        테이블 리스트에서 보이지 않게 됩니다 삭제하시겠습니까?
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-		        	<i class="fa-solid fa-x"></i> 취소
-		        </button>
-		        <button type="button" class="btn btn-outline-danger" id="ueleteBtn" name="ueleteBtn">
-		        	<i class="fa-solid fa-trash-can"></i> 삭제
-		        </button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="delectModallabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="delectModalLabel">데이터를 삭제하시겠습니까?</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        테이블에서 데이터가 삭제 됩니다 삭제하시겠습니까?
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-		        	<i class="fa-solid fa-x"></i> 취소
-		        </button>
-		        <button type="button" class="btn btn-outline-danger" id="deleteBtn" name="deleteBtn">
-		        	<i class="fa-solid fa-trash-can"></i> 삭제
-		        </button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-	</form>
+		<!-- viewModal start -->
+		<%@include file="../../../common/dmin/include/viewModal.jsp"%>
+		<!-- viewModal end -->
 	<form name="MVFormVo" id="MVFormVo" method="post">
 	<!-- *Vo.jsp s -->
 	<%@include file="memberVo.jsp"%>		<!-- #-> -->
@@ -644,16 +482,15 @@
 			const emailStart = $("#emailStart").val();
 			const emailMiddle = $("#emailMiddle").text();
 			const emailEnd = $("#emailEnd").val();
-			
-			alert(emailStart);
-			alert(emailMiddle);
-			alert(emailEnd);
 			if(emailStart != "" && emailEnd != "") {
 				mail.val(emailStart+emailMiddle+emailEnd);
 			}
 		};
 		
-		$("#emailStart").change(function(){
+		$("#emailStart").focusout(function(){
+			setMail()
+		});
+		$("#emailEnd").focusout(function(){
 			setMail()
 		});
 		
