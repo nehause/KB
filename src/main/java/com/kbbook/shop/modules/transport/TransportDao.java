@@ -56,4 +56,8 @@ public class TransportDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	public List<Transport> loginSeq(Transport dto){
+		return sqlSession.selectList(namespace + ".loginSeq", dto);
+	}
+	
 }

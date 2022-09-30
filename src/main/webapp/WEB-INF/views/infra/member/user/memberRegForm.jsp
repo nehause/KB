@@ -90,7 +90,7 @@
                            <div class="row mb-3">
                            	<div class="col-md-4 form-group p_star">
                            		<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
-                                <input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }"/>" placeholder="영대소문자, 숫자, 특수문자(-_.),4~20자리" maxlength="20" >
+                                <input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }"/>" placeholder="아이디*" maxlength="20" >
                             	<div class="invalid-feedback" id="idFeedback"></div>
                             </div>
                             <div class="col-md-2 form-group">

@@ -9,6 +9,7 @@ public interface MemberService {
 	public int insert(Member dto) throws Exception;
 	public Member selectSeq(MemberVo vo) throws Exception;
 	public int update(Member dto) throws Exception;
+	public int userUpdate(Member dto) throws Exception;
 	public int uelete(Member dto) throws Exception;
 	public int delete(MemberVo vo) throws Exception;
 	
@@ -18,7 +19,7 @@ public interface MemberService {
 	public Member selectOneLogin(Member dto) throws Exception;
 	public int selectOneIdCheck(Member dto) throws Exception;
 	public int selectOneUserNameCheck(Member dto) throws Exception;
-	
+	public int selectOnePasswordCheck(Member dto) throws Exception;
 	public List<Member> memberOrderList(Member dto) throws Exception;
 	public List<Member> favorite(Member dto) throws Exception;
 } 

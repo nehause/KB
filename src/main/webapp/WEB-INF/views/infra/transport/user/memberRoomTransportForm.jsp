@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.kbbook.shop.modules.code.CodeServiceImpl"/>
 
 <html lang="zxx" class="no-js">
 
@@ -117,36 +118,51 @@
 	                    		<th class="col-lg-1">
 	                    			<span>구분</span>
 	                    		</th>
-	                    		<th class="col-lg-1">
-	                    			<span>이름</span>
-	                    		</th>
 	                    		<th class="col-lg-3">
 	                    			<span>전화번호</span><br><span>[휴대전화번호]</span>
 	                    		</th>
-	                    		<th class="col-lg-6">
+	                    		<th class="col-lg-2">
+	                    			<span>우편번호</span>
+	                    		</th>
+	                    		<th class="col-lg-5">
 	                    			<span>주소</span>
 	                    		</th>
 	                    		<th class="col-lg-1">
 	                    			<span>선택</span>
 	                    		</th>
 	                    	</tr>
-	                    	<tr class="row">
-	                    		<td class="col-lg-1">
-	                    			<span id="baseTransfort"><b>기본</b></span><br><span>집</span>
-	                    		</td>
-	                    		<td class="col-lg-1">
-	                    			<span>이용자</span>
-	                    		</td>
-	                    		<td class="col-lg-3">
-	                    			<span>010-1234-5678</span>
-	                    		</td>
-	                    		<td class="col-lg-6">
-	                    			<span>어떤시 어떤구 어떤어떤로 12길 34-5, 6789동 0123호</span>
-	                    		</td>
-	                    		<td class="col-lg-1">
-	                    			<input type="radio" id="transport1" name="transportCheck">
-	                    		</td>
-	                    	</tr>
+                    		<c:set var="listCodeTransportDiv" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
+								<c:choose>
+									<c:when test="${fn:length(userTransport) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+										<td class="text-center" colspan="5">저장된 주소지가 없습니다.</td>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${userTransport}" var="userTransport" varStatus="status">
+											<tr class="row">
+					                    		<td class="col-lg-1">
+				                    				<span>
+				                    					<c:forEach items="${listCodeTransportDiv}" var="listTransportDiv" varStatus="statusTransportDiv">
+															<c:if test="${userTransport.transportDiv eq listTransportDiv.COrder}"><c:out value="${listTransportDiv.CNameKor }"/></c:if>
+														</c:forEach>
+													</span>
+					                    		</td>
+					                    		<td class="col-lg-3">
+					                    			<span><c:out value="${userTransport.phone }"/></span>
+					                    		</td>
+					                    		<td class="col-lg-2">
+					                    			<span><c:out value="${userTransport.zip }"/></span>
+					                    		</td>
+					                    		
+					                    		<td class="col-lg-5">
+					                    			<span><c:out value="${userTransport.address1 }"/></span>
+					                    		</td>
+					                    		<td class="col-lg-1">
+					                    			<input type="radio" id="transport1" name="transportCheck">
+					                    		</td>
+					                    	</tr>
+				                    	</c:forEach>
+				                    </c:otherwise>
+								</c:choose>
 	                    	<tr>
 	                    		
 	                    	</tr>

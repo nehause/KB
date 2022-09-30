@@ -72,7 +72,7 @@
      			<!-- myRoomSidebar End -->
             	
                 <div class="col-lg-9">
-                	<form name="memberModCheckForm" method="get" action="/resources/memberModForm.html" id="memberModCheckForm">
+                	<form name="memberModCheckForm" method="post" id="memberModCheckForm">
 	                	<div style="height: 20px;"></div>
 						<table class="col-lg-12	border-top border-bottom">
 							<tr>
@@ -99,7 +99,7 @@
 	                    			<span>아이디</span>
 	                    		</td>
 	                    		<td>
-	                    			<input type="text" class="form-control col-md-4" id="modCheckId" name="modCheckId" value="usersid" disabled>
+	                    			<input type="text" class="form-control col-md-4" id="id" name="id" value="<c:out value="${item.id }"/>" readonly>
 	                    		</td>
 	                    	</tr>
 	                    	<tr>
@@ -107,13 +107,11 @@
 	                    			<span>비밀번호</span>
 	                    		</td>
 	                    		<td>
-	                    			<input type="password" class="form-control col-md-4" id="modCheckPassword" name="modCheckPassword">
+	                    			<input type="password" class="form-control col-md-4" id="password" name="password" value="">
 	                    		</td>
 	                    	</tr>
 	                    </table>
-	                    <a href="/member/memberRoomModForm/">
-	                    	<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modCheckFormSubmit" onclick="modCheckSubmit();"> 확인 </button>
-                    	</a>
+                    	<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="passwordCheckBtn"> 확인 </button>
                     </form>
                 </div>
             </div>
@@ -125,10 +123,36 @@
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
 	
-	<script type="text/javascript">
-		function modCheckSubmit() {
-				document.getElementById("memberModCheckForm").submit();
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	var URL_MOD = "/member/memberRoomModForm";
+	
+	$("#passwordCheckBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/checkPassword"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					
+					location.href = URL_MOD;
+					
+				} else {
+					alert("비밀번호가 틀렸습니다");
+				}
 			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

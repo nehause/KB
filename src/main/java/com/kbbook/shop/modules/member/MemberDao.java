@@ -41,6 +41,10 @@ public class MemberDao {
 		return sqlSession.update(namespace + ".update", dto);
 	}
 	
+	public int userUpdate(Member dto) {
+		return sqlSession.update(namespace + ".userUpdate", dto);
+	}
+	
 	public int uelete(Member dto) {
 		return sqlSession.update(namespace + ".uelete", dto);
 	}
@@ -71,6 +75,9 @@ public class MemberDao {
 	
 	public int selectOneUserNameCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneUserNameCheck", dto);
+	}
+	public int selectOnePasswordCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".selectOnePasswordCheck", dto);
 	}
 	
 	public List<Member> memberOrderList(Member dto) {

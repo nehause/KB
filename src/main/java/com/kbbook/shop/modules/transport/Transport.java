@@ -2,7 +2,9 @@ package com.kbbook.shop.modules.transport;
 
 import java.sql.Date;
 
-public class Transport {
+import com.kbbook.shop.modules.member.Member;
+
+public class Transport extends Member{
 	
 	private String transportSeq;
 	private String member_memberSeq;

@@ -111,6 +111,25 @@
 		WHERE 1=1
 			AND	memberSeq = #{memberSeq}
 	</update>
+	<update id="userUpdate">
+	UPDATE member
+		SET
+			userName = #{userName}
+			,phone = #{phone}
+			,email = #{email}
+			,emailStart = #{emailStart}
+			,emailEnd = #{emailEnd}
+			,emailLast = #{emailLast}
+			,zip = #{zip}
+			,address1 = #{address1}
+			,address2 = #{address2}
+			,privacy = #{privacy}
+			,email_ctr = #{email_ctr}
+			,kakao_ctr = #{kakao_ctr}
+			,sms_ctr = #{sms_ctr}
+		WHERE 1=1
+			AND	memberSeq = #{memberSeq}
+	</update>
 	
 	<update id = "uelete">
 		UPDATE member
@@ -196,6 +215,15 @@
 			WHERE userName = #{userName}
 	</select>
 	
+	<select id="selectOnePasswordCheck" resultType="Integer">
+		SELECT
+			 COUNT(*) 
+		FROM member a
+		WHERE 1=1
+			AND id = #{id}
+			AND password = #{password}
+	</select>
+	
 	<select id="memberOrderList"  resultMap="resultMapObj">
 	SELECT
 		a.*
@@ -247,5 +275,6 @@
 		and a.member_memberSeq = #{sessSeq}
 	;
 	</select>
+
 	
 </mapper>	

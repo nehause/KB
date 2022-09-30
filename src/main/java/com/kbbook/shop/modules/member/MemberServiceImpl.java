@@ -42,6 +42,10 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member dto) throws Exception{
 		return dao.update(dto);
 	}
+	@Override 
+	public int userUpdate(Member dto) throws Exception{
+		return dao.userUpdate(dto);
+	}
 	
 	@Override
 	public int uelete(Member dto) throws Exception{
@@ -82,6 +86,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int selectOneUserNameCheck(Member dto) throws Exception{
 		return dao.selectOneUserNameCheck(dto);
+	}
+	@Override
+	public int selectOnePasswordCheck(Member dto) throws Exception{
+		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
+		return dao.selectOnePasswordCheck(dto);
 	}
 	
 	@Override

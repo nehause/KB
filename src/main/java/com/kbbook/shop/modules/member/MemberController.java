@@ -98,6 +98,26 @@ public class MemberController {
 			return "redirect:/member/memberList";
 		}
 	}
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="userInsert")
+	public String userInsert(Member dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		setCheckboxNull(dto);
+		
+		service.insert(dto);
+		
+		System.out.println("dto.getMemberSeq(): " + dto.getMemberSeq());
+		
+		vo.setMemberSeq(dto.getMemberSeq());
+		
+		System.out.println("vo.getMemberSeq(): " + vo.getMemberSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		
+		return "redirect:/member/loginForm";
+		
+	}
 	
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value="memberUpdate")
@@ -108,6 +128,16 @@ public class MemberController {
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/member/memberList";
+	}
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="userUpdate")
+	public String userUpdate(MemberVo vo, Member dto, HttpSession httpSession , RedirectAttributes redirectAttributes) throws Exception{
+		
+		dto.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		setCheckboxNull(dto);
+		service.userUpdate(dto);
+		
+		return "redirect:/member/memberMyRoom";
 	}
 	
 	@RequestMapping(value = "memberUelete")
@@ -157,6 +187,21 @@ public class MemberController {
 		}
 		return returnMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "checkPassword")
+	public Map<String, Object> checkPassword(Member dto) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.selectOnePasswordCheck(dto);
+
+		if (result == 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
 	
 	
 	//usermapper
@@ -193,12 +238,24 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberRoomModCheck")
-	public String memberRoomModCheck() throws Exception {
+	public String memberRoomModCheck(Member dto, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+		
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		
+		Member result = service.selectSeq(vo);
+		model.addAttribute("item", result);
+		
 		return "infra/member/user/memberRoomModCheck";
 	}
 	
 	@RequestMapping(value="memberRoomModForm")
-	public String memberRoomModForm() throws Exception {
+	public String memberRoomModForm(Member dto, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+		
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		
+		Member result = service.selectSeq(vo);
+		model.addAttribute("item", result);
+		
 		return "infra/member/user/memberRoomModForm";
 	}
 	

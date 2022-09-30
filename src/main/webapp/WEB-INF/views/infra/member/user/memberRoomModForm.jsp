@@ -71,7 +71,7 @@
      			<!-- myRoomSidebar End -->
             
                 <div class="col-lg-9">
-                	<form name="memberModForm" method="get" action="/resources/memberRoomForm.html" id="memberModForm">
+                	<form id="MMForm" name="MMForm" method="post">
 	                	<div style="height: 20px;"></div>
 	                	<table class="col-lg-12	border-top border-bottom">
 							<tr>
@@ -94,7 +94,7 @@
 	                    			<span>아이디</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
-	                    			<input type="text" class="form-control" id="modId" name="modId" value="usersid" disabled>
+	                    			<input type="text" class="form-control" id="id" name="id" value="<c:out value="${item.id }"/>" readonly>
 	                    		</td>
 	                    		<td class="col-lg-2">
 	                    		</td>
@@ -106,11 +106,13 @@
 	                    			<span>이름</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
-	                    			<input type="text" class="form-control" id="modName" name="modName" value="회원이름" disabled>
+	                    			<input type="text" class="form-control" id="name" name="name" value="<c:out value="${item.name }"/>" readonly>
 	                    		</td>
 	                    		<td class="col-lg-2">
+	                    			<span>닉네임</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
+	                    			<input type="text" class="form-control" id="userName" name="userName" value="<c:out value="${item.userName }"/>">
 	                    		</td>
 	                    	</tr>
 	                    	<tr class="row">
@@ -118,19 +120,19 @@
 	                    			<span>생년월일</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
-	                    			<input type="text" class="form-control" id="modDob" name="modDob" value="19990101" disabled>
+	                    			<input type="text" class="form-control" id="dob" name="dob" value="<c:out value="${item.dob }"/>" readonly>
 	                    		</td>
 	                    		<td class="col-lg-2">
 	                    			<span>성별</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
 	                    			<div class="col-lg-3" style="display:inline;">
-             			 				<input class="form-check-input" type="radio" id="modGenderWoman" name="modGender" value="woman" disabled>
-	                               		<label class="form-check-label" for="modGenderWoman">여성</label>
+             			 				<input class="form-check-input" type="radio" id="genderMan" name="gender" value="1" <c:if test="${item.gender eq 1 }">checked</c:if> readonly>
+	                               		<label class="form-check-label" for="genderMan">남성</label>
                               		</div>
                               		<div class="offset-4" style="display:inline;">	
-                              			<input class="form-check-input" type="radio" id="modGenderman" name="modGender" value="man" checked disabled>
-	                               		<label class="form-check-label" for="modGenderman">남성</label>
+                              			<input class="form-check-input" type="radio" id="genderWoman" name="gender" value="2" <c:if test="${item.gender eq 2 }">checked</c:if> readonly>
+	                               		<label class="form-check-label" for="genderWoman">여성</label>
 	                            	</div>
 	                            </td>
 	                    	</tr>
@@ -139,13 +141,11 @@
 	                    			<span>휴대폰번호</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
-	                    			<input type="text" class="form-control" id="modNumber" name="modNumber" value="010-1234-5678">
+	                    			<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>">
 	                    		</td>
 	                    		<td class="col-lg-2">
-	                    			<span>전화번호</span>
 	                    		</td>
 	                    		<td class="col-lg-4">
-               			 			<input type="text" class="form-control" id="modHome" name="modHome" value="02-123-4567">
 	                            </td>
 	                    	</tr>
 	                    	<tr class="row">
@@ -153,21 +153,22 @@
 	                    			<span>Email</span>
 	                    		</td>
 	                    		<td class="col-lg-3">
-	                    			<input type="text" class="form-control" id="modEmailFirst" name="modEmailFirst" value="userEamil">
+	                    			<input type="text" class="form-control" id="emailStart" name="emailStart" value="<c:out value="${item.emailStart }"/>">
 	                    		</td>
-	                    		<td class="col-lg-1" style="text-align: center;">
-	                    			<span> @ </span>
-	                    		</td>
-	                    		<td class="col-lg-3">
-	                    			<input type="text" class="form-control" id="regEmailLast" name="modEmailLast" value="Email.com">
+	                    		<td class="col-lg-1" style="text-align: center; padding-top: 20px;">
+	                    			<span id="emailMiddle" name="emailMiddle""> @ </span>
 	                    		</td>
 	                    		<td class="col-lg-3">
-	                    			<select class="country_select" id="modEmailLastSelect" name="modEmailLastSelect" onchange="selectEmail();">
-	                                    <option value="">직접입력</option>
-	                                    <option value="naver.com">네이버</option>
-	                                    <option value="gmail.com">구글</option>
-	                                    <option value="kakao.com">카카오</option>
+	                    			<input type="text" class="form-control" id="emailEnd" name="emailEnd" value="<c:out value="${item.emailEnd }"/>">
+	                    		</td>
+	                    		<td class="col-lg-3">
+	                    			<select class="country_select" id="emailLast" name="emailLast">
+	                                    <option value="1" <c:if test="${item.emailLast eq 1 }">selected</c:if>>직접입력</option>
+	                                    <option value="2" <c:if test="${item.emailLast eq 2 }">selected</c:if>>네이버</option>
+	                                    <option value="3" <c:if test="${item.emailLast eq 3 }">selected</c:if>>구글</option>
+	                                    <option value="4" <c:if test="${item.emailLast eq 4 }">selected</c:if>>카카오</option>
 	                                </select>
+	                    			<input type="hidden" id="email" name="email" value="<c:out value="${item.email }"/>">
 	                    		</td>
 	                    	</tr>
 	                    	<tr class="row">
@@ -182,16 +183,16 @@
 	                            	<div style="height: 20px;"></div>
 		                            <div class="col-lg-12">
 		                                <div class="col-lg-4" style="display: inline;">
-		                                    <input type="checkbox" id="modAdEmailReceive" name="modAdReceive" onclick="checkSelectAll();" checked>
-		                                    <label for="modAdEmailReceive">이메일 수신</label>
+		                                    <input type="checkbox" id="email_ctr" name="email_ctr" class="adReceive"  value="1" onclick="checkSelectAll();" <c:if test="${item.email_ctr eq 1 }">checked</c:if>>
+		                                    <label for="email_ctr">이메일 수신</label>
 		                                </div>
 		                                <div class="col-lg-4" style="display: inline;">
-		                                    <input type="checkbox" id="modAdKakaoReceive" name="modAdReceive" onclick="checkSelectAll();">
-		                                    <label for="modAdKakaoReceive">카카오톡 수신</label>
+		                                    <input type="checkbox" id="kakao_ctr" name="kakao_ctr" class="adReceive" value="1" onclick="checkSelectAll();" <c:if test="${item.kakao_ctr eq 1 }">checked</c:if>>
+		                                    <label for="kakao_ctr">카카오톡 수신</label>
 		                                </div>
 		                                <div class="col-lg-4" style="display: inline;">
-		                                    <input type="checkbox" id="modAdSmsReceive" name="modAdReceive" onclick="checkSelectAll();" checked>
-		                                    <label for="modAdSmsReceive">SMS 수신 동의</label>
+		                                    <input type="checkbox" id="sms_ctr" name="sms_ctr" class="adReceive" value="1" onclick="checkSelectAll();" <c:if test="${item.sms_ctr eq 1 }">checked</c:if>>
+		                                    <label for="sms_ctr">SMS 수신 동의</label>
 		                                </div>
 		                            </div>
 	                    		</td>
@@ -211,16 +212,21 @@
 	                    		<td class="col-lg-10">
 	                    			<div class="row">
 	                    				<div class="col-lg-4">
-	                    					<input type="text" class="form-control" id="modZipCode" name="modZipCode" value="12345">
+	                    					<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" readonly>
 	                    				</div>
 	                    				<div class="col-lg-3">
-	                    					<input type="button" class="form-control genric-btn primary" id="modAddressSearch" name="modAddressSearch" value="주소검색">
+											<button type="button" class="genric-btn primary" id="searchTransport" name="searchTransport" onclick="PostCode()">
+												<i class="fa-solid fa-map"></i> 주소검색
+											</button>
+										</div>
+	                    				<div class="col-lg-7">
+	                    					<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" readonly>
+	                    					<input type="hidden" class="form-control" id="extraaddress" name="extraaddress">
 	                    				</div>
-	                    				<div class="col-lg-6">
-	                    					<input type="text" class="form-control" id="modAddress" name="modAddress" value="어떤시 어떤구 어떤로12길 34-5">
-	                    				</div>
-	                    				<div class="col-lg-6">
-	                    					<input type="text" class="form-control" id="modAddress" name="modAddress" value="1234동 5678호">
+	                    				<div class="col-lg-7">
+	                    					<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>">
+      										<input type="hidden" class="form-control" id="lag" name="lag">
+       										<input type="hidden" class="form-control" id="lat" name="lat">
 	                    				</div>
 	                    				<div class="col-lg-12">
 	                    					<br>
@@ -239,20 +245,20 @@
 	                    		</td>
 	                    		<td class="col-lg-10">
 	                    			<div class="col-lg-3 form-group" style="display: inline;">
-	                                    <input type="radio" id="modPrivacy1" name="modPrivacy" value="1">
-	                                    <label for="modPrivacy1">1년</label>
+	                                    <input type="radio" id="privacy1" name="privacy" value="1" <c:if test="${item.privacy eq 1 }">checked</c:if>>
+	                                    <label for="privacy1">1년</label>
 		                            </div>    
 		                            <div class="col-lg-3 form-group" style="display: inline;">
-	                                    <input type="radio" id="modPrivacy2" name="modPrivacy" value="2">
-	                                    <label for="modPrivacy2">3년</label>
+	                                    <input type="radio" id="privacy2" name="privacy" value="2" <c:if test="${item.privacy eq 2 }">checked</c:if>>
+	                                    <label for="privacy2">3년</label>
 		                            </div>
 		                            <div class="col-lg-3 form-group" style="display: inline;">
-	                                    <input type="radio" id="modPrivacy3" name="modPrivacy" value="3" checked>
-                                   		<label for="modPrivacy3">5년</label>
+	                                    <input type="radio" id="privacy3" name="privacy" value="3" <c:if test="${item.privacy eq 3 }">checked</c:if>>
+                                   		<label for="privacy3">5년</label>
 		                            </div>
 		                            <div class="col-lg-3 form-group" style="display: inline;">
-                                	    <input type="radio" id="modPrivacy4" name="modPrivacy" value="4">
-	                                    <label for="modPrivacy4">탈퇴시까지</label>
+                                	    <input type="radio" id="privacy4" name="privacy" value="4" <c:if test="${item.privacy eq 4 }">checked</c:if>>
+	                                    <label for="privacy4">탈퇴시까지</label>
 		                            </div>
 	                    		</td>
 	                    	</tr>
@@ -261,7 +267,7 @@
 	                    		</td>
 	                    	</tr>
 	                    	<caption style="caption-side: bottom; float:right;">
-						   		<button type="button" class="genric-btn primary" id="modFormSubmit" onclick="modSubmit();">
+						   		<button type="button" class="genric-btn primary" id="modBtn" name="modBtn">
 						   			<i class="fa-solid fa-pencil"></i> 수정
 						    	</button>
 						    	<button type="button" class="genric-btn danger" id="modFormCancel" data-toggle="modal" data-target="#modCancelModal">
@@ -292,25 +298,87 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
-	        <button type="button" class="genric-btn danger" onclick="modCancel();">취소</button>
+	        <button type="button" class="genric-btn danger" id="cancelBtn" name="cancelBtn"">취소</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 	<!-- end modal area -->
 	
-	<script type="text/javascript">
-	function modCancel() {
-		location.href='memberRoomForm.html';
-	}
 	
-	function modSubmit() {
-		document.getElementById("memberModForm").submit();
-	}
-	function selectEmail() {
-		document.memberModForm.modEmailLast.value = document.memberModForm.modEmailLastSelect.value
-		
-	}
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
+	<script>
+	    function PostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	                var geocoder = new daum.maps.services.Geocoder(); // 주소-좌표 변환 객체
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("extraaddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("extraaddress").value = '';
+	                }
+	                
+	                geocoder.addressSearch(data.address, function(results, status) {
+	                    // 정상적으로 검색이 완료됐으면
+	                    if (status === daum.maps.services.Status.OK) {
+
+	                        var result = results[0]; //첫번째 결과의 값을 활용
+
+	                        // 해당 주소에 대한 좌표를 받아서
+	                        var coords = new daum.maps.LatLng(result.y, result.x);
+	    	                document.getElementById("lag").value = coords.getLat(); // 위도 
+	    	                document.getElementById("lat").value = coords.getLng(); // 경도
+	    	                
+//	    	                //위의 것과 같다
+//	    	                document.getElementById("lag").value = result[0].y; // 위도
+//	    	                document.getElementById("lat").value = result[0].x; // 경도
+	    	                
+	                    }
+	                });
+	               
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('zip').value = data.zonecode; // 우편번호
+	                document.getElementById("address1").value = addr; // 주소
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("address2").focus();
+
+	            }
+	        }).open();
+	    }
+	</script>
+	
+	<script type="text/javascript">
 	function checkSelectAll()  {
 
 		const checkboxes = document.querySelectorAll('input[name="modAdReceive"]');
@@ -332,6 +400,71 @@
 	    checkbox.checked = selectAll.checked
 	  })
 	}
+	</script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	
+		var goUserRoom = "/member/memberMyRoom";					/* #-> */
+		var goUserUpdate = "/member/userUpdate";				/* #-> */
+		
+		var seq = $("input:hidden[name=memberSeq]");
+		
+		var form = $("form[name=MMForm]");
+	
+		$('input[type="checkbox"]').change(function(){
+		    this.value = (Number(this.checked));
+		});
+		
+		
+		 function setMail() {
+			const emailStart = $("#emailStart").val();
+			const emailMiddle = $("#emailMiddle").text();
+			const emailEnd = $("#emailEnd").val();
+			if(emailStart != "" && emailEnd != "") {
+				mail.val(emailStart+emailMiddle+emailEnd);
+			}
+		};
+		
+		$("#emailStart").focusout(function(){
+			setMail()
+		});
+		$("#emailEnd").focusout(function(){
+			setMail()
+		});
+		
+		$(function(){
+			$(document).ready(function(){
+				$('select[name=emailLast]').change(function() {
+					if($(this).val()=="1"){				
+						$('#emailEnd').val("");		
+						$("#emailEnd").attr("readonly", false);
+						setMail();
+					} else if($(this).val()=="2") {				
+						$('#emailEnd').val('naver.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					} else if($(this).val()=="3") {				
+						$('#emailEnd').val('google.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					} else {		
+						$('#emailEnd').val('kakao.com');				
+						$("#emailEnd").attr("readonly", true);
+						setMail();
+					}
+				});	
+			});
+		});
+		
+		$("#cancelBtn").on("click", function(){
+			$("location").attr("herf", goUserRoom);
+		}); 
+
+		$("#modBtn").on("click", function(){
+	   		form.attr("action", goUserUpdate).submit();
+		}); 
+		
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

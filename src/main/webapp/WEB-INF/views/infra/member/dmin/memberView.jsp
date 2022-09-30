@@ -229,15 +229,15 @@
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="memberDelNy">삭제 여부</label>
 								<select class="form-select" id="memberDelNy" name="memberDelNy">
-									<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>Y</option>
-									<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>N</option>
+									<option value="0" <c:if test="${item.memberDelNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.memberDelNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="memberUseNy">사용 여부</label>
 								<select class="form-select" id="memberUseNy" name="memberUseNy">
-									<option value="0" <c:if test="${item.memberUseNy eq 0 }">selected</c:if>>Y</option>
-									<option value="1" <c:if test="${item.memberUseNy eq 1 }">selected</c:if>>N</option>
+									<option value="0" <c:if test="${item.memberUseNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.memberUseNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
 						</div>
