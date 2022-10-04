@@ -16,6 +16,7 @@ public class Book {
 	private String isbn;
 	private Integer page;
 	private String size;
+	private String topic;
 	private String introduce;
 	private String image;
 	private String list;
@@ -108,6 +109,13 @@ public class Book {
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+	
+	public String getTopic() {
+		return topic;
+	}
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 	public String getIntroduce() {
 		return introduce;

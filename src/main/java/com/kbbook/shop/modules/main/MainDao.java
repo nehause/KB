@@ -20,4 +20,14 @@ public class MainDao {
 	public List<Main> selectList(){
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
+	public List<Main> mainList(){
+		return sqlSession.selectList(namespace + ".mainList", "");
+	}
+	public List<Main> bestList(){
+		return sqlSession.selectList(namespace + ".bestList", "");
+	}
+	public List<Main> newList(){
+		return sqlSession.selectList(namespace + ".newList", "");
+	}
+	
 }

@@ -15,5 +15,47 @@
 	WHERE 1=1
 	
 	</select>
+	
+	<select id="mainList" resultMap="resultMapObj">
+	select
+		bookSeq
+	    ,sign
+	    ,topic
+	    ,left(introduce , 50) as shortIntro
+	from book
+	    where 1=1
+	    order by amount desc
+	    limit 2
+	
+	
+	</select>
+	
+	<select id="bestList" resultMap="resultMapObj">
+	
+	select
+		bookSeq
+		,sign
+	    ,name
+	    ,cost*(1-sale) as price
+	    ,cost
+	from book
+		ORDER BY amount desc
+	    limit 4
+	
+	</select>
+	
+	<select id="newList" resultMap="resultMapObj">
+	
+	select
+		bookSeq
+		,sign
+	    ,name
+	    ,cost*(1-sale) as price
+	    ,cost
+	from book
+		ORDER BY dor desc
+	    limit 4
+	
+	</select>
 
 </mapper>	

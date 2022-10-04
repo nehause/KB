@@ -1,11 +1,14 @@
 package com.kbbook.shop.modules.main;
 
+import java.util.List;
+
 //import java.text.DateFormat;
 //import java.util.Date;
 //import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/*import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;*/
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 	
-private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	@Autowired
+	MainServiceImpl service;
+	
+	/*
+	 * private static final Logger logger =
+	 * LoggerFactory.getLogger(MainController.class);
+	 */
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -46,7 +55,17 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 	 * return "codeGroupRegForm"; }
 	 */
 	@RequestMapping(value="/")
-	public String Main() throws Exception{
+	public String Main(Model model) throws Exception{
+		
+		List<Main> main =service.mainList();
+		model.addAttribute("main", main);
+		
+		List<Main> best = service.bestList();
+		model.addAttribute("best", best);
+		
+		List<Main> newList = service.newList();
+		model.addAttribute("newList", newList);
+		
 		return "infra/main/user/main";
 	}
 	

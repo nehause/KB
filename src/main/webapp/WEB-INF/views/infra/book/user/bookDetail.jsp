@@ -89,6 +89,11 @@
 							</li>
 							<li><a><span>구매가능수량</span> : <c:out value="${item.stock }"/></a></li>
 						</ul>
+						<p>
+							<b style="color: black">
+								<c:out value="${item.topic }"/>
+							</b>
+						</p>
 						<div class="product_count">
 							<label for="qty">수량:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">

@@ -126,10 +126,6 @@
 								<label for="phone">휴대폰 번호</label>
 								<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="숫자">
 							</div>
-							<div class="col-sm-5 gy-4">
-								<label for="number">집전화 번호</label>
-								<input type="text" class="form-control" id="number" name="number" value="<c:out value="${item.number }"/>" placeholder="숫자">
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3 gy-4 offset-1">

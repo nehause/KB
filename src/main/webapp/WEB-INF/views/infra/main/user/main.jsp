@@ -53,61 +53,44 @@
 	<%@include file="../../../common/user/include/header.jsp"%>
 	<!-- pagination e -->
 
-	<!-- start banner Area -->
-	<section class="banner-area">
-		<div class="container">
-			<div class="row fullscreen align-items-center justify-content-start">
-				<div class="col-lg-12">
-					<div class="active-banner-slider owl-carousel">
-						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1>절대 읽지마라! <br>죽을때까지 순리자로 살고싶으면</h1>
-									<p>오타쿠 흙수저에서 월 1억 자동 수익을 실현한 무자본 연쇄창업마, 라이프해커 자청의 인생 역주행 공식 대공개!</p>
-									<div class="add-bag d-flex align-items-center">
-										<a class="add-btn crossCenter" href="../book/bookView.html"><span class="lnr lnr-cross"></span></a>
-										<span class="add-text text-uppercase">구매하러가기</span>
+	<form id="MForm" name="MForm">
+		<input type="hidden" id="bookSeq" name="bookSeq">
+		<!-- start banner Area -->
+		<section class="banner-area">
+			<div class="container">
+				<div class="row fullscreen align-items-center justify-content-start">
+					<div class="col-lg-12">
+						<div class="active-banner-slider owl-carousel">
+							<c:forEach items="${main}" var="main" varStatus="status">
+							<!-- single-slide -->
+								<div class="row single-slide align-items-center d-flex">
+									<div class="col-lg-5 col-md-6">
+										<div class="banner-content">
+											<h1><c:out value="${main.topic }" /></h1>
+											<p><c:out value="${main.shortIntro }" /></p>
+											<div class="add-bag d-flex align-items-center">
+												<a class="add-btn crossCenter" href="javascript:goDetail(<c:out value="${main.bookSeq }"/>)"><span class="lnr lnr-cross"></span></a>
+												<span class="add-text text-uppercase">구매하러가기</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 offset-2">
+										<div class="banner-img">
+											<a href="javascript:goDetail(<c:out value="${main.bookSeq }"/>)">
+												<c:out value="${main.sign }" />
+											</a>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-lg-4 offset-2">
-								<div class="banner-img">
-									<a href="../book/bookView.html">
-										<img class="img-fluid" src="/resources/user/images/b1.jpg" alt="">
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- single-slide -->
-						<div class="row single-slide">
-							<div class="col-lg-5">
-								<div class="banner-content">
-									<h1>2022 칸 영화제 감독상 수상작
-									<br>〈헤어질 결심〉 오리지널 각본을 만나다</h1>
-									<p>영화 각본이 선사하는 즐거움 중 하나는 촬영과 편집을 마친 최종 결과물과의 차이를 발견하는 것이다.<br>
-									  『헤어질 결심 각본』은 특히 이런 발견의 즐거움을 풍부하게 담고 있다.</p>
-									<div class="add-bag d-flex align-items-center">
-										<a class="add-btn crossCenter" href=""><span class="lnr lnr-cross"></span></a>
-										<span class="add-text text-uppercase">구매하러가기</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 offset-2">
-								<div class="banner-img">
-									<a href="#">
-										<img class="img-fluid" src="/resources/user/images/b2.jpg" alt="">
-									</a>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
-
+		</section>
+		<!-- End banner Area -->
+	</form>
+	
 	<!-- start features Area -->
 	<section class="features-area section_gap">
 		<div class="container">
@@ -228,10 +211,22 @@
 	<!-- bestNewList Start -->
 	<%@include file="../../../common/user/include/bestNewList.jsp"%>
 	<!-- bestNewList End -->
-
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlDetail = "/book/bookDetail";
+	var seq = $("input:hidden[name=bookSeq]");
+	var form = $("form[name=MForm]"); 
+	
+	goDetail = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlDetail).submit();
+	}
+	
+	</script>
 
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>

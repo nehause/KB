@@ -60,8 +60,8 @@
 	</section>
 	<!-- End Banner Area -->
 	<div class="container">
-		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-md-5">
+		<div class="row justify-content-center">
+			<!-- <div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
 					<div class="head">국내 도서</div>
 					<ul class="main-categories">
@@ -231,7 +231,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">

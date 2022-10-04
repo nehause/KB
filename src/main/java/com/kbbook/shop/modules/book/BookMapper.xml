@@ -76,6 +76,7 @@
 			,isbn
 			,page
 			,size
+			,topic
 			,introduce
 			,image
 			,list
@@ -98,6 +99,7 @@
 			,#{isbn}
 			,#{page}
 			,#{size}
+			,#{topic}
 			,#{introduce}
 			,#{image}
 			,#{list}
@@ -127,6 +129,7 @@
 			,isbn = #{isbn}
 			,page = #{page}
 			,size = #{size}
+			,topic = #{topic}
 			,introduce = #{introduce}
 			,image = #{image}
 			,list = #{list}

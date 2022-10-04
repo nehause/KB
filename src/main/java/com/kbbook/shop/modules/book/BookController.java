@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
+import com.kbbook.shop.modules.main.Main;
+import com.kbbook.shop.modules.main.MainServiceImpl;
 
 
 
@@ -19,6 +21,9 @@ import com.kbbook.shop.common.constants.Constants;
 public class BookController {
 	@Autowired
 	BookServiceImpl service;
+	
+	@Autowired
+	MainServiceImpl mainService;
 	
 	
 	public void setSearchAndPaging(BookVo vo) throws Exception {
@@ -122,6 +127,12 @@ public class BookController {
 		List<Book> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
+		List<Main> best = mainService.bestList();
+		model.addAttribute("best", best);
+		
+		List<Main> newList = mainService.newList();
+		model.addAttribute("newList", newList);
+		
 		return "infra/book/user/bookIndex";
 	}
 	
@@ -130,6 +141,13 @@ public class BookController {
 		
 		Book result = service.selectSeq(vo);
 		model.addAttribute("item", result);
+		
+		List<Main> best = mainService.bestList();
+		model.addAttribute("best", best);
+		
+		List<Main> newList = mainService.newList();
+		model.addAttribute("newList", newList);
+
 		
 		return "infra/book/user/bookDetail";
 	}

@@ -157,22 +157,31 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="introduce">소개</label>
-								<textarea class="form-control" id="introduce" name="introduce" rows="" cols=""><c:out value="${item.introduce }"/></textarea>
+								<label for="topic">주제</label>
+								<textarea class="form-control" id="topic" name="topic" rows="" cols=""><c:out value="${item.topic }"/></textarea>
 							</div>
 							<div class="col-sm-5 gy-4">
-								<label for="list">목차</label>
-								<textarea class="form-control" id="list" name="list" rows="" cols=""><c:out value="${item.list }"/></textarea>
+								<label for="introduce">소개</label>
+								<textarea class="form-control" id="introduce" name="introduce" rows="" cols=""><c:out value="${item.introduce }"/></textarea>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
+								<label for="list">목차</label>
+								<textarea class="form-control" id="list" name="list" rows="" cols=""><c:out value="${item.list }"/></textarea>
+							</div>
+							<div class="col-sm-5 gy-4">
 								<label for="content">내용</label>
 								<textarea class="form-control" id="content" name="content" rows="" cols=""><c:out value="${item.content }"/></textarea>
 							</div>
-							<div class="col-sm-5 gy-4">
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
 								<label for="rop">출판사 서평</label>
 								<textarea class="form-control" id="rop" name="rop" rows="" cols=""><c:out value="${item.rop }"/></textarea>
+							</div>
+							<div class="col-sm-5 gy-4">
+								
 							</div>
 						</div>
 						<div class="row">
