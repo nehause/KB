@@ -95,7 +95,7 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="CSeq">코드 번호</label>
-								<input type="text" class="form-control" id="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성">
+								<input type="text" class="form-control" id="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성" readonly>
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="COrder">순서</label>
@@ -132,7 +132,11 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="CRegistration">등록일</label>
-								<input type="text" class="form-control" id="CRegistration" name="CRegistration" value="<c:out value="${item.CRegistration }"/>" placeholder="숫자">
+								<input type="text" class="form-control" id="CRegistration" name="CRegistration" value="<c:out value="${item.CRegistration }"/>" placeholder="숫자" disable>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="CCorrectation">수정일</label>
+								<input type="text" class="form-control" id="CCorrectation" name="CCorrectation" value="<c:out value="${item.CCorrectation }"/>" placeholder="숫자" disable>
 							</div>
 						</div>
 						<!-- viewBtn start -->

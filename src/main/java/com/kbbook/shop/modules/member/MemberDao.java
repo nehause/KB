@@ -87,4 +87,5 @@ public class MemberDao {
 	public List<Member> favorite(Member dto) {
 		return sqlSession.selectList(namespace + ".favorite", dto);
 	}
+	
 }

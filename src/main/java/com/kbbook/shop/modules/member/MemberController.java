@@ -98,8 +98,9 @@ public class MemberController {
 			return "redirect:/member/memberList";
 		}
 	}
+	
 	@SuppressWarnings(value= {"all"})
-	@RequestMapping(value="userInsert")
+	@RequestMapping(value="userInst")
 	public String userInsert(Member dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		
 		setCheckboxNull(dto);

@@ -26,6 +26,8 @@ public class Book {
 	private Integer amount;
 	private Integer delNy;
 	private String writer_writerSeq;
+	//정보 수정일
+	private Date doc;
 	
 	private int price;
 	
@@ -165,8 +167,14 @@ public class Book {
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
+	public Date getDoc() {
+		return doc;
+	}
+	public void setDoc(Date doc) {
+		this.doc = doc;
+	}
+	
 	//join
-
 	public String getWriter() {
 		return writer;
 	}

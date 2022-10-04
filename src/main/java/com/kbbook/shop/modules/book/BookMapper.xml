@@ -92,7 +92,7 @@
 			,#{subName}
 			,#{publisher}
 			,#{dop}
-			,#{dor}
+			,default
 			,#{cost}
 			,#{sale}
 			,#{accmulate}
@@ -137,6 +137,7 @@
 			,rop = #{rop}
 			,stock = #{stock}
 			,amount = #{amount}
+			,doc = default
 		WHERE 1=1
 			AND	bookSeq = #{bookSeq}
 	</update>

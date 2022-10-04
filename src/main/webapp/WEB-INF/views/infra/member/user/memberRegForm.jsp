@@ -348,7 +348,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
 	
-		var goUrlInsert = "/member/memberInst";				/* #-> */
+		var goUrlInsert = "/member/userInst";				/* #-> */
 		var goUrlLogin = "/loginForm";
 		var seq = $("input:hidden[name=memberSeq]");
 		var form = $("form[name=UMRForm]"); 

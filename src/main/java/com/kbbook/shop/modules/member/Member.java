@@ -32,6 +32,7 @@ public class Member extends Order{
 	private Integer memberDelNy;
 	private Integer memberUseNy;
 	private Date registration;
+	private Date correctation;
 	
 	private boolean autoLogin;
 	
@@ -202,6 +203,13 @@ public class Member extends Order{
 	}
 	public void setRegistration(Date registration) {
 		this.registration = registration;
+	}
+	
+	public Date getCorrectation() {
+		return correctation;
+	}
+	public void setCorrectation(Date correctation) {
+		this.correctation = correctation;
 	}
 	public boolean isAutoLogin() {
 		return autoLogin;
