@@ -34,7 +34,6 @@
 			,gender
 			,dob
 			,phone
-			,number
 			,email
 			,emailStart
 			,emailEnd
@@ -59,7 +58,6 @@
 			,#{gender}
 			,#{dob}
 			,#{phone}
-			,#{number}
 			,#{email}
 			,#{emailStart}
 			,#{emailEnd}
@@ -91,7 +89,6 @@
 			,gender = #{gender}
 			,dob = #{dob}
 			,phone = #{phone}
-			,number = #{number}
 			,email = #{email}
 			,emailStart = #{emailStart}
 			,emailEnd = #{emailEnd}
