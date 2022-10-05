@@ -84,6 +84,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public Member findIdPhoneCheck(Member dto) throws Exception{
+		return dao.findIdPhoneCheck(dto);
+	}
+	
+	@Override
+	public Member findIdEmailCheck(Member dto) throws Exception{
+		return dao.findIdEmailCheck(dto);
+	}
+	
+	@Override
 	public int selectOneUserNameCheck(Member dto) throws Exception{
 		return dao.selectOneUserNameCheck(dto);
 	}

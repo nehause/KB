@@ -93,7 +93,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="button" id="loginBtn" name="loginBtn" class="primary-btn">로그인</button>
-								<a href="#findIdPassword" data-toggle="modal" data-target="#findIdPassword" style="margin-top: 10px; margin-bottom: 10px;">아이디/비밀번호 찾기</a>
+								<a href="#findIdPassword" data-toggle="modal" data-target="#findIdPassword" style="margin-top: 10px; margin-bottom: 10px;">아이디 찾기</a>
 								<button type="submit" value="kakao" class="primary-btn genric-btn warning">
 									<i class="fa-solid fa-comment"></i> 카카오
 								</button>
@@ -123,80 +123,62 @@
 					<div class="modal-header">
 						<ul class="nav nav-tabs col-lg-12" id="myTab" role="tablist">
 							<li class="col-lg-10">
-								<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: left;">아이디 / 비밀번호 찾기</h3>
+								<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: left;">아이디 찾기</h3>
 							</li>
 							<li>
 								<button type="button" class="border border-0" style="vertical-align: middle; background-color: #E8F0F2;" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x fa-2x"></i></button>
 							</li>
 							<li class="nav-item col-lg-5" style="margin:0px;">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#findId" role="tab" aria-controls="findId" aria-selected="true">아이디 찾기</a>
+								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#findId" role="tab" aria-controls="findId" aria-selected="true">전화번호로 찾기</a>
 							</li>
 							<li class="nav-item col-lg-5">
-								<a class="nav-link" id="writer-tab" data-toggle="tab" href="#findPassword" role="tab" aria-controls="findPassword" aria-selected="false">비밀번호 찾기</a>
+								<a class="nav-link" id="writer-tab" data-toggle="tab" href="#findPassword" role="tab" aria-controls="findPassword" aria-selected="false">이메일로 찾기</a>
 							</li>
 						</ul>
 					</div>
 					<div class="modal-body">
-						<form name="findIdPasswordForm" method="get" action="loginForm" id="findIdPasswordForm">
-							<div class="tab-content" id="findIDPasswordContent">
-								<div class="tab-pane fade show active" id="findId" role="tabpanel" aria-labelledby="findIdTab">
+						<div class="tab-content" id="findIDPasswordContent">
+							<div class="tab-pane fade show active" id="findId" role="tabpanel" aria-labelledby="findIdTab">
+								<form method="post" id="FIPForm" name="FIPForm">
 									<h5>등록된 휴대폰 번호로 찾기</h5>
-									<input type="text" class="form-control" id="findIdNumberName" name="findIdNumberName" placeholder="이름">
-									<input type="text" class="form-control" id="findIdNumberNumber" name="findIdNumberNumber" placeholder="전화번호 ex)01012345678">
+									<input type="text" class="form-control my-2" id="FIPName" name="FIPName" placeholder="이름">
+									<input type="text" class="form-control my-2" id="FIPhone" name="FIPhone" placeholder="전화번호 ex)01012345678">
 									<div style="height: 30px;"></div>
-									<h5>등록된 이메일로 찾기</h5>
-									<input type="text" class="form-control" id="findIdEmailName" name="findIdEmailName" placeholder="이름">
-									<div class="row">
-			                            <div class="col-md-4 form-group">
-			                                <input type="text" class="form-control" id="findIdEmailFirst" name="findIdEmailFirst" placeholder="이메일*">
-			                            </div>
-			                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
-			                            <div class="col-md-4 form-group">
-			                                <input type="text" class="form-control" id="findIdEmailLast" name="findIdEmailLast" placeholder="직접입력">
-			                            </div>
-			                            <div class="col-md-3 form-group" style="padding-left: 12px;">
-			                                <select class="country_select" id="findIdEmailLastSelect" name="findIdEmailLastSelect" style="width: 76px;" onchange="idSelectEmail();">
-			                                    <option value="">직접입력</option>
-			                                    <option value="naver.com">네이버</option>
-			                                    <option value="gmail.com">구글</option>
-			                                    <option value="kakao.com">카카오</option>
-			                                </select>
-			                            </div>
-		                            </div>
-								</div>
-								<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
-									<h5>등록된 휴대폰 번호로 찾기</h5>
-									<input type="text" class="form-control" id="FindPhoneId" name="FindPhoneId" placeholder="아이디">
-									<input type="text" class="form-control" id="FindPhonepassword" name="password" placeholder="이름">
-									<input type="text" class="form-control" id="number" name="number" placeholder="전화번호 ex)01012345678">
-									<div style="height: 30px;"></div>
-									<h5>등록된 이메일로 찾기</h5>
-									<input type="text" class="form-control" id="findPasswordEmailId" name="findPasswordEmailId" placeholder="아이디">
-									<input type="text" class="form-control" id="findPasswordEmailName" name="findPasswordEmailName" placeholder="이름">
-									<div class="row">
-			                            <div class="col-md-4">
-			                                <input type="text" class="form-control" id="findPasswordEmailFirst" name="findPasswordEmailFirst" placeholder="이메일*">
-			                            </div>
-			                            <span class="align-self-center" style="margin-bottom: 20px"> @ </span>
-			                            <div class="col-md-4">
-			                                <input type="text" class="form-control" id="findPasswordEmailLast" name="findPasswordEmailLast" placeholder="직접입력">
-			                            </div>
-			                            <div class="col-md-3" style="padding-left: 12px;">
-			                                <select class="country_select" id="findPasswordEmailLastSelect" name="findPasswordEmailLastSelect" onchange="passwordSelectEmail();">
-			                                    <option value="">직접입력</option>
-			                                    <option value="naver.com">네이버</option>
-			                                    <option value="gmail.com">구글</option>
-			                                    <option value="kakao.com">카카오</option>
-			                                </select>
-			                            </div>
-		                            </div>
+								</form>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="FIPBtn" name="FIPBtn">확인</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">확인</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+							<div class="tab-pane fade" id="findPassword" role="tabpanel" aria-labelledby="findPasswordTab">
+								<form method="post" id="FIEForm" name="FIEForm">
+									<h5>등록된 이메일로 찾기</h5>
+									<input type="text" class="form-control my-2" id="FIEName" name="FIEName" placeholder="이름">
+									<div class="row">
+			                            <div class="col-md-4 form-group">
+			                                <input type="text" class="form-control" id="emailStart" name="emailStart" placeholder="이메일*">
+			                            </div>
+			                            <span class="align-self-center" style="margin-bottom: 20px" id="emailMiddle" name="emailMiddle">@</span>
+			                            <div class="col-md-4 form-group">
+			                                <input type="text" class="form-control" id="emailEnd" name="emailEnd" placeholder="직접입력">
+			                            </div>
+			                            <div class="col-md-3 form-group" style="padding-left: 12px;">
+			                                <select class="country_select" id="emailLast" name="emailLast" style="width: 76px;">
+			                                    <option value="1">직접입력</option>
+			                                    <option value="2">네이버</option>
+			                                    <option value="3">구글</option>
+			                                    <option value="4">카카오</option>
+			                                </select>
+			                            </div>
+			                            <input type="hidden" id="email" name="email">
+		                            </div>
+								</form>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="FIEBtn" name="FIEBtn">확인</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -204,9 +186,25 @@
 	</section>
 	<!-- end modal area -->
 	
+	<!--Modal start-->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body" id="findIdFeedbackText" name="findIdFeedbackText">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Modal End -->
+	
+	
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	<!-- 로그인 스크립트 -->
 	<script type="text/javascript">
 	
 	function enterLogin() {
@@ -239,6 +237,52 @@
 			});
         }
 	}
+	
+	</script>
+	<script>
+	var mail = $("input:hidden[name=email]");
+	
+	function setMail() {
+		const emailStart = $("#emailStart").val();
+		const emailMiddle = $("#emailMiddle").text();
+		const emailEnd = $("#emailEnd").val();
+		if(emailStart != "" && emailEnd != "") {
+			mail.val(emailStart+emailMiddle+emailEnd);
+		}
+	};
+	
+	$("#emailStart").change(function(){
+		setMail()
+	});
+	
+	//직접 입력용
+	$("#emailEnd").change(function(){
+		setMail()
+	});
+	
+	$(function(){
+		$(document).ready(function(){
+			$('select[name=emailLast]').change(function() {
+				if($(this).val()=="1"){				
+					$('#emailEnd').val("");		
+					$("#emailEnd").attr("readonly", false);
+					setMail();
+				} else if($(this).val()=="2") {				
+					$('#emailEnd').val('naver.com');				
+					$("#emailEnd").attr("readonly", true);
+					setMail();
+				} else if($(this).val()=="3") {				
+					$('#emailEnd').val('google.com');				
+					$("#emailEnd").attr("readonly", true);
+					setMail();
+				} else {		
+					$('#emailEnd').val('kakao.com');				
+					$("#emailEnd").attr("readonly", true);
+					setMail();
+				}
+			});	
+		});
+	});	
 	
 	</script>
 
@@ -277,7 +321,65 @@
 	});
 	
 	</script>
-
+	
+	<!-- 로그인 스크립트 -->
+	
+	
+	<!-- 아이디 찾기 스트립트 -->
+	
+	<script>
+	$("#FIPBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/findIdPhone"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "name" : $("#FIPName").val(), "phone" : $("#FIPhone").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert('아이디는 '+response.id+' 입니다');
+					document.getElementById("findIdFeedbackText").innerText = "아이디는 "+response.id+" 입니다";
+				} else {
+					alert('해당하는 정보의 아이디가 존재하지 않습니다.');
+					document.getElementById("findIdFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	$("#FIEBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/findIdEmail"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "name" : $("#FIEName").val(), "email" : $("#email").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert('아이디는 '+response.id+' 입니다');
+					document.getElementById("findIdFeedbackText").innerText = "아이디는 "+response.id+" 입니다";
+				} else {
+					alert('해당하는 정보의 아이디가 존재하지 않습니다.');
+					document.getElementById("findIdFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

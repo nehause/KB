@@ -18,6 +18,9 @@ public interface MemberService {
 	public Member selectOneId(Member dto) throws Exception;
 	public Member selectOneLogin(Member dto) throws Exception;
 	public int selectOneIdCheck(Member dto) throws Exception;
+	public Member findIdPhoneCheck(Member dto) throws Exception;
+	public Member findIdEmailCheck(Member dto) throws Exception;
+	
 	public int selectOneUserNameCheck(Member dto) throws Exception;
 	public int selectOnePasswordCheck(Member dto) throws Exception;
 	public List<Member> memberOrderList(Member dto) throws Exception;

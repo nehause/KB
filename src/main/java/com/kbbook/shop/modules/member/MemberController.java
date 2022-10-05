@@ -204,6 +204,42 @@ public class MemberController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "findIdPhone")
+	public Map<String, Object> findIdPhoneCheck(Member dto) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member result = service.findIdPhoneCheck(dto);
+
+		if (result == null) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+			returnMap.put("id", result.getId());
+			System.out.println("result.getId(): " + result.getId());
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "findIdEmail")
+	public Map<String, Object> findIdEmailCheck(Member dto) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member result = service.findIdEmailCheck(dto);
+
+		if (result == null) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+			returnMap.put("id", result.getId());
+			System.out.println("result.getId(): " + result.getId());
+		}
+		return returnMap;
+	}
+	
 	
 	//usermapper
 	@RequestMapping(value="loginForm")
@@ -261,13 +297,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberRoomModPassword")
-	public String memberRoomModPassword() throws Exception {
+	public String memberRoomModPassword(Member dto, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		
+		Member result = service.selectSeq(vo);
+		model.addAttribute("item", result);
+		
 		return "infra/member/user/memberRoomModPassword";
-	}
-	
-	@RequestMapping(value="memberRoomTransportForm")
-	public String memberRoomTransportForm() throws Exception {
-		return "infra/member/user/memberRoomTransportForm";
 	}
 	
 	@ResponseBody
@@ -339,5 +375,7 @@ public class MemberController {
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+	
+	
 
 }

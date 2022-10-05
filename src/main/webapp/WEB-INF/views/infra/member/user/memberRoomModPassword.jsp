@@ -71,7 +71,7 @@
      			<!-- myRoomSidebar End -->
             	
                 <div class="col-lg-9">
-                	<form name="memberModPasswordForm" method="get" action="/resources/memberRoomForm.html" id="memberModPasswordForm">
+                	<form method="post" id="MPForm" name="MPForm">
 	                	<div style="height: 20px;"></div>
 						<table class="col-lg-12	border-top border-bottom">
 							<tr>
@@ -88,12 +88,14 @@
 	                    <h3><b>비밀번호 변경</b></h3>
 						<div style="height: 10px;"></div>
 	                    <table class="table col-lg-12">
+	                    	<input type="hidden" id="id" name="id" value="<c:out value="${item.id }"/>" >
 	                    	<tr>
-	                    		<td class="col-lg-2">
+	                    		<td class="col-lg-3">
 	                    			<span>현재 비밀번호</span>
 	                    		</td>
-	                    		<td class="col-lg-4">
-	                    			<input type="text" class="form-control" id="nowPassword" name="nowPassword">
+	                    		<td class="col-lg-3">
+	                    			<input type="password" class="form-control" id="nowPassword" name="nowPassword">
+	                    			<input type="hidden" id="PWCNY" name="PWCNY">
 	                    		</td>
 	                    		<td>
 	                    		</td>
@@ -101,11 +103,12 @@
 	                    		</td>
 	                    	</tr>
 	                    	<tr>
-	                    		<td class="col-lg-2">
+	                    		<td class="col-lg-3">
 	                    			<span>새 비밀번호</span>
 	                    		</td>
-	                    		<td class="col-lg-4">
-	                    			<input type="password" class="form-control" id="modPassword" name="modPassword" onkeyup="securityCheck();">
+	                    		<td class="col-lg-3">
+	                    			<input type="password" class="form-control" id="modPassword" name="modPassword">
+	                    			<input type="hidden" id="password" name="password">
 	                    		</td>
 	                    		<td class="col-lg-2">
 	                    			<span>비밀번호 안전도 <a id="passwordSecurity" style="color: red">낮음</a></span>
@@ -115,14 +118,15 @@
 	                    		</td>
 	                    	</tr>
 	                    	<tr>
-	                    		<td class="col-lg-2">
+	                    		<td class="col-lg-3">
 	                    			<span>새 비밀번호 확인</span>
 	                    		</td>
-	                    		<td class="col-lg-4">
+	                    		<td class="col-lg-3">
 	                    			<input type="password" class="form-control" id="checkModPassword" name="checkModPassword">
 	                    		</td>
 	                    		</td>
-	                    		<td>
+	                    		<td class="col-lg-2" style="padding-top:20px;">
+	                    			<span id="checkWord" name="checkWord"></span>
 	                    		</td>
 	                    		<td>
 	                    		</td>
@@ -139,7 +143,7 @@
 		                    	</td>
 	                    	</tr>
 	                    </table>
-                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modPasswordFormSubmit" onclick="modPasswordSubmit();"> 
+                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modPasswordFormSubmit"> 
                    			<i class="fa-solid fa-pencil"></i> 수정
                 		</button>
                     </form>
@@ -192,55 +196,45 @@
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
-	<script type="text/javascript">
 	
-	function modPasswordSubmit() {
-		document.getElementById("memberModPasswordForm").submit();
-	}
 	
-	function securityCheck(){
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script>
+	
+	var form = $("form[name=MPForm]"); 
+	
+	$("#nowPassword").on("focusout", function(){
+		/* if(validation() == false) return false; */
 		
-		var res = null;
-		var warning = document.getElementById("passwordSecurity");
-		
-		if (modPassword.length === 0){
-			return;
-		} else if(modPassword.length < 5 || modPassword.length > 16){
-			warning.value = "사용불가";
-			return;
-		}
-		
-		var security = new Array();
-		security.push("[A-Z]");
-		security.push("[a-z]");
-		security.push("[0-9]");
-		security.push("[!@#$%^&*()]");
-		
-		var cnt = 0;
-		
-		for(var i = 0; i < security.length; i++){
-			if(new ModExp(security[i]).test(modPassword)){
-				cnt++;
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/checkPassword"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "id" : $("#id").val(), "password" : $("#nowPassword").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					$("#PWCNY").val('yes')
+				} else {
+					$("#PWCNY").val('no')
+				}
 			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	$('#modPassword, #checkModPassword').on('keyup', function () {
+		if($("#modPassword").val() == $("#checkModPassword").val()){
+			$("#checkWord").text('일치').css('color', 'orange');
+		} else{
+			$("#checkWord").text('불일치').css('color', 'red');
 		}
 		
-		switch(cnt){
-		case 0:
-		case 1:
-		case 2:
-			waring.value = "사용불가";
-			break;
-		case 3:
-			waring.value = "적정";
-			waring.style.color="orange";
-			break;
-		case 4:
-			waring.value = "높음";
-			waring.style.color="green";
-			break;
-		}
-		
-	}
+	});
 	
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>

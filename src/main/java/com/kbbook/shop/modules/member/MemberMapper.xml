@@ -207,6 +207,24 @@
 			WHERE id = #{id}
 	</select>
 	
+	<select id="findIdPhoneCheck" resultMap="resultMapObj">
+		SELECT
+			id
+		FROM member
+		WHERE name = #{name}
+			<if test="phone != null and !phone.equals('')">AND phone = #{phone}</if>
+	
+	</select>
+	
+	<select id="findIdEmailCheck" resultMap="resultMapObj">
+		SELECT
+			id
+		FROM member
+			WHERE name = #{name}
+			<if test="email != null and !email.equals('')">AND email = #{email}</if>
+			
+	</select>
+	
 	<select id="selectOneUserNameCheck" resultType="Integer">
 		SELECT
 			 COUNT(userName) 
