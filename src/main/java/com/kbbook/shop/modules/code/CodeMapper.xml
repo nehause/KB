@@ -56,16 +56,14 @@
 			,CUseNy
 			,CDelNy
 			,COrder
-			,CRegistration
 		)
 		VALUES(
 			#{CCG_CGSeq}
 			,#{CNameKor}
 			,#{CNameEng}
-			,#{CUseNy}
+			,1
 			,0
 			,#{COrder}
-			,#{CRegistration}
 		)
 		<selectKey resultType="String" keyProperty="CSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -80,7 +78,6 @@
 			,CUseNy = #{CUseNy}
 			,COrder = #{COrder}
 			,CDelNy = #{CDelNy}
-			,CRegistration = #{CRegistration}
 		WHERE 1=1
 			AND	CSeq = #{CSeq}
 	</update>

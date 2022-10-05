@@ -55,6 +55,7 @@ public class BookController {
 		
 		if(vo.getBookSeq().equals("0") || vo.getBookSeq().equals("")) {
 			//insert
+			dto.setDelNy(dto.getDelNy() == null ? 0 : dto.getDelNy());
 		} else {
 			Book result = service.selectSeq(vo);
 			model.addAttribute("item", result);

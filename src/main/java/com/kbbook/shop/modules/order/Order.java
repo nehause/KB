@@ -11,6 +11,8 @@ public class Order {
 	private Date time;
 	private Integer purchaseStatus;
 	private Integer delNy;
+	//수정시간
+	private Date Toc;
 	
 	//join
 	private String memberName;
@@ -61,6 +63,12 @@ public class Order {
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
+	}
+	public Date getToc() {
+		return Toc;
+	}
+	public void setToc(Date toc) {
+		Toc = toc;
 	}
 	//join
 	public String getMemberName() {

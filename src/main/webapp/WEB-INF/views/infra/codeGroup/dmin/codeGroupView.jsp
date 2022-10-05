@@ -81,7 +81,7 @@
 							<H1>코드 그룹 관리</H1>
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="CGSeq">코드그룹 코드</label>
-								<input type="text" class="form-control" id="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성">
+								<input type="text" class="form-control" id="CGSeq" value="<c:out value="${item.CGSeq }"/>" placeholder="자동생성" readonly>
 							</div>
 						</div>
 						<div class="row">
@@ -96,13 +96,6 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CGUseNy">사용여부</label>
-								<select class="form-select" id="CGUseNy" name="CGUseNy">
-									<option value="0" <c:if test="${item.CGUseNy eq 0 }">selected</c:if>>N</option>
-									<option value="1" <c:if test="${item.CGUseNy eq 1 }">selected</c:if>>Y</option>
-								</select>
-							</div>
-							<div class="col-sm-5 gy-4">
 								<label for="codeGroupSequence">순서</label>
 								<input type="text" class="form-control" id="CGOrder" name="CGOrder" value="<c:out value="${item.CGOrder }"/>" placeholder="숫자">
 							</div>
@@ -115,11 +108,22 @@
 									<option value="1" <c:if test="${item.CGDelNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="CGUseNy">사용여부</label>
+								<select class="form-select" id="CGUseNy" name="CGUseNy">
+									<option value="0" <c:if test="${item.CGUseNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.CGUseNy eq 1 }">selected</c:if>>Y</option>
+								</select>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="CGRegistration">등록일</label>
-								<input type="text" class="form-control" id="CGRegistration" name="CGRegistration" value="<c:out value="${item.CGRegistration }"/>" placeholder="등록일">
+								<input type="text" class="form-control" id="CGRegistration" name="CGRegistration" value="<c:out value="${item.CGRegistration }"/>" placeholder="등록일" disabled>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="CGCorrectation">수정일</label>
+								<input type="text" class="form-control" id="CGCorrectation" name="CGCorrectation" value="<c:out value="${item.CGCorrectation }"/>" placeholder="수정일" disabled>
 							</div>
 						</div>
 						<!-- viewBtn start -->

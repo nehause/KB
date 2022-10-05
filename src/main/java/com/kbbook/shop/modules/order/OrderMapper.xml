@@ -72,7 +72,6 @@
 			member_memberSeq
 			,transport_transportSeq
 			,payment
-			,time
 			,purchaseStatus
 			,delNy
 		)
@@ -80,7 +79,6 @@
 			#{member_memberSeq}
 			,#{transport_transportSeq}
 			,#{payment}
-			,#{time}
 			,#{purchaseStatus}
 			,0
 		)
@@ -95,7 +93,6 @@
 			member_memberSeq = member_memberSeq
 			,transport_transportSeq = transport_transportSeq
 			,payment = payment
-			,time = time
 			,purchaseStatus = purchaseStatus
 			,delNy = delNy
 		WHERE 1=1

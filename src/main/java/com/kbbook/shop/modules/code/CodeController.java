@@ -59,6 +59,7 @@ public class CodeController {
 		
 		if(vo.getCSeq().equals("0") || vo.getCSeq().equals("")) {
 			//insert
+			dto.setCUseNy(dto.getCUseNy() == null ? 1 : dto.getCUseNy());
 		} else {
 			Code result = service.selectSeq(vo);
 			model.addAttribute("item", result);

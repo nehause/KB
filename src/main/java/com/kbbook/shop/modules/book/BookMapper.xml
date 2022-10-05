@@ -11,7 +11,7 @@
 	<select id="selectWriter" resultMap="resultMapObj">
 		SELECT
 			a.book_bookSeq
-			a.writer_writerSeq
+			,a.writer_writerSeq
 		FROM book_writer a
 		JOIN book b on a.book_bookSeq = b.bookSeq
 		WHERE 1=1
@@ -42,7 +42,6 @@
 	
 	<sql id ="selectCommon">
 	FROM book a
-	JOIN book_writer b on b.book_bookSeq = a.bookSeq 
 	WHERE 1=1
 		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
 		<choose>
@@ -69,7 +68,6 @@
 			,subName
 			,publisher
 			,dop
-			,dor
 			,cost
 			,sale
 			,accmulate
@@ -92,7 +90,6 @@
 			,#{subName}
 			,#{publisher}
 			,#{dop}
-			,default
 			,#{cost}
 			,#{sale}
 			,#{accmulate}
@@ -122,7 +119,6 @@
 			,subName = #{subName}
 			,publisher = #{publisher}
 			,dop = #{dop}
-			,dor = #{dor}
 			,cost = #{cost}
 			,sale = #{sale}
 			,accmulate = #{accmulate}
@@ -137,7 +133,6 @@
 			,rop = #{rop}
 			,stock = #{stock}
 			,amount = #{amount}
-			,doc = default
 		WHERE 1=1
 			AND	bookSeq = #{bookSeq}
 	</update>
@@ -167,7 +162,7 @@
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">
-		SELECT COUNT(DISTINCT bookSeq)
+		SELECT COUNT(*)
 		<include refid="selectCommon" />
 	</select>
 

@@ -233,6 +233,17 @@
 		        <div class="col-lg-12">
 		        	<div class="row marginSpace">
 		        		<div class="col-lg-3 textCenter">
+		        			<b>구분</b>
+		        		</div>
+		        		<div class="col-lg-6">
+		        			<select class="country_select col-lg-6" style="display: inline; padding-right:60px;" id="regTransportHomeStart" name="regTransportHomeStart">
+                                <option value="1">집</option>
+                                <option value="2">그 외</option>
+                            </select>
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
 		        			<b>이름</b>
 		        		</div>
 		        		<div class="col-lg-9">
@@ -309,6 +320,17 @@
 		        <div class="col-lg-12">
 		        	<div class="row marginSpace">
 		        		<div class="col-lg-3 textCenter">
+		        			<b>구분</b>
+		        		</div>
+		        		<div class="col-lg-6">
+		        			<select class="country_select col-lg-6" style="display: inline; padding-right:60px;" id="regTransportHomeStart" name="regTransportHomeStart">
+                                <option value="1">집</option>
+                                <option value="2">그 외</option>
+                            </select>
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
 		        			<b>이름</b>
 		        		</div>
 		        		<div class="col-lg-9">
@@ -320,10 +342,13 @@
 		        			<b>주소</b>
 		        		</div>
 		        		<div class="col-lg-9">
-		        			<input type="text" class="form-control col-lg-4" style="display: inline;" id="modTransportZipCode" name="modTransportZipCode">
-			        		<input type="button" class="form-control genric-btn primary col-lg-4" id="modTransportSearch" name="modTransportAddressSearch" value="주소검색">
-		        			<input type="text" class="form-control" id="modTransportAddress" name="modTransportAddress">
-		        			<input type="text" class="form-control" id="modTransportAddressDetail" name="modTransportAddressDetail">
+		        			<input type="text" class="form-control col-lg-4" style="display: inline;" id="zip" name="zip">
+			        		<input type="button" class="form-control genric-btn primary col-lg-4" id="transportSearch" name="transportSearch" value="주소검색">
+		        			<input type="text" class="form-control" id="address1" name="address1">
+		        			<input type="text" class="form-control" id="address2" name="address2">
+		        			<input type="hidden" id="extraaddress" name="extraaddress">
+		        			<input type="hidden" id="lng" name="lng">
+		        			<input type="hidden" id="lat" name="lat">
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
@@ -391,6 +416,78 @@
 	  </div>
 	</div>
 	<!-- end modal area -->
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
+	<script>
+	    function PostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	                var geocoder = new daum.maps.services.Geocoder(); // 주소-좌표 변환 객체
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("extraaddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("extraaddress").value = '';
+	                }
+	                
+	                geocoder.addressSearch(data.address, function(results, status) {
+	                    // 정상적으로 검색이 완료됐으면
+	                    if (status === daum.maps.services.Status.OK) {
+
+	                        var result = results[0]; //첫번째 결과의 값을 활용
+
+	                        // 해당 주소에 대한 좌표를 받아서
+	                        var coords = new daum.maps.LatLng(result.y, result.x);
+	    	                document.getElementById("lng").value = coords.getLat(); // 위도 
+	    	                document.getElementById("lat").value = coords.getLng(); // 경도
+	    	                
+//	    	                //위의 것과 같다
+//	    	                document.getElementById("lng").value = result[0].y; // 위도
+//	    	                document.getElementById("lat").value = result[0].x; // 경도
+	    	                
+	                    }
+	                });
+	               
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('zip').value = data.zonecode; // 우편번호
+	                document.getElementById("address1").value = addr; // 주소
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("address2").focus();
+
+	            }
+	        }).open();
+	    }
+	</script>
 	
 	<script type="text/javascript">
 		function modCheckSubmit() {

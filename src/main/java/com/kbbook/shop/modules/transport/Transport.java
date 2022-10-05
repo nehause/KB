@@ -19,6 +19,7 @@ public class Transport extends Member{
 	private Integer useNy;
 	private Integer delNy;
 	private Date registration;
+	private Date correctation;
 	
 	//join
 	
@@ -127,8 +128,15 @@ public class Transport extends Member{
 	public void setRegistration(Date registration) {
 		this.registration = registration;
 	}
-
 	
+	public Date getCorrectation() {
+		return correctation;
+	}
+
+	public void setCorrectation(Date correctation) {
+		this.correctation = correctation;
+	}
+
 	// join
 	public String getName() {
 		return name;

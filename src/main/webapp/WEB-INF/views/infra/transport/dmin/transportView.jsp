@@ -166,12 +166,12 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="registration">등록일</label>
-								<input type="text" class="form-control" id="registration" name="registration" value="<c:out value="${item.registration }"/>" placeholder="등록일">
+								<input type="text" class="form-control" id="registration" name="registration" value="<c:out value="${item.registration }"/>" placeholder="등록일" disabled>
 							</div>
-							<%-- <div class="col-sm-5 gy-4">
+							<div class="col-sm-5 gy-4">
 								<label for="correctation">수정일</label>
-								<input type="text" class="form-control" id="correctation" name="correctation" value="<c:out value="${item.correctation }"/>" placeholder="수정일">
-							</div> --%>
+								<input type="text" class="form-control" id="correctation" name="correctation" value="<c:out value="${item.correctation }"/>" placeholder="수정일" disabled>
+							</div>
 						</div>
 						<!-- viewBtn start -->
 						<%@include file="../../../common/dmin/include/viewBtn.jsp"%>

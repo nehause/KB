@@ -208,7 +208,7 @@
 															<td><c:out value="${list.address1 }"/></td>
 															<td><c:out value="${list.address2 }"/></td>
 															<td><c:out value="${list.registration }"/></td>
-															<td></td>
+															<td><c:out value="${list.correctation }"/></td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>

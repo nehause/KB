@@ -48,7 +48,6 @@
 			,lat
 			,useNy
 			,delNy
-			,registration
 		)
 		VALUES (
 		
@@ -63,7 +62,6 @@
 			,#{lat}
 			,1
 			,0
-			,#{registration}
 		
 		)
 		<selectKey resultType="String" keyProperty="transportSeq" order="AFTER">
@@ -85,7 +83,6 @@
 		,lat = #{lat}
 		,useNy = #{useNy}
 		,delNy = #{delNy}
-		,registration = #{registration}
 	WHERE 1=1
 		AND transportSeq = #{transportSeq}
 	</update>

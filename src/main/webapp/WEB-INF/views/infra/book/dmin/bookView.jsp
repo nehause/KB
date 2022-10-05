@@ -196,19 +196,19 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="dor">등록일</label>
-								<input type="text" class="form-control" id="dor" name="dor" value="<c:out value="${item.dor }"/>" placeholder="숫자" readonly>
+								<input type="text" class="form-control" id="dor" name="dor" value="<c:out value="${item.dor }"/>" placeholder="등록일" disabled>
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="doc">수정일</label>
-								<input type="text" class="form-control" id="doc" name="doc" value="<c:out value="${item.doc }"/>" placeholder="숫자" readonly>
+								<input type="text" class="form-control" id="doc" name="doc" value="<c:out value="${item.doc }"/>" placeholder="수정일" disabled>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="delNy">삭제 여부</label>
 								<select class="form-select" id="delNy" name="delNy">
-									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>Y</option>
-									<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>N</option>
+									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
 						</div>

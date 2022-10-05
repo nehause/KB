@@ -146,7 +146,7 @@
                            </div>
                            <div class="row">
                             <div class="col-md-3 form-group">
-                                <input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${dto.zip }"/>" placeholder="우편번호">
+                                <input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${dto.zip }"/>" placeholder="우편번호" readonly>
                            	</div>
                            	<div class="col-md-2 form-group">
                                 <input type="button" class="form-control genric-btn primary" id="searchTransport" name="searchTransport" value="주소검색" onclick="PostCode()">
@@ -154,7 +154,7 @@
                             </div>
                             <div class="row">
                             <div class="col-md-7 form-group p_star">
-                                <input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${dto.address1 }"/>" placeholder="주소">
+                                <input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${dto.address1 }"/>" placeholder="주소" readonly>
                             </div>
                             <div class="col-md-2 form-group">
                                 <input type="hidden" class="form-control" id="extraAddress" name="extraAddress">

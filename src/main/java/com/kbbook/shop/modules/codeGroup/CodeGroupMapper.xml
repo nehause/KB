@@ -58,15 +58,13 @@
 			,CGUseNy
 			,CGOrder
 			,CGDelNy
-			,CGRegistration
 		)
 		VALUES (
 			#{CGNameKor}
 			,#{CGNameEng}
-			,#{CGUseNy}
+			,1
 			,#{CGOrder}
 			,0
-			,#{CGRegistration}
 		)
 		<selectKey resultType="String" keyProperty="CGSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -88,7 +86,6 @@
 			,CGUseNy = #{CGUseNy}
 			,CGOrder = #{CGOrder}
 			,CGDelNy = #{CGDelNy}
-			,CGRegistration = #{CGRegistration}
 		WHERE 1=1
 			AND	CGSeq = #{CGSeq}
 	</update>
