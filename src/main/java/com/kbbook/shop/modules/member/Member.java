@@ -38,6 +38,7 @@ public class Member extends Order{
 	
 	// favorite table
 	
+	private String bookSeq;
 	private String bookSign;
 	private String bookName;
 	private Integer bookPrice;
@@ -222,6 +223,12 @@ public class Member extends Order{
 	
 	public String getBookSign() {
 		return bookSign;
+	}
+	public String getBookSeq() {
+		return bookSeq;
+	}
+	public void setBookSeq(String bookSeq) {
+		this.bookSeq = bookSeq;
 	}
 	public void setBookSign(String bookSign) {
 		this.bookSign = bookSign;

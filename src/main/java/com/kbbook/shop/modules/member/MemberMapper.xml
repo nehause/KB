@@ -289,7 +289,8 @@
 	
 	<select id="favorite" resultMap="resultMapObj">
 	select
-		b.sign as bookSign
+		b.bookSeq as bookSeq
+		,b.sign as bookSign
 	    ,b.name as bookName
 	    ,b.cost * (1-b.sale) as bookPrice
 	    ,b.cost as bookCost

@@ -40,6 +40,22 @@
 			<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
+	<select id="userSelectList" resultMap="resultMapObj">
+		SELECT
+			a.*
+			,cost*(1-sale) as price
+		FROM book a
+		WHERE 1=1
+		<choose>
+			<when test="searchOption == 1">ORDER BY bookSeq desc</when> <!-- 최신 등록순 -->
+			<when test="searchOption == 2">ORDER BY dop desc</when>		<!-- 출간일 -->
+			<when test="searchOption == 3">ORDER BY price desc</when> 	<!-- 높은 가격순 -->
+			<when test="searchOption == 4">ORDER BY price asc</when>	<!-- 낮은 가격순 -->
+			<when test="searchOption == 5">ORDER BY amount desc</when> 	<!-- 많이 구매된 순 -->
+			<otherwise></otherwise>
+		</choose>
+	</select>
+	
 	<sql id ="selectCommon">
 	FROM book a
 	WHERE 1=1

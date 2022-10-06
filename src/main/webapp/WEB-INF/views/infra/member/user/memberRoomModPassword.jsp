@@ -89,6 +89,7 @@
 						<div style="height: 10px;"></div>
 	                    <table class="table col-lg-12">
 	                    	<input type="hidden" id="id" name="id" value="<c:out value="${item.id }"/>" >
+	                    	<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${item.memberSeq }"/>">
 	                    	<tr>
 	                    		<td class="col-lg-3">
 	                    			<span>현재 비밀번호</span>
@@ -110,8 +111,7 @@
 	                    			<input type="password" class="form-control" id="modPassword" name="modPassword">
 	                    			<input type="hidden" id="password" name="password">
 	                    		</td>
-	                    		<td class="col-lg-2">
-	                    			<span>비밀번호 안전도 <a id="passwordSecurity" style="color: red">낮음</a></span>
+	                    		<td class="col-lg-2">	
 	                    		</td>
 	                    		<td class="col-lg-4">
 	                    			<span>8~15자리의 영문+숫자+특수문자 조합이 가장 안전합니다.</span>
@@ -143,7 +143,7 @@
 		                    	</td>
 	                    	</tr>
 	                    </table>
-                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modPasswordFormSubmit"> 
+                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="PWUBtn" name="PWUBtn"> 
                    			<i class="fa-solid fa-pencil"></i> 수정
                 		</button>
                     </form>
@@ -200,8 +200,12 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
-	
+	var passwordChange = "/member/passwordUpdate"
 	var form = $("form[name=MPForm]"); 
+	
+	$("#modPassword").on("focusout", function(){
+		$("#password").val($("#modPassword").val());
+	});
 	
 	$("#nowPassword").on("focusout", function(){
 		/* if(validation() == false) return false; */
@@ -232,6 +236,21 @@
 			$("#checkWord").text('일치').css('color', 'orange');
 		} else{
 			$("#checkWord").text('불일치').css('color', 'red');
+		}
+		
+	});
+	
+	$("#PWUBtn").on("click", function(){
+		if($("#PWCNY").val() == 'no'){
+			if($("#checkWord").text() == '일치'){
+				form.attr("action", passwordChange).submit();
+			} else{
+				alert("체크된 비밀번호가 일치하지 않습니다.")
+				return false;
+			}
+		} else {
+			alert("현재 비밀번호가 일치하지 않습니다.")
+			return false;
 		}
 		
 	});

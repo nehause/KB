@@ -300,6 +300,9 @@ public class MemberController {
 	public String memberRoomModPassword(Member dto, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession, Model model) throws Exception {
 		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		
+		List<Member> favorite = service.favorite(dto);
+		model.addAttribute("favorite", favorite);
+		
 		Member result = service.selectSeq(vo);
 		model.addAttribute("item", result);
 		

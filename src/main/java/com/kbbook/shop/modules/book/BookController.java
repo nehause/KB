@@ -1,12 +1,15 @@
 package com.kbbook.shop.modules.book;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
@@ -30,7 +33,12 @@ public class BookController {
 		vo.setSearchDor(vo.getSearchDor() == null ? 2 : vo.getSearchDor());
 //		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 //		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
-		vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo)); 
+	}
+	
+	// 페이지네이션 화면에 보여줄 데이터 줄 갯수 바꾸는 함수
+	public void setRowNumToShow(BookVo vo, int Line) throws Exception {
+		vo.setRowNumToShow(Line);
 	}
 
 	
@@ -114,6 +122,20 @@ public class BookController {
 		return "redirect:/book/bookList";
 	}
 	
+	/*
+	 * //ajax
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "changeRowNumToShow") public Map<String, Object>
+	 * changeRowNumToShow(BookVo vo) throws Exception {
+	 * 
+	 * Map<String, Object> returnMap = new HashMap<String, Object>();
+	 * 
+	 * setSearchAndPaging(vo); returnMap.put("rt", search);
+	 * 
+	 * return returnMap; }
+	 */
 	
 	//userPage
 	
@@ -125,6 +147,7 @@ public class BookController {
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
 		
 		setSearchAndPaging(vo);
+		setRowNumToShow(vo, 6); // ajax 처리
 		List<Book> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		

@@ -22,6 +22,10 @@ public class BookServiceImpl implements BookService{
 	public int insert(Book dto) throws Exception {
 		
 		int result = dao.insert(dto);
+		
+// for문 작가 갯수 확인
+//		작가 등록
+		
 		System.out.println("service result: " + result);
 		
 		return result;

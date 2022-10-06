@@ -29,6 +29,7 @@ public class Book {
 	//정보 수정일
 	private Date doc;
 	
+	
 	private int price;
 	
 	// join

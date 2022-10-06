@@ -196,128 +196,125 @@
                         <h2>관심 상품</h2>
 						<section class="exclusive-deal-area">
 							<div class="container-fluid">
-								<div class="row justify-content-center align-items-center">
-									<div class="col-lg-12 no-padding exclusive-right">
-										<div class="active-exclusive-product-slider">
-											<div class="single-exclusive-slider">
-												<div class="single-product-slider">
-													<div class="container">
+								<form method="post" id="MRFForm" name="MRFForm">
+									<input type="hidden" id="bookSeq" name="bookSeq">
+									<div class="row justify-content-center align-items-center">
+										<div class="col-lg-12 no-padding exclusive-right">
+											<div class="active-exclusive-product-slider">
+												<div class="single-exclusive-slider">
+													<div class="single-product-slider">
+														<div class="container">
+															<div class="row">
+																<c:choose>
+																	<c:when test="${fn:length(favorite) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+																		<!-- single product -->
+																		<div class="col-lg-12 col-md-12" style="padding-top: 70px;">
+																			<div class="single-product">
+																				<div class="product-details">
+																					<h6>더 많은 관심 상품을 추가해주세요</h6>
+																					<div class="price">
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</c:when>
+																	<c:otherwise>
+																		<c:forEach items="${favorite}" var="favorite" varStatus="status" end="2">
+																			<!-- single product -->
+																			<div class="col-lg-4 col-md-6">
+																				<div class="single-product">
+																					<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																					<div class="product-details">
+																						<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
+																						<div class="price">
+																							<h6>₩<c:out value="${favorite.bookPrice }" /></h6>
+																							<h6 class="l-through">₩<c:out value="${favorite.bookCost }" /></h6>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</c:forEach>
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</div>
+													</div>
+												</div>
+												<c:choose>
+													<c:when test="${fn:length(favorite) gt 4}"> <!-- length(list)가 0이면 이걸 하고 -->
+														 <div class="row">
+															<c:forEach items="${favorite}" var="favorite" varStatus="status" begin="3" end="5">
+																<!-- single product -->
+																<div class="col-lg-4 col-md-6">
+																	<div class="single-product">
+																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																		<div class="product-details">
+																			<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
+																			<div class="price">
+																				<h6>₩<c:out value="${favorite.bookPrice }" /></h6>
+																				<h6 class="l-through">₩<c:out value="${favorite.bookCost }" /></h6>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</c:forEach>
+														</div>
+													</c:when>
+													<c:otherwise>
 														<div class="row">
 															<!-- single product -->
-															<div class="col-lg-4 col-md-6">
+															<div class="col-lg-12 col-md-12" style="padding-top: 70px;">
 																<div class="single-product">
-																	<img class="img-fluid" src="../images/product/pb1.png" alt="">
 																	<div class="product-details">
-																		<h6>역행자</h6>
+																		<h6>더 많은 관심 상품을 추가해주세요</h6>
 																		<div class="price">
-																			<h6>₩15,750</h6>
-																			<h6 class="l-through">₩17,000</h6>
 																		</div>
 																	</div>
 																</div>
 															</div>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<c:choose>
+													<c:when test="${fn:length(favorite) gt 7}"> <!-- length(list)가 0이면 이걸 하고 -->
+														 <div class="row">
+															<c:forEach items="${favorite}" var="favorite" varStatus="status" begin="6" end="8">
+																<!-- single product -->
+																<div class="col-lg-4 col-md-6">
+																	<div class="single-product">
+																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																		<div class="product-details">
+																			<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
+																			<div class="price">
+																				<h6>₩<c:out value="${favorite.bookPrice }" /></h6>
+																				<h6 class="l-through">₩<c:out value="${favorite.bookCost }" /></h6>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</c:forEach>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<!-- single product -->
+														<div class="row">
 															<!-- single product -->
-															<div class="col-lg-4 col-md-6">
+															<div class="col-lg-12 col-md-12" style="padding-top: 70px;">
 																<div class="single-product">
-																	<img class="img-fluid" src="../images/product/pb2.png" alt="">
 																	<div class="product-details">
-																		<h6>헤어질 결심 각본</h6>
+																		<h6>더 많은 관심 상품을 추가해주세요</h6>
 																		<div class="price">
-																			<h6>₩13,500</h6>
-																			<h6 class="l-through">₩15,000</h6>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!-- single product -->
-															<div class="col-lg-4 col-md-6">
-																<div class="single-product">
-																	<img class="img-fluid" src="../images/product/pb3.png" alt="">
-																	<div class="product-details">
-																		<h6>세상의 마지막 기차역</h6>
-																		<div class="price">
-																			<h6>₩12,600</h6>
-																			<h6 class="l-through">₩14,000</h6>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<!-- single product -->
-												<div class="col-lg-4 col-md-6">
-													<div class="single-product">
-														<img class="img-fluid" src="../images/product/pb4.png" alt="">
-														<div class="product-details">
-															<h6>호감 가는 말투에는 비밀이 있다</h6>
-															<div class="price">
-																<h6>₩15,120</h6>
-																<h6 class="l-through">₩16,800</h6>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- single product -->
-												<div class="col-lg-4 col-md-6">
-													<div class="single-product">
-														<img class="img-fluid" src="../images/product/ib1.png" alt="">
-														<div class="product-details">
-															<h6>비비안 마이어</h6>
-															<div class="price">
-																<h6>₩28,800</h6>
-																<h6 class="l-through">₩32,000</h6>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- single product -->
-												<div class="col-lg-4 col-md-6">
-													<div class="single-product">
-														<img class="img-fluid" src="../images/product/ib2.png" alt="">
-														<div class="product-details">
-															<h6>세 번째 위기, 세 번째 기회</h6>
-															<div class="price">
-																<h6>₩16,200</h6>
-																<h6 class="l-through">₩18,000</h6>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<!-- single product -->
-												<div class="col-lg-4 col-md-6">
-													<div class="single-product">
-														<img class="img-fluid" src="../images/product/ib3.png" alt="">
-														<div class="product-details">
-															<h6>파칭코 1</h6>
-															<div class="price">
-																<h6>₩14,220</h6>
-																<h6 class="l-through">₩15,800</h6>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- single product -->
-												<div class="col-lg-4 col-md-6">
-													<div class="single-product">
-														<img class="img-fluid" src="../images/product/ib4.png" alt="">
-														<div class="product-details">
-															<h6>때로는 행복 대신 불행을 택하기도 한다</h6>
-															<div class="price">
-																<h6>₩14,400</h6>
-																<h6 class="l-through">₩16,000</h6>
-															</div>
-														</div>
-													</div>
-												</div>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</section>
 						<!-- End exclusive deal Area -->
@@ -332,6 +329,18 @@
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlDetail = "/book/bookDetail";
+	var seq = $("input:hidden[name=bookSeq]");
+	var form = $("form[name=MRFForm]"); 
+	
+	goDetail = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlDetail).submit();
+	}
+	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

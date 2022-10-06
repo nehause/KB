@@ -55,6 +55,11 @@ public class MainController {
 	 * return "codeGroupRegForm"; }
 	 */
 	@RequestMapping(value="/")
+	public String Enter() throws Exception{
+		return "infra/main/dmin/enter";
+	}
+	
+	@RequestMapping(value="/main")
 	public String Main(Model model) throws Exception{
 		
 		List<Main> main =service.mainList();

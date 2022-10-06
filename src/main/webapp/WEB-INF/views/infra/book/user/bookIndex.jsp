@@ -236,14 +236,14 @@
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
-						<select>
+						<select id="SearchOption" name="SearchOption">
 							<option value="1">구매 순</option>
 							<option value="2">출간일 순</option>
 							<option value="3">평점 순</option>
 						</select>
 					</div>
 					<div class="sorting mr-auto">
-						<select>
+						<select id="PageNum" name="pageNum">
 							<option value="1">3개씩 보기</option>
 							<option value="2" selected>6개씩 보기</option>
 							<option value="3">9개씩 보기</option>

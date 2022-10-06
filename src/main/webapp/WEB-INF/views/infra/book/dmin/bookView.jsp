@@ -71,7 +71,7 @@
 				<%@include file="../../../common/dmin/include/dminSideBar.jsp"%>
 				<!-- navBar end -->
 				<div class="col-lg-10">
-					<form method="post" id="BVForm" name="BVForm" autocomplete="off">
+					<form method="post" id="BVForm" name="BVForm" autocomplete="off" enctype="multipart/form-data">
 						<input type="hidden" id="mainKey" name="mainKey">
 						<!-- *Vo.jsp s -->
 						<%@include file="bookVo.jsp"%>		<!-- #-> -->
@@ -92,7 +92,7 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="sign">표지</label>
-								<input type="text" class="form-control" id="sign" name="sign" value="<c:out value="${item.sign }"/>">
+								<input type="file" class="form-control" id="sign" name="sign" value="<c:out value="${item.sign }"/>"  accept="image/*">
 							</div>
 						</div>
 						<div class="row">
@@ -149,9 +149,11 @@
 								<label for="size">사이즈</label>
 								<input type="text" class="form-control" id="size" name="size" value="<c:out value="${item.size }"/>" placeholder="주소">
 							</div>
-							<div class="col-sm-5 gy-4">
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
 								<label for="image">이미지</label>
-								<input type="text" class="form-control" id="image" name="image" value="<c:out value="${item.image }"/>" placeholder="이미지">
+								<input type="file" class="form-control" id="image" name="image" value="<c:out value="${item.image }"/>" placeholder="이미지"  accept="image/*">
 							</div>
 						</div>
 						<div class="row">
