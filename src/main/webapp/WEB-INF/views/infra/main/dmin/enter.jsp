@@ -24,10 +24,13 @@
 		CSS
 		============================================= -->
 	<style>
-	.crossCenter {
-    	padding-left: 2px;
-   		padding-top: 17px;
-
+	.btn {
+		text-align: center;
+    	border-radius: 0px;
+		width: 70%;
+		height: 800%;
+		top: 300px;
+		left: 120px;
 	}
 	
 	</style>
@@ -48,6 +51,18 @@
 </head>
 
 <body>
+
+<div class="row">
+
+<div class="col-5 offset-1">
+<a href="/main"><button type="button" id="userBtn" name="userBtn" class="btn primary-btn genric-btn primary"><span style="font-size: 100px;">사용자</span></button></a>
+</div>
+
+<div class="col-5">
+<a href="/codeGroup/codeGroupList"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a>
+</div>
+</div>
+
 <script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

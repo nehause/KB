@@ -237,9 +237,11 @@
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select id="SearchOption" name="SearchOption">
-							<option value="1">구매 순</option>
+							<option value="1">최신 순</option>
 							<option value="2">출간일 순</option>
-							<option value="3">평점 순</option>
+							<option value="3">높은 가격 순</option>
+							<option value="4">낮은 가격 순</option>
+							<option value="5">많이 구매한 순</option>
 						</select>
 					</div>
 					<div class="sorting mr-auto">
