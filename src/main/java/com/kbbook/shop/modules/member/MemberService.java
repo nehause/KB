@@ -20,6 +20,7 @@ public interface MemberService {
 	public int selectOneIdCheck(Member dto) throws Exception;
 	public Member findIdPhoneCheck(Member dto) throws Exception;
 	public Member findIdEmailCheck(Member dto) throws Exception;
+	public int passwordUpdate(Member dto) throws Exception;
 	
 	public int selectOneUserNameCheck(Member dto) throws Exception;
 	public int selectOnePasswordCheck(Member dto) throws Exception;

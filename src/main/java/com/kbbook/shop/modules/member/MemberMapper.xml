@@ -222,7 +222,6 @@
 		FROM member
 			WHERE name = #{name}
 			<if test="email != null and !email.equals('')">AND email = #{email}</if>
-			
 	</select>
 	
 	<select id="selectOneUserNameCheck" resultType="Integer">
@@ -240,6 +239,14 @@
 			AND id = #{id}
 			AND password = #{password}
 	</select>
+	
+	<update id="passwordUpdate">
+		UPDATE member
+		SET
+			password = #{password}
+		WHERE 1=1
+			AND	memberSeq = #{memberSeq}
+	</update>
 	
 	<select id="memberOrderList"  resultMap="resultMapObj">
 	SELECT

@@ -93,7 +93,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="button" id="loginBtn" name="loginBtn" class="primary-btn">로그인</button>
-								<a href="#findIdPassword" data-toggle="modal" data-target="#findIdPassword" style="margin-top: 10px; margin-bottom: 10px;">아이디 찾기</a>
+								<a href="#findIdModal" data-toggle="modal" data-target="#findIdModal" style="margin-top: 10px; margin-bottom: 10px;">아이디 찾기</a>
 								<button type="submit" value="kakao" class="primary-btn genric-btn warning">
 									<i class="fa-solid fa-comment"></i> 카카오
 								</button>
@@ -117,7 +117,7 @@
 	
 	<!-- start modal area -->
 	<section class="product_description_area" style="margin-top: 0px; padding-bottom: 0px;">
-		<div class="modal fade" id="findIdPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal fade" id="findIdModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -146,7 +146,7 @@
 									<div style="height: 30px;"></div>
 								</form>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="FIPBtn" name="FIPBtn">확인</button>
+									<button type="button" class="btn btn-primary" id="FIPBtn" name="FIPBtn" data-toggle="modal" data-target="#FIRModal">확인</button>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 		                            </div>
 								</form>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="FIEBtn" name="FIEBtn">확인</button>
+									<button type="button" class="btn btn-primary" id="FIEBtn" name="FIEBtn" data-toggle="modal" data-target="#FIRModal">확인</button>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
@@ -187,13 +187,13 @@
 	<!-- end modal area -->
 	
 	<!--Modal start-->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+	<div class="modal fade" id="FIRModal" tabindex="-1" aria-labelledby="FIRModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
-	      <div class="modal-body" id="findIdFeedbackText" name="findIdFeedbackText">
+	      <div class="modal-body" id="FIRModalText" name="FIRModalText" style="font-size: large; text-align: center;">
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
 	      </div>
 	    </div>
 	  </div>
@@ -323,7 +323,7 @@
 	</script>
 	
 	<!-- 로그인 스크립트 -->
-	
+
 	
 	<!-- 아이디 찾기 스트립트 -->
 	
@@ -341,11 +341,11 @@
 			,data : { "name" : $("#FIPName").val(), "phone" : $("#FIPhone").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
 			,success: function(response) {
 				if(response.rt == "success") {
-					alert('아이디는 '+response.id+' 입니다');
-					document.getElementById("findIdFeedbackText").innerText = "아이디는 "+response.id+" 입니다";
+					$('#findIdModal').modal('hide');
+					document.getElementById("FIRModalText").innerText = "아이디는 "+ response.id +" 입니다";
 				} else {
-					alert('해당하는 정보의 아이디가 존재하지 않습니다.');
-					document.getElementById("findIdFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+					$('#findIdModal').modal('hide');
+					document.getElementById("FIRModalText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -367,11 +367,11 @@
 			,data : { "name" : $("#FIEName").val(), "email" : $("#email").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
 			,success: function(response) {
 				if(response.rt == "success") {
-					alert('아이디는 '+response.id+' 입니다');
-					document.getElementById("findIdFeedbackText").innerText = "아이디는 "+response.id+" 입니다";
+					$('#findIdModal').modal('hide');
+					document.getElementById("FIRModalText").innerText = "아이디는 "+response.id+" 입니다";
 				} else {
-					alert('해당하는 정보의 아이디가 존재하지 않습니다.');
-					document.getElementById("findIdFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+					$('#findIdModal').modal('hide');
+					document.getElementById("FIRModalText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){

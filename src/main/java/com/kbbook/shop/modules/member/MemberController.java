@@ -306,6 +306,15 @@ public class MemberController {
 		return "infra/member/user/memberRoomModPassword";
 	}
 	
+	@RequestMapping(value = "passwordUpdate")
+	public String passwordUpdate(Member dto, HttpSession httpSession , RedirectAttributes redirectAttributes) throws Exception{
+		
+		dto.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		service.passwordUpdate(dto);
+		
+		return "redirect:/member/memberMyRoom";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {

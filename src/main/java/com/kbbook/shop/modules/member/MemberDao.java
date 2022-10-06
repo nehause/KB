@@ -86,6 +86,10 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOnePasswordCheck", dto);
 	}
 	
+	public int passwordUpdate(Member dto) {
+		return sqlSession.update(namespace + ".passwordUpdate", dto);
+	}
+	
 	public List<Member> memberOrderList(Member dto) {
 		return sqlSession.selectList(namespace + ".memberOrderList", dto);
 	}
