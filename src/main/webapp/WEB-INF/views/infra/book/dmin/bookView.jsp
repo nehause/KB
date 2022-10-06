@@ -31,6 +31,22 @@
           font-size: 3.5rem;
         }
       }
+      
+      .addScroll{
+		overflow-y:auto;
+		height: 200px;
+		background-color:#E9ECEF;
+		padding-top:5px; 
+		padding-left:5px;
+	}
+ 	
+	.input-file-button{
+		padding: 4px 25px;
+		background-color:#808080;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+	}
 	</style>
 	
 	<link href="/resources/dmin/css/sideBar.css" rel="stylesheet">	
@@ -91,8 +107,14 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="sign">표지</label>
-								<input type="file" class="form-control" id="sign" name="sign" value="<c:out value="${item.sign }"/>"  accept="image/*">
+								 <label for="sign" class="form-label input-file-button">표지</label>
+					 			<input class="form-control form-control-sm" id="sign" name="sign" type="file" multiple="multiple" style="display: none;" onChange="upload('sign', 2, 0, 2, 0, 0, 2);">
+					 			<div class="addScroll">
+									<div style="display: inline-block; height: 95px;">
+										<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">
+										<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
+									</div>
+					 			</div>
 							</div>
 						</div>
 						<div class="row">
@@ -152,8 +174,12 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="image">이미지</label>
-								<input type="file" class="form-control" id="image" name="image" value="<c:out value="${item.image }"/>" placeholder="이미지"  accept="image/*">
+								<label for="image" class="form-label input-file-button">이미지</label>
+					 			<input class="form-control form-control-sm" id="image" name="image" type="file" multiple="multiple" style="display: none;" onChange="upload('image', 2, 0, 2, 0, 0, 2);">
+								<div class="addScroll">
+									<ul id="ulFile1" class="list-group">
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -351,7 +377,77 @@
 	   		form.attr("action", goUrlUelete).submit();
 		}); 
 		
+		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+
+//			objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//			memberProfileImage: 1
+//			memberImage: 2
+//			memberFile : 3
+			
+			var totalFileSize = 0;
+			var obj = $("#" + objName +"")[0].files;	
+			var fileCount = obj.length;
+			
+			allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+			allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+			allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+			
+			if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+				if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+
+				totalFileSize += $("#" + objName +"")[0].files[i].size;
+			}
+
+			if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+			
+			if (uiType == 1) {
+				$("#ulFile" + seq).children().remove();
+				
+				for (var i = 0 ; i < fileCount ; i++) {
+					addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+				}
+			} else if(uiType == 2) {
+				$("#ulFile" + seq).children().remove();
+				
+				for (var i = 0 ; i < fileCount ; i++) {
+					addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+				}
+			} else if (uiType == 3) {
+				var fileReader = new FileReader();
+				 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+				
+				 fileReader.onload = function () {
+					 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+				 }		
+			} else {
+				return false;
+			}
+			return false;
+		}
+		
+		
+		addUploadLi = function (seq, index, name){
+			
+			var ul_list = $("#ulFile0");
+			
+			li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
+			li = li + name;
+			li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+			li = li + '</li>';
+			
+			$("#ulFile"+seq).append(li);
+		}
+		
+		
+		delLi = function(seq, index) {
+			$("#li_"+seq+"_"+index).remove();
+		}
+		
 	</script>
+	<script src="/resources/dmin/js/commonXdmin.js"></script>
 <!-- end -->
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
