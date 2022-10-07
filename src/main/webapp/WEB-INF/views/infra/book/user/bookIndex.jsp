@@ -233,40 +233,57 @@
 				</div>
 			</div> -->
 			<div class="col-xl-9 col-lg-8 col-md-7">
+				<form method="post" id="BIForm" name="BIForm">
+					<input type="hidden" id="bookSeq" name="bookSeq">
+					<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+					<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
-						<select id="SearchOption" name="SearchOption">
-							<option value="1">최신 순</option>
-							<option value="2">출간일 순</option>
-							<option value="3">높은 가격 순</option>
-							<option value="4">낮은 가격 순</option>
-							<option value="5">많이 구매한 순</option>
+						<select id="searchOption" name="searchOption">
+							<option value="1" <c:if test="${vo.searchOption eq 1}">selected</c:if>>최신 순</option>
+							<option value="2" <c:if test="${vo.searchOption eq 2}">selected</c:if>>출간일 순</option>
+							<option value="3" <c:if test="${vo.searchOption eq 3}">selected</c:if>>높은 가격 순</option>
+							<option value="4" <c:if test="${vo.searchOption eq 4}">selected</c:if>>낮은 가격 순</option>
+							<option value="5" <c:if test="${vo.searchOption eq 5}">selected</c:if>>많이 구매한 순</option>
 						</select>
 					</div>
 					<div class="sorting mr-auto">
-						<select id="PageNum" name="pageNum">
-							<option value="1">3개씩 보기</option>
-							<option value="2" selected>6개씩 보기</option>
-							<option value="3">9개씩 보기</option>
+						<select id="pageNum" name="pageNum">
+							<option value="3" <c:if test="${vo.pageNum eq 3}">selected</c:if>>3개씩 보기</option>
+							<option value="6" <c:if test="${vo.pageNum eq 6}">selected</c:if>>6개씩 보기</option>
+							<option value="9" <c:if test="${vo.pageNum eq 9}">selected</c:if>>9개씩 보기</option>
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+						<!-- <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 						<a href="#" class="active">1</a>
 						<a href="#">2</a>
 						<a href="#">3</a>
 						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
 						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+					
+						<c:if test="${vo.startPage gt vo.pageNumToShow}">
+		 	               <a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a>
+						</c:if>
+						<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+							<c:choose>
+								<c:when test="${i.index eq vo.thisPage}">
+						           <a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+								</c:when>
+								<c:otherwise>             
+						           <a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>                
+						<c:if test="${vo.endPage ne vo.totalPages}">                
+	       			    	<a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a>
+						</c:if>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<form method="post" id="BIForm" name="BIForm">
-					<input type="hidden" id="bookSeq" name="bookSeq">
-					<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-					<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 					<section class="lattest-product-area pb-40 category-list">
 						<div class="row">
 							<!-- single product -->
@@ -316,22 +333,39 @@
 				</form>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting mr-auto">
+				<div class="filter-bar d-flex flex-wrap align-items-center" style="height: 50px;">
+					<div class="sorting mr-auto" style="display: none;">
 						<select>
-							<option value="1">3개씩 보기</option>
-							<option value="2" selected>6개씩 보기</option>
-							<option value="3">9개씩 보기</option>
+							<option value="3">3개씩 보기</option>
+							<option value="6">6개씩 보기</option>
+							<option value="9">9개씩 보기</option>
 						</select>
 					</div>
-					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+					<div class="pagination" style="display: none;">
+						<!-- <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 						<a href="#" class="active">1</a>
 						<a href="#">2</a>
 						<a href="#">3</a>
 						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
 						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+					
+						<c:if test="${vo.startPage gt vo.pageNumToShow}">
+		 	               <a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a>
+						</c:if>
+						<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+							<c:choose>
+								<c:when test="${i.index eq vo.thisPage}">
+						           <a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+								</c:when>
+								<c:otherwise>             
+						           <a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>                
+						<c:if test="${vo.endPage ne vo.totalPages}">                
+	       			    	<a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a>
+						</c:if>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -355,6 +389,7 @@
 	var goUrlIndex = "/book/bookIndex";
 	var seq = $("input:hidden[name=bookSeq]");
 	var form = $("form[name=BIForm]"); 
+
 	
 	goList = function(thisPage){
 		$("input:hidden[name=thisPage]").val(thisPage);
@@ -366,6 +401,21 @@
 		form.attr("action", goUrlDetail).submit();
 	}
 	
+	$(function(){
+		$(document).ready(function(){
+			$('select[name=searchOption]').change(function() {
+				form.attr("action", goUrlIndex).submit();
+			});	
+		});
+	});
+	
+	$(function(){
+		$(document).ready(function(){
+			$('select[name=pageNum]').change(function() {
+				form.attr("action", goUrlIndex).submit();
+			});	
+		});
+	});	
 	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>

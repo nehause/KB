@@ -41,6 +41,7 @@
 	</select>
 	
 	<select id="userSelectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			a.*
 			,cost*(1-sale) as price
@@ -49,11 +50,12 @@
 		<choose>
 			<when test="searchOption == 1">ORDER BY bookSeq desc</when> <!-- 최신 등록순 -->
 			<when test="searchOption == 2">ORDER BY dop desc</when>		<!-- 출간일 -->
-			<when test="searchOption == 3">ORDER BY price desc</when> 	<!-- 높은 가격순 -->
-			<when test="searchOption == 4">ORDER BY price asc</when>	<!-- 낮은 가격순 -->
+			<when test="searchOption == 3">ORDER BY cost desc</when> 	<!-- 높은 가격순 -->
+			<when test="searchOption == 4">ORDER BY cost asc</when>	<!-- 낮은 가격순 -->
 			<when test="searchOption == 5">ORDER BY amount desc</when> 	<!-- 많이 구매된 순 -->
 			<otherwise></otherwise>
 		</choose>
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<sql id ="selectCommon">
@@ -180,6 +182,20 @@
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />
+	</select>
+	
+	<select id="userSelectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM book a
+		WHERE 1=1
+		<choose>
+			<when test="searchOption == 1">ORDER BY bookSeq desc</when> <!-- 최신 등록순 -->
+			<when test="searchOption == 2">ORDER BY dop desc</when>		<!-- 출간일 -->
+			<when test="searchOption == 3">ORDER BY cost desc</when> 	<!-- 높은 가격순 -->
+			<when test="searchOption == 4">ORDER BY cost asc</when>	<!-- 낮은 가격순 -->
+			<when test="searchOption == 5">ORDER BY amount desc</when> 	<!-- 많이 구매된 순 -->
+			<otherwise></otherwise>
+		</choose>
 	</select>
 
 </mapper>	

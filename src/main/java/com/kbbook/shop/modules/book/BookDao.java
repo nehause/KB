@@ -54,4 +54,11 @@ public class BookDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	public List<Book> userSelectList(BookVo vo) {
+		return sqlSession.selectList(namespace + ".userSelectList", vo);
+	}
+	
+	public int userSelectOneCount(BookVo vo) {
+		return sqlSession.selectOne(namespace + ".userSelectOneCount", vo);
+	}
 }

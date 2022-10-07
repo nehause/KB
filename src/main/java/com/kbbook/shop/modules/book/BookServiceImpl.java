@@ -62,4 +62,14 @@ public class BookServiceImpl implements BookService{
 	public int selectOneCount(BaseVo vo) throws Exception{
 		return dao.selectOneCount(vo);
 	}
+	
+	@Override
+	public List<Book> userSelectList(BookVo vo) throws Exception{
+		return dao.userSelectList(vo);
+	}
+	
+	@Override
+	public int userSelectOneCount(BookVo vo) throws Exception{
+		return dao.userSelectOneCount(vo);
+	}
 }

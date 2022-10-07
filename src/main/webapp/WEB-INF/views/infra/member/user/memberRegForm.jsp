@@ -349,7 +349,7 @@
 	<script>
 	
 		var goUrlInsert = "/member/userInst";				/* #-> */
-		var goUrlLogin = "/loginForm";
+		var goUrlLogin = "/member/loginForm";
 		var seq = $("input:hidden[name=memberSeq]");
 		var form = $("form[name=UMRForm]"); 
 		var mail = $("input:hidden[name=email]");

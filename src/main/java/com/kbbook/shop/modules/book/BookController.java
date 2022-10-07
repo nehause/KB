@@ -35,7 +35,9 @@ public class BookController {
 //		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(service.selectOneCount(vo)); 
 	}
-	
+	public void setUserSearchAndPaging(BookVo vo) throws Exception {
+		vo.setParamsPaging(service.userSelectOneCount(vo)); 
+	}
 	// 페이지네이션 화면에 보여줄 데이터 줄 갯수 바꾸는 함수
 	public void setRowNumToShow(BookVo vo, int Line) throws Exception {
 		vo.setRowNumToShow(Line);
@@ -122,33 +124,33 @@ public class BookController {
 		return "redirect:/book/bookList";
 	}
 	
-	/*
-	 * //ajax
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "changeRowNumToShow") public Map<String, Object>
-	 * changeRowNumToShow(BookVo vo) throws Exception {
-	 * 
-	 * Map<String, Object> returnMap = new HashMap<String, Object>();
-	 * 
-	 * setSearchAndPaging(vo); returnMap.put("rt", search);
-	 * 
-	 * return returnMap; }
-	 */
+	
+	  //ajax
+	  
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping(value = "searchSelectList") public List<Book>
+		 * searchSelectList(BookVo vo) throws Exception {
+		 * 
+		 * vo.setPageNum(vo.getPageNum()); vo.setSearchOption(vo.getSearchOption());
+		 * 
+		 * return service.userSelectList(vo); }
+		 */
+	 
 	
 	//userPage
-	
 	@RequestMapping(value="bookIndex")
 	public String BookIndex(@ModelAttribute("vo") BookVo vo, Model model) throws Exception {
 		
-		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
-		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
-		
-		setSearchAndPaging(vo);
-		setRowNumToShow(vo, 6); // ajax 처리
-		List<Book> list = service.selectList(vo);
+		System.out.println("vo.getPageNum(): " + vo.getPageNum());
+		vo.setSearchOption(vo.getSearchOption() == null ? 1 : vo.getSearchOption());
+		vo.setPageNum(vo.getPageNum() == null ? 6 : vo.getPageNum());
+
+		setRowNumToShow(vo, vo.getPageNum()); // ajax 처리
+		setUserSearchAndPaging(vo);
+		List<Book> list = service.userSelectList(vo);
 		model.addAttribute("list", list);
 		
 		List<Main> best = mainService.bestList();

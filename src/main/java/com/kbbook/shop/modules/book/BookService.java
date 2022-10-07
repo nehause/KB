@@ -14,4 +14,7 @@ public interface BookService {
 	
 	public List<Book> selectListWithoutPaging() throws Exception;
 	public int selectOneCount(BaseVo vo) throws Exception;
+	
+	public List<Book> userSelectList(BookVo vo) throws Exception;
+	public int userSelectOneCount(BookVo vo) throws Exception;
 }
