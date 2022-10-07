@@ -27,6 +27,7 @@ $('#divSearchControl').on('click', function() {
     }
  }); */
 
+document.write("<script src='/resources/dmin/js/constantsXdmin.js'></script>");
 
 checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
 	if(allowedMaxTotalFileNumber < fileCount){

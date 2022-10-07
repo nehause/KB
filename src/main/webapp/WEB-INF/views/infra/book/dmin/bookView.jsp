@@ -108,13 +108,12 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								 <label for="sign" class="form-label input-file-button">표지</label>
-					 			<input class="form-control form-control-sm" id="sign" name="sign" type="file" multiple="multiple" style="display: none;" onChange="upload('sign', 2, 0, 2, 0, 0, 2);">
+					 			<input class="form-control form-control-sm" id="sign" name="sign" type="file" multiple="multiple" style="display: none;" onChange="upload('sign', 1, 2, 1, 0, 0, 1);">
 					 			<div class="addScroll">
-									<div style="display: inline-block; height: 95px;">
-										<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">
-										<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
-									</div>
+									<ul id="ulFile1" class="list-group">
+									</ul>
 					 			</div>
+					 			<!-- <input type="file" class="form-control" id="sign" name="sign" multiple="multiple" onChange="upload('sign', 1, 2, 1, 0, 0);"> -->
 							</div>
 						</div>
 						<div class="row">
@@ -175,11 +174,12 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="image" class="form-label input-file-button">이미지</label>
-					 			<input class="form-control form-control-sm" id="image" name="image" type="file" multiple="multiple" style="display: none;" onChange="upload('image', 2, 0, 2, 0, 0, 2);">
+					 			<input class="form-control form-control-sm" id="image" name="image" type="file" multiple="multiple" style="display: none;" onChange="upload('image', 2, 2, 1, 0, 0, 3);">
 								<div class="addScroll">
-									<ul id="ulFile1" class="list-group">
+									<ul id="ulFile2" class="list-group">
 									</ul>
-								</div>
+					 			</div>
+								<!-- <input type="file" class="form-control" id="image" name="image" multiple="multiple" onChange="upload('image', 2, 2, 1, 0, 0;"> -->
 							</div>
 						</div>
 						<div class="row">
@@ -239,6 +239,10 @@
 									<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
+						</div>
+						<div>
+							<button type="button" class="btn btn-warning" id="testBtn" name="testBtn">테스트 버튼</button>
+							<button type="button" class="btn btn-danger" id="valiBtn" name="valiBtn">벨리데이션 버튼</button>
 						</div>
 						<!-- viewBtn start -->
 						<%@include file="../../../common/dmin/include/viewBtn.jsp"%>
@@ -377,32 +381,128 @@
 	   		form.attr("action", goUrlUelete).submit();
 		}); 
 		
-		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
-
-//			objName 과 seq 는 jsp 내에서 유일 하여야 함.
-//			memberProfileImage: 1
-//			memberImage: 2
-//			memberFile : 3
+		</script>
+		<script>
+		
+		$("#testBtn").on("click", function(){
+			/* var obj = $("#input[name=sign]").files; // 배열
+			var obj2 = $("#input[name=image]").files;  */
+			var obj = document.querySelector("#sign").files; // 배열
+			var obj2 = document.querySelector("#image").files;
+			var objSum = 0;
+			var obj2Sum = 0;
 			
-			var totalFileSize = 0;
+			alert(obj);
+			alert(obj.length);
+			
+			for(var i=0; i<obj.length; i++){
+				alert(obj[i].name + " : " + obj[i].size);
+			}
+			for(var i=0; i<obj.length; i++){
+				objSum +=  obj[i].size
+			}
+			alert("objSum: " + objSum);
+			
+			alert(obj2);
+			alert(obj2.length);
+			
+			for(var i=0; i<obj2.length; i++){
+				alert(obj2[i].name + " : " + obj2[i].size);
+			}
+			for(var i=0; i<obj2.length; i++){
+				obj2Sum +=  obj2[i].size
+			}
+			alert("obj2Sum: " + obj2Sum);
+			
+		});
+		
+		// validation check 직접 만들어보기
+		/* $("#valiBtn").on("click", function(){
+			var obj = document.querySelector("#sign").files; // 배열
+			var obj2 = document.querySelector("#image").files;
+			var objSum = 0;
+			var obj2Sum = 0;
+			var byteSize = 1024;
+			var megaSize = byteSize*byteSize;
+			var insertOver = 3;
+			
+			if(obj.length > insertOver){
+				alert("등록 최대 갯수를 초과했습니다.")
+				return false;
+			} else{
+				
+			}
+			for(var i=0; i<obj.length; i++){
+				if(obj[i].size > megaSize){
+					alert("개별용량을 초과했습니다.")
+					return false;
+				} else{
+					objSum += obj[i].size
+				}
+				
+			}
+			if(objSum > 10*megaSize){
+				alert("전체용량을 초과했습니다")
+				return false;
+			} else{
+				
+			}
+			
+			if(obj2.length > insertOver){
+				alert("등록 최대 갯수를 초과했습니다.")
+				return false;
+			} else{
+				
+			}
+			for(var i=0; i<obj.length; i++){
+				if(obj2[i].size > megaSize){
+					alert("개별용량을 초과했습니다.")
+					return false;
+				} else{
+					obj2Sum += obj2[i].size
+				}
+				
+			}
+			if(obj2Sum > 10*megaSize){
+				alert("전체용량을 초과했습니다")
+				return false;
+			} else{
+				
+			}
+			
+		}); */
+		
+	
+		
+		upload = function(objName, seq, fileNumber, extDiv, eachFileSize, totalFileSize, uiType ) {
+//			objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//			sgin: 1
+//			name: 2
+
+			var MegaSize = 1024 * 1024;
+			
+			var allFileSize = 0;
 			var obj = $("#" + objName +"")[0].files;	
 			var fileCount = obj.length;
 			
-			allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
-			allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
-			allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+			const MAX_EACH_FILE_SIZE = 1 * 1024 * 1024;		//	1M
+			const MAX_TOTAL_FILE_SIZE = 2 * 1024 * 1024;	//	2M
+			const MAX_TOTAL_FILE_NUMBER = 2;				//	2
 			
-			if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+			fileNumber = fileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : fileNumber;
+			eachFileSize = eachFileSize == 0 ? MAX_EACH_FILE_SIZE : eachFileSize;
+			totalFileSize = totalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : totalFileSize;
 			
+			if(checkUploadedTotalFileNumber(obj, fileNumber, fileCount) == false) { return false; }
 			for (var i = 0 ; i < fileCount ; i++) {
-				if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
-				if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+				if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, extDiv) == false) { return false; }
+				if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, eachFileSize) == false) { return false; }
 
-				totalFileSize += $("#" + objName +"")[0].files[i].size;
+				allFileSize += $("#" + objName +"")[0].files[i].size;
 			}
 
-			if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
-			
+			if(checkUploadedTotalFileSize(seq, allFileSize, totalFileSize) == false) { return false; }
+		
 			if (uiType == 1) {
 				$("#ulFile" + seq).children().remove();
 				
@@ -429,6 +529,7 @@
 		}
 		
 		
+		
 		addUploadLi = function (seq, index, name){
 			
 			var ul_list = $("#ulFile0");
@@ -446,10 +547,63 @@
 			$("#li_"+seq+"_"+index).remove();
 		}
 		
+		
+		
+		
+	var MegaSize = 1024 * 1024;
+	
+	var extArray1 = new Array();
+	extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+	
+	checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+		if(allowedMaxTotalFileNumber < fileCount){
+			alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+			$("#file"+seq).val("");
+			obj.val("");
+			return false;
+		}
+	}
+	
+	checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+		if(obj.size > allowedEachFileSize){
+			alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+			$("#file"+seq).val("");
+			return false;
+		}
+	}
+
+
+	checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+		if(totalSize > allowedTotalFileSize){
+			alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"MB를 넘을 수 없습니다.");
+			$("#file"+seq).val("");
+			return false;
+		}
+	}
+	
+	checkUploadedExt = function(objName, seq, div) {
+		var ext = objName.split('.').pop().toLowerCase();
+		var extArray = eval("extArray" + div);
+		
+		if(extArray.indexOf(ext) == -1) {	
+			alert("허용된 확장자가 아닙니다.");
+//			$("#file"+seq).val("");
+			return false;
+		}
+	}
+	
+	function kbToMb(bytes) {
+	    var e = Math.floor(Math.log(bytes)/Math.log(1024));
+
+	    if(e == "-Infinity") return 0;
+	    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
+	}
+	
+	
 	</script>
-	<script src="/resources/dmin/js/commonXdmin.js"></script>
+	<!-- <script src="/resources/dmin/js/commonXdmin.js"></script> -->
 <!-- end -->
-	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
