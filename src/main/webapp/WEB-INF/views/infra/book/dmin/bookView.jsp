@@ -108,7 +108,7 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								 <label for="sign" class="form-label input-file-button">표지</label>
-					 			<input class="form-control form-control-sm" id="sign" name="sign" type="file" multiple="multiple" style="display: none;" onChange="upload('sign', 1, 2, 1, 0, 0, 1);">
+					 			<input class="form-control form-control-sm" id="sign" name="sign" type="file" multiple="multiple" style="display: none;" onChange="upload('sign', 1, 1, 1, 0, 0, 1);">
 					 			<div class="addScroll">
 									<ul id="ulFile1" class="list-group">
 									</ul>
@@ -174,7 +174,7 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="image" class="form-label input-file-button">이미지</label>
-					 			<input class="form-control form-control-sm" id="image" name="image" type="file" multiple="multiple" style="display: none;" onChange="upload('image', 2, 2, 1, 0, 0, 3);">
+					 			<input class="form-control form-control-sm" id="image" name="image" type="file" multiple="multiple" style="display: none;" onChange="upload('image', 2, 1, 1, 0, 0, 1);">
 								<div class="addScroll">
 									<ul id="ulFile2" class="list-group">
 									</ul>
@@ -487,7 +487,7 @@
 			
 			const MAX_EACH_FILE_SIZE = 1 * 1024 * 1024;		//	1M
 			const MAX_TOTAL_FILE_SIZE = 2 * 1024 * 1024;	//	2M
-			const MAX_TOTAL_FILE_NUMBER = 2;				//	2
+			const MAX_TOTAL_FILE_NUMBER = 1;
 			
 			fileNumber = fileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : fileNumber;
 			eachFileSize = eachFileSize == 0 ? MAX_EACH_FILE_SIZE : eachFileSize;
@@ -509,23 +509,7 @@
 				for (var i = 0 ; i < fileCount ; i++) {
 					addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
 				}
-			} else if(uiType == 2) {
-				$("#ulFile" + seq).children().remove();
-				
-				for (var i = 0 ; i < fileCount ; i++) {
-					addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-				}
-			} else if (uiType == 3) {
-				var fileReader = new FileReader();
-				 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
-				
-				 fileReader.onload = function () {
-					 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
-				 }		
-			} else {
-				return false;
-			}
-			return false;
+			} 
 		}
 		
 		
