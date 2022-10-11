@@ -108,7 +108,7 @@
 	                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
 	                    	</div>
 	                    	<div class="col-lg-3 offset-6">
-	                    		<button type="button" class="genric-btn default" id="regTrasport" data-toggle="modal" data-target="#transportModal"> 
+	                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn" data-toggle="modal" data-target="#transportModal"> 
                    					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
                 				</button>
                 			</div>
@@ -234,7 +234,7 @@
 		        			<b>구분</b>
 		        		</div>
 		        		<div class="col-lg-6">
-		        			<select class="country_select col-lg-6" style="display: inline; padding-right:60px;" id="transportDiv" name="transportDiv">
+		        			<select class="form-select col-lg-6" id="transportDiv" name="transportDiv">
                                 <option value="1">집</option>
                                 <option value="2">그 외</option>
                             </select>
@@ -484,6 +484,21 @@
 		seq.val($("input:radio[name=seqRadio]:checked").val());
 	});
 	
+	$("#regModalBtn").on("click", function(){
+		$('#transportModal').modal('show');
+	    $('.modal-title').text('새로운 주소 등록');
+	    $('#name').val('');
+	    $('#transportDiv').val('')
+	    $('#phone').val('');
+	    $('#home').val('');
+	    $('#zip').val('');
+	    $('#address1').val('');
+	    $('#address2').val('');
+	    $('#extraaddress').val('');
+	    $('#lng').val('');
+	    $('#lat').val('');
+	});
+	
 	$("#modModalBtn").on("click", function(){
 		
 		$.ajax({
@@ -499,7 +514,7 @@
 					    $('#transportModal').modal('show');
 					    $('.modal-title').text('등록된 주소 수정');
 					    $('#name').val(response.name);
-					    $('#transportDiv').val(response.transportDiv).prop('selected', 'selected');;
+					    $('#transportDiv').val(response.transportDiv);
 					    $('#phone').val(response.phone);
 					    $('#home').val(response.home);
 					    $('#zip').val(response.zip);
