@@ -220,9 +220,9 @@
 			,data : { "id" : $("#id").val(), "password" : $("#nowPassword").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
 			,success: function(response) {
 				if(response.rt == "success") {
-					$("#PWCNY").val('yes')
+					$("#PWCNY").val('yes');
 				} else {
-					$("#PWCNY").val('no')
+					$("#PWCNY").val('no');
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -241,11 +241,11 @@
 	});
 	
 	$("#PWUBtn").on("click", function(){
-		if($("#PWCNY").val() == 'no'){
+		if($("#PWCNY").val() == 'yes'){
 			if($("#checkWord").text() == '일치'){
 				form.attr("action", passwordChange).submit();
 			} else{
-				alert("체크된 비밀번호가 일치하지 않습니다.")
+				alert("확인용 비밀번호가 일치하지 않습니다.")
 				return false;
 			}
 		} else {

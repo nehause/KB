@@ -6,6 +6,7 @@ public class TransportVo extends BaseVo{
 	
 	
 	private String transportSeq;
+	private String sessSeq;
 
 	public String getTransportSeq() {
 		return transportSeq;
@@ -13,6 +14,14 @@ public class TransportVo extends BaseVo{
 
 	public void setTransportSeq(String transportSeq) {
 		this.transportSeq = transportSeq;
+	}
+
+	public String getSessSeq() {
+		return sessSeq;
+	}
+
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
 	}
 	
 	

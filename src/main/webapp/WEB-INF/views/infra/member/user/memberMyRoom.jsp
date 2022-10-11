@@ -128,69 +128,73 @@
 								</tbody>
 							</table>
 							<div style="height:20px;"></div>
-							<div class="table-responsive">
-			                    <table class="table" style="text-align: center">
-			                        <thead>
-				                            <tr>
-				                                <th scope="col">주문 번호</th>
-				                                <th scope="col">상품 금액</th>
-				                                <th scope="col">상품 정보</th>
-				                                <th scope="col">수량</th>
-				                                <th scope="col">주문 상태</th>
+							<form method="post" id="MROForm" name="MROForm">
+								<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${vo.memberSeq }"/>">
+								<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+								<div class="table-responsive">
+				                    <table class="table" style="text-align: center">
+				                        <thead>
+					                            <tr>
+					                                <th scope="col">주문 번호</th>
+					                                <th scope="col">상품 금액</th>
+					                                <th scope="col">상품 정보</th>
+					                                <th scope="col">수량</th>
+					                                <th scope="col">주문 상태</th>
+					                            </tr>
+					                        </thead>
+					                        <tbody>
+					                        	<c:set var="listCodePayment" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
+												<c:set var="listCodePurchaseStatus" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
+												<c:choose>
+													<c:when test="${fn:length(order) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+														<td class="text-center" colspan="12">최근주문내용 목록이 없습니다.</td>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${order}" var="order" varStatus="status">
+								                            <tr>
+								                                <td>
+								                                    <h5><c:out value="${order.purchaseSeq }"/></h5>
+								                                </td>
+								                                <td>
+								                                    <h5>₩<c:out value="${order.priceSum }"/></h5>
+								                                </td>
+								                                <td>
+								                                    <h5><c:out value="${order.purchaseBook }"/></h5>
+								                                </td>
+								                                <td>
+								                                    <h5><c:out value="${order.purchaseCount }"/></h5>
+								                                </td>
+								                                <td>
+								                                	<h5>
+									                                	<c:forEach items="${listCodePurchaseStatus}" var="listPurchaseStatus" varStatus="statusPurchaseStatus">
+																			<c:if test="${order.purchaseStatus eq listPurchaseStatus.COrder}"><c:out value="${listPurchaseStatus.CNameKor }"/></c:if>
+																		</c:forEach>
+																	</h5>
+								                                </td>
+								                            </tr>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+			                   	 		    </tbody>
+			                   			     <tr>
+				                            	<td>
+												</td>
+												<td>	
+				                           		</td>
+				                           		<td>
+					                           		<!-- pagination s -->
+													<%@include file="../../../common/dmin/include/pagination.jsp"%>
+													<!-- pagination e -->
+				                           		</td>
+				                           		<td>
+				                           		</td>
+				                           		<td>
+				                           		</td>
 				                            </tr>
-				                        </thead>
-				                        <tbody>
-				                        	<c:set var="listCodePayment" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
-											<c:set var="listCodePurchaseStatus" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
-											<c:choose>
-												<c:when test="${fn:length(order) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
-													<td class="text-center" colspan="12">최근주문내용 목록이 없습니다.</td>
-												</c:when>
-												<c:otherwise>
-													<c:forEach items="${order}" var="order" varStatus="status">
-							                            <tr>
-							                                <td>
-							                                    <h5><c:out value="${order.purchaseSeq }"/></h5>
-							                                </td>
-							                                <td>
-							                                    <h5>₩<c:out value="${order.priceSum }"/></h5>
-							                                </td>
-							                                <td>
-							                                    <h5><c:out value="${order.purchaseBook }"/></h5>
-							                                </td>
-							                                <td>
-							                                    <h5><c:out value="${order.purchaseCount }"/></h5>
-							                                </td>
-							                                <td>
-							                                	<h5>
-								                                	<c:forEach items="${listCodePurchaseStatus}" var="listPurchaseStatus" varStatus="statusPurchaseStatus">
-																		<c:if test="${order.purchaseStatus eq listPurchaseStatus.COrder}"><c:out value="${listPurchaseStatus.CNameKor }"/></c:if>
-																	</c:forEach>
-																</h5>
-							                                </td>
-							                            </tr>
-													</c:forEach>
-												</c:otherwise>
-											</c:choose>
-		                   	 		    </tbody>
-		                   			     <tr>
-			                            	<td>
-											</td>
-											<td>	
-			                           		</td>
-			                           		<td>
-				                           		<a href="#"><b><i class="fa-solid fa-angles-left"></i></b></a>
-				                           		<a href="#"><b><i class="fa-solid fa-angle-left"></i></b></a>
-				                           		<a href="#"><b><i class="fa-solid fa-angle-right"></i></b></a>
-				                           		<a href="#"><b><i class="fa-solid fa-angles-right"></i></b></a>
-			                           		</td>
-			                           		<td>
-			                           		</td>
-			                           		<td>
-			                           		</td>
-			                            </tr>
-			                    </table>
-			                </div>
+				                    </table>
+				                </div>
+			                </form>
 						</div>
                         <!-- Start exclusive deal Area -->
                         <h2>관심 상품</h2>
@@ -333,12 +337,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 	var goUrlDetail = "/book/bookDetail";
+	var goUrlList = "/member/memberMyRoom";
 	var seq = $("input:hidden[name=bookSeq]");
-	var form = $("form[name=MRFForm]"); 
+	var form = $("form[name=MROForm]"); 
 	
 	goDetail = function(seqValue){
 		seq.val(seqValue);
 		form.attr("action", goUrlDetail).submit();
+	}
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
 	}
 	</script>
 

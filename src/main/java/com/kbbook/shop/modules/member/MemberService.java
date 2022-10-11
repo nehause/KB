@@ -24,6 +24,7 @@ public interface MemberService {
 	
 	public int selectOneUserNameCheck(Member dto) throws Exception;
 	public int selectOnePasswordCheck(Member dto) throws Exception;
-	public List<Member> memberOrderList(Member dto) throws Exception;
+	public int selectOrderCount(MemberVo vo) throws Exception;
+	public List<Member> memberOrderList(MemberVo vo) throws Exception;
 	public List<Member> favorite(Member dto) throws Exception;
 } 

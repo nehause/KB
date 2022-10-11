@@ -59,6 +59,11 @@ public class TransportServiceImpl implements TransportService{
 	}
 	
 	@Override
+	public int loginCount(TransportVo vo) throws Exception{
+		return dao.loginCount(vo);
+	}
+	
+	@Override
 	public List<Transport> loginSeq(Transport dto) throws Exception{
 		return dao.loginSeq(dto);
 	}

@@ -31,6 +31,9 @@ public class MemberController {
 //		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
+	public void setRowNumToShow(MemberVo vo, int Line) throws Exception {
+		vo.setRowNumToShow(Line);
+	}
 
 	@RequestMapping(value = "memberList")
 	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
@@ -255,7 +258,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberMyRoom")
-	public String memberMyRoom(Member dto, MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+	public String memberMyRoom(Member dto, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession, Model model) throws Exception {
 		//String sessSeq = (String) httpSession.getAttribute("sessSeq");
 		
 		dto.setSessSeq((String) httpSession.getAttribute("sessSeq"));
@@ -263,8 +266,8 @@ public class MemberController {
 		
 		Member result = service.selectSeq(vo);
 		model.addAttribute("item", result);
-		
-		List<Member> order = service.memberOrderList(dto);
+		vo.setParamsPaging(service.selectOrderCount(vo));
+		List<Member> order = service.memberOrderList(vo);
 		model.addAttribute("order", order);
 		
 		List<Member> favorite = service.favorite(dto);

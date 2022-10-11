@@ -7,6 +7,30 @@
 <mapper namespace="com.kbbook.shop.modules.main.MainMapper">
 
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.main.Main"></resultMap>
+    
+	<select id="selectOneId" resultMap="resultMapObj">
+		SELECT
+			memberSeq
+			,id
+		FROM
+			member a
+		WHERE 1=1
+			AND dminDiv = 0
+			AND id = #{id}
+	</select>
+	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			memberSeq
+			,id
+			,name
+		FROM
+			member a
+		WHERE 1=1
+			AND dminDiv = 0
+			AND id = #{id}
+			AND a.password = #{password}
+	</select>
 
 	<select id="selectList" resultMap="resultMapObj">
 	SELECT

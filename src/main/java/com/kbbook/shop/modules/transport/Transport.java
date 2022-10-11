@@ -24,6 +24,7 @@ public class Transport extends Member{
 	//join
 	
 	private String name;
+	private String accmulate;
 
 	public String getTransportSeq() {
 		return transportSeq;
@@ -145,8 +146,15 @@ public class Transport extends Member{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
+	public String getAccmulate() {
+		return accmulate;
+	}
+
+	public void setAccmulate(String accmulate) {
+		this.accmulate = accmulate;
+	}
+	
 	
 	
 }

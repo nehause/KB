@@ -50,7 +50,6 @@ public class BookController {
 		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
 		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
 		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
-		
 		setSearchAndPaging(vo);
 		List<Book> list = service.selectList(vo);
 		model.addAttribute("list", list);

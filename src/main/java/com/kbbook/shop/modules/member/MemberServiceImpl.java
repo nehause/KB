@@ -109,8 +109,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<Member> memberOrderList(Member dto) throws Exception{
-		return dao.memberOrderList(dto);
+	public List<Member> memberOrderList(MemberVo vo) throws Exception{
+		return dao.memberOrderList(vo);
+	}
+	@Override
+	public int selectOrderCount(MemberVo vo) throws Exception{
+		return dao.selectOrderCount(vo);
 	}
 	
 	@Override

@@ -5,6 +5,10 @@ import com.kbbook.shop.common.base.BaseVo;
 public class MemberVo extends BaseVo {
 	
 	private String memberSeq;
+	
+	//httpsession
+	
+	private String sessSeq;
 
 	public String getMemberSeq() {
 		return memberSeq;
@@ -12,6 +16,14 @@ public class MemberVo extends BaseVo {
 
 	public void setMemberSeq(String memberSeq) {
 		this.memberSeq = memberSeq;
+	}
+
+	public String getSessSeq() {
+		return sessSeq;
+	}
+
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
 	}
 
 	

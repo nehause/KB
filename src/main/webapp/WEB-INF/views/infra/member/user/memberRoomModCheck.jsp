@@ -107,7 +107,7 @@
 	                    			<span>비밀번호</span>
 	                    		</td>
 	                    		<td>
-	                    			<input type="password" class="form-control col-md-4" id="password" name="password" value="">
+	                    			<input type="password" class="form-control col-md-4" id="password" name="password" value="" onkeyup="enterCheck();">
 	                    		</td>
 	                    	</tr>
 	                    </table>
@@ -122,7 +122,36 @@
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	<script type="text/javascript">
 	
+	function enterCheck() {
+        if (window.event.keyCode == 13) {
+            // 엔터키가 눌렸을 때 실행할 내용
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/member/checkPassword"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+				,success: function(response) {
+					if(response.rt == "success") {
+						
+						location.href = URL_MOD;
+						
+					} else {
+						alert("비밀번호가 틀렸습니다");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+        }
+	}
+	
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
 	var URL_MOD = "/member/memberRoomModForm";

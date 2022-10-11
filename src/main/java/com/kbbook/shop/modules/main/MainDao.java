@@ -20,6 +20,15 @@ public class MainDao {
 	public List<Main> selectList(){
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
+	
+	public Main selectOneId(Main dto) {
+		return sqlSession.selectOne(namespace + ".selectOneId", dto);
+	}
+	
+	public Main selectOneLogin(Main dto) {
+		return sqlSession.selectOne(namespace +".selectOneLogin", dto);
+	}
+	
 	public List<Main> mainList(){
 		return sqlSession.selectList(namespace + ".mainList", "");
 	}

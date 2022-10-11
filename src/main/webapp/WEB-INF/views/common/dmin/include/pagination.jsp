@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
-            <ul class="pagination justify-content-center mb-0">
+            <ul class="pagination justify-content-center mb-0 border-0">
                 <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
 				<c:if test="${vo.startPage gt vo.pageNumToShow}">
  	               <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>

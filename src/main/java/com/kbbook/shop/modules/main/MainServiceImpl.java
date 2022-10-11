@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kbbook.shop.common.util.UtilSecurity;
+
 @Service
 public class MainServiceImpl implements MainService{
 
@@ -14,6 +16,17 @@ public class MainServiceImpl implements MainService{
 		@Override
 		public List<Main> selectList() throws Exception{
 			return dao.selectList();
+		}
+		
+		@Override
+		public Main selectOneId(Main dto) throws Exception {
+			return dao.selectOneId(dto);
+		}
+		
+		@Override
+		public Main selectOneLogin(Main dto) throws Exception{
+			dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
+			return dao.selectOneLogin(dto);
 		}
 		
 		@Override

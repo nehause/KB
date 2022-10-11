@@ -299,7 +299,7 @@
 													<c:out value="${list.sign }"/>
 												</a>
 												<div class="product-details">
-													<h6><c:out value="${list.name }"/></h6>
+													<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)"><h6><c:out value="${list.name }"/></h6></a>
 													<div class="price">
 														<h6>₩<c:out value="${list.price }"/></h6>
 														<h6 class="l-through">₩<c:out value="${list.cost }"/></h6>
@@ -309,14 +309,14 @@
 															<span class="ti-bag"></span>
 															<p class="hover-text">구매하기</p>
 														</a>
-														<a href="" class="social-info">
+														<!-- <a href="" class="social-info">
 															<span class="lnr lnr-heart"></span>
 															<p class="hover-text">관심상품</p>
 														</a>
 														<a href="" class="social-info">
 															<span class="lnr lnr-sync"></span>
 															<p class="hover-text">리스트가기</p>
-														</a>
+														</a> -->
 														<a herf="" class="social-info">
 															<span class="lnr lnr-move"></span>
 															<p class="hover-text">상세보기</p>

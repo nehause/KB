@@ -107,7 +107,7 @@
 	                    		<span>입력된 주소 </span> <span><b>1개</b></span>
 	                    	</div>
 	                    	<div class="col-lg-3 offset-6">
-	                    		<button type="button" class="genric-btn default" id="regTrasport" data-toggle="modal" data-target="#regTransportModal"> 
+	                    		<button type="button" class="genric-btn default" id="regTrasport" data-toggle="modal" data-target="#transportModal"> 
                    					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
                 				</button>
                 			</div>
@@ -157,7 +157,7 @@
 					                    			<span><c:out value="${userTransport.address1 }"/></span>
 					                    		</td>
 					                    		<td class="col-lg-1">
-					                    			<input type="radio" id="transport1" name="transportCheck">
+					                    			<input type="radio" id="transportRadio_<c:out value="${userTransport.transportSeq }"/>" name="transportRadio" value="<c:out value="${userTransport.transportSeq }"/>">
 					                    		</td>
 					                    	</tr>
 				                    	</c:forEach>
@@ -183,10 +183,7 @@
                             	</td>
                             </tr>
 	                    </table>
-	                    <button type="button" class="genric-btn default" style="float:left;" id="modPasswordFormSubmit" onclick="modPasswordSubmit();"> 
-                   			<i class="fa-solid fa-caret-right"></i> 기본주소 설정
-                		</button>
-                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modTransport" data-toggle="modal" data-target="#modTransportModal"> 
+                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modTransport" data-toggle="modal" data-target="#transportModal"> 
                    			<i class="fa-solid fa-pencil"></i> 수정
                 		</button>
                 		<button type="button" class="genric-btn danger col-lg-2" style="float:right; margin-right:10px;" data-toggle="modal" data-target="#delectTransportModal" id="modPasswordFormSubmit" onclick="modPasswordSubmit();"> 
@@ -221,8 +218,8 @@
 	<!-- footer End -->
 	
 	<!-- start new Transport modal area -->
-	<form name="regTransportForm" method="get" action="memberTransport.html" id="addTransportForm">
-		<div class="modal fade" id="regTransportModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="regTransportModalLabel" aria-hidden="true">
+	<form id="UTForm" name="UTForm" method="post">
+		<div class="modal fade" id="transportModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="regTransportModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -236,7 +233,7 @@
 		        			<b>구분</b>
 		        		</div>
 		        		<div class="col-lg-6">
-		        			<select class="country_select col-lg-6" style="display: inline; padding-right:60px;" id="regTransportHomeStart" name="regTransportHomeStart">
+		        			<select class="country_select col-lg-6" style="display: inline; padding-right:60px;" id="transportDiv" name="transportDiv">
                                 <option value="1">집</option>
                                 <option value="2">그 외</option>
                             </select>
@@ -247,7 +244,7 @@
 		        			<b>이름</b>
 		        		</div>
 		        		<div class="col-lg-9">
-		        			<input type="text" class="form-control col-lg-4" id="regTransportName" name="regTransportName">
+		        			<input type="text" class="form-control col-lg-4 mb-2" id="name" name="name" value="">
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
@@ -255,27 +252,13 @@
 		        			<b>주소</b>
 		        		</div>
 		        		<div class="col-lg-9">
-		        			<input type="text" class="form-control col-lg-4" style="display: inline;" id="regTransportZipCode" name="regTransportZipCode">
-			        		<input type="button" class="form-control genric-btn primary col-lg-4" id="regTransportSearch" name="regTransportAddressSearch" value="주소검색">
-		        			<input type="text" class="form-control" id="regTransportAddress" name="regTransportAddress">
-		        			<input type="text" class="form-control" id="regTransportAddressDetail" name="regTransportAddressDetail">
-		        		</div>
-		        	</div>
-		        	<div class="row marginSpace">
-		        		<div class="col-lg-3 textCenter">
-		        			<b>전화번호</b>
-		        		</div>
-		        		<div class="col-lg-9">
-		        			<select class="country_select col-lg-3" style="display: inline;" id="regTransportHomeStart" name="regTransportHomeStart">
-                                <option value=" 02">02</option>
-                                <option value="031">031</option>
-                                <option value="032">032</option>
-                                <option value="033">033</option>
-                            </select>
-                            <span class="col-lg-1"> - </span>
-                            <input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeCenter" name="regTransportHomeCenter">
-                            <span class="col-lg-1"> - </span>
-			        		<input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeEnd" name="regTransportHomeEnd">
+		        			<input type="text" class="form-control col-lg-4" style="display: inline;" id="zip" name="zip" readonly>
+			        		<input type="button" class="form-control mb-2 genric-btn primary col-lg-4" id="regTransportSearch" name="regTransportAddressSearch" value="주소검색" onclick="PostCode()">
+		        			<input type="text" class="form-control mb-2" id="address1" name="address1" readonly>
+		        			<input type="text" class="form-control mb-2" id="address2" name="address2">
+		        			<input type="hidden" id="extraaddress" name="extraaddress">
+		        			<input type="hidden" id="lng" name="lng">
+		        			<input type="hidden" id="lat" name="lat">
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
@@ -295,6 +278,23 @@
 			        		<input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportNumberEnd" name="regTransportNumberEnd">
 		        		</div>
 		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
+		        			<b>전화번호</b>
+		        		</div>
+		        		<div class="col-lg-9">
+		        			<select class="country_select col-lg-3" style="display: inline;" id="homeStart" name="homeStart">
+                                <option value=" 02">02</option>
+                                <option value="031">031</option>
+                                <option value="032">032</option>
+                                <option value="033">033</option>
+                            </select>
+                            <span class="col-lg-1"> - </span>
+                            <input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeCenter" name="regTransportHomeCenter">
+                            <span class="col-lg-1"> - </span>
+			        		<input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeEnd" name="regTransportHomeEnd">
+		        		</div>
+		        	</div>
 	        	</div>
 		      </div>
 		      <div class="modal-footer">
@@ -308,7 +308,7 @@
 	<!-- end new Transport modal area -->
 	
 	<!-- start new Transport modal area -->
-	<form name="modTransportForm" method="get" action="memberTransport.html" id="modTransportForm">
+	<!-- <form name="modTransportForm" method="get" action="memberTransport.html" id="modTransportForm">
 		<div class="modal fade" id="modTransportModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="modTransportModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
@@ -394,7 +394,7 @@
 		    </div>
 		  </div>
 		</div>
-	</form>
+	</form> -->
 	<!-- end new Transport modal area -->
 	
 	<!-- start modal area -->

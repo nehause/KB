@@ -90,8 +90,11 @@ public class MemberDao {
 		return sqlSession.update(namespace + ".passwordUpdate", dto);
 	}
 	
-	public List<Member> memberOrderList(Member dto) {
-		return sqlSession.selectList(namespace + ".memberOrderList", dto);
+	public int selectOrderCount(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOrderCount", vo);
+	}
+	public List<Member> memberOrderList(MemberVo vo) {
+		return sqlSession.selectList(namespace + ".memberOrderList", vo);
 	}
 	
 	public List<Member> favorite(Member dto) {

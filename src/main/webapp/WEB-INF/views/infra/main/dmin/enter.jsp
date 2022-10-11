@@ -28,7 +28,7 @@
 		text-align: center;
     	border-radius: 0px;
 		width: 70%;
-		height: 800%;
+		height: 200%;
 		top: 300px;
 		left: 120px;
 	}
@@ -46,6 +46,7 @@
 	<link rel="stylesheet" href="/resources/template/karma/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/template/karma/css/magnific-popup.css">
 	<link rel="stylesheet" href="/resources/template/karma/css/main.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
@@ -59,7 +60,7 @@
 </div>
 
 <div class="col-5">
-<a href="/codeGroup/codeGroupList"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a>
+<a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a>
 </div>
 </div>
 

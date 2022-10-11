@@ -114,14 +114,13 @@ public class TransportController {
 	// userPage
 	
 	@RequestMapping(value= "transportForm")
-	public String TransportForm(Transport dto, MemberVo vo, HttpSession httpSession, Model model) throws Exception {
+	public String TransportForm(Transport dto, @ModelAttribute("vo") TransportVo vo ,MemberVo MVo, HttpSession httpSession, Model model) throws Exception {
 		
 		dto.setSessSeq((String) httpSession.getAttribute("sessSeq"));
-		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		MVo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		
-		Member result = memberService.selectSeq(vo);
+		Member result = memberService.selectSeq(MVo);
 		model.addAttribute("item", result);
-		
 		
 		List<Transport> list = service.loginSeq(dto);
 		model.addAttribute("userTransport", list);
