@@ -21,10 +21,6 @@ public class Transport extends Member{
 	private Date registration;
 	private Date correctation;
 	
-	//join
-	
-	private String name;
-	private String accmulate;
 
 	public String getTransportSeq() {
 		return transportSeq;
@@ -138,22 +134,6 @@ public class Transport extends Member{
 		this.correctation = correctation;
 	}
 
-	// join
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAccmulate() {
-		return accmulate;
-	}
-
-	public void setAccmulate(String accmulate) {
-		this.accmulate = accmulate;
-	}
 	
 	
 	

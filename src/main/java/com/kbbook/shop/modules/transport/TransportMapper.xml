@@ -22,16 +22,23 @@
 		SELECT
 			a.*
 		FROM transport a
-		
 		WHERE 1=1
 			AND transportSeq = #{transportSeq}
 	</select>
-	<select id="loginCount" resultMap="resultMapObj">
+	<select id="loginCount" resultType="Integer">
 		SELECT
-			count(*)
+			COUNT(*)
 		FROM transport a
 		WHERE 1=1
 			AND member_memberSeq = #{sessSeq}
+	</select>
+	
+	<select id="memberSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM member a
+		WHERE 1=1
+			AND	memberSeq = #{memberSeq}
 	</select>
 	
 	<select id="loginSeq" resultMap="resultMapObj">
@@ -40,6 +47,16 @@
 		FROM transport a
 		WHERE 1=1
 			AND member_memberSeq = #{sessSeq}
+	</select>
+	
+	<select id="userSelect" resultMap="resultMapObj">
+		select
+		 a.*
+		 ,b.name
+		 FROM transport a
+		 join member b on a.member_memberSeq = b.memberSeq
+		 where 1=1
+		 and transportSeq = #{transportSeq}
 	</select>
 	
 	<insert id="insert">

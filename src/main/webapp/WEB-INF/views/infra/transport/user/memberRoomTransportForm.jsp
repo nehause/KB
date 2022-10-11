@@ -87,7 +87,8 @@
      			<!-- myRoomSidebar End -->
 
                 <div class="col-lg-9">
-                	<form name="memberModPasswordForm" method="get" action="/resources/memberRoomForm.html" id="memberModPasswordForm">
+                	<form  id="UTVForm" name="UTVForm" method="post">
+                		<input type="hidden" id="transportSeq" name="transportSeq">
 	                	<div style="height: 20px;"></div>
 						<table class="col-lg-12	border-top border-bottom">
 							<tr>
@@ -104,7 +105,7 @@
 	                    <h3><b>나의 주소록</b></h3>
 	                    <div class="border row" style="background-color: #F0F0F0;">
 	                    	<div class="col-lg-2" style="margin:10px;">
-	                    		<span>입력된 주소 </span> <span><b>1개</b></span>
+	                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
 	                    	</div>
 	                    	<div class="col-lg-3 offset-6">
 	                    		<button type="button" class="genric-btn default" id="regTrasport" data-toggle="modal" data-target="#transportModal"> 
@@ -157,7 +158,7 @@
 					                    			<span><c:out value="${userTransport.address1 }"/></span>
 					                    		</td>
 					                    		<td class="col-lg-1">
-					                    			<input type="radio" id="transportRadio_<c:out value="${userTransport.transportSeq }"/>" name="transportRadio" value="<c:out value="${userTransport.transportSeq }"/>">
+					                    			<input type="radio" id="seqRadio_<c:out value="${userTransport.transportSeq }"/>" name="seqRadio" value="<c:out value="${userTransport.transportSeq }"/>">
 					                    		</td>
 					                    	</tr>
 				                    	</c:forEach>
@@ -183,10 +184,10 @@
                             	</td>
                             </tr>
 	                    </table>
-                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;" id="modTransport" data-toggle="modal" data-target="#transportModal"> 
+                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;"  id="modModalBtn" name="modModalBtn"> 
                    			<i class="fa-solid fa-pencil"></i> 수정
                 		</button>
-                		<button type="button" class="genric-btn danger col-lg-2" style="float:right; margin-right:10px;" data-toggle="modal" data-target="#delectTransportModal" id="modPasswordFormSubmit" onclick="modPasswordSubmit();"> 
+                		<button type="button" class="genric-btn danger col-lg-2" style="float:right; margin-right:10px;" data-toggle="modal" data-target="#delectTransportModal" id="delectModalBtn"> 
                    			<i class="fa-solid fa-trash-can"></i> 삭제
                 		</button>
                     </form>
@@ -240,6 +241,7 @@
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
+		        		<input type="hidden" id="memberSeq" name="memberSeq">
 		        		<div class="col-lg-3 textCenter">
 		        			<b>이름</b>
 		        		</div>
@@ -266,16 +268,7 @@
 		        			<b>핸드폰</b>
 		        		</div>
 		        		<div class="col-lg-9">
-		        			<select class="country_select col-lg-3" id="regTransportNumberStart" name="regTransportNumberStart">
-                                 <option value="010">010</option>
-                                 <option value="011">011</option>
-                                 <option value="017">017</option>
-                                 <option value="019">019</option>
-                             </select>
-                             <span class="col-lg-1"> - </span>
-                            <input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportNumberCenter" name="regTransportNumberCenter">
-                            <span class="col-lg-1"> - </span>
-			        		<input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportNumberEnd" name="regTransportNumberEnd">
+		        			<input type="text" class="form-control" id="phone" name="phone">
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
@@ -283,23 +276,14 @@
 		        			<b>전화번호</b>
 		        		</div>
 		        		<div class="col-lg-9">
-		        			<select class="country_select col-lg-3" style="display: inline;" id="homeStart" name="homeStart">
-                                <option value=" 02">02</option>
-                                <option value="031">031</option>
-                                <option value="032">032</option>
-                                <option value="033">033</option>
-                            </select>
-                            <span class="col-lg-1"> - </span>
-                            <input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeCenter" name="regTransportHomeCenter">
-                            <span class="col-lg-1"> - </span>
-			        		<input type="text" class="form-control col-lg-3" style="display: inline;" id="regTransportHomeEnd" name="regTransportHomeEnd">
+		        			<input type="text" class="form-control" id="home" name="home">
 		        		</div>
 		        	</div>
 	        	</div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
-		        <button type="button" class="genric-btn primary" onclick="regTransportSubmit();">등록</button>
+		        <button type="button" class="genric-btn primary" id="modBtn" name="modBtn">등록</button>
 		      </div>
 		    </div>
 		  </div>
@@ -410,7 +394,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
-	        <button type="button" class="genric-btn danger" onclick="delectTransport();">삭제</button>
+	        <button type="button" class="genric-btn danger" id="delBtn" name="delBtn">삭제</button>
 	      </div>
 	    </div>
 	  </div>
@@ -488,17 +472,51 @@
 	        }).open();
 	    }
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlInsert = "/transport/transportInst";				/* #-> */
+	var goUrlUpdate = "/transport/transportUpdate";				/* #-> */
+	var goUrlUelete = "/transport/transportUelete";				/* #-> */
+	var goUrlDelete = "/transport/transportDelete";				/* #-> */
+	var seq = $("input:hidden[name=transportSeq]");
 	
-	<script type="text/javascript">
-		function modCheckSubmit() {
-				document.getElementById("memberModCheckForm").submit();
+	$("input:radio[name=seqRadio]").on("change",function(){
+		seq.val($("input:radio[name=seqRadio]:checked").val());
+	});
+	
+	$("#modModalBtn").on("click", function(){
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/transport/TransportModal"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					    $('#transportModal').modal('show');
+					    $('.modal-title').text('등록된 주소 수정');
+					    $('#name').val(response.name);
+					    $('#transportDiv').val(response.transportDiv).prop('selected', 'selected');;
+					    $('#phone').val(response.phone);
+					    $('#home').val(response.home);
+					    $('#zip').val(response.zip);
+					    $('#address1').val(response.address1);
+					    $('#address2').val(response.address2);
+					    $('#lng').val(response.lng);
+					    $('#lat').val(response.lat);
+
+				} else {
+					alert("주소를 선택해주십시요");
+				}
 			}
-		function regTransportSubmit() {
-			document.getElementById("regTransportForm").submit();
-		}
-		function modTransportSubmit() {
-			document.getElementById("modTransportForm").submit();
-		}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

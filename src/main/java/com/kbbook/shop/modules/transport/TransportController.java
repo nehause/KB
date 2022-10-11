@@ -1,6 +1,8 @@
 package com.kbbook.shop.modules.transport;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
@@ -111,19 +114,54 @@ public class TransportController {
 		return "redirect:/transport/transportList";
 	}
 	
+	//ajax
+	
+	@ResponseBody
+	@RequestMapping(value = "TransportModal")
+	public Map<String, Object> TransportModal(TransportVo vo) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Transport result = service.userSelect(vo);
+
+		if (result == null) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+			returnMap.put("transportSeq", result.getTransportSeq());
+			returnMap.put("name", result.getName());
+			returnMap.put("transportDiv", result.getTransportDiv());
+			returnMap.put("phone", result.getPhone());
+			returnMap.put("home", result.getHome());
+			returnMap.put("zip", result.getZip());
+			returnMap.put("address1", result.getAddress1());
+			returnMap.put("address2", result.getAddress2());
+			returnMap.put("lng", result.getLng());
+			returnMap.put("lat", result.getLat());
+			
+		}
+		return returnMap;
+	}
+	
 	// userPage
 	
 	@RequestMapping(value= "transportForm")
-	public String TransportForm(Transport dto, @ModelAttribute("vo") TransportVo vo ,MemberVo MVo, HttpSession httpSession, Model model) throws Exception {
+	public String TransportForm(@ModelAttribute("vo") TransportVo vo, Transport dto, HttpSession httpSession, Model model) throws Exception {
 		
+		vo.setSessSeq((String) httpSession.getAttribute("sessSeq"));
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		dto.setSessSeq((String) httpSession.getAttribute("sessSeq"));
-		MVo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		
-		Member result = memberService.selectSeq(MVo);
+		Transport result = service.memberSeq(vo);
 		model.addAttribute("item", result);
+		
+		vo.setParamsPaging(service.loginCount(vo));
 		
 		List<Transport> list = service.loginSeq(dto);
 		model.addAttribute("userTransport", list);
+		
+		Transport userSelect = service.userSelect(vo);
+		model.addAttribute("userItem", userSelect);
 		
 		return "infra/transport/user/memberRoomTransportForm";
 	}

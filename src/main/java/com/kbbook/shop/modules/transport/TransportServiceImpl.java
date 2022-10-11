@@ -59,6 +59,15 @@ public class TransportServiceImpl implements TransportService{
 	}
 	
 	@Override
+	public Transport memberSeq(TransportVo vo) throws Exception{
+		return dao.memberSeq(vo);
+	}
+	@Override
+	public Transport userSelect(TransportVo vo) throws Exception{
+		return dao.userSelect(vo);
+	}
+	
+	@Override
 	public int loginCount(TransportVo vo) throws Exception{
 		return dao.loginCount(vo);
 	}

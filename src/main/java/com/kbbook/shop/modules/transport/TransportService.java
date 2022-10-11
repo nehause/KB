@@ -14,7 +14,8 @@ public interface TransportService {
 	
 	public List<Transport> selectListWithoutPaging() throws Exception;
 	public int selectOneCount(BaseVo vo) throws Exception;
-	
+	public Transport memberSeq(TransportVo vo) throws Exception;
 	public int loginCount(TransportVo vo) throws Exception;
+	public Transport userSelect(TransportVo vo) throws Exception;
 	public List<Transport> loginSeq(Transport dto) throws Exception;
 }
