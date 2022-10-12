@@ -129,6 +129,7 @@ public class TransportController {
 		} else {
 			returnMap.put("rt", "success");
 			returnMap.put("transportSeq", result.getTransportSeq());
+			returnMap.put("memberSeq", result.getMember_memberSeq());
 			returnMap.put("name", result.getName());
 			returnMap.put("transportDiv", result.getTransportDiv());
 			returnMap.put("phone", result.getPhone());

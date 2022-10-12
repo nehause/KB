@@ -241,7 +241,7 @@
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
-		        		<input type="hidden" id="memberSeq" name="memberSeq">
+		        		<input type="hidden" id="member_memberSeq" name="member_memberSeq">
 		        		<div class="col-lg-3 textCenter">
 		        			<b>이름</b>
 		        		</div>
@@ -487,6 +487,7 @@
 	$("#regModalBtn").on("click", function(){
 		$('#transportModal').modal('show');
 	    $('.modal-title').text('새로운 주소 등록');
+	    $('#member_memberSeq').val('');
 	    $('#name').val('');
 	    $('#transportDiv').val('')
 	    $('#phone').val('');
@@ -513,6 +514,8 @@
 				if(response.rt == "success") {
 					    $('#transportModal').modal('show');
 					    $('.modal-title').text('등록된 주소 수정');
+					    $('#member_memberSeq').val(response.member_memberSeq);
+					    alert($('#member_memberSeq').val());
 					    $('#name').val(response.name);
 					    $('#transportDiv').val(response.transportDiv);
 					    $('#phone').val(response.phone);
