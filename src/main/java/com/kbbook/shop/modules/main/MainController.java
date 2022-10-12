@@ -72,6 +72,11 @@ public class MainController {
 		return "infra/main/dmin/dminLogin";
 	}
 	
+	@RequestMapping(value="/svg")
+	public String svg() throws Exception{
+		return "svg";
+	}
+	
 	@RequestMapping(value="/main")
 	public String Main(Model model) throws Exception{
 		
@@ -128,5 +133,6 @@ public class MainController {
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+	
 	
 }
