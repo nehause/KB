@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="/resources/template/karma/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/template/karma/css/magnific-popup.css">
 	<link rel="stylesheet" href="/resources/template/karma/css/main.css">
-	<link rel="stylesheet" href="/resources/user/karma/css/review.css">
+	<link rel="stylesheet" href="/resources/user/css/review.css">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 	
@@ -246,39 +246,19 @@
 										<h3>리뷰 3 개 기준</h3>
 										<ul class="list">
 											<li>
-												<span class="reviewStar">
-												  ★★★★★
-												  <span>★★★★★</span>
-												  <input type="range" oninput="drawStar(this)" value="5" step="1" min="0" max="5">
-												</span>
+												
 											</li>
 											<li>
-												<span class="reviewStar">
-												  ★★★★★
-												  <span>★★★★★</span>
-												  <input type="range" oninput="drawStar(this)" value="4" step="1" min="0" max="5">
-												</span>
+												
 											</li>
 											<li>
-												<span class="reviewStar">
-												  ★★★★★
-												  <span>★★★★★</span>
-												  <input type="range" oninput="drawStar(this)" value="3" step="1" min="0" max="5">
-												</span>
+												
 											</li>
 											<li>
-												<span class="reviewStar">
-												  ★★★★★
-												  <span>★★★★★</span>
-												  <input type="range" oninput="drawStar(this)" value="2" step="1" min="0" max="5">
-												</span>
+												
 											</li>
 											<li>
-												<span class="reviewStar">
-												  ★★★★★
-												  <span>★★★★★</span>
-												  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
-												</span>
+												
 											</li>
 											
 										</ul>
@@ -290,11 +270,7 @@
 									<div class="media">
 										<div class="media-body">
 											<h4>share</h4>
-											<span class="reviewStar">
-											  ★★★★★
-											  <span>★★★★★</span>
-											  <input type="range" oninput="drawStar(this)" value="3" step="1" min="0" max="5">
-											</span>
+											
 										</div>
 									</div>
 									<p>미묘하네요.</p>
@@ -303,11 +279,7 @@
 									<div class="media">
 										<div class="media-body">
 											<h4>goldwish</h4>
-											<span class="reviewStar">
-											  ★★★★★
-											  <span>★★★★★</span>
-											  <input type="range" oninput="drawStar(this)" value="5" step="1" min="0" max="5">
-											</span>
+											
 										</div>
 									</div>
 									<p>흥미롭네요.</p>
@@ -316,11 +288,7 @@
 									<div class="media">
 										<div class="media-body">
 											<h4>kara</h4>
-											<span class="reviewStar">
-											  ★★★★★
-											  <span>★★★★★</span>
-											  <input type="range" oninput="drawStar(this)" value="4" step="1" min="0" max="5">
-											</span>
+											<input type="hidden" id="grade3" name="grade3">
 										</div>
 									</div>
 									<p>잘봤습니다.</p>
@@ -334,12 +302,12 @@
 								<span class="reviewStar">
 								  ★★★★★
 								  <span>★★★★★</span>
-								  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
+								  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="1" step="1" min="0" max="5">
 								</span>
-								<form class="row contact_form" action="contact_process.php" method="post" id="memberReviewcontactForm" novalidate="novalidate">
+								<form class="row contact_form" method="post" id="RRForm" name="RRForm">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="memberReviewName" name="memberReviewName" placeholder="이름" onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'">
+											<input type="text" class="form-control" id="userName" name="userName" value>
 										</div>
 									</div>
 									<div class="col-md-12 text-right">
@@ -402,11 +370,12 @@
 			}
 		} 
 	</script>
-	<script>
-	const drawStar = (target) => {
-		  document.querySelector(`.reviewStar span`).style.width = `${target.value * 20}%`;
-		}
-	</script>
+	<!-- <script>
+		$('#grade').on("change", function(){
+			alert($('#grade').val());
+		});
+	</script> -->
+	
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
@@ -422,5 +391,6 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/resources/template/karma/js/gmaps.min.js"></script>
 	<script src="/resources/template/karma/js/main.js"></script>
+	<script src="/resources/user/js/review.js"></script>
 </body>
 </html>

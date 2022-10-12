@@ -12,8 +12,9 @@ public class Writer {
 	private Date registration;
 	private Date correctation;
 	
-	//join, subquery
+	//subquery
 	private String writtenBook;
+	
 	
 	public String getWriterSeq() {
 		return writerSeq;

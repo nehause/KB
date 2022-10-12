@@ -51,6 +51,12 @@
 			margin-top: 10px;
 		    margin-bottom: 10px;
 		}
+		.form-select{
+			display: block;
+		}
+		.nice-select{
+			display: none;
+		}
 	</style>
 </head>
 
@@ -110,7 +116,7 @@
 	                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
 	                    	</div>
 	                    	<div class="col-lg-3 offset-6">
-	                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn" data-toggle="modal" data-target="#transportModal"> 
+	                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn"> 
                    					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
                 				</button>
                 			</div>
@@ -235,7 +241,7 @@
 		        		</div>
 		        		<div class="col-lg-6">
 		        			<input type="hidden" id="transportSeq" name="transportSeq">
-		        			<select class="form-select col-lg-6" id="transportDiv" name="transportDiv">
+		        			<select class="form-control col-lg-6" id="transportDiv" name="transportDiv">
                                 <option value="1">집</option>
                                 <option value="2">그 외</option>
                             </select>
@@ -487,13 +493,15 @@
 		seq.val($("input:radio[name=seqRadio]:checked").val());
 	});
 	
+	
+	
 	$("#regModalBtn").on("click", function(){
 		$('#transportModal').modal('show');
 	    $('.modal-title').text('새로운 주소 등록');
 	    $('#transportSeq').val('');
 	    $('#member_memberSeq').val(${sessSeq });
-	    $('#name').val(${sessName });
-	    $('#transportDiv').val('')
+	    $('#name').val("${sessName }");
+	    $('#transportDiv').val(1)
 	    $('#phone').val('');
 	    $('#home').val('');
 	    $('#zip').val('');
@@ -502,6 +510,9 @@
 	    $('#extraaddress').val('');
 	    $('#lng').val('');
 	    $('#lat').val('');
+	    if($('#transportDiv').css("display") == "none"){
+			$('#transportDiv').attr('style', "display:block");
+		}
 	});
 	
 	$("#regModBtn").on("click", function(){
@@ -525,13 +536,14 @@
 			/* ,data : $("#formLogin").serialize() */
 			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
 			,success: function(response) {
+					// response.result.colum을 하면 가져온 값의 col값을 쓸수있다.
 				if(response.rt == "success") {
 					    $('#transportModal').modal('show');
 					    $('.modal-title').text('등록된 주소 수정');
 					    $('#transportSeq').val(response.transportSeq);
 					    $('#member_memberSeq').val(response.member_memberSeq);
 					    $('#name').val(response.name);
-					    $('select[name=transportDiv]').val(response.transportDiv);
+					    $('#transportDiv').val(response.result.transportDiv);
 					    $('#phone').val(response.phone);
 					    $('#home').val(response.home);
 					    $('#zip').val(response.zip);
@@ -539,6 +551,9 @@
 					    $('#address2').val(response.address2);
 					    $('#lng').val(response.lng);
 					    $('#lat').val(response.lat);
+					    if($('#transportDiv').css("display") == "none"){
+							$('#transportDiv').attr('style', "display:block");
+						}
 
 				} else {
 					alert("주소를 선택해주십시요");
@@ -549,8 +564,6 @@
 			}
 		});
 	});
-	
-	$()
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

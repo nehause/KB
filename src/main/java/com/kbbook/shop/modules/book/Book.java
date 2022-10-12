@@ -1,8 +1,11 @@
 package com.kbbook.shop.modules.book;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class Book {
+import com.kbbook.shop.modules.writer.Writer;
+
+public class Book extends Writer {
 	private String bookSeq;
 	private String sign;
 	private String name;
@@ -35,6 +38,17 @@ public class Book {
 	// join
 	private String writer;
 	
+	//join
+	private String book_commentSeq;
+	private String book_bookSeq;
+	private String memberSeq;
+	private Timestamp time;
+	private Timestamp toc;
+	private Integer grade;
+	private String comment;
+	private String userName;
+		
+		
 	public String getBookSeq() {
 		return bookSeq;
 	}
@@ -193,6 +207,54 @@ public class Book {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public String getBook_commentSeq() {
+		return book_commentSeq;
+	}
+	public void setBook_commentSeq(String book_commentSeq) {
+		this.book_commentSeq = book_commentSeq;
+	}
+	public String getBook_bookSeq() {
+		return book_bookSeq;
+	}
+	public void setBook_bookSeq(String book_bookSeq) {
+		this.book_bookSeq = book_bookSeq;
+	}
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
+	public Timestamp getTime() {
+		return time;
+	}
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+	public Timestamp getToc() {
+		return toc;
+	}
+	public void setToc(Timestamp toc) {
+		this.toc = toc;
+	}
+	public Integer getGrade() {
+		return grade;
+	}
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
