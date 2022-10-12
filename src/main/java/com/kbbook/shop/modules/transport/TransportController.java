@@ -114,6 +114,48 @@ public class TransportController {
 		return "redirect:/transport/transportList";
 	}
 	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="userTransportInst")
+	public String userTransportInst(Transport dto, TransportVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		int result = service.insert(dto);
+		
+		System.out.println("dto.getTransportSeq(): " + dto.getTransportSeq());
+		
+		vo.setTransportSeq(dto.getTransportSeq());
+		
+		System.out.println("vo.getTransportSeq(): " + vo.getTransportSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		
+		return "redirect:/transport/transportForm";
+	}
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="userTransportUpdate")
+	public String userTransportUpdate(TransportVo vo, Transport dto, RedirectAttributes redirectAttributes) throws Exception{
+		
+		service.update(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/transport/transportForm";
+	}
+	
+	@RequestMapping(value = "userTransportUelete")
+	public String userTransportUelete(Transport dto, RedirectAttributes redirectAttributes) throws Exception{
+		service.uelete(dto);
+		
+		return "redirect:/transport/transportForm";
+	}
+	
+	@RequestMapping(value = "userTransportDelete")
+	public String userTransportDelete(TransportVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		service.delete(vo);
+		
+		return "redirect:/transport/transportForm";
+	}
+	
 	//ajax
 	
 	@ResponseBody
@@ -129,7 +171,7 @@ public class TransportController {
 		} else {
 			returnMap.put("rt", "success");
 			returnMap.put("transportSeq", result.getTransportSeq());
-			returnMap.put("memberSeq", result.getMember_memberSeq());
+			returnMap.put("member_memberSeq", result.getMember_memberSeq());
 			returnMap.put("name", result.getName());
 			returnMap.put("transportDiv", result.getTransportDiv());
 			returnMap.put("phone", result.getPhone());

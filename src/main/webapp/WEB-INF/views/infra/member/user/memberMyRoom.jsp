@@ -184,7 +184,7 @@
 				                           		</td>
 				                           		<td>
 					                           		<!-- pagination s -->
-													<%@include file="../../../common/dmin/include/pagination.jsp"%>
+													<%@include file="../../../common/dmin/include/userPagination.jsp"%>
 													<!-- pagination e -->
 				                           		</td>
 				                           		<td>

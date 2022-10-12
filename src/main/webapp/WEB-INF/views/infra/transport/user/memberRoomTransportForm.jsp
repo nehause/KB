@@ -89,6 +89,8 @@
                 <div class="col-lg-9">
                 	<form  id="UTVForm" name="UTVForm" method="post">
                 		<input type="hidden" id="transportSeq" name="transportSeq">
+                		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+						<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 	                	<div style="height: 20px;"></div>
 						<table class="col-lg-12	border-top border-bottom">
 							<tr>
@@ -172,11 +174,9 @@
 	                    	</tr>
 	                    	<tr class="row" style="background-color: #F0F0F0;">
                            		<td class="col-lg-12">
-	                           		<a href="#"><b><i class="fa-solid fa-angles-left"></i></b></a>
-	                           		<a href="#"><b><i class="fa-solid fa-angle-left"></i></b></a>
-	                           		<a href="#"><span style="color:gray">1</span></a>
-	                           		<a href="#"><b><i class="fa-solid fa-angle-right"></i></b></a>
-	                           		<a href="#"><b><i class="fa-solid fa-angles-right"></i></b></a>
+	                           		<!-- pagination s -->
+									<%@include file="../../../common/dmin/include/userPagination.jsp"%>
+									<!-- pagination e -->
                            		</td>
                             </tr>
                             <tr class="row">
@@ -234,6 +234,7 @@
 		        			<b>구분</b>
 		        		</div>
 		        		<div class="col-lg-6">
+		        			<input type="hidden" id="transportSeq" name="transportSeq">
 		        			<select class="form-select col-lg-6" id="transportDiv" name="transportDiv">
                                 <option value="1">집</option>
                                 <option value="2">그 외</option>
@@ -283,7 +284,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
-		        <button type="button" class="genric-btn primary" id="modBtn" name="modBtn">등록</button>
+		        <button type="button" class="genric-btn primary" id="regModBtn" name="regModBtn">등록</button>
 		      </div>
 		    </div>
 		  </div>
@@ -474,10 +475,12 @@
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
-	var goUrlInsert = "/transport/transportInst";				/* #-> */
-	var goUrlUpdate = "/transport/transportUpdate";				/* #-> */
-	var goUrlUelete = "/transport/transportUelete";				/* #-> */
-	var goUrlDelete = "/transport/transportDelete";				/* #-> */
+	var goUrlInsert = "/transport/userTransportInst";				/* #-> */
+	var goUrlUpdate = "/transport/userTransportUpdate";				/* #-> */
+	var goUrlUelete = "/transport/userTransportUelete";				/* #-> */
+	var goUrlDelete = "/transport/userTransportDelete";				/* #-> */
+	var form = $("form[name=UTForm]"); 
+	var listForm = $("form[name=UTVForm]");
 	var seq = $("input:hidden[name=transportSeq]");
 	
 	$("input:radio[name=seqRadio]").on("change",function(){
@@ -487,8 +490,9 @@
 	$("#regModalBtn").on("click", function(){
 		$('#transportModal').modal('show');
 	    $('.modal-title').text('새로운 주소 등록');
-	    $('#member_memberSeq').val('');
-	    $('#name').val('');
+	    $('#transportSeq').val('');
+	    $('#member_memberSeq').val(${sessSeq });
+	    $('#name').val(${sessName });
 	    $('#transportDiv').val('')
 	    $('#phone').val('');
 	    $('#home').val('');
@@ -500,8 +504,18 @@
 	    $('#lat').val('');
 	});
 	
-	$("#modModalBtn").on("click", function(){
+	$("#regModBtn").on("click", function(){
+		if($('#transportSeq').val() == '' || $('#transportSeq').val() == null){
+			form.attr("action", goUrlInsert).submit();	
+		} else{
+			form.attr("action", goUrlUpdate).submit();	
+		}
+	})
+	$("#delBtn").on("click", function(){
+			listForm.attr("action", goUrlDelete).submit();
+		}); 
 		
+	$("#modModalBtn").on("click", function(){
 		$.ajax({
 			async: true 
 			,cache: false
@@ -514,10 +528,10 @@
 				if(response.rt == "success") {
 					    $('#transportModal').modal('show');
 					    $('.modal-title').text('등록된 주소 수정');
+					    $('#transportSeq').val(response.transportSeq);
 					    $('#member_memberSeq').val(response.member_memberSeq);
-					    alert($('#member_memberSeq').val());
 					    $('#name').val(response.name);
-					    $('#transportDiv').val(response.transportDiv);
+					    $('select[name=transportDiv]').val(response.transportDiv);
 					    $('#phone').val(response.phone);
 					    $('#home').val(response.home);
 					    $('#zip').val(response.zip);
@@ -535,6 +549,8 @@
 			}
 		});
 	});
+	
+	$()
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
@@ -544,7 +560,7 @@
 	<script src="/resources/template/karma/js/jquery.nice-select.min.js"></script>
 	<script src="/resources/template/karma/js/jquery.sticky.js"></script>
 	<script src="/resources/template/karma/js/nouislider.min.js"></script>
-	<script src="/resources/template/karma/js/countdown.js"></script>
+	<!-- <script src="/resources/template/karma/js/countdown.js"></script> -->
 	<script src="/resources/template/karma/js/jquery.magnific-popup.min.js"></script>
 	<script src="/resources/template/karma/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
