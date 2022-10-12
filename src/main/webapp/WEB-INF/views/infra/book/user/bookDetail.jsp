@@ -34,8 +34,10 @@
 	<link rel="stylesheet" href="/resources/template/karma/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/template/karma/css/magnific-popup.css">
 	<link rel="stylesheet" href="/resources/template/karma/css/main.css">
+	<link rel="stylesheet" href="/resources/user/karma/css/review.css">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	
 </head>
 
 <body>
@@ -243,16 +245,42 @@
 									<div class="rating_list">
 										<h3>리뷰 3 개 기준</h3>
 										<ul class="list">
-											<li><a href="#">5점 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 1</a></li>
-											<li><a href="#">4점 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 1</a></li>
-											<li><a href="#">3점 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 1</a></li>
-											<li><a href="#">2점 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 0</a></li>
-											<li><a href="#">1점 <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 0</a></li>
+											<li>
+												<span class="reviewStar">
+												  ★★★★★
+												  <span>★★★★★</span>
+												  <input type="range" oninput="drawStar(this)" value="5" step="1" min="0" max="5">
+												</span>
+											</li>
+											<li>
+												<span class="reviewStar">
+												  ★★★★★
+												  <span>★★★★★</span>
+												  <input type="range" oninput="drawStar(this)" value="4" step="1" min="0" max="5">
+												</span>
+											</li>
+											<li>
+												<span class="reviewStar">
+												  ★★★★★
+												  <span>★★★★★</span>
+												  <input type="range" oninput="drawStar(this)" value="3" step="1" min="0" max="5">
+												</span>
+											</li>
+											<li>
+												<span class="reviewStar">
+												  ★★★★★
+												  <span>★★★★★</span>
+												  <input type="range" oninput="drawStar(this)" value="2" step="1" min="0" max="5">
+												</span>
+											</li>
+											<li>
+												<span class="reviewStar">
+												  ★★★★★
+												  <span>★★★★★</span>
+												  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
+												</span>
+											</li>
+											
 										</ul>
 									</div>
 								</div>
@@ -260,45 +288,39 @@
 							<div class="review_list">
 								<div class="review_item">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>share</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<span class="reviewStar">
+											  ★★★★★
+											  <span>★★★★★</span>
+											  <input type="range" oninput="drawStar(this)" value="3" step="1" min="0" max="5">
+											</span>
 										</div>
 									</div>
 									<p>미묘하네요.</p>
 								</div>
 								<div class="review_item">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>goldwish</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<span class="reviewStar">
+											  ★★★★★
+											  <span>★★★★★</span>
+											  <input type="range" oninput="drawStar(this)" value="5" step="1" min="0" max="5">
+											</span>
 										</div>
 									</div>
 									<p>흥미롭네요.</p>
 								</div>
 								<div class="review_item">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>kara</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<span class="reviewStar">
+											  ★★★★★
+											  <span>★★★★★</span>
+											  <input type="range" oninput="drawStar(this)" value="4" step="1" min="0" max="5">
+											</span>
 										</div>
 									</div>
 									<p>잘봤습니다.</p>
@@ -309,33 +331,15 @@
 							<div class="review_box">
 								<h4>리뷰 쓰기</h4>
 								<p>평점 :</p>
-								<ul class="list">
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-								</ul>
-								<p></p>
+								<span class="reviewStar">
+								  ★★★★★
+								  <span>★★★★★</span>
+								  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
+								</span>
 								<form class="row contact_form" action="contact_process.php" method="post" id="memberReviewcontactForm" novalidate="novalidate">
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="memberReviewName" name="memberReviewName" placeholder="이름" onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="email" class="form-control" id="memberReviewEmail" name="memberReviewEmail" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" id="memberReviewNumber" name="memberReviewNumber" placeholder="전화번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '전화번호'">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea class="form-control" name="memberReviewMessage" id="memberReviewMessage" rows="1" placeholder="리뷰 적기" onfocus="this.placeholder = ''" onblur="this.placeholder = '리뷰 적기'"></textarea></textarea>
 										</div>
 									</div>
 									<div class="col-md-12 text-right">
@@ -361,7 +365,7 @@
 	<!-- footer End -->
 	
 	<script type="text/javascript">
-		function DIShow() {
+			function DIShow() {
 			  var DIdiv = document.getElementById("detailImages");
 			  var DIbtn = document.getElementById("DIBtn");
 			  
@@ -398,7 +402,11 @@
 			}
 		} 
 	</script>
-
+	<script>
+	const drawStar = (target) => {
+		  document.querySelector(`.reviewStar span`).style.width = `${target.value * 20}%`;
+		}
+	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

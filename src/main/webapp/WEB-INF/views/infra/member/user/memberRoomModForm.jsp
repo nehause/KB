@@ -212,19 +212,19 @@
 	                    		<td class="col-lg-10">
 	                    			<div class="row">
 	                    				<div class="col-lg-4">
-	                    					<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" readonly>
+	                    					<input type="text" class="form-control mb-2" id="zip" name="zip" value="<c:out value="${item.zip }"/>" readonly>
 	                    				</div>
 	                    				<div class="col-lg-3">
-											<button type="button" class="genric-btn primary" id="searchTransport" name="searchTransport" onclick="PostCode()">
+											<button type="button" class="genric-btn primary mb-2" id="searchTransport" name="searchTransport" onclick="PostCode()">
 												<i class="fa-solid fa-map"></i> 주소검색
 											</button>
 										</div>
 	                    				<div class="col-lg-7">
-	                    					<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" readonly>
+	                    					<input type="text" class="form-control mb-2" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" readonly>
 	                    					<input type="hidden" class="form-control" id="extraaddress" name="extraaddress">
 	                    				</div>
 	                    				<div class="col-lg-7">
-	                    					<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>">
+	                    					<input type="text" class="form-control mb-2" id="address2" name="address2" value="<c:out value="${item.address2 }"/>">
       										<input type="hidden" class="form-control" id="lag" name="lag">
        										<input type="hidden" class="form-control" id="lat" name="lat">
 	                    				</div>
