@@ -197,5 +197,58 @@
 			<otherwise></otherwise>
 		</choose>
 	</select>
-
+	
+	<select id="bookSelectSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+			,cost*(1-sale) as price
+			,(SELECT
+			case
+			when count(c.name) = 1 then c.name
+			when count(c.name) > 1 then concat(min(c.name) , ' 외 ' , cast(COUNT(name) as char)-1 , ' 명' )
+			end
+			FROM writer c
+	        JOIN book_writer b on b.writer_writerSeq = c.writerSeq
+	        where 1=1
+				and  b.book_bookSeq = a.bookSeq 
+	            ) as writer
+		FROM book a
+		WHERE 1=1
+			AND	bookSeq = #{bookSeq}
+	</select>	
+	
+	<select id="bookComment" resultMap="resultMapObj">
+	select
+		a.*
+	    ,b.userName
+	FROM book_comment a
+	join member b on a.memberSeq = b.memberSeq
+	where 1=1
+	and book_bookSeq = #{bookSeq}
+	order by time desc
+	</select>
+	<select id="commentAVG" resultMap="resultMapObj">
+	select
+		avg(grade) as gradeAVG
+	FROM book_comment 
+	where 1=1
+	and book_bookSeq = #{bookSeq}
+	</select>
+	
+	<select id="bookWriter" resultMap="resultMapObj">
+	select
+		a.*
+	from writer a
+	join book_writer b on a.writerSeq = b.writer_writerSeq
+	where 1=1
+	and book_bookSeq = #{bookSeq}
+	</select>
+	
+	<select id="bookCommentCount"  resultType="Integer">
+	select
+		count(*)
+	FROM book_comment
+	where 1=1
+	and book_bookSeq = #{bookSeq}
+	</select>
 </mapper>	

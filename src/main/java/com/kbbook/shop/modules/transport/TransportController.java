@@ -170,7 +170,6 @@ public class TransportController {
 			returnMap.put("rt", "fail");
 		} else {
 			returnMap.put("result", result);
-			
 			// 위의 한줄과 아래것은 같다.
 			returnMap.put("rt", "success");
 			returnMap.put("transportSeq", result.getTransportSeq());

@@ -164,8 +164,19 @@ public class BookController {
 	@RequestMapping(value="bookDetail")
 	public String BookDetail(@ModelAttribute("vo") BookVo vo, Model model) throws Exception {
 		
-		Book result = service.selectSeq(vo);
+		Book result = service.bookSelectSeq(vo);
 		model.addAttribute("item", result);
+		
+		List<Book> writer = service.bookWriter(vo);
+		model.addAttribute("writer", writer);		
+		
+		List<Book> comment = service.bookComment(vo);
+		model.addAttribute("comment", comment);
+		
+		Book avg = service.commentAVG(vo);
+		model.addAttribute("avg", avg);
+		
+		vo.setParamsPaging(service.bookCommentCount(vo)); 
 		
 		List<Main> best = mainService.bestList();
 		model.addAttribute("best", best);

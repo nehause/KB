@@ -17,4 +17,10 @@ public interface BookService {
 	
 	public List<Book> userSelectList(BookVo vo) throws Exception;
 	public int userSelectOneCount(BookVo vo) throws Exception;
+	
+	public List<Book> bookComment(BookVo vo) throws Exception;
+	public Book bookSelectSeq(BookVo vo) throws Exception;
+	public Book commentAVG(BookVo vo) throws Exception;
+	public int bookCommentCount(BookVo vo) throws Exception;
+	public List<Book> bookWriter(BookVo vo) throws Exception;
 }

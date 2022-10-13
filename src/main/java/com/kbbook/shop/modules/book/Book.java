@@ -47,6 +47,8 @@ public class Book extends Writer {
 	private Integer grade;
 	private String comment;
 	private String userName;
+	// 추가 변수(총 평점)
+	private double gradeAVG;
 		
 		
 	public String getBookSeq() {
@@ -256,6 +258,13 @@ public class Book extends Writer {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public double getGradeAVG() {
+		return gradeAVG;
+	}
+	public void setGradeAVG(double gradeAVG) {
+		this.gradeAVG = gradeAVG;
+	}
+	
 	
 	
 	

@@ -61,4 +61,19 @@ public class BookDao {
 	public int userSelectOneCount(BookVo vo) {
 		return sqlSession.selectOne(namespace + ".userSelectOneCount", vo);
 	}
+	public Book bookSelectSeq(BookVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".bookSelectSeq", vo);
+	}
+	public List<Book> bookComment(BookVo vo) throws Exception{
+		return sqlSession.selectList(namespace + ".bookComment", vo);
+	}
+	public Book commentAVG(BookVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".commentAVG", vo);
+	}
+	public int bookCommentCount(BookVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".bookCommentCount", vo);
+	}
+	public List<Book> bookWriter(BookVo vo) throws Exception{
+		return sqlSession.selectList(namespace + ".bookWriter", vo);
+	}
 }

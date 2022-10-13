@@ -214,19 +214,15 @@
 					
 				</div>
 				<div class="tab-pane fade" id="writer" role="tabpanel" aria-labelledby="writer-tab">
-					<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
-					<img alt="" src="/resources/images/w1.png">
-					</div>
-					<p style="font-size: large; font-weight: bolder;">저자: 자청</p>
-					<p>‘무자본 창업가’로 유명해진 저자는 2019년, 20편의 영상으로 10만 구독자를 넘어서며 화제를 모은 후 미련 없이 유튜브 〈라이프해커 자청〉을 그만뒀다.
-					이후 본업인 온라인 마케팅 비즈니스를 비롯해 다방면으로 사업을 확장했다. 대표적으로 ‘이상한마케팅’, ‘프드프’, ‘아트라상’, ‘큐어릴’부터 지분 투자로 참여한 ‘라이프해킹스쿨’, ‘유튜디오’, 오프라인 사업으로 ‘욕망의북카페’, ‘인피니’ 등이 있다.
-					이미 30대 초반 무렵에 어떤 일을 하지 않아도 월 1억씩 버는 자동 수익을 완성했으며, 소유한 자산으로 매년 20퍼센트 이상의 투자 수익률을 올리며 경제적 자유를 실현했다.
-					<br><br>
-					그러나 10대 때의 저자는 외모, 돈, 공부, 어떤 점에서도 최하위였다. 그러던 스무 살 무렵, ‘인생에도 게임처럼 공략집이 있다’는 사실을 깨달으면서 삶이 180도 바뀌기 시작한다.
-					200여 권의 책을 독파하며 얻은 치트키들을 활용해 창업에 연이어 성공한 것이다. 저자가 성공한 비즈니스 모델은 ‘초보가 왕초보를 가르치는 것’이다. 어느 분야든 저렴한 가격으로 도움을 받고 싶은 왕초보의 수요는 분명히 존재한다.
-					이들에겐 기본만 알아도 일의 진척을 도울 수 있다. 이에 착안해 저자는 여러 비즈니스를 설계했다.
-					공통점은 투자비용 자체가 들어가지 않는 ‘무자본 창업’, 그리고 일하지 않아도 돈이 들어오는 ‘자동화 수익’이다. 어느새 유튜버 ‘라이프해커 자청’이라는 캐릭터와 ‘무자본 창업’이라는 개념은 사람들의 고정관념을 깨는 상징이 됐다.
-					2022년 현재, 저자는 ‘이상한마케팅’, ‘프드프’, ‘아트라상’ 등의 회사를 비롯해 총 6개의 사업과 4개의 지분 투자 사업으로 자동 수익을 만들어내고 있으며, 약 130명의 직원들과 함께 재미난 일들을 벌이고 있다.</p>
+					<c:forEach items="${writer}" var="writer" varStatus="status">
+						<div>
+							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
+								<c:out value="${writer.image }"/>
+							</div>
+							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.name }"/></p>
+							<p><c:out value="${writer.introduce }"/></p>
+						</div>
+					</c:forEach>
 				</div>
 				
 				
@@ -237,13 +233,20 @@
 								<div class="col-6">
 									<div class="box_total">
 										<h5>평점</h5>
-										<h4>4.0</h4>
-										<h6>리뷰(03)</h6>
+										<c:choose>
+											<c:when test="${avg.gradeAVG eq null}"> 
+												<h4>0</h4>
+											</c:when>
+											<c:otherwise>
+												<h4><c:out value="${avg.gradeAVG}"/></h4>
+											</c:otherwise>
+										</c:choose>
+										<h6>리뷰(<c:out value="${vo.totalRows}"/>)</h6>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>리뷰 3 개 기준</h3>
+										<h3>리뷰 <c:out value="${vo.totalRows}"/> 개 기준</h3>
 										<ul class="list">
 											<li>
 												
@@ -266,45 +269,36 @@
 								</div>
 							</div>
 							<div class="review_list">
-								<div class="review_item">
-									<div class="media">
-										<div class="media-body">
-											<h4>share</h4>
-											
-										</div>
-									</div>
-									<p>미묘하네요.</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="media-body">
-											<h4>goldwish</h4>
-											
-										</div>
-									</div>
-									<p>흥미롭네요.</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="media-body">
-											<h4>kara</h4>
-											<input type="hidden" id="grade3" name="grade3">
-										</div>
-									</div>
-									<p>잘봤습니다.</p>
-								</div>
+								<c:choose>
+									<c:when test="${fn:length(comment) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+										<div class="review_item" style="text-align: center; margin-top: 50px;"> 등록된 리뷰가 없습니다! </div>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${comment}" var="comment" varStatus="status">
+											<div class="review_item">
+												<div class="media">
+													<div class="media-body">
+														<h4><c:out value="${comment.userName}"/></h4>
+														<c:out value="${comment.grade}"/>
+													</div>
+												</div>
+												<p><c:out value="${comment.comment}"/></p>
+											</div>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
-								<h4>리뷰 쓰기</h4>
-								<p>평점 :</p>
-								<span class="reviewStar">
-								  ★★★★★
-								  <span>★★★★★</span>
-								  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="1" step="1" min="0" max="5">
-								</span>
 								<form class="row contact_form" method="post" id="RRForm" name="RRForm">
+									<h4>리뷰 쓰기</h4>
+									<p>평점 :</p>
+									<span class="reviewStar">
+									  ★★★★★
+									  <span>★★★★★</span>
+									  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="1" step="1" min="0" max="5">
+									</span>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="userName" name="userName" value>
