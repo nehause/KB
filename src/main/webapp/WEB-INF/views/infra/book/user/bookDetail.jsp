@@ -82,6 +82,7 @@
 						<h3><c:out value="${item.name }"/></h3>
 						<h4 style="color: gray"><c:out value="${item.subName }"/></h4>
 						<h2>₩<c:out value="${item.price }"/></h2>
+						<span style="text-decoration: line-through;">₩<c:out value="${item.cost }" /></span>
 						<ul class="list">
 							<li>
 								<a><span>작가</span> : <c:out value="${item.writer }"/></a>
@@ -97,11 +98,11 @@
 							</b>
 						</p>
 						<div class="product_count">
-							<label for="qty">수량:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;"
+							<label for="amount">수량:</label>
+							<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
+							<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst )) result.value++;"
 							 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
+							<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
 							 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
@@ -215,13 +216,14 @@
 				</div>
 				<div class="tab-pane fade" id="writer" role="tabpanel" aria-labelledby="writer-tab">
 					<c:forEach items="${writer}" var="writer" varStatus="status">
-						<div>
+						<div class="border" style="padding: 20px;">
 							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
 								<c:out value="${writer.image }"/>
 							</div>
 							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.name }"/></p>
 							<p><c:out value="${writer.introduce }"/></p>
 						</div>
+						<div style="height: 30px;"></div>
 					</c:forEach>
 				</div>
 				
@@ -268,6 +270,7 @@
 									</div>
 								</div>
 							</div>
+							<div style="height: 30px;"></div>
 							<div class="review_list">
 								<c:choose>
 									<c:when test="${fn:length(comment) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
@@ -278,11 +281,32 @@
 											<div class="review_item">
 												<div class="media">
 													<div class="media-body">
-														<h4><c:out value="${comment.userName}"/></h4>
-														<c:out value="${comment.grade}"/>
+														<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: large;"><c:out value="${comment.userName}"/></p>
+														<p class="mb-3" style="display:inline;"><c:out value="${comment.time}"/></p>
+														<c:choose>
+															<c:when test="${comment.grade eq 5}">
+																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</p>
+															</c:when>
+															<c:when test="${comment.grade eq 4}">
+																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★★</p>
+															</c:when>
+															<c:when test="${comment.grade eq 3}">
+																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★</p>
+															</c:when>
+															<c:when test="${comment.grade eq 2}">
+																<p class="reviewedStar mb-3"  style="color: #ffd700;">★★</p>
+															</c:when>
+															<c:when test="${comment.grade eq 1}">
+																<p class="reviewedStar mb-3" style="color: #ffd700;">★</p>
+															</c:when>
+															<c:otherwise>
+																<p class="reviewedStar" style="padding-bottom: 20px;"></p>
+															</c:otherwise>
+														</c:choose>
+													  	
 													</div>
 												</div>
-												<p><c:out value="${comment.comment}"/></p>
+												<p style="margin-top: 20px;"><c:out value="${comment.comment}"/></p>
 											</div>
 										</c:forEach>
 									</c:otherwise>
@@ -292,13 +316,16 @@
 						<div class="col-lg-6">
 							<div class="review_box">
 								<form class="row contact_form" method="post" id="RRForm" name="RRForm">
-									<h4>리뷰 쓰기</h4>
+									<h3 display="block">리뷰 쓰기</h3>
+									<div class="col-md-12">
 									<p>평점 :</p>
+									
 									<span class="reviewStar">
 									  ★★★★★
 									  <span>★★★★★</span>
-									  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="1" step="1" min="0" max="5">
+									  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="0" step="1" min="0" max="5">
 									</span>
+									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="userName" name="userName" value>
@@ -365,9 +392,33 @@
 		} 
 	</script>
 	<!-- <script>
-		$('#grade').on("change", function(){
-			alert($('#grade').val());
-		});
+		var num = idNum;
+		if($('#userGrade_' + num).val() == 5 ){
+			
+			$('#userStar_' + num).text("★★★★★");
+		
+		} else if($('#userGrade_' + num).val() == 4 ){
+		
+			$('#userStar_' + num).text("★★★★");
+		
+		} else if($('#userGrade_' + num).val() == 3 ){
+		
+			$('#userStar_' + num).text("★★★");
+		
+		} else if($('#userGrade_' + num).val() == 2 ){
+		
+			$('#userStar_' + num).text("★★");
+		
+		} else if($('#userGrade_' + num).val() == 1 ){
+		
+			$('#userStar_' + num).text("★");
+		
+		} else {
+		
+			$('#userStar_' + num).text("");
+		
+		}
+			
 	</script> -->
 	
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
@@ -378,7 +429,7 @@
 	<script src="/resources/template/karma/js/jquery.nice-select.min.js"></script>
 	<script src="/resources/template/karma/js/jquery.sticky.js"></script>
 	<script src="/resources/template/karma/js/nouislider.min.js"></script>
-	<script src="/resources/template/karma/js/countdown.js"></script>
+	<!-- <script src="/resources/template/karma/js/countdown.js"></script> -->
 	<script src="/resources/template/karma/js/jquery.magnific-popup.min.js"></script>
 	<script src="/resources/template/karma/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
