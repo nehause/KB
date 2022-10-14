@@ -345,6 +345,7 @@ public class MemberController {
 				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
 				httpSession.setAttribute("sessId", rtMember2.getId());
 				httpSession.setAttribute("sessName", rtMember2.getName());
+				httpSession.setAttribute("sessUserName", rtMember2.getUserName());
 
 				/*
 				 * rtMember2.setIflgResultNy(1); service.insertLogLogin(rtMember2);

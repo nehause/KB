@@ -65,6 +65,7 @@
 		sessSeq: <c:out value="${sessSeq }"/><br>
 		sessName: <c:out value="${sessName }"/><br>
 		sessId: <c:out value="${sessId }"/><br>
+		sessUserName: <c:out value="${sessUserName }"/><br>
 	</div>
 	<!-- End Header Area -->
 	

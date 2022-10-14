@@ -280,33 +280,35 @@
 										<c:forEach items="${comment}" var="comment" varStatus="status">
 											<div class="review_item">
 												<div class="media">
+													
 													<div class="media-body">
 														<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: large;"><c:out value="${comment.userName}"/></p>
 														<p class="mb-3" style="display:inline;"><c:out value="${comment.time}"/></p>
-														<c:choose>
-															<c:when test="${comment.grade eq 5}">
-																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</p>
-															</c:when>
-															<c:when test="${comment.grade eq 4}">
-																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★★</p>
-															</c:when>
-															<c:when test="${comment.grade eq 3}">
-																<p class="reviewedStar mb-3" style="color: #ffd700;">★★★</p>
-															</c:when>
-															<c:when test="${comment.grade eq 2}">
-																<p class="reviewedStar mb-3"  style="color: #ffd700;">★★</p>
-															</c:when>
-															<c:when test="${comment.grade eq 1}">
-																<p class="reviewedStar mb-3" style="color: #ffd700;">★</p>
-															</c:when>
-															<c:otherwise>
-																<p class="reviewedStar" style="padding-bottom: 20px;"></p>
-															</c:otherwise>
-														</c:choose>
-													  	
+														<div style="display:block;">
+															<c:choose>
+																<c:when test="${comment.grade eq 5}">
+																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</span>
+																</c:when>
+																<c:when test="${comment.grade eq 4}">
+																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★</span><span class="reviewedStar mb-3">★</span>
+																</c:when>
+																<c:when test="${comment.grade eq 3}">
+																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★</span><span class="reviewedStar mb-3">★★</span>
+																</c:when>
+																<c:when test="${comment.grade eq 2}">
+																	<span class="reviewedStar mb-3"  style="color: #ffd700;">★★</span><span class="reviewedStar mb-3">★★★</span>
+																</c:when>
+																<c:when test="${comment.grade eq 1}">
+																	<span class="reviewedStar mb-3" style="color: #ffd700;">★</span><span class="reviewedStar mb-3">★★★★</span>
+																</c:when>
+																<c:otherwise>
+																	<span class="reviewedStar mb-3">★★★★★</span>
+																</c:otherwise>
+															</c:choose>
+													  	</div>
 													</div>
 												</div>
-												<p style="margin-top: 20px;"><c:out value="${comment.comment}"/></p>
+												<p style="padding-top: 0px; margin-top: 15px; margin-bottom: 30px;"><c:out value="${comment.comment}"/></p>
 											</div>
 										</c:forEach>
 									</c:otherwise>
@@ -314,28 +316,40 @@
 							</div>
 						</div>
 						<div class="col-lg-6">
-							<div class="review_box">
-								<form class="row contact_form" method="post" id="RRForm" name="RRForm">
+							<c:choose>
+							<c:when test="${sessSeq eq null}">
+								<div class="review_box" style="text-align: center">
 									<h3 display="block">리뷰 쓰기</h3>
-									<div class="col-md-12">
-									<p>평점 :</p>
-									
-									<span class="reviewStar">
-									  ★★★★★
-									  <span>★★★★★</span>
-									  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="0" step="1" min="0" max="5">
-									</span>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" id="userName" name="userName" value>
+									<div style="height: 30px;"></div>
+									<span> 로그인시 이용가능한 컨텐츠입니다. </span>
+								</div>
+							</c:when>
+								<c:otherwise>
+								<div class="review_box">
+									<form class="row contact_form" method="post" id="RRForm" name="RRForm">
+										<h3 display="block">리뷰 쓰기</h3>
+										<div class="col-md-12">
+										<h4></h4>
+										<p>평점 :</p>
+										
+										<span class="reviewStar">
+										  ★★★★★
+										  <span>★★★★★</span>
+										  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="0" step="1" min="0" max="5">
+										</span>
 										</div>
-									</div>
-									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" class="primary-btn">등록하기</button>
-									</div>
-								</form>
-							</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" id="userName" name="userName" value>
+											</div>
+										</div>
+										<div class="col-md-12 text-right">
+											<button type="submit" value="submit" class="primary-btn">등록하기</button>
+										</div>
+									</form>
+								</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
