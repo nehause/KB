@@ -37,10 +37,21 @@
 	<link rel="stylesheet" href="/resources/user/css/review.css">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-	
+	<style>
+		.commentHover:hover {
+		  text-decoration: underline;
+		}
+	</style>
+	<script>
+		function onload(){
+			if($('#bookSeq').val() == null || $('#bookSeq').val() == ""){
+				location.href = "/book/bookIndex";
+			}
+		}
+	</script>
 </head>
 
-<body>
+<body onload="onload()">
 	<!-- pagination s -->
 	<%@include file="../../../common/user/include/header.jsp"%>
 	<!-- pagination e -->
@@ -69,6 +80,7 @@
 				<div class="col-lg-6">
 					<div class="single-deal">
 						<div class="overlay"></div>
+						<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
 						<c:out value="${item.sign }"/>
 						<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
 							<div class="deal-details">
@@ -240,7 +252,7 @@
 												<h4>0</h4>
 											</c:when>
 											<c:otherwise>
-												<h4><c:out value="${avg.gradeAVG}"/></h4>
+												<h4><fmt:formatNumber type="number" pattern="###.#" value="${avg.gradeAVG}" /></h4>
 											</c:otherwise>
 										</c:choose>
 										<h6>리뷰(<c:out value="${vo.totalRows}"/>)</h6>
@@ -271,44 +283,80 @@
 								</div>
 							</div>
 							<div style="height: 30px;"></div>
-							<div class="review_list">
+							<div class="review_list border" style="padding: 15px;">
 								<c:choose>
 									<c:when test="${fn:length(comment) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
-										<div class="review_item" style="text-align: center; margin-top: 50px;"> 등록된 리뷰가 없습니다! </div>
+										<div class="review_item" style="text-align: center; margin-top: 50px; margin-bottom: 50px;"> 등록된 리뷰가 없습니다! </div>
 									</c:when>
 									<c:otherwise>
 										<c:forEach items="${comment}" var="comment" varStatus="status">
 											<div class="review_item">
 												<div class="media">
-													
-													<div class="media-body">
-														<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: large;"><c:out value="${comment.userName}"/></p>
-														<p class="mb-3" style="display:inline;"><c:out value="${comment.time}"/></p>
-														<div style="display:block;">
-															<c:choose>
-																<c:when test="${comment.grade eq 5}">
-																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</span>
-																</c:when>
-																<c:when test="${comment.grade eq 4}">
-																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★</span><span class="reviewedStar mb-3">★</span>
-																</c:when>
-																<c:when test="${comment.grade eq 3}">
-																	<span class="reviewedStar mb-3" style="color: #ffd700;">★★★</span><span class="reviewedStar mb-3">★★</span>
-																</c:when>
-																<c:when test="${comment.grade eq 2}">
-																	<span class="reviewedStar mb-3"  style="color: #ffd700;">★★</span><span class="reviewedStar mb-3">★★★</span>
-																</c:when>
-																<c:when test="${comment.grade eq 1}">
-																	<span class="reviewedStar mb-3" style="color: #ffd700;">★</span><span class="reviewedStar mb-3">★★★★</span>
-																</c:when>
-																<c:otherwise>
-																	<span class="reviewedStar mb-3">★★★★★</span>
-																</c:otherwise>
-															</c:choose>
-													  	</div>
-													</div>
+													<c:choose>
+														<c:when test="${comment.memberSeq eq sessSeq}">
+															<div class="media-body" id="commentBox_<c:out value="${comment.book_commentSeq}"/>">
+																<input type="hidden" id="commentSeq_<c:out value="${comment.book_commentSeq}"/>" value="<c:out value="${comment.book_commentSeq}"/>">
+																<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: large;"><c:out value="${comment.userName}"/></p>
+																<p class="mb-3" style="display:inline;"><c:out value="${comment.time}"/></p>
+																<p class="commentHover" style="float: right; padding:0px; cursor: pointer;" id="delModalBtn_<c:out value="${comment.book_commentSeq}"/>" onclick="delModalValue(<c:out value="${comment.book_commentSeq}"/>)">삭제</p>
+																<div style="display:block; float: none;">
+																	<c:choose>
+																		<c:when test="${comment.grade eq 5}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 4}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★</span><span class="reviewedStar mb-3">★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 3}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★</span><span class="reviewedStar mb-3">★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 2}">
+																			<span class="reviewedStar mb-3"  style="color: #ffd700;">★★</span><span class="reviewedStar mb-3">★★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 1}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★</span><span class="reviewedStar mb-3">★★★★</span>
+																		</c:when>
+																		<c:otherwise>
+																			<span class="reviewedStar mb-3">★★★★★</span>
+																		</c:otherwise>
+																	</c:choose>
+															  	</div>
+															  	<p style="padding-top: 0px; margin-top: 15px; margin-bottom: 30px;"><c:out value="${comment.comment}"/></p>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="media-body" id="commentBox_<c:out value="${comment.book_commentSeq}"/>">
+																<input type="hidden" id="commentSeq_<c:out value="${comment.book_commentSeq}"/>" value="<c:out value="${comment.book_commentSeq}"/>">
+																<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: large;"><c:out value="${comment.userName}"/></p>
+																<p class="mb-3" style="display:inline;"><c:out value="${comment.time}"/></p>
+																<p class="commentHover" style="float: right; padding:0px; cursor: pointer;" id="decModalBtn" name="decModalBtn">신고</p>
+																<div style="display:block;">
+																	<c:choose>
+																		<c:when test="${comment.grade eq 5}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 4}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★★</span><span class="reviewedStar mb-3">★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 3}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★★★</span><span class="reviewedStar mb-3">★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 2}">
+																			<span class="reviewedStar mb-3"  style="color: #ffd700;">★★</span><span class="reviewedStar mb-3">★★★</span>
+																		</c:when>
+																		<c:when test="${comment.grade eq 1}">
+																			<span class="reviewedStar mb-3" style="color: #ffd700;">★</span><span class="reviewedStar mb-3">★★★★</span>
+																		</c:when>
+																		<c:otherwise>
+																			<span class="reviewedStar mb-3">★★★★★</span>
+																		</c:otherwise>
+																	</c:choose>
+															  	</div>
+															  	<p style="padding-top: 0px; margin-top: 15px; margin-bottom: 30px;"><c:out value="${comment.comment}"/></p>
+															</div>
+														</c:otherwise>
+													</c:choose>
 												</div>
-												<p style="padding-top: 0px; margin-top: 15px; margin-bottom: 30px;"><c:out value="${comment.comment}"/></p>
 											</div>
 										</c:forEach>
 									</c:otherwise>
@@ -327,24 +375,28 @@
 								<c:otherwise>
 								<div class="review_box">
 									<form class="row contact_form" method="post" id="RRForm" name="RRForm">
+									<input type="hidden" id="book_bookSeq" name="book_bookSeq" value="<c:out value="${item.bookSeq }"/>">
+									<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${sessSeq }"/>">
 										<h3 display="block">리뷰 쓰기</h3>
 										<div class="col-md-12">
-										<h4></h4>
-										<p>평점 :</p>
-										
-										<span class="reviewStar">
-										  ★★★★★
-										  <span>★★★★★</span>
-										  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="0" step="1" min="0" max="5">
-										</span>
+											<p class="mb-3" style="display:inline; padding-right: 20px; font-weight: bold; font-size: x-large;"><c:out value="${sessUserName }"/><br></p>
+											<div style="height: 15px;"></div>
+											<p>평점 :</p>
+											<span class="reviewStar">
+											  ★★★★★
+											  <span>★★★★★</span>
+											  <input type="range" oninput="drawStar(this)" id="grade" name="grade" value="0" step="1" min="0" max="5">
+											</span>
+											<div style="height: 15px;"></div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<input type="text" class="form-control" id="userName" name="userName" value>
+												<h4>한줄 리뷰 작성</h4>
+												<input type="text" class="form-control" id="comment" name="comment" value="<c:out value="${dto.comment}"/>" onkeyup="enterEvent()">
 											</div>
 										</div>
 										<div class="col-md-12 text-right">
-											<button type="submit" value="submit" class="primary-btn">등록하기</button>
+											<button type="button" class="primary-btn" id="regBtn" name="regBtn">등록하기</button>
 										</div>
 									</form>
 								</div>
@@ -362,11 +414,66 @@
 	<%@include file="../../../common/user/include/bestNewList.jsp"%>
 	<!-- bestNewList End -->
 	
+	<!-- modal start -->
+	<div class="modal fade" id="decModal" tabindex="-1" aria-labelledby="decModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="decModalLabel">신고</h5>
+				</div>
+				<div class="modal-body">
+					<p>신고 내용은 이용약관 및 정책에 의해 처리됩니다.</p>
+					
+					<p>허위 신고일 경우, 신고자의 서비스 활동이 제한될 수 있으니 유의하시어
+					신중하게 신고해 주세요.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						취소
+					</button>
+					<button type="button" class="btn btn-danger" id="decBtn" name="decBtn">
+						신고
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="delModalLabel">삭제</h5>
+				</div>
+				<div class="modal-body">
+					<p>리뷰가 삭제되면 복구할 수 없습니다.</p>
+					
+					<p>다시 작성해야하니 유의해주세요</p>
+					<form id="RDForm" name="RDForm">
+						<input type="hidden" id="book_commentSeq" name="book_commentSeq">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						취소
+					</button>
+					<button type="button" class="btn btn-danger" id="delBtn" name="delBtn">
+						삭제
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal end -->
 
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<!-- <script>
+	$('#grade').on("change", function(){
+		alert($('#grade').val());
+	});
+	</script> -->
 	<script type="text/javascript">
 			function DIShow() {
 			  var DIdiv = document.getElementById("detailImages");
@@ -404,7 +511,58 @@
 				  Pbtn.value = "더보기";
 			}
 		} 
+		
+		function enterEvent() {
+			        if (window.event.keyCode == 13) {
+				form.attr("action", goUrlInsert).submit();
+			}
+		}
+		
+		
 	</script>
+	<script>
+	var goUrlInsert = "/book/commentInsert";
+	var goUrlDelete = "/book/commentDelete";
+	var form = $("form[name=RRForm]");
+	
+	function delModalValue(delSeq){
+		$('#delModal').modal('show');
+		$('#book_commentSeq').val(delSeq);
+		/* alert($('#book_commentSeq').val()); */
+	}
+	$('#decModalBtn').on("click", function(){
+		  $('#decModal').modal('show');
+	});
+	$('#regBtn').on("click", function(){
+		form.attr("action", goUrlInsert).submit();
+	});
+	
+	$('#delBtn').on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/book/commentDel"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "book_commentSeq" : $("#book_commentSeq").val() }
+			,success: function(response) {
+				if(response.rt == "success") {
+					var num = $("#book_commentSeq").val();
+					 $('#commentBox_'+num).remove();
+					 $('#delModal').modal('hide');
+					
+				} else {
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+		
+	</script>
+	
 	<!-- <script>
 		var num = idNum;
 		if($('#userGrade_' + num).val() == 5 ){

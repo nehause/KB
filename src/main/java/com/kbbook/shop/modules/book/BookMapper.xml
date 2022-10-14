@@ -251,4 +251,36 @@
 	where 1=1
 	and book_bookSeq = #{bookSeq}
 	</select>
+	
+	<insert id="commentInsert">
+		INSERT INTO book_comment(
+			book_bookSeq
+			,memberSeq
+			,grade
+			,comment
+		)
+		VALUES(
+			#{book_bookSeq}
+			,#{memberSeq}
+			,#{grade}
+			,#{comment}
+		)
+		<selectKey resultType="String" keyProperty="book_commentSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<delete id="commentDelete">
+		DELETE 
+		FROM book_comment 
+		WHERE 1=1 
+			AND	book_commentSeq = #{book_commentSeq}
+	</delete>
+	<select id="commentCheck" resultType="Integer">
+		select
+			count(*)
+		from book_comment
+		where 1=1
+		and book_commentSeq = #{book_commentSeq}
+		
+	</select>
 </mapper>	

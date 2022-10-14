@@ -514,17 +514,6 @@
 			$('#transportDiv').attr('style', "display:block");
 		}
 	});
-	
-	$("#regModBtn").on("click", function(){
-		if($('#transportSeq').val() == '' || $('#transportSeq').val() == null){
-			form.attr("action", goUrlInsert).submit();	
-		} else{
-			form.attr("action", goUrlUpdate).submit();	
-		}
-	})
-	$("#delBtn").on("click", function(){
-			listForm.attr("action", goUrlDelete).submit();
-		}); 
 		
 	$("#modModalBtn").on("click", function(){
 		$.ajax({
@@ -564,6 +553,18 @@
 			}
 		});
 	});
+	$("#delBtn").on("click", function(){
+		listForm.attr("action", goUrlDelete).submit();
+	}); 
+	
+	$("#regModBtn").on("click", function(){
+		if($('#transportSeq').val() == '' || $('#transportSeq').val() == null){
+			form.attr("action", goUrlInsert).submit();	
+		} else{
+			form.attr("action", goUrlUpdate).submit();	
+		}
+	});
+
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

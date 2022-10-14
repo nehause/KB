@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kbbook.shop.common.constants.Constants;
 import com.kbbook.shop.modules.main.Main;
 import com.kbbook.shop.modules.main.MainServiceImpl;
+import com.kbbook.shop.modules.member.Member;
 
 
 
@@ -136,6 +137,23 @@ public class BookController {
 		 * 
 		 * return service.userSelectList(vo); }
 		 */
+	
+	@ResponseBody
+	@RequestMapping(value = "commentDel")
+	public Map<String, Object> commentDel(Book dto, BookVo vo) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.commentCheck(dto);
+
+		if (result > 0) {
+			returnMap.put("rt", "success");
+			service.commentDelete(vo);
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
 	 
 	
 	//userPage
@@ -187,5 +205,16 @@ public class BookController {
 		
 		return "infra/book/user/bookDetail";
 	}
-	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value = "commentInsert")
+	public String commentInst(Book dto, BookVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		service.commentInsert(dto);
+		vo.setBookSeq(dto.getBook_bookSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/book/bookDetail";
+		
+	}
+
 }

@@ -92,4 +92,15 @@ public class BookServiceImpl implements BookService{
 	public List<Book> bookWriter(BookVo vo) throws Exception{
 		return dao.bookWriter(vo);
 	}
+	
+	public int commentInsert(Book dto) throws Exception{
+		return dao.commentInsert(dto);
+		
+	}
+	public int commentDelete(BookVo vo) throws Exception{
+		return dao.commentDelete(vo);
+	}
+	public int commentCheck(Book dto) throws Exception{
+		return dao.commentCheck(dto);
+	}
 }

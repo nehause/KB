@@ -23,4 +23,8 @@ public interface BookService {
 	public Book commentAVG(BookVo vo) throws Exception;
 	public int bookCommentCount(BookVo vo) throws Exception;
 	public List<Book> bookWriter(BookVo vo) throws Exception;
+	
+	public int commentInsert(Book dto) throws Exception;
+	public int commentDelete(BookVo vo) throws Exception;
+	public int commentCheck(Book dto) throws Exception;
 }

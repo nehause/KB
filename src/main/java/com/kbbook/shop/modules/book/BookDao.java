@@ -76,4 +76,14 @@ public class BookDao {
 	public List<Book> bookWriter(BookVo vo) throws Exception{
 		return sqlSession.selectList(namespace + ".bookWriter", vo);
 	}
+	
+	public int commentInsert(Book dto) throws Exception{
+		return sqlSession.insert(namespace + ".commentInsert", dto);
+	}
+	public int commentDelete(BookVo vo) throws Exception{
+		return sqlSession.delete(namespace + ".commentDelete", vo);
+	}
+	public int commentCheck(Book dto) throws Exception{
+		return sqlSession.selectOne(namespace + ".commentCheck", dto);
+	}
 }
