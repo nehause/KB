@@ -208,12 +208,19 @@
 	</section>
 	<!-- End category Area -->
 
+	<%-- <svg viewBox="0 0 800 800">
+		<!-- bestNewList Start -->
+		<%@include file="../../../common/user/include/svg.jsp"%>
+		<!-- bestNewList End -->
+	</svg> --%>
+
 	<!-- bestNewList Start -->
 	<%@include file="../../../common/user/include/bestNewList.jsp"%>
 	<!-- bestNewList End -->
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
+	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
