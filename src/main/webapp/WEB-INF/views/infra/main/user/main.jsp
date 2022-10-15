@@ -207,7 +207,7 @@
 		</div>
 	</section>
 	<!-- End category Area -->
-
+	<!-- 지향점 배경 색칠이 가능한지 좀더 css적인 요소를 넣을수 있는지 안에 텍스트를 넣을 수 있는지 -->
 	<%-- <svg viewBox="0 0 800 800">
 		<!-- bestNewList Start -->
 		<%@include file="../../../common/user/include/svg.jsp"%>
