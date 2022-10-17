@@ -137,5 +137,98 @@
 			<when test="searchOption == 3">AND b.name LIKE CONCAT('%',#{searchValue},'%')</when>
 		</choose>
 	</select>
+	
+	<!-- user count -->
+	
+	<select id="purchaseBookSeq">
+	select
+		bookSeq
+		,name
+		,sign
+		,cost*(1-sale) as price
+	from book a
+	where 1=1
+	
+	</select>
+	
+	<select id="transportSeq" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM transport a
+		WHERE 1=1
+			AND member_memberSeq = #{sessSeq}
+	</select>
+	
+	<insert id="transportInsert">
+		INSERT INTO transport (
+			member_memberSeq
+			,transportDiv
+			,phone
+			,home
+			,zip
+			,address1
+			,address2
+			,lng
+			,lat
+			,useNy
+			,delNy
+		)
+		VALUES (
+		
+			#{member_memberSeq}
+			,#{transportDiv}
+			,#{phone}
+			,#{home}
+			,#{zip}
+			,#{address1}
+			,#{address2}
+			,#{lng}
+			,#{lat}
+			,1
+			,0
+		
+		)
+		<selectKey resultType="String" keyProperty="transportSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 
+	<update id="transportUpdate">
+	UPDATE transport
+	SET
+		member_memberSeq = #{member_memberSeq}
+		,transportDiv = #{transportDiv}
+		,phone = #{phone}
+		,home = #{home}
+		,zip = #{zip}
+		,address1 = #{address1}
+		,address2 = #{address2}
+		,lng = #{lng}
+		,lat = #{lat}
+		,useNy = #{useNy}
+		,delNy = #{delNy}
+	WHERE 1=1
+		AND transportSeq = #{transportSeq}
+	</update>
+	
+	<insert id="bookPurchaseInsert">
+		INSERT INTO book_purchase (
+			purchase_purchaseSeq
+			,book_bookSeq
+			,count
+			,price
+		)
+		VALUES (
+		
+			#{purchaseSeq}
+			,#{bookSeq}
+			,#{count}
+			,#{price}
+		
+		)
+		<selectKey resultType="String" keyProperty="purchase_bookSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 </mapper>	

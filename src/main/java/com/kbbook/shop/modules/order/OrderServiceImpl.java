@@ -58,4 +58,22 @@ public class OrderServiceImpl implements OrderService {
 	public int selectOneCount(BaseVo vo) throws Exception{
 		return dao.selectOneCount(vo);
 	}
+	
+	//userpage
+	
+	public Order purchaseBookSeq(OrderVo vo) throws Exception{
+		return dao.purchaseBookSeq(vo);
+	}
+	public Order transportSeq(OrderVo vo) throws Exception{
+		return dao.transportSeq(vo);
+	}
+	public int transportInsert(Order dto) throws Exception{
+		return dao.transportInsert(dto);
+	}
+	public int transportUpdate(Order dto) throws Exception{
+		return dao.transportUpdate(dto);
+	}
+	public int bookPurchaseInsert(Order dto) throws Exception{
+		return dao.bookPurchaseInsert(dto);
+	}
 }

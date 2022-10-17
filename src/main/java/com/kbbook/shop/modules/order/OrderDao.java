@@ -54,5 +54,22 @@ public class OrderDao {
 	public int selectOneCount(BaseVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+	public Order purchaseBookSeq(OrderVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".purchaseBookSeq", vo);
+	}
+	public Order transportSeq(OrderVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".transportSeq", vo);
+	}
+	public int transportInsert(Order dto) throws Exception{
+		return sqlSession.insert(namespace + ".transportInsert", dto);
+	}
+	public int transportUpdate(Order dto) throws Exception{
+		return sqlSession.update(namespace + ".transportUpdate", dto);
+	}
+	public int bookPurchaseInsert(Order dto) throws Exception{
+		return sqlSession.insert(namespace + ".bookPurchaseInsert", dto);
+	}
+	
 
 }

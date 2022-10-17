@@ -77,7 +77,95 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>배송 정보</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form id="UTVForm" name="UTVForm" method="post">
+	                		<input type="hidden" id="transportSeq" name="transportSeq">
+	                		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+							<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+		                    <div class="border row" style="background-color: #F0F0F0;">
+		                    	<div class="col-lg-2" style="margin:10px;">
+		                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
+		                    	</div>
+		                    	<div class="col-lg-3 offset-6">
+		                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn"> 
+	                   					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
+	                				</button>
+	                			</div>
+		                    </div>
+							<div style="height: 10px;"></div>
+		                    <table class="table col-lg-12" style="text-align:center; vertical-align:middle;">
+		                    	<tr class="row">
+		                    		<th class="col-lg-1">
+		                    			<span>구분</span>
+		                    		</th>
+		                    		<th class="col-lg-3">
+		                    			<span>전화번호</span><br><span>[휴대전화번호]</span>
+		                    		</th>
+		                    		<th class="col-lg-2">
+		                    			<span>우편번호</span>
+		                    		</th>
+		                    		<th class="col-lg-5">
+		                    			<span>주소</span>
+		                    		</th>
+		                    		<th class="col-lg-1">
+		                    			<span>선택</span>
+		                    		</th>
+		                    	</tr>
+	                    		<c:set var="listCodeTransportDiv" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
+									<c:choose>
+										<c:when test="${fn:length(userTransport) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+											<td class="text-center" colspan="5">저장된 주소지가 없습니다.</td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${userTransport}" var="userTransport" varStatus="status">
+												<tr class="row">
+						                    		<td class="col-lg-1">
+					                    				<span>
+					                    					<c:forEach items="${listCodeTransportDiv}" var="listTransportDiv" varStatus="statusTransportDiv">
+																<c:if test="${userTransport.transportDiv eq listTransportDiv.COrder}"><c:out value="${listTransportDiv.CNameKor }"/></c:if>
+															</c:forEach>
+														</span>
+						                    		</td>
+						                    		<td class="col-lg-3">
+						                    			<span><c:out value="${userTransport.phone }"/></span>
+						                    		</td>
+						                    		<td class="col-lg-2">
+						                    			<span><c:out value="${userTransport.zip }"/></span>
+						                    		</td>
+						                    		
+						                    		<td class="col-lg-5">
+						                    			<span><c:out value="${userTransport.address1 }"/></span>
+						                    		</td>
+						                    		<td class="col-lg-1">
+						                    			<input type="radio" id="seqRadio_<c:out value="${userTransport.transportSeq }"/>" name="seqRadio" value="<c:out value="${userTransport.transportSeq }"/>">
+						                    		</td>
+						                    	</tr>
+					                    	</c:forEach>
+					                    </c:otherwise>
+									</c:choose>
+		                    	<tr>
+		                    		
+		                    	</tr>
+		                    	<tr>
+		                    		
+		                    	</tr>
+		                    	<tr class="row" style="background-color: #F0F0F0;">
+	                           		<td class="col-lg-12">
+		                           		<!-- pagination s -->
+										<%@include file="../../../common/dmin/include/userPagination.jsp"%>
+										<!-- pagination e -->
+	                           		</td>
+	                            </tr>
+	                            <tr class="row">
+	                            	<td class="col-lg-12">
+	                            	</td>
+	                            </tr>
+		                    </table>
+	                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;"  id="modModalBtn" name="modModalBtn"> 
+	                   			<i class="fa-solid fa-pencil"></i> 수정
+	                		</button>
+	                    </form>
+	                    <div style="height: 50px;"></div>
+                       <!--  <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                             <div class="col-md-5 form-group p_star">
                                 <input type="text" class="form-control" id="orderName" name="orderName" placeholder="이름*">
                             </div>
@@ -109,11 +197,11 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group" style="height: 30px;"></div>
-                        </form>
+                        </form> -->
                         <div class="cart_inner">
 			                <div class="table-responsive">
 			                	<h1>주문 상품</h1>
-			                    <table class="table">
+			                    <table class="table" style="text-align: center;">
 			                        <thead>
 			                            <tr>
 			                                <th scope="col">상품 정보</th>
@@ -127,28 +215,28 @@
 			                                <td>
 			                                    <div class="media">
 			                                        <div class="d-flex">
-			                                            <img src="/resources/images/product/pb1.png" alt="" style="width: 150px;">
+			                                            <img src="<c:out value="${item.price }"/>" alt="" style="width: 150px;">
 			                                        </div>
 			                                        <div class="media-body">
-			                                            <p style="width: 240px;">[국내도서] 역행자</p>
+			                                            <p style="width: 240px;"><c:out value="${item.name }"/></p>
 			                                        </div>
 			                                    </div>
 			                                </td>
 			                                <td>
-			                                    <h5>₩15,750</h5>
+			                                    <h5>₩<c:out value="${item.price }"/></h5>
 			                                </td>
 			                                <td>
 			                                    <div class="product_count">
-			                                        <input type="text" name="orderQuantity1" id="orderQuantity1" maxlength="12" value="1" title="Quantity:"
-			                                            class="input-text qty">
-			                                        <button onclick="var result = document.getElementById('orderQuantity1'); var orderQuantity1 = result.value; if( !isNaN( orderQuantity1 )) result.value++;;"
-			                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-			                                        <button onclick="var result = document.getElementById('orderQuantity1'); var orderQuantity1 = result.value; if( !isNaN( orderQuantity1 ) && orderQuantity1 > 1 ) result.value--;"
-			                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-			                                    </div>
+													<label for="amount">수량:</label>
+													<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
+													<button onclick="var stock = ${item.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
+													 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
+													<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
+													 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
+												</div>
 			                                </td>
 			                                <td>
-			                                    <h5>₩15,750</h5>
+			                                    <h5>₩<span id="tableSingleCost"></span></h5>
 			                                </td>
 			                            </tr>
 			                            <tr>
@@ -162,7 +250,7 @@
 			                                    <h5>합계</h5>
 			                                </td>
 			                                <td>
-			                                    <h5>₩15,750</h5>
+			                                    <h5>₩<span id="tableTotalCost"></span></h5>
 			                                </td>
 			                            </tr>
 			                        </tbody>
@@ -175,18 +263,18 @@
                             <h2>주문 내역</h2>
                             <ul class="list">
                                 <li><a href="#">상품 <span>총합</span></a></li>
-                                <li><a href="#">[국내도서] 역행자 <span class="middle">x 01</span> <span class="last">₩15,750</span></a></li><!-- 
+                                <li><a href="#"><c:out value="${item.name }"/> <span id="amountCount" class="middle"></span> <span id="amountPrice" class="last">₩</span></a></li><!-- 
                                 <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
                                 <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li> -->
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">상품 금액 <span>₩15,750</span></a></li>
+                                <li><a href="#">상품 금액 <span id="bookPrice">₩</span></a></li>
                                 <li><a href="#">배송비 <span>무료</span></a></li>
-                                <li><a href="#">결제 예정 금액 <span>₩15,750</span></a></li>
+                                <li><a href="#">결제 예정 금액 <span id="purchasePrice">₩</span></a></li>
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
+                                    <input type="radio" id="payment1" name="payment">
                                     <label for="f-option5">카드 결제수단</label>
                                     <div class="check"></div>
                                 </div>
@@ -194,7 +282,7 @@
                             </div>
                             <div class="payment_item active">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
+                                    <input type="radio" id="payment2" name=""payment"">
                                     <label for="f-option6">Paypal </label>
                                     <img src="/resources/template/karma/img/product/card.jpg" alt="">
                                     <div class="check"></div>
@@ -219,53 +307,232 @@
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
 	
-	<!-- start modal area -->
-	<section class="product_description_area">
-	<div class="modal fade" id="orderTransportChangeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="orderTransportChangeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<ul class="nav nav-tabs col-lg-12" id="myTab" role="tablist">
-						<li class="col-lg-10">
-							<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: left;">주소록</h3>
-						</li>
-						<li>
-							<button type="button" class="border border-0" style="vertical-align: middle; background-color: #E8F0F2;" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x fa-2x"></i></button>
-						</li>
-						<li class="nav-item col-lg-5" style="margin:0px;">
-							<a class="nav-link active" id="home-tab" data-toggle="tab" href="#orderTransportBook" role="tab" aria-controls="findId" aria-selected="true">주소록</a>
-						</li>
-						<li class="nav-item col-lg-5">
-							<a class="nav-link" id="writer-tab" data-toggle="tab" href="#orderTransportLatest" role="tab" aria-controls="findPassword" aria-selected="false">최근 배송지</a>
-						</li>
-					</ul>
-				</div>
-				<div class="modal-body">
-					<form name="findIdPasswordForm" method="get" action="/resources/loginForm.html" id="findIdPasswordForm">
-						<div class="tab-content" id="findIDPasswordContent">
-							<div class="tab-pane fade show active" id="orderTransportBook" role="tabpanel" aria-labelledby="orderTransportBookTab">
-								
-							</div>
-							<div class="tab-pane fade" id="orderTransportLatest" role="tabpanel" aria-labelledby="orderTransportLatestTab">
-								
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<div style="text-align: center;">
-						<a href="#"><b><i class="fa-solid fa-angles-left"></i></b></a>
-                   		<a href="#"><b><i class="fa-solid fa-angle-left"></i></b></a>
-                   		<a href="#"><b><span>1</span></b></a>
-            		 	<a href="#"><b><i class="fa-solid fa-angle-right"></i></b></a>
-                   		<a href="#"><b><i class="fa-solid fa-angles-right"></i></b></a>
-					</div>
-				</div>
-			</div>
+	<!-- start new Transport modal area -->
+	<form id="UTForm" name="UTForm" method="post">
+		<div class="modal fade" id="transportModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="regTransportModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="regTransportModalLabel">새로운 주소 입력</h5>
+		        <button type="button" class="border-0" style="background-color: white;" data-dismiss="modal"><i class="fa-solid fa-xmark fa-2x" style="color:gray"></i></button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="col-lg-12">
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
+		        			<b>구분</b>
+		        		</div>
+		        		<div class="col-lg-6">
+		        			<input type="hidden" id="transportSeq" name="transportSeq">
+		        			<select class="form-control col-lg-6" id="transportDiv" name="transportDiv">
+                                <option value="1">집</option>
+                                <option value="2">그 외</option>
+                            </select>
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<input type="hidden" id="member_memberSeq" name="member_memberSeq">
+		        		<div class="col-lg-3 textCenter">
+		        			<b>이름</b>
+		        		</div>
+		        		<div class="col-lg-9">
+		        			<input type="text" class="form-control col-lg-4 mb-2" id="name" name="name" value="">
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 allCenter">
+		        			<b>주소</b>
+		        		</div>
+		        		<div class="col-lg-9">
+		        			<input type="text" class="form-control col-lg-4" style="display: inline;" id="zip" name="zip" readonly>
+			        		<input type="button" class="form-control mb-2 genric-btn primary col-lg-4" id="regTransportSearch" name="regTransportAddressSearch" value="주소검색" onclick="PostCode()">
+		        			<input type="text" class="form-control mb-2" id="address1" name="address1" readonly>
+		        			<input type="text" class="form-control mb-2" id="address2" name="address2">
+		        			<input type="hidden" id="extraaddress" name="extraaddress">
+		        			<input type="hidden" id="lng" name="lng">
+		        			<input type="hidden" id="lat" name="lat">
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
+		        			<b>핸드폰</b>
+		        		</div>
+		        		<div class="col-lg-9">
+		        			<input type="text" class="form-control" id="phone" name="phone">
+		        		</div>
+		        	</div>
+		        	<div class="row marginSpace">
+		        		<div class="col-lg-3 textCenter">
+		        			<b>전화번호</b>
+		        		</div>
+		        		<div class="col-lg-9">
+		        			<input type="text" class="form-control" id="home" name="home">
+		        		</div>
+		        	</div>
+	        	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="genric-btn default border-0" data-dismiss="modal">닫기</button>
+		        <button type="button" class="genric-btn primary" id="regModBtn" name="regModBtn">등록</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
-	</div>
-	</section>
-	<!-- end modal area -->
+	</form>
+	<!-- end new Transport modal area -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
+	<script>
+	    function PostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	                var geocoder = new daum.maps.services.Geocoder(); // 주소-좌표 변환 객체
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("extraaddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("extraaddress").value = '';
+	                }
+	                
+	                geocoder.addressSearch(data.address, function(results, status) {
+	                    // 정상적으로 검색이 완료됐으면
+	                    if (status === daum.maps.services.Status.OK) {
+
+	                        var result = results[0]; //첫번째 결과의 값을 활용
+
+	                        // 해당 주소에 대한 좌표를 받아서
+	                        var coords = new daum.maps.LatLng(result.y, result.x);
+	    	                document.getElementById("lng").value = coords.getLat(); // 위도 
+	    	                document.getElementById("lat").value = coords.getLng(); // 경도
+	    	                
+//	    	                //위의 것과 같다
+//	    	                document.getElementById("lng").value = result[0].y; // 위도
+//	    	                document.getElementById("lat").value = result[0].x; // 경도
+	    	                
+	                    }
+	                });
+	               
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('zip').value = data.zonecode; // 우편번호
+	                document.getElementById("address1").value = addr; // 주소
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("address2").focus();
+
+	            }
+	        }).open();
+	    }
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var goUrlInsert = "/transport/userTransportInst";				/* #-> */
+	var goUrlUpdate = "/transport/userTransportUpdate";				/* #-> */
+	var tForm = $("form[name=UTForm]"); 
+	var listForm = $("form[name=UTVForm]");
+	var tSeq = $("input:hidden[name=transportSeq]");
+	
+	
+	$("input:radio[name=seqRadio]").on("change",function(){
+		tSeq.val($("input:radio[name=seqRadio]:checked").val());
+	});
+	
+	
+	
+	$("#regModalBtn").on("click", function(){
+		$('#transportModal').modal('show');
+	    $('.modal-title').text('새로운 주소 등록');
+	    $('#transportSeq').val('');
+	    $('#member_memberSeq').val(${sessSeq });
+	    $('#name').val("${sessName }");
+	    $('#transportDiv').val(1)
+	    $('#phone').val('');
+	    $('#home').val('');
+	    $('#zip').val('');
+	    $('#address1').val('');
+	    $('#address2').val('');
+	    $('#extraaddress').val('');
+	    $('#lng').val('');
+	    $('#lat').val('');
+	    if($('#transportDiv').css("display") == "none"){
+			$('#transportDiv').attr('style', "display:block");
+		}
+	});
+		
+	$("#modModalBtn").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/transport/TransportModal"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+					// response.result.colum을 하면 가져온 값의 col값을 쓸수있다.
+				if(response.rt == "success") {
+					    $('#transportModal').modal('show');
+					    $('.modal-title').text('등록된 주소 수정');
+					    $('#transportSeq').val(response.transportSeq);
+					    $('#member_memberSeq').val(response.member_memberSeq);
+					    $('#name').val(response.name);
+					    $('#transportDiv').val(response.result.transportDiv);
+					    $('#phone').val(response.phone);
+					    $('#home').val(response.home);
+					    $('#zip').val(response.zip);
+					    $('#address1').val(response.address1);
+					    $('#address2').val(response.address2);
+					    $('#lng').val(response.lng);
+					    $('#lat').val(response.lat);
+					    if($('#transportDiv').css("display") == "none"){
+							$('#transportDiv').attr('style', "display:block");
+						}
+
+				} else {
+					alert("주소를 선택해주십시요");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	$("#regModBtn").on("click", function(){
+		if($('#transportSeq').val() == '' || $('#transportSeq').val() == null){
+			tForm.attr("action", goUrlInsert).submit();	
+		} else{
+			tForm.attr("action", goUrlUpdate).submit();	
+		}
+	});
+	</script>
 
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

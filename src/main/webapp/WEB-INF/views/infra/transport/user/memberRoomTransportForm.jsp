@@ -93,7 +93,7 @@
      			<!-- myRoomSidebar End -->
 
                 <div class="col-lg-9">
-                	<form  id="UTVForm" name="UTVForm" method="post">
+                	<form id="UTVForm" name="UTVForm" method="post">
                 		<input type="hidden" id="transportSeq" name="transportSeq">
                 		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 						<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">

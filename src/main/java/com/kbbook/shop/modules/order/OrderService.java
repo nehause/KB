@@ -14,4 +14,12 @@ public interface OrderService {
 	
 	public List<Order> selectListWithoutPaging() throws Exception;
 	public int selectOneCount(BaseVo vo) throws Exception;
+	
+	//userPage
+	public Order purchaseBookSeq(OrderVo vo) throws Exception;
+	public Order transportSeq(OrderVo vo) throws Exception;
+	public int transportInsert(Order dto) throws Exception;
+	public int transportUpdate(Order dto) throws Exception;
+	public int bookPurchaseInsert(Order dto) throws Exception;
+	
 }

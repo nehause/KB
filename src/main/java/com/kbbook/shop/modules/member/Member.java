@@ -1,10 +1,10 @@
 package com.kbbook.shop.modules.member;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
-import com.kbbook.shop.modules.order.Order;
 
-public class Member extends Order{
+public class Member{
 	
 	private String memberSeq;
 	private String id;
@@ -48,6 +48,20 @@ public class Member extends Order{
 	
 	private String sessSeq;
 	
+	//order join
+	
+	private String purchaseSeq;
+	private String transport_transportSeq;
+	private String payment;
+	private Timestamp time;
+	private Integer purchaseStatus;
+	private Integer delNy;
+	//수정시간
+	private Timestamp Toc;
+	private String memberName;
+	private String purchaseBook;
+	private String purchaseCount;
+	private Integer priceSum;
 	
 	public String getMemberSeq() {
 		return memberSeq;
@@ -257,6 +271,73 @@ public class Member extends Order{
 	}
 	public void setSessSeq(String sessSeq) {
 		this.sessSeq = sessSeq;
+	}
+	//order join
+	public String getPurchaseSeq() {
+		return purchaseSeq;
+	}
+	public void setPurchaseSeq(String purchaseSeq) {
+		this.purchaseSeq = purchaseSeq;
+	}
+	public String getTransport_transportSeq() {
+		return transport_transportSeq;
+	}
+	public void setTransport_transportSeq(String transport_transportSeq) {
+		this.transport_transportSeq = transport_transportSeq;
+	}
+	public String getPayment() {
+		return payment;
+	}
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+	public Timestamp getTime() {
+		return time;
+	}
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+	public Integer getPurchaseStatus() {
+		return purchaseStatus;
+	}
+	public void setPurchaseStatus(Integer purchaseStatus) {
+		this.purchaseStatus = purchaseStatus;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public Timestamp getToc() {
+		return Toc;
+	}
+	public void setToc(Timestamp toc) {
+		Toc = toc;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public String getPurchaseBook() {
+		return purchaseBook;
+	}
+	public void setPurchaseBook(String purchaseBook) {
+		this.purchaseBook = purchaseBook;
+	}
+	public String getPurchaseCount() {
+		return purchaseCount;
+	}
+	public void setPurchaseCount(String purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
+	public Integer getPriceSum() {
+		return priceSum;
+	}
+	public void setPriceSum(Integer priceSum) {
+		this.priceSum = priceSum;
 	}
 	
 	

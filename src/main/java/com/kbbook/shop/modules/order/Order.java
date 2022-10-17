@@ -1,24 +1,34 @@
 package com.kbbook.shop.modules.order;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
-public class Order {
+import com.kbbook.shop.modules.transport.Transport;
+
+
+public class Order extends Transport{
 	
 	private String purchaseSeq;
 	private String member_memberSeq;
 	private String transport_transportSeq;
 	private String payment;
-	private Date time;
+	private Timestamp time;
 	private Integer purchaseStatus;
 	private Integer delNy;
 	//수정시간
-	private Date Toc;
+	private Timestamp Toc;
 	
-	//join
+	//dmin join
 	private String memberName;
 	private String purchaseBook;
 	private String purchaseCount;
 	private Integer priceSum;
+	
+	//user join
+	private String bookSeq;
+	private String name;
+	private String sign;
+	private String price;
+	private Integer stock;
 	
 	
 	public String getPurchaseSeq() {
@@ -45,10 +55,10 @@ public class Order {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	public Date getTime() {
+	public Timestamp getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
 	public Integer getPurchaseStatus() {
@@ -64,10 +74,10 @@ public class Order {
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
-	public Date getToc() {
+	public Timestamp getToc() {
 		return Toc;
 	}
-	public void setToc(Date toc) {
+	public void setToc(Timestamp toc) {
 		Toc = toc;
 	}
 	//join
@@ -94,6 +104,36 @@ public class Order {
 	}
 	public void setPriceSum(Integer priceSum) {
 		this.priceSum = priceSum;
+	}
+	public String getBookSeq() {
+		return bookSeq;
+	}
+	public void setBookSeq(String bookSeq) {
+		this.bookSeq = bookSeq;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSign() {
+		return sign;
+	}
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public Integer getStock() {
+		return stock;
+	}
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 	
 	
