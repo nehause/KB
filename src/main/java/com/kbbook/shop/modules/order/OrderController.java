@@ -104,13 +104,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="orderPurchase")
-	public String OrderPurchase() throws Exception {
+	public String OrderPurchase(Order dto, OrderVo vo) throws Exception {
 		
 		return "infra/order/user/orderPurchase";
 	}
 	
 	@RequestMapping(value="orderFin")
-	public String OrderFin() throws Exception {
+	public String OrderFin(Order dto) throws Exception {
 		
 		return "infra/order/user/orderFin";
 	}
