@@ -112,7 +112,7 @@
 						<div class="product_count">
 							<label for="amount">수량:</label>
 							<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst )) result.value++;"
+							<button onclick="var stock = ${item.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
 							 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
 							<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
 							 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
