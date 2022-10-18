@@ -88,10 +88,10 @@
 	                		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 							<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		                    <div class="border row" style="background-color: #F0F0F0;">
-		                    	<div class="col-lg-2" style="margin:10px;">
+		                    	<div class="col-lg-3" style="margin:10px;">
 		                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
 		                    	</div>
-		                    	<div class="col-lg-3 offset-6">
+		                    	<div class="col-lg-3 offset-5">
 		                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn"> 
 	                   					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
 	                				</button>
@@ -231,19 +231,20 @@
 			                                </td>
 			                                <td>
 			                                    <h5>₩<fmt:formatNumber type="number" pattern="###,###,###" value="${book.price }" /></h5>
+			                                    <input type="hidden" id="price" name="price" value="<c:out value="${book.price }"/>">
 			                                </td>
 			                                <td>
 			                                    <div class="product_count">
 													<label for="amount">수량:</label>
-													<input type="text" name="amount" id="amount" maxlength=" <c:out value="${book.stock }"/>" value="1" title="Quantity:" class="input-text qty">
-													<button onclick="var stock = ${book.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
+													<input type="text" name="amount" id="amount" maxlength="<c:out value="${book.stock }"/>" value="1" title="Quantity:" class="input-text qty" readonly>
+													<button onclick="amountUp();"
 													 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
-													<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
+													<button onclick="amountDown();"
 													 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
 												</div>
 			                                </td>
 			                                <td>
-			                                    <h5>₩<span id="tableSingleCost"><c:out value="${book.price }"/></span></h5>
+			                                    <h5>₩<span id="tablePrice"><c:out value="${book.price }"/></span></h5>
 			                                </td>
 			                            </tr>
 			                            <tr>
@@ -270,14 +271,12 @@
                             <h2>주문 내역</h2>
                             <ul class="list">
                                 <li><a href="#">상품 <span>총합</span></a></li>
-                                <li><a href="#"><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span id="amountPrice" class="last">₩</span></a></li><!-- 
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li> -->
+                                <li><a href="#"><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span class="last">₩<span id="amountPrice"><c:out value="${book.price }"/></span></span></a></li>
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">상품 금액 <span id="bookPrice">₩</span></a></li>
+                                <li><a href="#">상품 금액 <span>₩<span id="bookPrice"><c:out value="${book.price }"/></span></span></a></li>
                                 <li><a href="#">배송비 <span>무료</span></a></li>
-                                <li><a href="#">결제 예정 금액 <span id="purchasePrice">₩</span></a></li>
+                                <li><a href="#">결제 예정 금액 <span>₩<span id="purchasePrice"><c:out value="${book.price }"/></span></span></a></li>
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
@@ -461,8 +460,8 @@
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
-	var goUrlInsert = "/transport/userTransportInst";				/* #-> */
-	var goUrlUpdate = "/transport/userTransportUpdate";				/* #-> */
+	var goUrlInsert = "/order/transportInsert";				/* #-> */
+	var goUrlUpdate = "/order/transportUpdate";				/* #-> */
 	var goUrlList = "/order/orderPurchase";
 	var tForm = $("form[name=UTForm]"); 
 	var listForm = $("form[name=UTVForm]");
@@ -477,7 +476,32 @@
 		tSeq.val($("input:radio[name=seqRadio]:checked").val());
 	});
 	
+	function amountUp(){
+		var stock = ${book.stock};
+		var result = document.getElementById('amount');
+		var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;
+		if(sst == stock){
+			alert("책의 구매량은 재고량을 초과할수 없습니다.");
+		}
+		var totalPrice = 0;
+		totalPrice = $('#amount').val() * $('#price').val();
+		$("#tablePrice").html(totalPrice);
+		$("#amountPrice").html(totalPrice);
+		$("#bookPrice").html(totalPrice);
+		$("#purchasePrice").html(totalPrice);
+	}
 	
+	function amountDown(){
+		var result = document.getElementById('amount');
+		var sst = result.value;
+		if( !isNaN( sst ) && sst > 1 ) result.value--;
+		var totalPrice = 0;
+		totalPrice = $('#amount').val() * $('#price').val();
+		$("#tablePrice").html(totalPrice);
+		$("#amountPrice").html(totalPrice);
+		$("#bookPrice").html(totalPrice);
+		$("#purchasePrice").html(totalPrice);
+	}
 	
 	$("#regModalBtn").on("click", function(){
 		$('#transportModal').modal('show');
@@ -507,9 +531,8 @@
 			/* ,dataType:"json" */
 			,url: "/order/transportRegMod"
 			/* ,data : $("#formLogin").serialize() */
-			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,data : { "transportSeq" : $("#transportSeq").val() }
 			,success: function(response) {
-				
 				
 				
 			}
@@ -527,7 +550,7 @@
 			/* ,dataType:"json" */
 			,url: "/transport/TransportModal"
 			/* ,data : $("#formLogin").serialize() */
-			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,data : { "transportSeq" : $("#transportSeq").val() }
 			,success: function(response) {
 					// response.result.colum을 하면 가져온 값의 col값을 쓸수있다.
 				if(response.rt == "success") {
@@ -565,8 +588,9 @@
 			tForm.attr("action", goUrlUpdate).submit();	
 		}
 	});
+	
+	
 	</script>
-
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

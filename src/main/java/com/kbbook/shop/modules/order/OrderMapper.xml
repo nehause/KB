@@ -146,6 +146,7 @@
 		,name
 		,sign
 		,cost*(1-sale) as price
+		,stock
 	from book a
 	where 1=1
 		and bookSeq = #{bookSeq}

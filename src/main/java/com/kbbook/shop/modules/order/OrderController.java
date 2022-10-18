@@ -156,7 +156,7 @@ public class OrderController {
 	// userpage
 	
 	@RequestMapping(value="orderPurchase")
-	public String OrderPurchase(Order dto,@ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
+	public String OrderPurchase(Order dto, @ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
 	
 		List<Order> transport = service.transportList(vo);
 		model.addAttribute("transport", transport);

@@ -75,7 +75,7 @@
 
 	<!--================Single Product Area =================-->
 	<div class="product_image_area">
-		<form id="GPForm" name="GPForm">
+		<form method="post" id="GPForm" name="GPForm">
 			<div class="container">
 				<div class="row s_product_inner">
 					<div class="col-lg-6">
@@ -451,7 +451,7 @@
 					<p>리뷰가 삭제되면 복구할 수 없습니다.</p>
 					
 					<p>다시 작성해야하니 유의해주세요</p>
-					<form id="RDForm" name="RDForm">
+					<form method="post" id="RDForm" name="RDForm">
 						<input type="hidden" id="book_commentSeq" name="book_commentSeq">
 					</form>
 				</div>
