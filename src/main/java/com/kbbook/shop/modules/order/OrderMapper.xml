@@ -140,7 +140,7 @@
 	
 	<!-- user count -->
 	
-	<select id="purchaseBookSeq">
+	<select id="purchaseBookSeq" resultMap="resultMapObj">
 	select
 		bookSeq
 		,name
@@ -148,7 +148,24 @@
 		,cost*(1-sale) as price
 	from book a
 	where 1=1
+		and bookSeq = #{bookSeq}
 	
+	</select>
+	
+	<select id="transportList" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM transport a
+		WHERE 1=1
+			AND member_memberSeq = #{sessSeq}
+	</select>
+	
+	<select id="transportCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM transport a
+		WHERE 1=1
+			AND member_memberSeq = #{sessSeq}
 	</select>
 	
 	<select id="transportSeq" resultMap="resultMapObj">
@@ -156,7 +173,7 @@
 			a.*
 		FROM transport a
 		WHERE 1=1
-			AND member_memberSeq = #{sessSeq}
+			AND transportSeq = #{transportSeq}
 	</select>
 	
 	<insert id="transportInsert">

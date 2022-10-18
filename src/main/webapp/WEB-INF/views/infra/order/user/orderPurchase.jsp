@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-
+<jsp:useBean id="CodeServiceImpl" class="com.kbbook.shop.modules.code.CodeServiceImpl"/>
 <html lang="zxx" class="no-js">
 
 <head>
@@ -44,6 +44,12 @@
 			margin: 0pt;
 			right: 0px;
 			top: 250px;
+		}
+		.nice-select{
+			display: none;
+		}
+		.form-select{
+			display: block;
 		}
 	</style>
 </head>
@@ -112,31 +118,31 @@
 		                    	</tr>
 	                    		<c:set var="listCodeTransportDiv" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
 									<c:choose>
-										<c:when test="${fn:length(userTransport) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+										<c:when test="${fn:length(transport) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
 											<td class="text-center" colspan="5">저장된 주소지가 없습니다.</td>
 										</c:when>
 										<c:otherwise>
-											<c:forEach items="${userTransport}" var="userTransport" varStatus="status">
-												<tr class="row">
+											<c:forEach items="${transport}" var="transport" varStatus="status">
+												<tr class="row" id="transport_<c:out value="${transport.transportSeq }"/>" name="transport_<c:out value="${transport.transportSeq }"/>">
 						                    		<td class="col-lg-1">
 					                    				<span>
 					                    					<c:forEach items="${listCodeTransportDiv}" var="listTransportDiv" varStatus="statusTransportDiv">
-																<c:if test="${userTransport.transportDiv eq listTransportDiv.COrder}"><c:out value="${listTransportDiv.CNameKor }"/></c:if>
+																<c:if test="${transport.transportDiv eq listTransportDiv.COrder}"><c:out value="${listTransportDiv.CNameKor }"/></c:if>
 															</c:forEach>
 														</span>
 						                    		</td>
 						                    		<td class="col-lg-3">
-						                    			<span><c:out value="${userTransport.phone }"/></span>
+						                    			<span><c:out value="${transport.phone }"/></span>
 						                    		</td>
 						                    		<td class="col-lg-2">
-						                    			<span><c:out value="${userTransport.zip }"/></span>
+						                    			<span><c:out value="${transport.zip }"/></span>
 						                    		</td>
 						                    		
 						                    		<td class="col-lg-5">
-						                    			<span><c:out value="${userTransport.address1 }"/></span>
+						                    			<span><c:out value="${transport.address1 }"/></span>
 						                    		</td>
 						                    		<td class="col-lg-1">
-						                    			<input type="radio" id="seqRadio_<c:out value="${userTransport.transportSeq }"/>" name="seqRadio" value="<c:out value="${userTransport.transportSeq }"/>">
+						                    			<input type="radio" id="seqRadio_<c:out value="${transport.transportSeq }"/>" name="seqRadio" value="<c:out value="${transport.transportSeq }"/>">
 						                    		</td>
 						                    	</tr>
 					                    	</c:forEach>
@@ -202,6 +208,7 @@
 			                <div class="table-responsive">
 			                	<h1>주문 상품</h1>
 			                    <table class="table" style="text-align: center;">
+			                    	<input type="hidden" id="bookSeq" name="bookSeq">
 			                        <thead>
 			                            <tr>
 			                                <th scope="col">상품 정보</th>
@@ -215,28 +222,28 @@
 			                                <td>
 			                                    <div class="media">
 			                                        <div class="d-flex">
-			                                            <img src="<c:out value="${item.price }"/>" alt="" style="width: 150px;">
+			                                            <img src="<c:out value="${book.sign }"/>" alt="" style="width: 150px;">
 			                                        </div>
 			                                        <div class="media-body">
-			                                            <p style="width: 240px;"><c:out value="${item.name }"/></p>
+			                                            <p><c:out value="${book.name }"/></p>
 			                                        </div>
 			                                    </div>
 			                                </td>
 			                                <td>
-			                                    <h5>₩<c:out value="${item.price }"/></h5>
+			                                    <h5>₩<fmt:formatNumber type="number" pattern="###,###,###" value="${book.price }" /></h5>
 			                                </td>
 			                                <td>
 			                                    <div class="product_count">
 													<label for="amount">수량:</label>
-													<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
-													<button onclick="var stock = ${item.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
+													<input type="text" name="amount" id="amount" maxlength=" <c:out value="${book.stock }"/>" value="1" title="Quantity:" class="input-text qty">
+													<button onclick="var stock = ${book.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
 													 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
 													<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
 													 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
 												</div>
 			                                </td>
 			                                <td>
-			                                    <h5>₩<span id="tableSingleCost"></span></h5>
+			                                    <h5>₩<span id="tableSingleCost"><c:out value="${book.price }"/></span></h5>
 			                                </td>
 			                            </tr>
 			                            <tr>
@@ -263,7 +270,7 @@
                             <h2>주문 내역</h2>
                             <ul class="list">
                                 <li><a href="#">상품 <span>총합</span></a></li>
-                                <li><a href="#"><c:out value="${item.name }"/> <span id="amountCount" class="middle"></span> <span id="amountPrice" class="last">₩</span></a></li><!-- 
+                                <li><a href="#"><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span id="amountPrice" class="last">₩</span></a></li><!-- 
                                 <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
                                 <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li> -->
                             </ul>
@@ -379,7 +386,8 @@
 		  </div>
 		</div>
 	</form>
-	<!-- end new Transport modal area -->
+	<!-- end new Transport modal area -->	
+	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
 	<script>
@@ -455,10 +463,15 @@
 	<script>
 	var goUrlInsert = "/transport/userTransportInst";				/* #-> */
 	var goUrlUpdate = "/transport/userTransportUpdate";				/* #-> */
+	var goUrlList = "/order/orderPurchase";
 	var tForm = $("form[name=UTForm]"); 
 	var listForm = $("form[name=UTVForm]");
 	var tSeq = $("input:hidden[name=transportSeq]");
 	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			tForm.attr("action", goUrlList).submit();
+	}
 	
 	$("input:radio[name=seqRadio]").on("change",function(){
 		tSeq.val($("input:radio[name=seqRadio]:checked").val());
@@ -484,6 +497,26 @@
 	    if($('#transportDiv').css("display") == "none"){
 			$('#transportDiv').attr('style', "display:block");
 		}
+	});
+	
+	$("#regModBtn").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/order/transportRegMod"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "transportSeq" : $("#transportSeq").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				
+				
+				
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
 	});
 		
 	$("#modModalBtn").on("click", function(){

@@ -27,7 +27,7 @@ public class Order extends Transport{
 	private String bookSeq;
 	private String name;
 	private String sign;
-	private String price;
+	private Integer price;
 	private Integer stock;
 	
 	
@@ -123,10 +123,10 @@ public class Order extends Transport{
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	public Integer getStock() {

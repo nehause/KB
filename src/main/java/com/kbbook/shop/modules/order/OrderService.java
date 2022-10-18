@@ -17,6 +17,8 @@ public interface OrderService {
 	
 	//userPage
 	public Order purchaseBookSeq(OrderVo vo) throws Exception;
+	public List<Order> transportList(OrderVo vo) throws Exception;
+	public int transportCount(OrderVo vo) throws Exception;
 	public Order transportSeq(OrderVo vo) throws Exception;
 	public int transportInsert(Order dto) throws Exception;
 	public int transportUpdate(Order dto) throws Exception;

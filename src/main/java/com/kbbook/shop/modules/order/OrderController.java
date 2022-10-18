@@ -1,12 +1,15 @@
 package com.kbbook.shop.modules.order;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
@@ -103,9 +106,70 @@ public class OrderController {
 		return "redirect:/order/orderList";
 	}
 	
-	@RequestMapping(value="orderPurchase")
-	public String OrderPurchase(Order dto, OrderVo vo) throws Exception {
+	//ajax
+	
+		@ResponseBody
+		@RequestMapping(value = "TransportModal")
+		public Map<String, Object> TransportModal(OrderVo vo) throws Exception {
+
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			Order result = service.transportSeq(vo);
+
+			if (result == null) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("rt", "success");
+				returnMap.put("result", result);
+			}
+			return returnMap;
+		}
 		
+		@ResponseBody
+		@RequestMapping(value = "transportRegMod")
+		public Map<String, Object> TransportRegMod(Order dto, OrderVo vo) throws Exception {
+
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			
+			if(dto.getTransportSeq().equals("0") || dto.getTransportSeq().equals("")) {
+				
+				service.transportInsert(dto);
+				
+				List<Order> insert = service.transportList(vo);
+				
+				returnMap.put("result", insert);
+				
+			} else {
+				
+				service.transportUpdate(dto);
+				
+				List<Order> insert = service.transportList(vo);
+				
+				returnMap.put("result", insert);
+				
+			}
+			
+			return returnMap;
+		}
+	
+	// userpage
+	
+	@RequestMapping(value="orderPurchase")
+	public String OrderPurchase(Order dto,@ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
+	
+		List<Order> transport = service.transportList(vo);
+		model.addAttribute("transport", transport);
+		
+		vo.setParamsPaging(service.transportCount(vo));
+		
+		Order book = service.purchaseBookSeq(vo);
+		model.addAttribute("book", book);
+		
+		book.setPrice((int) book.getPrice());
+		
+		
+	
 		return "infra/order/user/orderPurchase";
 	}
 	

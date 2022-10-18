@@ -58,6 +58,12 @@ public class OrderDao {
 	public Order purchaseBookSeq(OrderVo vo) throws Exception{
 		return sqlSession.selectOne(namespace + ".purchaseBookSeq", vo);
 	}
+	public List<Order> transportList(OrderVo vo) throws Exception{
+		return sqlSession.selectList(namespace + ".transportList", vo);
+	}
+	public int transportCount(OrderVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".transportCount", vo);
+	}
 	public Order transportSeq(OrderVo vo) throws Exception{
 		return sqlSession.selectOne(namespace + ".transportSeq", vo);
 	}

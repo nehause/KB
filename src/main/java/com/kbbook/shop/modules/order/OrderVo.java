@@ -7,6 +7,7 @@ public class OrderVo extends BaseVo {
 	private String purchaseSeq;
 	private String bookSeq;
 	private String transportSeq;
+	private String sessSeq;
 	
 
 	public String getPurchaseSeq() {
@@ -31,6 +32,14 @@ public class OrderVo extends BaseVo {
 
 	public void setTransportSeq(String transportSeq) {
 		this.transportSeq = transportSeq;
+	}
+
+	public String getSessSeq() {
+		return sessSeq;
+	}
+
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
 	}
 	
 	

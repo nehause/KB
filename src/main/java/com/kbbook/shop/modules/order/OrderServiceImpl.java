@@ -64,15 +64,27 @@ public class OrderServiceImpl implements OrderService {
 	public Order purchaseBookSeq(OrderVo vo) throws Exception{
 		return dao.purchaseBookSeq(vo);
 	}
+	
+	public List<Order> transportList(OrderVo vo) throws Exception{
+		return dao.transportList(vo);
+	}
+	
+	public int transportCount(OrderVo vo) throws Exception{
+		return dao.transportCount(vo);
+	}
+	
 	public Order transportSeq(OrderVo vo) throws Exception{
 		return dao.transportSeq(vo);
 	}
+	
 	public int transportInsert(Order dto) throws Exception{
 		return dao.transportInsert(dto);
 	}
+	
 	public int transportUpdate(Order dto) throws Exception{
 		return dao.transportUpdate(dto);
 	}
+	
 	public int bookPurchaseInsert(Order dto) throws Exception{
 		return dao.bookPurchaseInsert(dto);
 	}

@@ -75,57 +75,60 @@
 
 	<!--================Single Product Area =================-->
 	<div class="product_image_area">
-		<div class="container">
-			<div class="row s_product_inner">
-				<div class="col-lg-6">
-					<div class="single-deal">
-						<div class="overlay"></div>
-						<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
-						<c:out value="${item.sign }"/>
-						<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
-							<div class="deal-details">
-								<h6 class="deal-title">이미지 보기</h6>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-5 offset-lg-1">
-					<div class="s_product_text">
-						<h3><c:out value="${item.name }"/></h3>
-						<h4 style="color: gray"><c:out value="${item.subName }"/></h4>
-						<h2>₩<c:out value="${item.price }"/></h2>
-						<span style="text-decoration: line-through;">₩<c:out value="${item.cost }" /></span>
-						<ul class="list">
-							<li>
-								<a><span>작가</span> : <c:out value="${item.writer }"/></a>
-							</li>
-							<li>
-								<a><span>출판사</span> : <c:out value="${item.publisher }"/></a>
-							</li>
-							<li><a><span>구매가능수량</span> : <c:out value="${item.stock }"/></a></li>
-						</ul>
-						<p>
-							<b style="color: black">
-								<c:out value="${item.topic }"/>
-							</b>
-						</p>
-						<div class="product_count">
-							<label for="amount">수량:</label>
-							<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var stock = ${item.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
-							 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
-							 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
+		<form id="GPForm" name="GPForm">
+			<div class="container">
+				<div class="row s_product_inner">
+					<div class="col-lg-6">
+						<div class="single-deal">
+							<div class="overlay"></div>
+							<input type="hidden" id="sessSeq" name="sessSeq" value="<c:out value="${sessSeq }"/>">
+							<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
+							<c:out value="${item.sign }"/>
+							<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
+								<div class="deal-details">
+									<h6 class="deal-title">이미지 보기</h6>
+								</div>
+							</a>
 						</div>
-						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/order/orderPurchase">구매하기</a>
-							<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+					</div>
+					<div class="col-lg-5 offset-lg-1">
+						<div class="s_product_text">
+							<h3><c:out value="${item.name }"/></h3>
+							<h4 style="color: gray"><c:out value="${item.subName }"/></h4>
+							<h2>₩<c:out value="${item.price }"/></h2>
+							<span style="text-decoration: line-through;">₩<c:out value="${item.cost }" /></span>
+							<ul class="list">
+								<li>
+									<a><span>작가</span> : <c:out value="${item.writer }"/></a>
+								</li>
+								<li>
+									<a><span>출판사</span> : <c:out value="${item.publisher }"/></a>
+								</li>
+								<li><a><span>구매가능수량</span> : <c:out value="${item.stock }"/></a></li>
+							</ul>
+							<p>
+								<b style="color: black">
+									<c:out value="${item.topic }"/>
+								</b>
+							</p>
+							<div class="product_count">
+								<label for="amount">수량:</label>
+								<input type="text" name="amount" id="amount" maxlength=" <c:out value="${item.stock }"/>" value="1" title="Quantity:" class="input-text qty">
+								<button onclick="var stock = ${item.stock}; var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && stock > sst ) result.value++;"
+								 class="increase items-count" type="button" style="padding-top: 3px;"><i class="lnr lnr-chevron-up"></i></button>
+								<button onclick="var result = document.getElementById('amount'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;"
+								 class="reduced items-count" type="button" style="padding-bottom: 8px;"><i class="lnr lnr-chevron-down"></i></button>
+							</div>
+							<div class="card_area d-flex align-items-center">
+								<a class="primary-btn" id="purchaseBtn" name="purchaseBtn" href="javascript:goPurchase(<c:out value="${item.bookSeq }"/>)"><span style="color:white;">구매하기</span></a>
+								<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a>
+								<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 	<!--================End Single Product Area =================-->
 
@@ -523,7 +526,16 @@
 	<script>
 	var goUrlInsert = "/book/commentInsert";
 	var goUrlDelete = "/book/commentDelete";
+	var goUrlPurchase = "/order/orderPurchase";
+	var seq = $("input:hidden[name=bookSeq]");
+	var mSeq = $("input:hidden[name=memberSeq]");
 	var form = $("form[name=RRForm]");
+	var pForm = $("form[name=GPForm]");
+	
+	goPurchase = function(seqValue){
+		seq.val(seqValue);
+		pForm.attr("action", goUrlPurchase).submit();
+	}
 	
 	function delModalValue(delSeq){
 		$('#delModal').modal('show');
@@ -536,6 +548,7 @@
 	$('#regBtn').on("click", function(){
 		form.attr("action", goUrlInsert).submit();
 	});
+
 	
 	$('#delBtn').on("click", function(){
 		$.ajax({

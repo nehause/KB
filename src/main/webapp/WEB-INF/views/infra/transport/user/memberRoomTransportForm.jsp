@@ -485,6 +485,8 @@
 	var goUrlUpdate = "/transport/userTransportUpdate";				/* #-> */
 	var goUrlUelete = "/transport/userTransportUelete";				/* #-> */
 	var goUrlDelete = "/transport/userTransportDelete";				/* #-> */
+	var goUrlList = "/transport/transportForm";
+	
 	var form = $("form[name=UTForm]"); 
 	var listForm = $("form[name=UTVForm]");
 	var seq = $("input:hidden[name=transportSeq]");
@@ -493,6 +495,10 @@
 		seq.val($("input:radio[name=seqRadio]:checked").val());
 	});
 	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+	}
 	
 	
 	$("#regModalBtn").on("click", function(){
