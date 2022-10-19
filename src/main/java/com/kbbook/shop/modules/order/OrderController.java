@@ -178,4 +178,38 @@ public class OrderController {
 		
 		return "infra/order/user/orderFin";
 	}
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value = "userOrderInsert")
+	public String userInsert(Order dto, OrderVo vo) throws Exception{
+		
+		service.insert(dto);
+		dto.setPurchaseSeq(dto.getPurchaseSeq());
+		System.out.println("vo.getPurchaseSeq(): " + vo.getPurchaseSeq());
+		service.bookPurchaseInsert(dto);
+		
+		return "redirect:/order/orderFin";
+		
+	}
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value = "transportInsert")
+	public String transportInsert(Order dto, OrderVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		service.transportInsert(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/order/orderPurchase";
+	}
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="transportUpdate")
+	public String transportUpdate(OrderVo vo, Order dto, RedirectAttributes redirectAttributes) throws Exception{
+		
+		service.transportUpdate(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/order/orderPurchase";
+	}
+	
 }

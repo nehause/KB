@@ -79,7 +79,7 @@
 			#{member_memberSeq}
 			,#{transport_transportSeq}
 			,#{payment}
-			,#{purchaseStatus}
+			,1
 			,0
 		)
 		<selectKey resultType="String" keyProperty="purchaseSeq" order="AFTER">
@@ -230,7 +230,7 @@
 	</update>
 	
 	<insert id="bookPurchaseInsert">
-		INSERT INTO book_purchase (
+		INSERT INTO purchase_book (
 			purchase_purchaseSeq
 			,book_bookSeq
 			,count

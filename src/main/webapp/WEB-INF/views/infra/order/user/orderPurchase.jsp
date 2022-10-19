@@ -84,18 +84,17 @@
                     <div class="col-lg-8">
                         <h3>배송 정보</h3>
                         <form id="UTVForm" name="UTVForm" method="post">
-	                		<input type="hidden" id="transportSeq" name="transportSeq">
 	                		<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 							<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		                    <div class="border row" style="background-color: #F0F0F0;">
 		                    	<div class="col-lg-3" style="margin:10px;">
 		                    		<span>입력된 주소 </span><span><b><c:out value="${vo.totalRows}"/>개</b></span>
 		                    	</div>
-		                    	<div class="col-lg-3 offset-5">
+		                    	<!-- <div class="col-lg-3 offset-5">
 		                    		<button type="button" class="genric-btn default" id="regModalBtn" name="regModalBtn"> 
 	                   					<i class="fa-solid fa-caret-right"></i> 새로운 주소 추가
 	                				</button>
-	                			</div>
+	                			</div> -->
 		                    </div>
 							<div style="height: 10px;"></div>
 		                    <table class="table col-lg-12" style="text-align:center; vertical-align:middle;">
@@ -119,7 +118,7 @@
 	                    		<c:set var="listCodeTransportDiv" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
 									<c:choose>
 										<c:when test="${fn:length(transport) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
-											<td class="text-center" colspan="5">저장된 주소지가 없습니다.</td>
+											<td class="text-center" colspan="5">저장된 주소지가 없습니다. <b>나의 주소록</b>에서 추가해주세요</td>
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${transport}" var="transport" varStatus="status">
@@ -166,9 +165,9 @@
 	                            	</td>
 	                            </tr>
 		                    </table>
-	                   		<button type="button" class="genric-btn primary col-lg-2" style="float:right;"  id="modModalBtn" name="modModalBtn"> 
+	                   		<!-- <button type="button" class="genric-btn primary col-lg-2" style="float:right;"  id="modModalBtn" name="modModalBtn"> 
 	                   			<i class="fa-solid fa-pencil"></i> 수정
-	                		</button>
+	                		</button> -->
 	                    </form>
 	                    <div style="height: 50px;"></div>
                        <!--  <form class="row contact_form" action="#" method="post" novalidate="novalidate">
@@ -208,7 +207,6 @@
 			                <div class="table-responsive">
 			                	<h1>주문 상품</h1>
 			                    <table class="table" style="text-align: center;">
-			                    	<input type="hidden" id="bookSeq" name="bookSeq">
 			                        <thead>
 			                            <tr>
 			                                <th scope="col">상품 정보</th>
@@ -231,7 +229,6 @@
 			                                </td>
 			                                <td>
 			                                    <h5>₩<fmt:formatNumber type="number" pattern="###,###,###" value="${book.price }" /></h5>
-			                                    <input type="hidden" id="price" name="price" value="<c:out value="${book.price }"/>">
 			                                </td>
 			                                <td>
 			                                    <div class="product_count">
@@ -258,7 +255,7 @@
 			                                    <h5>합계</h5>
 			                                </td>
 			                                <td>
-			                                    <h5>₩<span id="tableTotalCost"></span></h5>
+			                                    <h5>₩<span id="tableTotalCost"><c:out value="${book.price }"/></span></h5>
 			                                </td>
 			                            </tr>
 			                        </tbody>
@@ -270,37 +267,37 @@
                         <div class="order_box">
                             <h2>주문 내역</h2>
                             <ul class="list">
-                                <li><a href="#">상품 <span>총합</span></a></li>
-                                <li><a href="#"><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span class="last">₩<span id="amountPrice"><c:out value="${book.price }"/></span></span></a></li>
+                                <li><a>상품 <span>총합</span></a></li>
+                                <li><a><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span class="last">₩<span id="amountPrice"><c:out value="${book.price }"/></span></span></a></li>
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">상품 금액 <span>₩<span id="bookPrice"><c:out value="${book.price }"/></span></span></a></li>
-                                <li><a href="#">배송비 <span>무료</span></a></li>
-                                <li><a href="#">결제 예정 금액 <span>₩<span id="purchasePrice"><c:out value="${book.price }"/></span></span></a></li>
+                                <li><a>상품 금액 <span>₩<span id="bookPrice"><c:out value="${book.price }"/></span></span></a></li>
+                                <li><a>배송비 <span>무료</span></a></li>
+                                <li><a>결제 예정 금액 <span>₩<span id="purchasePrice"><c:out value="${book.price }"/></span></span></a></li>
                             </ul>
                             <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="payment1" name="payment">
-                                    <label for="f-option5">카드 결제수단</label>
+                                <div class="">
+                                    <input type="radio" id="payment1" name="paymentRadio" value="1">
+                                    <label for="payment1">카드 결제수단</label>
                                     <div class="check"></div>
                                 </div>
                                 <p>상점 이름, 상점 거리, 상점 타운, 상점 주/군, 상점 우편번호로 수표를 보내주십시오.</p>
                             </div>
                             <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="payment2" name=""payment"">
-                                    <label for="f-option6">Paypal </label>
+                                <div class="">
+                                    <input type="radio" id="payment2" name="paymentRadio" value="2">
+                                    <label for="payment2">Paypal </label>
                                     <img src="/resources/template/karma/img/product/card.jpg" alt="">
                                     <div class="check"></div>
                                 </div>
                                 <p>페이팔을 통한 결제 PayPal이 없는 경우 신용 카드로 결제할 수 있습니다.</p>
                             </div>
                             <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
-                                <label for="f-option4">나는 주문 상태를 숙지하였으며 </label>
-                                <a href="#">이에 동의함*</a>
+                                <input type="checkbox" id="purchaseCheck" name="purchaseCheck" value="1">
+                                <label for="purchaseCheck">나는 주문 상태를 숙지하였으며 </label>
+                                <a>이에 동의함*</a>
                             </div>
-                            <a class="primary-btn" href="orderFin.html">결제하기</a>
+                            <a class="primary-btn" id="purchaseBtn" name="purchaseBtn" >결제하기</a>
                         </div>
                     </div>
                 </div>
@@ -308,7 +305,18 @@
         </div>
     </section>
     <!--================End Checkout Area =================-->
-		
+	
+	<form id="OIForm" name="OIForm" method="post">
+		<input type="hidden" id="member_memberSeq" name="member_memberSeq" value="${sessSeq }">
+		<input type="hidden" id="transport_transportSeq" name="transport_transportSeq">
+		<input type="hidden" id="payment" name="payment">
+		<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${book.bookSeq }"/>">
+		<input type="hidden" id="count" name="count" value="1">
+		<input type="hidden" id="price" name="price" value="<c:out value="${book.price }"/>">
+	
+	</form>
+	
+	
 	<!-- footer Start -->
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
@@ -329,7 +337,6 @@
 		        			<b>구분</b>
 		        		</div>
 		        		<div class="col-lg-6">
-		        			<input type="hidden" id="transportSeq" name="transportSeq">
 		        			<select class="form-control col-lg-6" id="transportDiv" name="transportDiv">
                                 <option value="1">집</option>
                                 <option value="2">그 외</option>
@@ -337,7 +344,6 @@
 		        		</div>
 		        	</div>
 		        	<div class="row marginSpace">
-		        		<input type="hidden" id="member_memberSeq" name="member_memberSeq">
 		        		<div class="col-lg-3 textCenter">
 		        			<b>이름</b>
 		        		</div>
@@ -463,9 +469,11 @@
 	var goUrlInsert = "/order/transportInsert";				/* #-> */
 	var goUrlUpdate = "/order/transportUpdate";				/* #-> */
 	var goUrlList = "/order/orderPurchase";
+	var goUrlUserInsert = "/order/userOrderInsert";
 	var tForm = $("form[name=UTForm]"); 
 	var listForm = $("form[name=UTVForm]");
-	var tSeq = $("input:hidden[name=transportSeq]");
+	var orderForm = $("form[name=OIForm]");
+	var tSeq = $("input:hidden[name=transport_transportSeq]");
 	
 	goList = function(thisPage){
 		$("input:hidden[name=thisPage]").val(thisPage);
@@ -474,7 +482,14 @@
 	
 	$("input:radio[name=seqRadio]").on("change",function(){
 		tSeq.val($("input:radio[name=seqRadio]:checked").val());
+		
 	});
+	
+	$("input:radio[name=paymentRadio]").on("change",function(){
+		$("#payment").val($("input:radio[name=paymentRadio]:checked").val());
+		
+	});
+	
 	
 	function amountUp(){
 		var stock = ${book.stock};
@@ -485,7 +500,10 @@
 		}
 		var totalPrice = 0;
 		totalPrice = $('#amount').val() * $('#price').val();
+		$('#count').val($('#amount').val());
+		$('#price').val(totalPrice);
 		$("#tablePrice").html(totalPrice);
+		$("#tableTotalCost").html(totalPrice);
 		$("#amountPrice").html(totalPrice);
 		$("#bookPrice").html(totalPrice);
 		$("#purchasePrice").html(totalPrice);
@@ -497,6 +515,8 @@
 		if( !isNaN( sst ) && sst > 1 ) result.value--;
 		var totalPrice = 0;
 		totalPrice = $('#amount').val() * $('#price').val();
+		$('#count').val($('#amount').val());
+		$('#price').val(totalPrice);
 		$("#tablePrice").html(totalPrice);
 		$("#amountPrice").html(totalPrice);
 		$("#bookPrice").html(totalPrice);
@@ -523,14 +543,12 @@
 		}
 	});
 	
-	$("#regModBtn").on("click", function(){
+	/* $("#regModBtn").on("click", function(){
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
-			/* ,dataType:"json" */
 			,url: "/order/transportRegMod"
-			/* ,data : $("#formLogin").serialize() */
 			,data : { "transportSeq" : $("#transportSeq").val() }
 			,success: function(response) {
 				
@@ -540,7 +558,7 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
-	});
+	}); */
 		
 	$("#modModalBtn").on("click", function(){
 		$.ajax({
@@ -589,6 +607,21 @@
 		}
 	});
 	
+	$('#purchaseBtn').on("click", function(){
+		if($('#transport_transportSeq').val() == '' || $('#transport_transportSeq').val() == null){
+				alert("배송지를 선택해주세요.");
+		} else{
+			if($('#payment').val() == '' || $('#payment').val() == null){
+				alert("결제 수단을 선택해주세요.");
+			} else{
+				if($('#purchaseCheck').is(':checked') == false){
+					alert("주문상태 숙지 체크박스를 체크해주세요.");
+				} else {
+					orderForm.attr("action", goUrlUserInsert).submit();	
+				}
+			}
+		}
+	});
 	
 	</script>
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
