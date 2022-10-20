@@ -66,22 +66,19 @@
 		<div style="height: 50px;"></div>
 		<div class="col-lg-4 offset-4">
 	        <div class="order_box">
-	            <ul class="list">
-	                <li><a href="#">상품 <span>총합</span></a></li>
-	                <li><a href="#">[국내도서] 역행자 <span class="middle">x 01</span> <span class="last">₩15,750</span></a></li>
-	            </ul>
-	            <ul class="list list_2">
-	                <li><a href="#">상품 금액 <span>₩15,750</span></a></li>
-	                <li><a href="#">배송비 <span>무료</span></a></li>     
-	                <li><a href="#">최종 결제 금액 <span style="color: orange;">₩15,750</span></a></li>
-	            </ul>
+	        	<c:forEach items="${list}" var="list" varStatus="status">
+		            <ul class="list">
+		                <li><a>상품 <span>총합</span></a></li>
+		                <li><a><c:out value="${list.name }"/></a></li>
+		                <li><a>상품 금액 <span>₩<fmt:formatNumber type="number" pattern="###,###,###" value="${list.bookPrice }" /></span></a></li>
+		                <li><a>구매량<span>x <c:out value="${list.count }"/></span></a></li>
+		                <li><a>배송비 <span>무료</span></a></li>     
+		                <li><a>최종 결제 금액 <span style="color: orange;">₩<fmt:formatNumber type="number" pattern="###,###,###" value="${list.price }" /></span></a></li>
+		            </ul>
+	            </c:forEach>
 	            <hr>
-	            <ul class="list list_3">
-	            	<li><a href="#">적립 예정 총합 포인트 <span>₩850</span></a></li>
-	            	<li><a href="#">쿠폰,통합포인트,교환권 사용시 주문완료 후 적립예정포인트가 변동 될 수 있습니다.</a></li>
-	            </ul>
 	            <div style="height: 50px;"></div>
-	            <a class="primary-btn" href="/resources/member/main.html">메인으로</a>
+	            <a class="primary-btn" href="/memeber/memberMyRoom">마이룸으로</a>
 	        </div>
 	    </div>
 	    <div style="height: 50px;"></div>

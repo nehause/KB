@@ -180,17 +180,21 @@ public class OrderController {
 		
 		service.insert(dto);
 		dto.setPurchaseSeq(dto.getPurchaseSeq());
+		System.out.println("dto.getPurchaseSeq(): " + dto.getPurchaseSeq());
+		vo.setPurchaseSeq(dto.getPurchaseSeq());
 		System.out.println("vo.getPurchaseSeq(): " + vo.getPurchaseSeq());
 		service.bookPurchaseInsert(dto);
-		
+		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/order/orderFin";
 		
 	}
 	
 	@RequestMapping(value="orderFin")
-	public String OrderFin(Order dto , @ModelAttribute("vo") OrderVo vo) throws Exception {
+	public String OrderFin(Order dto , @ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
 		
-		service.orderFinList(vo);
+		List<Order> list = service.orderFinList(vo);
+		
+		model.addAttribute("list", list);
 		
 		return "infra/order/user/orderFin";
 	}

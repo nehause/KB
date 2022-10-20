@@ -51,6 +51,13 @@
 		.form-select{
 			display: block;
 		}
+		
+		/*  .txt_line {
+		      width:150px;
+		      overflow:hidden;
+		      text-overflow:ellipsis;
+		      white-space:nowrap;
+		  } */
 	</style>
 </head>
 <body>
@@ -223,7 +230,7 @@
 			                                            <img src="<c:out value="${book.sign }"/>" alt="" style="width: 150px;">
 			                                        </div>
 			                                        <div class="media-body">
-			                                            <p><c:out value="${book.name }"/></p>
+			                                            <p style="width: 175px;"><c:out value="${book.name }"/></p>
 			                                        </div>
 			                                    </div>
 			                                </td>
@@ -242,6 +249,7 @@
 			                                </td>
 			                                <td>
 			                                    <h5>₩<span id="tablePrice"><c:out value="${book.price }"/></span></h5>
+			                                    <input type="hidden" id="bookPrice" name="bookPrice" value="<c:out value="${book.price }"/>">
 			                                </td>
 			                            </tr>
 			                            <tr>
@@ -268,7 +276,7 @@
                             <h2>주문 내역</h2>
                             <ul class="list">
                                 <li><a>상품 <span>총합</span></a></li>
-                                <li><a><c:out value="${book.name }"/> <span id="amountCount" class="middle"></span> <span class="last">₩<span id="amountPrice"><c:out value="${book.price }"/></span></span></a></li>
+                                <li><a> <p class="txt_line"><c:out value="${book.name }"/></p> <%-- <span id="amountCount" class="middle"></span> <span class="last">₩<span id="amountPrice"><c:out value="${book.price }"/></span></span> --%></a></li>
                             </ul>
                             <ul class="list list_2">
                                 <li><a>상품 금액 <span>₩<span id="bookPrice"><c:out value="${book.price }"/></span></span></a></li>
@@ -499,7 +507,7 @@
 			alert("책의 구매량은 재고량을 초과할수 없습니다.");
 		}
 		var totalPrice = 0;
-		totalPrice = $('#amount').val() * $('#price').val();
+		totalPrice = $('#amount').val() * $('#bookPrice').val();
 		$('#count').val($('#amount').val());
 		$('#price').val(totalPrice);
 		$("#tablePrice").html(totalPrice);
@@ -514,10 +522,11 @@
 		var sst = result.value;
 		if( !isNaN( sst ) && sst > 1 ) result.value--;
 		var totalPrice = 0;
-		totalPrice = $('#amount').val() * $('#price').val();
+		totalPrice = $('#amount').val() * $('#bookPrice').val();
 		$('#count').val($('#amount').val());
 		$('#price').val(totalPrice);
 		$("#tablePrice").html(totalPrice);
+		$("#tableTotalCost").html(totalPrice);
 		$("#amountPrice").html(totalPrice);
 		$("#bookPrice").html(totalPrice);
 		$("#purchasePrice").html(totalPrice);

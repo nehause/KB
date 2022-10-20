@@ -253,12 +253,14 @@
 	select 
 		a.*
 	    ,c.name
+	    ,c.cost*(1-c.sale) as bookPrice
+	    ,b.count
 	    ,b.price
 	from purchase a
 	join purchase_book b on purchaseSeq = purchase_purchaseSeq
 	join book c on book_bookSeq = bookSeq
 	where 1=1
-	and purchaseSeq = {#purchaseSeq}	
+	and a.purchaseSeq = #{purchaseSeq}	
 	</select>
 	
 </mapper>	

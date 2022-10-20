@@ -31,6 +31,7 @@ public class Order extends Transport{
 	private Integer stock;
 	private String purchase_bookSeq;
 	private Integer count;
+	private Integer bookPrice;
 	
 	public String getPurchaseSeq() {
 		return purchaseSeq;
@@ -147,6 +148,12 @@ public class Order extends Transport{
 	}
 	public void setPurchase_bookSeq(String purchase_bookSeq) {
 		this.purchase_bookSeq = purchase_bookSeq;
+	}
+	public Integer getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(Integer bookPrice) {
+		this.bookPrice = bookPrice;
 	}
 	
 	
