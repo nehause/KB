@@ -3,6 +3,8 @@ package com.kbbook.shop.modules.book;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kbbook.shop.modules.writer.Writer;
 
 public class Book extends Writer {
@@ -18,7 +20,7 @@ public class Book extends Writer {
 	private double accmulate;
 	private String isbn;
 	private Integer page;
-	private String size;
+	private String bookSize;
 	private String topic;
 	private String introduce;
 	private String image;
@@ -27,7 +29,7 @@ public class Book extends Writer {
 	private String rop;
 	private Integer stock;
 	private Integer amount;
-	private Integer delNy;
+	private Integer bookDelNy;
 	private String writer_writerSeq;
 	//정보 수정일
 	private Date doc;
@@ -50,7 +52,40 @@ public class Book extends Writer {
 	// 추가 변수(총 평점)
 	private double gradeAVG;
 		
+	
+	//upload
+	private MultipartFile[] uploadImgProfile;
+	private Integer uploadImgProfileMaxNumber;
+	private String[] uploadImgProfileDeleteSeq;
+	private String[] uploadImgProfileDeletePathFile;	
+	
+	private MultipartFile[] uploadImg;
+	private Integer uploadImgMaxNumber;
+	private String[] uploadImgDeleteSeq;
+	private String[] uploadImgDeletePathFile;	
+	
+	private MultipartFile[] uploadFile;
+	private Integer uploadFileMaxNumber;
+	private String[] uploadFileDeleteSeq;
+	private String[] uploadFileDeletePathFile;
 		
+	
+	//upload base
+
+	private String tableName;
+	
+	private String seq;
+	private Integer type;
+	private Integer defaultNy;
+	private Integer sort;
+	private String path;
+	private String originalName;
+	private String uuidName;
+	private String ext;
+	private long size;
+	private Integer delNy;
+	private String pseq;
+	
 	public String getBookSeq() {
 		return bookSeq;
 	}
@@ -123,13 +158,12 @@ public class Book extends Writer {
 	public void setPage(Integer page) {
 		this.page = page;
 	}
-	public String getSize() {
-		return size;
+	public String getBookSize() {
+		return bookSize;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setBookSize(String bookSize) {
+		this.bookSize = bookSize;
 	}
-	
 	public String getTopic() {
 		return topic;
 	}
@@ -178,25 +212,11 @@ public class Book extends Writer {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	public Integer getDelNy() {
-		return delNy;
+	public Integer getBookDelNy() {
+		return bookDelNy;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
-	public Date getDoc() {
-		return doc;
-	}
-	public void setDoc(Date doc) {
-		this.doc = doc;
-	}
-	
-	//join
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setBookDelNy(Integer bookDelNy) {
+		this.bookDelNy = bookDelNy;
 	}
 	public String getWriter_writerSeq() {
 		return writer_writerSeq;
@@ -204,11 +224,23 @@ public class Book extends Writer {
 	public void setWriter_writerSeq(String writer_writerSeq) {
 		this.writer_writerSeq = writer_writerSeq;
 	}
+	public Date getDoc() {
+		return doc;
+	}
+	public void setDoc(Date doc) {
+		this.doc = doc;
+	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getBook_commentSeq() {
 		return book_commentSeq;
@@ -264,6 +296,152 @@ public class Book extends Writer {
 	public void setGradeAVG(double gradeAVG) {
 		this.gradeAVG = gradeAVG;
 	}
+	public MultipartFile[] getUploadImgProfile() {
+		return uploadImgProfile;
+	}
+	public void setUploadImgProfile(MultipartFile[] uploadImgProfile) {
+		this.uploadImgProfile = uploadImgProfile;
+	}
+	public Integer getUploadImgProfileMaxNumber() {
+		return uploadImgProfileMaxNumber;
+	}
+	public void setUploadImgProfileMaxNumber(Integer uploadImgProfileMaxNumber) {
+		this.uploadImgProfileMaxNumber = uploadImgProfileMaxNumber;
+	}
+	public String[] getUploadImgProfileDeleteSeq() {
+		return uploadImgProfileDeleteSeq;
+	}
+	public void setUploadImgProfileDeleteSeq(String[] uploadImgProfileDeleteSeq) {
+		this.uploadImgProfileDeleteSeq = uploadImgProfileDeleteSeq;
+	}
+	public String[] getUploadImgProfileDeletePathFile() {
+		return uploadImgProfileDeletePathFile;
+	}
+	public void setUploadImgProfileDeletePathFile(String[] uploadImgProfileDeletePathFile) {
+		this.uploadImgProfileDeletePathFile = uploadImgProfileDeletePathFile;
+	}
+	public MultipartFile[] getUploadImg() {
+		return uploadImg;
+	}
+	public void setUploadImg(MultipartFile[] uploadImg) {
+		this.uploadImg = uploadImg;
+	}
+	public Integer getUploadImgMaxNumber() {
+		return uploadImgMaxNumber;
+	}
+	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
+		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	}
+	public String[] getUploadImgDeleteSeq() {
+		return uploadImgDeleteSeq;
+	}
+	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
+		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	}
+	public String[] getUploadImgDeletePathFile() {
+		return uploadImgDeletePathFile;
+	}
+	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
+		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	}
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public Integer getUploadFileMaxNumber() {
+		return uploadFileMaxNumber;
+	}
+	public void setUploadFileMaxNumber(Integer uploadFileMaxNumber) {
+		this.uploadFileMaxNumber = uploadFileMaxNumber;
+	}
+	public String[] getUploadFileDeleteSeq() {
+		return uploadFileDeleteSeq;
+	}
+	public void setUploadFileDeleteSeq(String[] uploadFileDeleteSeq) {
+		this.uploadFileDeleteSeq = uploadFileDeleteSeq;
+	}
+	public String[] getUploadFileDeletePathFile() {
+		return uploadFileDeletePathFile;
+	}
+	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
+		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
+	}
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public Integer getDefaultNy() {
+		return defaultNy;
+	}
+	public void setDefaultNy(Integer defaultNy) {
+		this.defaultNy = defaultNy;
+	}
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getOriginalName() {
+		return originalName;
+	}
+	public void setOriginalName(String originalName) {
+		this.originalName = originalName;
+	}
+	public String getUuidName() {
+		return uuidName;
+	}
+	public void setUuidName(String uuidName) {
+		this.uuidName = uuidName;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
+	}
+	
+	
 	
 	
 	
