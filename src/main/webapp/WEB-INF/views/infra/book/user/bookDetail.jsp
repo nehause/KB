@@ -185,7 +185,7 @@
 									<h5>크기</h5>
 								</td>
 								<td>
-									<h5><c:out value="${item.size }"/></h5>
+									<h5><c:out value="${item.bookSize }"/></h5>
 								</td>
 							</tr>
 							<tr>

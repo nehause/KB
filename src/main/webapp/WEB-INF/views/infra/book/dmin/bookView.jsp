@@ -167,8 +167,8 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="size">사이즈</label>
-								<input type="text" class="form-control" id="size" name="size" value="<c:out value="${item.size }"/>" placeholder="주소">
+								<label for="bookSize">사이즈</label>
+								<input type="text" class="form-control" id="bookSize" name="bookSize" value="<c:out value="${item.bookSize }"/>" placeholder="주소">
 							</div>
 						</div>
 						<div class="row">
@@ -233,10 +233,10 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="delNy">삭제 여부</label>
-								<select class="form-select" id="delNy" name="delNy">
-									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>N</option>
-									<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>Y</option>
+								<label for="bookDelNy">삭제 여부</label>
+								<select class="form-select" id="bookDelNy" name="bookDelNy">
+									<option value="0" <c:if test="${item.bookDelNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.bookDelNy eq 1 }">selected</c:if>>Y</option>
 								</select>
 							</div>
 						</div>

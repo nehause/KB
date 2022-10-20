@@ -61,7 +61,7 @@
 	<sql id ="selectCommon">
 	FROM book a
 	WHERE 1=1
-		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND bookDelNy = #{searchDelNy}</if>
 		<choose>
 			<when test="searchOption == 1">AND bookSeq = #{searchValue}</when>
 			<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
@@ -142,7 +142,7 @@
 			,accmulate = #{accmulate}
 			,isbn = #{isbn}
 			,page = #{page}
-			,bookSize = #{bookSize}
+			,bookSize = #{size}
 			,topic = #{topic}
 			,introduce = #{introduce}
 			,image = #{image}
@@ -175,7 +175,7 @@
 			a.name
 		FROM book a
 		WHERE 1=1
-			AND delNy = 0
+			AND bookDelNy = 0
 		ORDER NY a.bookSeq DESC
 	</select>
 	
