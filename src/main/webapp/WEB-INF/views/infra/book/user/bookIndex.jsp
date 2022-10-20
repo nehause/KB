@@ -234,6 +234,7 @@
 			</div> -->
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<form method="post" id="BIForm" name="BIForm">
+					<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
 					<input type="hidden" id="bookSeq" name="bookSeq">
 					<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
@@ -305,7 +306,7 @@
 														<h6 class="l-through">₩<c:out value="${list.cost }"/></h6>
 													</div>
 													<div class="prd-bottom">
-														<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)" class="social-info">
+														<a href="javascript:goOrder(<c:out value="${list.bookSeq }"/>)" class="social-info">
 															<span class="ti-bag"></span>
 															<p class="hover-text">구매하기</p>
 														</a>
@@ -317,7 +318,7 @@
 															<span class="lnr lnr-sync"></span>
 															<p class="hover-text">리스트가기</p>
 														</a> -->
-														<a herf="" class="social-info">
+														<a herf="javascript:goDetail(<c:out value="${list.bookSeq }"/>)" class="social-info">
 															<span class="lnr lnr-move"></span>
 															<p class="hover-text">상세보기</p>
 														</a>
@@ -387,6 +388,7 @@
 	<script>
 	var goUrlDetail = "/book/bookDetail";
 	var goUrlIndex = "/book/bookIndex";
+	var goUrlOrder = "/order/orderPurchase";
 	var seq = $("input:hidden[name=bookSeq]");
 	var form = $("form[name=BIForm]"); 
 
@@ -399,6 +401,11 @@
 	goDetail = function(seqValue){
 		seq.val(seqValue);
 		form.attr("action", goUrlDetail).submit();
+	}
+	
+	goOrder = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action", goUrlOrder).submit();
 	}
 	
 	$(function(){
