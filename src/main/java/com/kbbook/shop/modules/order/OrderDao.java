@@ -76,6 +76,9 @@ public class OrderDao {
 	public int bookPurchaseInsert(Order dto) throws Exception{
 		return sqlSession.insert(namespace + ".bookPurchaseInsert", dto);
 	}
+	public List<Order> orderFinList(OrderVo vo) throws Exception{
+		return sqlSession.selectList(namespace + ".orderFinList", vo);
+	}
 	
 
 }

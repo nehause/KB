@@ -172,16 +172,11 @@ public class OrderController {
 	
 		return "infra/order/user/orderPurchase";
 	}
-	
-	@RequestMapping(value="orderFin")
-	public String OrderFin(Order dto) throws Exception {
-		
-		return "infra/order/user/orderFin";
-	}
+
 	
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "userOrderInsert")
-	public String userInsert(Order dto, OrderVo vo) throws Exception{
+	public String userInsert(Order dto, @ModelAttribute("vo") OrderVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		
 		service.insert(dto);
 		dto.setPurchaseSeq(dto.getPurchaseSeq());
@@ -190,6 +185,14 @@ public class OrderController {
 		
 		return "redirect:/order/orderFin";
 		
+	}
+	
+	@RequestMapping(value="orderFin")
+	public String OrderFin(Order dto , @ModelAttribute("vo") OrderVo vo) throws Exception {
+		
+		service.orderFinList(vo);
+		
+		return "infra/order/user/orderFin";
 	}
 	
 	@SuppressWarnings(value= {"all"})

@@ -88,4 +88,7 @@ public class OrderServiceImpl implements OrderService {
 	public int bookPurchaseInsert(Order dto) throws Exception{
 		return dao.bookPurchaseInsert(dto);
 	}
+	public List<Order> orderFinList(OrderVo vo) throws Exception{
+		return dao.orderFinList(vo);
+	}
 }
