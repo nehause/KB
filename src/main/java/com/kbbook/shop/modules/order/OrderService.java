@@ -24,5 +24,6 @@ public interface OrderService {
 	public int transportUpdate(Order dto) throws Exception;
 	public int bookPurchaseInsert(Order dto) throws Exception;
 	public List<Order> orderFinList(OrderVo vo) throws Exception;
+	public Order orderFinPrice(OrderVo vo) throws Exception;
 	
 }

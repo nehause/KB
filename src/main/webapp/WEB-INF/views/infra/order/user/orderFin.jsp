@@ -66,16 +66,17 @@
 		<div style="height: 50px;"></div>
 		<div class="col-lg-4 offset-4">
 	        <div class="order_box">
-	        	<c:forEach items="${list}" var="list" varStatus="status">
-		            <ul class="list">
+	            <ul class="list">
+		            <c:forEach items="${list}" var="list" varStatus="status">
 		                <li><a>상품 <span>총합</span></a></li>
 		                <li><a><c:out value="${list.name }"/></a></li>
 		                <li><a>상품 금액 <span>₩<fmt:formatNumber type="number" pattern="###,###,###" value="${list.bookPrice }" /></span></a></li>
 		                <li><a>구매량<span>x <c:out value="${list.count }"/></span></a></li>
+		                <hr>
+		            </c:forEach>
 		                <li><a>배송비 <span>무료</span></a></li>     
-		                <li><a>최종 결제 금액 <span style="color: orange;">₩<fmt:formatNumber type="number" pattern="###,###,###" value="${list.price }" /></span></a></li>
+		                <li><a>최종 결제 금액 <span style="color: orange;">₩<fmt:formatNumber type="number" pattern="###,###,###" value="${price.priceSum }" /></span></a></li>
 		            </ul>
-	            </c:forEach>
 	            <hr>
 	            <div style="height: 50px;"></div>
 	            <a class="primary-btn" href="/memeber/memberMyRoom">마이룸으로</a>

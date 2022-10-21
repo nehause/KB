@@ -79,6 +79,9 @@ public class OrderDao {
 	public List<Order> orderFinList(OrderVo vo) throws Exception{
 		return sqlSession.selectList(namespace + ".orderFinList", vo);
 	}
+	public Order orderFinPrice(OrderVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".orderFinPrice", vo);
+	}
 	
 
 }

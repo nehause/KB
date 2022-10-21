@@ -263,4 +263,15 @@
 	and a.purchaseSeq = #{purchaseSeq}	
 	</select>
 	
+	<select id="orderFinPrice" resultMap="resultMapObj">
+	select
+   sum(c.price) as priceSum
+	from purchase_book c
+	join purchase on purchase_purchaseSeq = purchaseSeq
+	where 1=1
+    and purchaseSeq = #{purchaseSeq}
+	group by purchaseSeq
+	
+	</select>
+	
 </mapper>	

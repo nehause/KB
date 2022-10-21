@@ -193,8 +193,9 @@ public class OrderController {
 	public String OrderFin(Order dto , @ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
 		
 		List<Order> list = service.orderFinList(vo);
-		
 		model.addAttribute("list", list);
+		Order price = service.orderFinPrice(vo);
+		model.addAttribute("price", price);
 		
 		return "infra/order/user/orderFin";
 	}

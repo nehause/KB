@@ -86,4 +86,9 @@ public class BookDao {
 	public int commentCheck(Book dto) throws Exception{
 		return sqlSession.selectOne(namespace + ".commentCheck", dto);
 	}
+	
+//	uploaded
+	public int insertUploaded(Book dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
+	public int ueleteUploaded(Book dto) { return sqlSession.insert(namespace + ".ueleteUploaded", dto); }
+	public int deleteUploaded(Book dto) { return sqlSession.insert(namespace + ".deleteUploaded", dto); }
 }

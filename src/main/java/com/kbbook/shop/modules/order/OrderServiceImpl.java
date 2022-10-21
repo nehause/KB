@@ -91,4 +91,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> orderFinList(OrderVo vo) throws Exception{
 		return dao.orderFinList(vo);
 	}
+	public Order orderFinPrice(OrderVo vo) throws Exception{
+		return dao.orderFinPrice(vo);
+	}
 }
