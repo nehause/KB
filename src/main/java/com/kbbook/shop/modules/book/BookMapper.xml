@@ -27,8 +27,8 @@
 			, cost*(1-sale) as price
 			,(SELECT
 			case
-			when count(c.name) = 1 then c.name
-			when count(c.name) > 1 then concat(min(c.name) , ' 외 ' , cast(COUNT(name) as char)-1 , ' 명' )
+			when count(c.writerName) = 1 then c.writerName
+			when count(c.writerName) > 1 then concat(min(c.writerName) , ' 외 ' , cast(COUNT(writerName) as char)-1 , ' 명' )
 			end
 			FROM writer c
 	        JOIN book_writer b on b.writer_writerSeq = c.writerSeq
@@ -204,8 +204,8 @@
 			,cost*(1-sale) as price
 			,(SELECT
 			case
-			when count(c.name) = 1 then c.name
-			when count(c.name) > 1 then concat(min(c.name) , ' 외 ' , cast(COUNT(name) as char)-1 , ' 명' )
+			when count(c.writerName) = 1 then c.writerName
+			when count(c.writerName) > 1 then concat(min(c.writerName) , ' 외 ' , cast(COUNT(writerName) as char)-1 , ' 명' )
 			end
 			FROM writer c
 	        JOIN book_writer b on b.writer_writerSeq = c.writerSeq
@@ -283,62 +283,4 @@
 		and book_commentSeq = #{book_commentSeq}
 		
 	</select>
-	
-	<insert id="insertUploaded">
-		INSERT INTO ${tableName} (
-			type
-			,defaultNy
-			,sort
-			,path
-			,originalName
-			,uuidName
-			,ext
-			,size
-			,delNy
-			<include refid="insertRegColumn" />
-			,pseq
-		) values (
-			#{type}
-			,#{defaultNy}
-			,#{sort}
-			,#{path}
-			,#{originalName}
-			,#{uuidName}
-			,#{ext}
-			,#{size}
-			,0
-			<include refid="insertRegValue" />
-			,#{pseq}
-		)
-	</insert>
-	
-	<sql id="insertRegColumn">	
-		,regIp
-		,regSeq
-		,regDeviceCd
-		,regDateTime
-		,regDateTimeSvr
-	</sql>
-	
-	 <sql id="insertRegValue">	
-		,#{regIp}
-		,#{regSeq}
-		,#{regDeviceCd}
-		,#{regDateTime}
-		,#{regDateTimeSvr}
-	</sql>
-	
-	
-	<delete id="deleteUploaded">
-		DELETE FROM ${tableName}
-		WHERE 1=1
-			AND seq = #{seq}
-	</delete>
-	
-	
-	<update id="ueleteUploaded">
-		UPDATE ${tableName} SET delNy = 1
-		WHERE 1=1
-			AND seq = #{seq}
-	</update>
 </mapper>	

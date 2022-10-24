@@ -2,18 +2,41 @@ package com.kbbook.shop.modules.writer;
 
 import java.sql.Date;
 
-public class Writer {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.kbbook.shop.common.base.Base;
+
+public class Writer extends Base {
 
 	private String writerSeq;
-	private String name;
-	private String image;
-	private String introduce;
-	private Integer delNy;
-	private Date registration;
-	private Date correctation;
+	private String writerName;
+	private String writerImage;
+	private String writerIntroduce;
+	private Integer writerDelNy;
+	private Date writerRegistration;
+	private Date writerCorrectation;
 	
 	//subquery
 	private String writtenBook;
+	
+	
+	//upload
+	
+	private MultipartFile[] uploadImgProfile;
+	private Integer uploadImgProfileMaxNumber;
+	private String[] uploadImgProfileDeleteSeq;
+	private String[] uploadImgProfileDeletePathFile;	
+	
+	private MultipartFile[] uploadImg;
+	private Integer uploadImgMaxNumber;
+	private String[] uploadImgDeleteSeq;
+	private String[] uploadImgDeletePathFile;	
+	
+	private MultipartFile[] uploadFile;
+	private Integer uploadFileMaxNumber;
+	private String[] uploadFileDeleteSeq;
+	private String[] uploadFileDeletePathFile;
+	
 	
 	
 	public String getWriterSeq() {
@@ -22,48 +45,122 @@ public class Writer {
 	public void setWriterSeq(String writerSeq) {
 		this.writerSeq = writerSeq;
 	}
-	public String getName() {
-		return name;
+	public String getWriterName() {
+		return writerName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
-	public String getImage() {
-		return image;
+	public String getWriterImage() {
+		return writerImage;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setWriterImage(String writerImage) {
+		this.writerImage = writerImage;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getWriterIntroduce() {
+		return writerIntroduce;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setWriterIntroduce(String writerIntroduce) {
+		this.writerIntroduce = writerIntroduce;
 	}
-	
-	public Integer getDelNy() {
-		return delNy;
+	public Integer getWriterDelNy() {
+		return writerDelNy;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+	public void setWritderDelNy(Integer writerDelNy) {
+		this.writerDelNy = writerDelNy;
 	}
-	public Date getRegistration() {
-		return registration;
+	public Date getWriterRegistration() {
+		return writerRegistration;
 	}
-	public void setRegistration(Date registration) {
-		this.registration = registration;
+	public void setWriterRegistration(Date writerRegistration) {
+		this.writerRegistration = writerRegistration;
 	}
-	public Date getCorrectation() {
-		return correctation;
+	public Date getWriterCorrectation() {
+		return writerCorrectation;
 	}
-	public void setCorrectation(Date correctation) {
-		this.correctation = correctation;
+	public void setWriterCorrectation(Date writerCorrectation) {
+		this.writerCorrectation = writerCorrectation;
 	}
 	public String getWrittenBook() {
 		return writtenBook;
 	}
 	public void setWrittenBook(String writtenBook) {
 		this.writtenBook = writtenBook;
+	}
+	
+	// upload
+	
+	public MultipartFile[] getUploadImgProfile() {
+		return uploadImgProfile;
+	}
+	public void setUploadImgProfile(MultipartFile[] uploadImgProfile) {
+		this.uploadImgProfile = uploadImgProfile;
+	}
+	public Integer getUploadImgProfileMaxNumber() {
+		return uploadImgProfileMaxNumber;
+	}
+	public void setUploadImgProfileMaxNumber(Integer uploadImgProfileMaxNumber) {
+		this.uploadImgProfileMaxNumber = uploadImgProfileMaxNumber;
+	}
+	public String[] getUploadImgProfileDeleteSeq() {
+		return uploadImgProfileDeleteSeq;
+	}
+	public void setUploadImgProfileDeleteSeq(String[] uploadImgProfileDeleteSeq) {
+		this.uploadImgProfileDeleteSeq = uploadImgProfileDeleteSeq;
+	}
+	public String[] getUploadImgProfileDeletePathFile() {
+		return uploadImgProfileDeletePathFile;
+	}
+	public void setUploadImgProfileDeletePathFile(String[] uploadImgProfileDeletePathFile) {
+		this.uploadImgProfileDeletePathFile = uploadImgProfileDeletePathFile;
+	}
+	public MultipartFile[] getUploadImg() {
+		return uploadImg;
+	}
+	public void setUploadImg(MultipartFile[] uploadImg) {
+		this.uploadImg = uploadImg;
+	}
+	public Integer getUploadImgMaxNumber() {
+		return uploadImgMaxNumber;
+	}
+	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
+		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	}
+	public String[] getUploadImgDeleteSeq() {
+		return uploadImgDeleteSeq;
+	}
+	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
+		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	}
+	public String[] getUploadImgDeletePathFile() {
+		return uploadImgDeletePathFile;
+	}
+	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
+		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	}
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public Integer getUploadFileMaxNumber() {
+		return uploadFileMaxNumber;
+	}
+	public void setUploadFileMaxNumber(Integer uploadFileMaxNumber) {
+		this.uploadFileMaxNumber = uploadFileMaxNumber;
+	}
+	public String[] getUploadFileDeleteSeq() {
+		return uploadFileDeleteSeq;
+	}
+	public void setUploadFileDeleteSeq(String[] uploadFileDeleteSeq) {
+		this.uploadFileDeleteSeq = uploadFileDeleteSeq;
+	}
+	public String[] getUploadFileDeletePathFile() {
+		return uploadFileDeletePathFile;
+	}
+	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
+		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
 	}
 	
 	

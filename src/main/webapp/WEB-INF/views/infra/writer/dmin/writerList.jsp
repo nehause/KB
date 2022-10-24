@@ -171,10 +171,10 @@
 															</td>
 															<td><c:out value="${status.count }"/></td>
 															<td><c:out value="${list.writerSeq }"/></td>
-															<td><c:out value="${list.name }"/></td>
+															<td><c:out value="${list.writerName }"/></td>
 															<td><c:out value="${list.writtenBook }"/></td>
-															<td><c:out value="${list.registration }"/></td>
-															<td><c:out value="${list.correctation }"/></td>
+															<td><c:out value="${list.writerRegistration }"/></td>
+															<td><c:out value="${list.writerCorrectation }"/></td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>

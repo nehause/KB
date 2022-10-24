@@ -6,11 +6,11 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kbbook.shop.common.constants.Constants;
-import com.kbbook.shop.modules.book.Book;
+import com.kbbook.shop.modules.writer.Writer;
 
 public class UtilUpload {
 	
-		public static void upload (MultipartFile multipartFile, String className, Book dto) throws Exception {
+		public static void upload (MultipartFile multipartFile, String className, Writer dto) throws Exception {
 			String fileName = multipartFile.getOriginalFilename();
 			String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 			String uuid = UUID.randomUUID().toString();

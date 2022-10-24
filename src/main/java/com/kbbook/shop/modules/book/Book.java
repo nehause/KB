@@ -5,9 +5,9 @@ import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kbbook.shop.modules.writer.Writer;
+import com.kbbook.shop.common.base.Base;
 
-public class Book extends Writer {
+public class Book extends Base {
 	private String bookSeq;
 	private String sign;
 	private String name;
@@ -51,6 +51,10 @@ public class Book extends Writer {
 	private String userName;
 	// 추가 변수(총 평점)
 	private double gradeAVG;
+	
+	//writer 속성
+	
+	private String writerSeq;
 		
 	
 	//upload
@@ -439,6 +443,12 @@ public class Book extends Writer {
 	}
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
+	}
+	public String getWriterSeq() {
+		return writerSeq;
+	}
+	public void setWriterSeq(String writerSeq) {
+		this.writerSeq = writerSeq;
 	}
 	
 	

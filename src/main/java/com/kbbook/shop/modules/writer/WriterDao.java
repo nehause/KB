@@ -12,6 +12,7 @@ import com.kbbook.shop.common.base.BaseVo;
 
 @Repository
 public class WriterDao {
+	
 	@Inject
 	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
@@ -22,15 +23,11 @@ public class WriterDao {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 	public int insert(Writer dto) {
-		int result = sqlSession.insert(namespace + ".insert", dto);
-		System.out.println("dao result: " + result);
-		return result;
+		return sqlSession.insert(namespace + ".insert", dto);
 	}
 	
 	public Writer selectSeq(WriterVo vo) {
-		Writer result = sqlSession.selectOne(namespace + ".selectSeq", vo);
-		System.out.println("dao result: " + result);
-		return result;
+		return sqlSession.selectOne(namespace + ".selectSeq", vo);
 	}
 	
 	public int update(Writer dto) {
@@ -52,4 +49,9 @@ public class WriterDao {
 	public int selectOneCount(BaseVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+//	uploaded
+	public int insertUploaded(Writer dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
+	public int ueleteUploaded(Writer dto) { return sqlSession.insert("Base" + ".ueleteUploaded", dto); }
+	public int deleteUploaded(Writer dto) { return sqlSession.insert("Base" + ".deleteUploaded", dto); }
 }

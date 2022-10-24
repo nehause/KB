@@ -7,6 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kbbook.shop.common.base.BaseVo;
 
 public interface BookService {
+	
+	// uploaded
+	public void uploadFiles(MultipartFile[] multipartFiles, Book dto, String tableName, int type, int maxNumber) throws Exception;
+	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
+	public void ueleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
+	
 	public List<Book> selectList(BookVo vo) throws Exception; 
 	public int insert(Book dto) throws Exception;
 	public Book selectSeq(BookVo vo) throws Exception;
@@ -14,10 +20,6 @@ public interface BookService {
 	public int uelete(Book dto) throws Exception;
 	public int delete(BookVo vo) throws Exception;
 	
-	// uploaded
-	public void uploadFiles(MultipartFile[] multipartFiles, Book dto, String tableName, int type, int maxNumber) throws Exception;
-	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
-	public void ueleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
 	
 	public List<Book> selectListWithoutPaging() throws Exception;
 	public int selectOneCount(BaseVo vo) throws Exception;

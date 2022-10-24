@@ -98,7 +98,8 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="bookSeq">책 번호</label>
-								<input type="text" class="form-control" id="bookSeq" value="<c:out value="${item.bookSeq }"/>" readonly>
+								<input type="text" class="form-control" id="Seqview" value="<c:out value="${item.bookSeq }"/>" readonly>
+								<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="writer_writerSeq">작가 번호</label>
@@ -550,7 +551,7 @@
 					var divImage = "";
 					divImage += '<div id="signDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 135px;">';
 					divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "140px">';
-					divImage += '	<div style="position: relative; top:-190px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
+					divImage += '	<div style="position: relative; top:-190px; left:5px"><span style="color: red; cursor:pointer;" onClick="delSignDiv(0,' + type +','+ sort +')">X</span></div>';
 					divImage += '</div> ';
 					
 					filePreview.append(divImage);
@@ -568,7 +569,7 @@
 				if(sort == 0){
 					var divImage = "";
 					divImage += '<div id="imageDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 130px;">';
-					divImage += '	<div style="position: relative; top:40px; left:20px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
+					divImage += '	<div style="position: relative; top:40px; left:20px"><span style="color: red; cursor:pointer;" onClick="delImageDiv(0,' + type +','+ sort +')">X</span></div>';
 					divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "582px">';
 					divImage += '</div> ';
 					
@@ -582,7 +583,7 @@
 		
 		delSignDiv = function(objName, type, sort, deleteSeq, pathFile) {
 			
-			$("#imgDiv_"+type+"_"+sort).remove();
+			$("#signDiv_"+type+"_"+sort).remove();
 			
 			var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
 			var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
@@ -602,7 +603,7 @@
 		
 		delImageDiv = function(objName, type, sort, deleteSeq, pathFile) {
 			
-			$("#imgDiv_"+type+"_"+sort).remove();
+			$("#imageDiv_"+type+"_"+sort).remove();
 			
 			var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
 			var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');

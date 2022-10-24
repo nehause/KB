@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kbbook.shop.common.constants.Constants;
 import com.kbbook.shop.modules.main.Main;
 import com.kbbook.shop.modules.main.MainServiceImpl;
-import com.kbbook.shop.modules.member.Member;
 
 
 
@@ -98,6 +97,8 @@ public class BookController {
 	@RequestMapping(value="bookUpdate")
 	public String bookUpdate(BookVo vo, Book dto, RedirectAttributes redirectAttributes) throws Exception{
 		
+		System.out.println("dto.getUploadImgDeleteSeq(): " + dto.getUploadImgDeleteSeq());
+		System.out.println("dto.getUploadImgDeletePathFile(): " + dto.getUploadImgDeletePathFile());
 		System.out.println("dto.getBookSeq(): " + dto.getBookSeq());
 		System.out.println("dto.getName(): " + dto.getName());
 		System.out.println("dto.getPublisher(): " + dto.getPublisher());

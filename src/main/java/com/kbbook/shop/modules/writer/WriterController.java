@@ -80,7 +80,7 @@ public class WriterController {
 	public String WriterUpdate(WriterVo vo, Writer dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		System.out.println("dto.getWriterSeq(): " + dto.getWriterSeq());
-		System.out.println("dto.getName(): " + dto.getName());
+		System.out.println("dto.getName(): " + dto.getWriterName());
 		
 		service.update(dto);
 		redirectAttributes.addFlashAttribute("vo", vo);

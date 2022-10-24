@@ -19,6 +19,17 @@ public class BookDao {
 	
 	private static String namespace = "com.kbbook.shop.modules.book.BookMapper";
 	
+//	uploaded
+	public int insertUploaded(Book dto) { 
+		return sqlSession.insert(namespace + ".insertUploaded", dto); 
+	}
+	public int ueleteUploaded(Book dto) { 
+		return sqlSession.insert(namespace + ".ueleteUploaded", dto); 
+	}
+	public int deleteUploaded(Book dto) { 
+		return sqlSession.delete(namespace + ".deleteUploaded", dto); 
+	}
+	
 	public List<Book> selectList(BookVo vo){
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
@@ -87,8 +98,5 @@ public class BookDao {
 		return sqlSession.selectOne(namespace + ".commentCheck", dto);
 	}
 	
-//	uploaded
-	public int insertUploaded(Book dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
-	public int ueleteUploaded(Book dto) { return sqlSession.insert(namespace + ".ueleteUploaded", dto); }
-	public int deleteUploaded(Book dto) { return sqlSession.insert(namespace + ".deleteUploaded", dto); }
+
 }
