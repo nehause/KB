@@ -66,20 +66,15 @@ public class Book extends Base {
 	private String member_memberSeq;
 	
 	//upload
-	private MultipartFile[] uploadImgProfile;
-	private Integer uploadImgProfileMaxNumber;
-	private String[] uploadImgProfileDeleteSeq;
-	private String[] uploadImgProfileDeletePathFile;	
+	private MultipartFile[] uploadSign;
+	private Integer uploadSignMaxNumber;
+	private String[] uploadSignDeleteSeq;
+	private String[] uploadSignDeletePathFile;	
 	
-	private MultipartFile[] uploadImg;
-	private Integer uploadImgMaxNumber;
-	private String[] uploadImgDeleteSeq;
-	private String[] uploadImgDeletePathFile;	
-	
-	private MultipartFile[] uploadFile;
-	private Integer uploadFileMaxNumber;
-	private String[] uploadFileDeleteSeq;
-	private String[] uploadFileDeletePathFile;
+	private MultipartFile[] uploadImage;
+	private Integer uploadImageMaxNumber;
+	private String[] uploadImageDeleteSeq;
+	private String[] uploadImageDeletePathFile;	
 		
 	
 	//upload base
@@ -97,7 +92,6 @@ public class Book extends Base {
 	private long size;
 	private Integer delNy;
 	private String pseq;
-	
 	public String getBookSeq() {
 		return bookSeq;
 	}
@@ -308,77 +302,90 @@ public class Book extends Base {
 	public void setGradeAVG(double gradeAVG) {
 		this.gradeAVG = gradeAVG;
 	}
-	public MultipartFile[] getUploadImgProfile() {
-		return uploadImgProfile;
+	public String getWriterSeq() {
+		return writerSeq;
 	}
-	public void setUploadImgProfile(MultipartFile[] uploadImgProfile) {
-		this.uploadImgProfile = uploadImgProfile;
+	public void setWriterSeq(String writerSeq) {
+		this.writerSeq = writerSeq;
 	}
-	public Integer getUploadImgProfileMaxNumber() {
-		return uploadImgProfileMaxNumber;
+	public String getWriterName() {
+		return writerName;
 	}
-	public void setUploadImgProfileMaxNumber(Integer uploadImgProfileMaxNumber) {
-		this.uploadImgProfileMaxNumber = uploadImgProfileMaxNumber;
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
-	public String[] getUploadImgProfileDeleteSeq() {
-		return uploadImgProfileDeleteSeq;
+	public String getWriterImage() {
+		return writerImage;
 	}
-	public void setUploadImgProfileDeleteSeq(String[] uploadImgProfileDeleteSeq) {
-		this.uploadImgProfileDeleteSeq = uploadImgProfileDeleteSeq;
+	public void setWriterImage(String writerImage) {
+		this.writerImage = writerImage;
 	}
-	public String[] getUploadImgProfileDeletePathFile() {
-		return uploadImgProfileDeletePathFile;
+	public String getWriterIntroduce() {
+		return writerIntroduce;
 	}
-	public void setUploadImgProfileDeletePathFile(String[] uploadImgProfileDeletePathFile) {
-		this.uploadImgProfileDeletePathFile = uploadImgProfileDeletePathFile;
+	public void setWriterIntroduce(String writerIntroduce) {
+		this.writerIntroduce = writerIntroduce;
 	}
-	public MultipartFile[] getUploadImg() {
-		return uploadImg;
+	public String getFavoriteSeq() {
+		return favoriteSeq;
 	}
-	public void setUploadImg(MultipartFile[] uploadImg) {
-		this.uploadImg = uploadImg;
+	public void setFavoriteSeq(String favoriteSeq) {
+		this.favoriteSeq = favoriteSeq;
 	}
-	public Integer getUploadImgMaxNumber() {
-		return uploadImgMaxNumber;
+	public String getMember_memberSeq() {
+		return member_memberSeq;
 	}
-	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
-		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	public void setMember_memberSeq(String member_memberSeq) {
+		this.member_memberSeq = member_memberSeq;
 	}
-	public String[] getUploadImgDeleteSeq() {
-		return uploadImgDeleteSeq;
+	public MultipartFile[] getUploadSign() {
+		return uploadSign;
 	}
-	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
-		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	public void setUploadSign(MultipartFile[] uploadSign) {
+		this.uploadSign = uploadSign;
 	}
-	public String[] getUploadImgDeletePathFile() {
-		return uploadImgDeletePathFile;
+	public Integer getUploadSignMaxNumber() {
+		return uploadSignMaxNumber;
 	}
-	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
-		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	public void setUploadSignMaxNumber(Integer uploadSignMaxNumber) {
+		this.uploadSignMaxNumber = uploadSignMaxNumber;
 	}
-	public MultipartFile[] getUploadFile() {
-		return uploadFile;
+	
+	public String[] getUploadSignDeleteSeq() {
+		return uploadSignDeleteSeq;
 	}
-	public void setUploadFile(MultipartFile[] uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setUploadSignDeleteSeq(String[] uploadSignDeleteSeq) {
+		this.uploadSignDeleteSeq = uploadSignDeleteSeq;
 	}
-	public Integer getUploadFileMaxNumber() {
-		return uploadFileMaxNumber;
+	public String[] getUploadSignDeletePathFile() {
+		return uploadSignDeletePathFile;
 	}
-	public void setUploadFileMaxNumber(Integer uploadFileMaxNumber) {
-		this.uploadFileMaxNumber = uploadFileMaxNumber;
+	public void setUploadSignDeletePathFile(String[] uploadSignDeletePathFile) {
+		this.uploadSignDeletePathFile = uploadSignDeletePathFile;
 	}
-	public String[] getUploadFileDeleteSeq() {
-		return uploadFileDeleteSeq;
+	public MultipartFile[] getUploadImage() {
+		return uploadImage;
 	}
-	public void setUploadFileDeleteSeq(String[] uploadFileDeleteSeq) {
-		this.uploadFileDeleteSeq = uploadFileDeleteSeq;
+	public void setUploadImage(MultipartFile[] uploadImage) {
+		this.uploadImage = uploadImage;
 	}
-	public String[] getUploadFileDeletePathFile() {
-		return uploadFileDeletePathFile;
+	public Integer getUploadImageMaxNumber() {
+		return uploadImageMaxNumber;
 	}
-	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
-		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
+	public void setUploadImageMaxNumber(Integer uploadImageMaxNumber) {
+		this.uploadImageMaxNumber = uploadImageMaxNumber;
+	}
+	public String[] getUploadImageDeleteSeq() {
+		return uploadImageDeleteSeq;
+	}
+	public void setUploadImageDeleteSeq(String[] uploadImageDeleteSeq) {
+		this.uploadImageDeleteSeq = uploadImageDeleteSeq;
+	}
+	public String[] getUploadImageDeletePathFile() {
+		return uploadImageDeletePathFile;
+	}
+	public void setUploadImageDeletePathFile(String[] uploadImageDeletePathFile) {
+		this.uploadImageDeletePathFile = uploadImageDeletePathFile;
 	}
 	public String getTableName() {
 		return tableName;
@@ -452,42 +459,10 @@ public class Book extends Base {
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
 	}
-	public String getWriterSeq() {
-		return writerSeq;
-	}
-	public void setWriterSeq(String writerSeq) {
-		this.writerSeq = writerSeq;
-	}
-	public String getWriterName() {
-		return writerName;
-	}
-	public void setWriterName(String writerName) {
-		this.writerName = writerName;
-	}
-	public String getWriterImage() {
-		return writerImage;
-	}
-	public void setWriterImage(String writerImage) {
-		this.writerImage = writerImage;
-	}
-	public String getWriterIntroduce() {
-		return writerIntroduce;
-	}
-	public void setWriterIntroduce(String writerIntroduce) {
-		this.writerIntroduce = writerIntroduce;
-	}
-	public String getFavoriteSeq() {
-		return favoriteSeq;
-	}
-	public void setFavoriteSeq(String favoriteSeq) {
-		this.favoriteSeq = favoriteSeq;
-	}
-	public String getMember_memberSeq() {
-		return member_memberSeq;
-	}
-	public void setMember_memberSeq(String member_memberSeq) {
-		this.member_memberSeq = member_memberSeq;
-	}
+	
+	
+	
+	
 	
 	
 	

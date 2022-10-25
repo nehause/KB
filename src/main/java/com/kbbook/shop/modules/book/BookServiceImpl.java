@@ -13,8 +13,12 @@ import com.kbbook.shop.common.base.BaseVo;
 import com.kbbook.shop.common.constants.Constants;
 import com.kbbook.shop.common.util.UtilDateTime;
 
+
 @Service
 public class BookServiceImpl extends BaseServiceImpl implements BookService{
+	
+	@Autowired
+	BookDao dao;
 	
 	public void uploadFiles(MultipartFile[] multipartFiles, Book dto, String tableName, int type, int maxNumber) throws Exception {
 		
@@ -92,8 +96,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 		}
 	}
 	
-	@Autowired
-	BookDao dao;
 	
 	@Override
 	public List<Book> selectList(BookVo vo) throws Exception {
@@ -104,7 +106,8 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	public int insert(Book dto) throws Exception {
 		
 		int result = dao.insert(dto);
-		uploadFiles(dto.getUploadImg(), dto, "bookUploaded", 2, dto.getUploadImgMaxNumber());
+		uploadFiles(dto.getUploadSign(), dto, "bookUploaded", 1, dto.getUploadSignMaxNumber());
+		uploadFiles(dto.getUploadImage(), dto, "bookUploaded", 2, dto.getUploadImageMaxNumber());
 // for문 작가 갯수 확인
 //		작가 등록
 		
@@ -123,11 +126,11 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	@Override
 	public int update(Book dto) throws Exception{
 		dao.update(dto);
-		deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "bookUploaded");
-		uploadFiles(dto.getUploadImg(), dto, "bookUploaded", 2, dto.getUploadImgMaxNumber());
+		deleteFiles(dto.getUploadSignDeleteSeq(), dto.getUploadSignDeletePathFile(), dto, "bookUploaded");
+		uploadFiles(dto.getUploadSign(), dto, "bookUploaded", 1, dto.getUploadSignMaxNumber());
 		
-		deleteFiles(dto.getUploadFileDeleteSeq(), dto.getUploadFileDeletePathFile(), dto, "bookUploaded");
-		uploadFiles(dto.getUploadFile(), dto, "infrMemberUploaded", 3, dto.getUploadFileMaxNumber());
+		deleteFiles(dto.getUploadImageDeleteSeq(), dto.getUploadImageDeletePathFile(), dto, "bookUploaded");
+		uploadFiles(dto.getUploadImage(), dto, "infrMemberUploaded", 2, dto.getUploadImageMaxNumber());
 		return 1;
 	}
 	

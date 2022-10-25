@@ -99,7 +99,6 @@
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="bookSeq">책 번호</label>
 								<input type="text" class="form-control" id="Seqview" value="<c:out value="${item.bookSeq }"/>" readonly>
-								<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="writer_writerSeq">작가 번호</label>

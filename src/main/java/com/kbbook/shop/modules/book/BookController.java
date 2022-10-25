@@ -99,8 +99,6 @@ public class BookController {
 	@RequestMapping(value="bookUpdate")
 	public String bookUpdate(BookVo vo, Book dto, RedirectAttributes redirectAttributes) throws Exception{
 		
-		System.out.println("dto.getUploadImgDeleteSeq(): " + dto.getUploadImgDeleteSeq());
-		System.out.println("dto.getUploadImgDeletePathFile(): " + dto.getUploadImgDeletePathFile());
 		System.out.println("dto.getBookSeq(): " + dto.getBookSeq());
 		System.out.println("dto.getName(): " + dto.getName());
 		System.out.println("dto.getPublisher(): " + dto.getPublisher());
