@@ -93,28 +93,28 @@
 									<td class="first">
 									</td>
 									<td>
-										<span>결제 완료</span><span> 0 </span>	<br>
+										<span>결제 완료</span><span></span>	<br>
 										<i class="fa-solid fa-credit-card fa-3x"></i>
 									</td>
 									<td>
 										<i class="fa-solid fa-chevron-right fa-3x"></i>
 									</td>
 									<td>
-										<span>상품 준비중</span><span> 0 </span><br>
+										<span>상품 준비중</span><span></span><br>
 										<i class="fa-solid fa-box fa-3x"></i>
 									</td>
 									<td>
 										<i class="fa-solid fa-chevron-right fa-3x"></i>
 									</td>
 									<td>
-										<span>배송중</span><span> 0 </span><br>
+										<span>배송중</span><span> </span><br>
 										<i class="fa-solid fa-truck fa-3x"></i>
 									</td>
 									<td>
 										<i class="fa-solid fa-chevron-right fa-3x"></i>
 									</td>
 									<td>
-										<span>배송 완료</span><span> 0 </span><br>
+										<span>배송 완료</span><span> </span><br>
 										<i class="fa-solid fa-clipboard-check fa-3x"></i>
 									</td>
 									<td>

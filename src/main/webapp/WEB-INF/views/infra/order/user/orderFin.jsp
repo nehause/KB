@@ -79,7 +79,7 @@
 		            </ul>
 	            <hr>
 	            <div style="height: 50px;"></div>
-	            <a class="primary-btn" href="/memeber/memberMyRoom">마이룸으로</a>
+	            <a class="primary-btn" href="/member/memberMyRoom">마이룸으로</a>
 	        </div>
 	    </div>
 	    <div style="height: 50px;"></div>

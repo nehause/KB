@@ -97,6 +97,15 @@ public class BookDao {
 	public int commentCheck(Book dto) throws Exception{
 		return sqlSession.selectOne(namespace + ".commentCheck", dto);
 	}
+	public int favoriteCheck(BookVo vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".favoriteCheck", vo);
+	}
 	
+	public int favoriteInsert(Book dto) throws Exception{
+		return sqlSession.insert(namespace + ".favoriteInsert", dto);
+	}
+	public int favoriteDelete(BookVo vo) throws Exception{
+		return sqlSession.delete(namespace + ".favoriteDelete", vo);
+	}
 
 }

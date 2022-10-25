@@ -283,4 +283,34 @@
 		and book_commentSeq = #{book_commentSeq}
 		
 	</select>
+	
+	<select id="favoriteCheck" resultType="Integer">
+		select
+			count(*)
+		from favorite
+		where 1=1
+		and book_bookSeq = #{bookSeq}
+		and member_memberSeq = #{memberSeq}
+	</select>
+	<insert id="favoriteInsert">
+		INSERT INTO favorite(
+			member_memberSeq
+			,book_bookSeq
+		)
+		VALUES(
+			#{memberSeq} 
+			,#{bookSeq}
+		)
+		<selectKey resultType="String" keyProperty="favoriteSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<delete id="favoriteDelete">
+		DELETE 
+		from favorite
+		where 1=1
+		and book_bookSeq = #{bookSeq}
+		and member_memberSeq = #{memberSeq}
+	</delete>
 </mapper>	

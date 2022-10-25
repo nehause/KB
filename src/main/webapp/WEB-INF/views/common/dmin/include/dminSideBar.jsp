@@ -16,16 +16,16 @@
 				</div>
 			</li>
 			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="true">
+				<button class="btn btn-toggle align-items-center rounded collapsed" aria-expanded="true" onclick="location.href='/code/codeList'">
 					코드 관리
 				</button>
-				<div class="collapse show" id="code-collapse">
+				<!-- <div class="collapse show" id="code-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="#" class="link-dark rounded">코드 리스트</a></li>
 						<li><a href="#" class="link-dark rounded">코드 추가</a></li>
 						<li><a href="#" class="link-dark rounded">코드 수정</a></li>
 					</ul>
-				</div>
+				</div> -->
 			</li>
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">

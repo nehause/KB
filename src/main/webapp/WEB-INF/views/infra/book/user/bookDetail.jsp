@@ -121,8 +121,15 @@
 							</div>
 							<div class="card_area d-flex align-items-center">
 								<a class="primary-btn" id="purchaseBtn" name="purchaseBtn" href="javascript:goPurchase(<c:out value="${item.bookSeq }"/>)"><span style="color:white;">구매하기</span></a>
-								<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a>
-								<a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+								<!-- <a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a> -->
+								<c:choose>
+									<c:when test="${favorite eq 0}">
+										<a class="icon_btn" id="FInst" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+									</c:when>
+									<c:otherwise>
+										<a class="icon_btn" id="FDele" style="padding-top: 14px; padding-left: 2px; background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);"><i class="lnr lnr lnr-heart"></i></a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
@@ -233,10 +240,10 @@
 					<c:forEach items="${writer}" var="writer" varStatus="status">
 						<div class="border" style="padding: 20px;">
 							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
-								<c:out value="${writer.image }"/>
+								<c:out value="${writer.writerImage }"/>
 							</div>
-							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.name }"/></p>
-							<p><c:out value="${writer.introduce }"/></p>
+							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.writerName }"/></p>
+							<p><c:out value="${writer.writerIntroduce }"/></p>
 						</div>
 						<div style="height: 30px;"></div>
 					</c:forEach>
@@ -527,6 +534,8 @@
 	var goUrlInsert = "/book/commentInsert";
 	var goUrlDelete = "/book/commentDelete";
 	var goUrlPurchase = "/order/orderPurchase";
+	var goUrlFavoriteInsert = "/book/favoriteInsert";
+	var goUrlFavoriteDelete = "/book/favoriteDelete";
 	var seq = $("input:hidden[name=bookSeq]");
 	var mSeq = $("input:hidden[name=memberSeq]");
 	var form = $("form[name=RRForm]");
@@ -548,7 +557,13 @@
 	$('#regBtn').on("click", function(){
 		form.attr("action", goUrlInsert).submit();
 	});
-
+	
+	$('#FInst').on("click", function(){
+		pForm.attr("action", goUrlFavoriteInsert).submit();
+	});
+	$('#FDele').on("click", function(){
+		pForm.attr("action", goUrlFavoriteDelete).submit();
+	});
 	
 	$('#delBtn').on("click", function(){
 		$.ajax({

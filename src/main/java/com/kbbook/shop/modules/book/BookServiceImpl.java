@@ -191,6 +191,13 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	public int commentCheck(Book dto) throws Exception{
 		return dao.commentCheck(dto);
 	}
-	
-	
+	public int favoriteCheck(BookVo vo) throws Exception{
+		return dao.favoriteCheck(vo);
+	}
+	public int favoriteInsert(Book dto) throws Exception{
+		return dao.favoriteInsert(dto);
+	}
+	public int favoriteDelete(BookVo vo) throws Exception{
+		return dao.favoriteDelete(vo);
+	}
 }

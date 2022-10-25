@@ -8,6 +8,7 @@ public class BookVo extends BaseVo{
 	
 	//join
 	private String book_commentSeq;
+	private String memberSeq;
 
 	public String getBookSeq() {
 		return bookSeq;
@@ -31,6 +32,14 @@ public class BookVo extends BaseVo{
 
 	public void setBook_commentSeq(String book_commentSeq) {
 		this.book_commentSeq = book_commentSeq;
+	}
+
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
 	}
 
 	

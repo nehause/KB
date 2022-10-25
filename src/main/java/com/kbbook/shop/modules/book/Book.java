@@ -55,7 +55,15 @@ public class Book extends Base {
 	//writer 속성
 	
 	private String writerSeq;
+	private String writerName;
+	private String writerImage;
+	private String writerIntroduce;
 		
+	
+	//favorite 속성
+	
+	private String favoriteSeq;
+	private String member_memberSeq;
 	
 	//upload
 	private MultipartFile[] uploadImgProfile;
@@ -449,6 +457,36 @@ public class Book extends Base {
 	}
 	public void setWriterSeq(String writerSeq) {
 		this.writerSeq = writerSeq;
+	}
+	public String getWriterName() {
+		return writerName;
+	}
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
+	public String getWriterImage() {
+		return writerImage;
+	}
+	public void setWriterImage(String writerImage) {
+		this.writerImage = writerImage;
+	}
+	public String getWriterIntroduce() {
+		return writerIntroduce;
+	}
+	public void setWriterIntroduce(String writerIntroduce) {
+		this.writerIntroduce = writerIntroduce;
+	}
+	public String getFavoriteSeq() {
+		return favoriteSeq;
+	}
+	public void setFavoriteSeq(String favoriteSeq) {
+		this.favoriteSeq = favoriteSeq;
+	}
+	public String getMember_memberSeq() {
+		return member_memberSeq;
+	}
+	public void setMember_memberSeq(String member_memberSeq) {
+		this.member_memberSeq = member_memberSeq;
 	}
 	
 	

@@ -35,14 +35,6 @@
 											<span class="ti-bag"></span>
 											<p class="hover-text">구매하기</p>
 										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
-										</a>
 										<a href="javascript:includeGoDetail(<c:out value="${best.bookSeq }"/>)" class="social-info">
 											<span class="lnr lnr-move"></span>
 											<p class="hover-text">상세보기</p>
@@ -85,14 +77,6 @@
 										<a href="javascript:includeGoDetail(<c:out value="${newList.bookSeq }"/>)" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">구매하기</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">관심상품</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">리스트가기</p>
 										</a>
 										<a href="javascript:includeGoDetail(<c:out value="${newList.bookSeq }"/>)" class="social-info">
 											<span class="lnr lnr-move"></span>

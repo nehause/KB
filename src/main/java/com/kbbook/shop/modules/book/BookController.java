@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -181,7 +183,7 @@ public class BookController {
 	}
 	
 	@RequestMapping(value="bookDetail")
-	public String BookDetail(@ModelAttribute("vo") BookVo vo, Model model) throws Exception {
+	public String BookDetail(@ModelAttribute("vo") BookVo vo, Model model, HttpSession httpSession) throws Exception {
 		
 		Book result = service.bookSelectSeq(vo);
 		model.addAttribute("item", result);
@@ -203,6 +205,10 @@ public class BookController {
 		List<Main> newList = mainService.newList();
 		model.addAttribute("newList", newList);
 
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		
+		int favorite = service.favoriteCheck(vo);
+		model.addAttribute("favorite", favorite);
 		
 		return "infra/book/user/bookDetail";
 	}
@@ -217,5 +223,23 @@ public class BookController {
 		return "redirect:/book/bookDetail";
 		
 	}
-
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value = "favoriteInsert")
+	public String favoriteInsert(Book dto, BookVo vo, RedirectAttributes redirectAttributes, HttpSession httpSession) throws Exception{
+		dto.setBookSeq(vo.getBookSeq());
+		dto.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		service.favoriteInsert(dto);
+		vo.setBookSeq(dto.getBookSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/book/bookDetail";
+	}
+	@RequestMapping(value = "favoriteDelete")
+	public String favoriteDelete(Book dto, BookVo vo, RedirectAttributes redirectAttributes, HttpSession httpSession) throws Exception{
+		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
+		service.favoriteDelete(vo);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/book/bookDetail";
+	}
 }

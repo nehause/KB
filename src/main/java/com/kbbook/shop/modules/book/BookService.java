@@ -36,4 +36,7 @@ public interface BookService {
 	public int commentInsert(Book dto) throws Exception;
 	public int commentDelete(BookVo vo) throws Exception;
 	public int commentCheck(Book dto) throws Exception;
+	public int favoriteCheck(BookVo vo) throws Exception;
+	public int favoriteInsert(Book dto) throws Exception;
+	public int favoriteDelete(BookVo vo) throws Exception;
 }
