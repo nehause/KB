@@ -390,7 +390,7 @@
 	
 	<!-- start modal area -->
 	<div class="modal fade" id="delectTransportModal" tabindex="-1" aria-labelledby="delectTransportModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="delectTransportModalLabel">삭제하시겠습니까?</h5>
