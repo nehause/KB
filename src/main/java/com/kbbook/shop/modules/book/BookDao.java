@@ -31,7 +31,7 @@ public class BookDao {
 	}
 	public List<Book> bookListUploaded(BookVo vo){ 
 		return sqlSession.selectList(namespace + ".selectListUploaded", vo); 
-		}
+	}
 	
 	
 	public List<Book> selectList(BookVo vo){

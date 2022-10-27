@@ -4,20 +4,40 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kbbook.shop.common.base.BaseServiceImpl;
 import com.kbbook.shop.common.base.BaseVo;
 import com.kbbook.shop.common.constants.Constants;
 import com.kbbook.shop.common.util.UtilDateTime;
+import com.kbbook.shop.common.util.UtilRegMod;
 
 @Service
 public class WriterServiceImpl extends BaseServiceImpl implements WriterService{
 	
 	@Autowired
 	WriterDao dao;
+	
+	@Override
+	public void setRegMod(Writer dto) throws Exception {
+		HttpServletRequest httpServletRequest = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		
+		dto.setRegIp(UtilRegMod.getClientIp(httpServletRequest));
+		dto.setRegSeq(UtilRegMod.getSessionSeq(httpServletRequest));
+		dto.setRegDeviceCd(UtilRegMod.getDevice());
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		
+		dto.setModIp(UtilRegMod.getClientIp(httpServletRequest));
+		dto.setModSeq(UtilRegMod.getSessionSeq(httpServletRequest));
+		dto.setModDeviceCd(UtilRegMod.getDevice());
+		dto.setModDateTime(UtilDateTime.nowDate());
+	}
 	
 public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String tableName, int type, int maxNumber) throws Exception {
 		
@@ -96,6 +116,11 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	}
 	
 	@Override
+	public List<Writer> writerListUploaded(WriterVo vo) throws Exception {
+		return dao.writerListUploaded(vo);
+	}
+	
+	@Override
 	public List<Writer> selectList(WriterVo vo) throws Exception {
 		return dao.selectList(vo);
 	}
@@ -105,8 +130,7 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 		
 		dao.insert(dto);
 		
-		uploadFiles(dto.getUploadImg(), dto, "writerUploaded", 2, dto.getUploadImgMaxNumber());
-    	uploadFiles(dto.getUploadFile(), dto, "writerUploaded", 3, dto.getUploadFileMaxNumber());
+		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 2, dto.getUploadWriterImageMaxNumber());
 		
 		return 1;
 	}
@@ -122,11 +146,9 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	public int update(Writer dto) throws Exception{
 		dao.update(dto);
 		
-		deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "writerUploaded");
-		uploadFiles(dto.getUploadImg(), dto, "writerUploaded", 2, dto.getUploadImgMaxNumber());
+		deleteFiles(dto.getUploadWriterImageDeleteSeq(), dto.getUploadWriterImageDeletePathFile(), dto, "writerUploaded");
+		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 2, dto.getUploadWriterImageMaxNumber());
 		
-		deleteFiles(dto.getUploadFileDeleteSeq(), dto.getUploadFileDeletePathFile(), dto, "writerUploaded");
-		uploadFiles(dto.getUploadFile(), dto, "writerUploaded", 3, dto.getUploadFileMaxNumber());
 		
 		return 1;
 	}

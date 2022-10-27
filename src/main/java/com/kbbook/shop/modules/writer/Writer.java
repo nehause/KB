@@ -22,22 +22,27 @@ public class Writer extends Base {
 	
 	//upload
 	
-	private MultipartFile[] uploadImgProfile;
-	private Integer uploadImgProfileMaxNumber;
-	private String[] uploadImgProfileDeleteSeq;
-	private String[] uploadImgProfileDeletePathFile;	
+	private MultipartFile[] uploadWriterImage;
+	private Integer uploadWriterImageMaxNumber;
+	private String[] uploadWriterImageDeleteSeq;
+	private String[] uploadWriterImageDeletePathFile;	
 	
-	private MultipartFile[] uploadImg;
-	private Integer uploadImgMaxNumber;
-	private String[] uploadImgDeleteSeq;
-	private String[] uploadImgDeletePathFile;	
+	//upload base
+
+	private String tableName;
 	
-	private MultipartFile[] uploadFile;
-	private Integer uploadFileMaxNumber;
-	private String[] uploadFileDeleteSeq;
-	private String[] uploadFileDeletePathFile;
-	
-	
+	private String seq;
+	private Integer type;
+	private Integer defaultNy;
+	private Integer sort;
+	private String path;
+	private String originalName;
+	private String uuidName;
+	private String ext;
+	private long size;
+	private Integer delNy;
+	private String pseq;
+
 	
 	public String getWriterSeq() {
 		return writerSeq;
@@ -90,80 +95,108 @@ public class Writer extends Base {
 	
 	// upload
 	
-	public MultipartFile[] getUploadImgProfile() {
-		return uploadImgProfile;
+	public MultipartFile[] getUploadWriterImage() {
+		return uploadWriterImage;
 	}
-	public void setUploadImgProfile(MultipartFile[] uploadImgProfile) {
-		this.uploadImgProfile = uploadImgProfile;
-	}
-	public Integer getUploadImgProfileMaxNumber() {
-		return uploadImgProfileMaxNumber;
-	}
-	public void setUploadImgProfileMaxNumber(Integer uploadImgProfileMaxNumber) {
-		this.uploadImgProfileMaxNumber = uploadImgProfileMaxNumber;
-	}
-	public String[] getUploadImgProfileDeleteSeq() {
-		return uploadImgProfileDeleteSeq;
-	}
-	public void setUploadImgProfileDeleteSeq(String[] uploadImgProfileDeleteSeq) {
-		this.uploadImgProfileDeleteSeq = uploadImgProfileDeleteSeq;
-	}
-	public String[] getUploadImgProfileDeletePathFile() {
-		return uploadImgProfileDeletePathFile;
-	}
-	public void setUploadImgProfileDeletePathFile(String[] uploadImgProfileDeletePathFile) {
-		this.uploadImgProfileDeletePathFile = uploadImgProfileDeletePathFile;
-	}
-	public MultipartFile[] getUploadImg() {
-		return uploadImg;
-	}
-	public void setUploadImg(MultipartFile[] uploadImg) {
-		this.uploadImg = uploadImg;
-	}
-	public Integer getUploadImgMaxNumber() {
-		return uploadImgMaxNumber;
-	}
-	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
-		this.uploadImgMaxNumber = uploadImgMaxNumber;
-	}
-	public String[] getUploadImgDeleteSeq() {
-		return uploadImgDeleteSeq;
-	}
-	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
-		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
-	}
-	public String[] getUploadImgDeletePathFile() {
-		return uploadImgDeletePathFile;
-	}
-	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
-		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
-	}
-	public MultipartFile[] getUploadFile() {
-		return uploadFile;
-	}
-	public void setUploadFile(MultipartFile[] uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-	public Integer getUploadFileMaxNumber() {
-		return uploadFileMaxNumber;
-	}
-	public void setUploadFileMaxNumber(Integer uploadFileMaxNumber) {
-		this.uploadFileMaxNumber = uploadFileMaxNumber;
-	}
-	public String[] getUploadFileDeleteSeq() {
-		return uploadFileDeleteSeq;
-	}
-	public void setUploadFileDeleteSeq(String[] uploadFileDeleteSeq) {
-		this.uploadFileDeleteSeq = uploadFileDeleteSeq;
-	}
-	public String[] getUploadFileDeletePathFile() {
-		return uploadFileDeletePathFile;
-	}
-	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
-		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
+	public void setUploadWriterImage(MultipartFile[] uploadWriterImage) {
+		this.uploadWriterImage = uploadWriterImage;
 	}
 	
+	public Integer getUploadWriterImageMaxNumber() {
+		return uploadWriterImageMaxNumber;
+	}
+	public void setUploadWriterImageMaxNumber(Integer uploadWriterImageMaxNumber) {
+		this.uploadWriterImageMaxNumber = uploadWriterImageMaxNumber;
+	}
+	public String[] getUploadWriterImageDeleteSeq() {
+		return uploadWriterImageDeleteSeq;
+	}
+	public void setUploadWriterImageDeleteSeq(String[] uploadWriterImageDeleteSeq) {
+		this.uploadWriterImageDeleteSeq = uploadWriterImageDeleteSeq;
+	}
+	public String[] getUploadWriterImageDeletePathFile() {
+		return uploadWriterImageDeletePathFile;
+	}
+	public void setUploadWriterImageDeletePathFile(String[] uploadWriterImageDeletePathFile) {
+		this.uploadWriterImageDeletePathFile = uploadWriterImageDeletePathFile;
+	}
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public Integer getDefaultNy() {
+		return defaultNy;
+	}
+	public void setDefaultNy(Integer defaultNy) {
+		this.defaultNy = defaultNy;
+	}
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getOriginalName() {
+		return originalName;
+	}
+	public void setOriginalName(String originalName) {
+		this.originalName = originalName;
+	}
+	public String getUuidName() {
+		return uuidName;
+	}
+	public void setUuidName(String uuidName) {
+		this.uuidName = uuidName;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
+	}
+	public void setWriterDelNy(Integer writerDelNy) {
+		this.writerDelNy = writerDelNy;
+	}
 	
+		
 	
 	
 }

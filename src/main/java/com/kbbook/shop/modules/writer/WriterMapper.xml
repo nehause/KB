@@ -37,6 +37,24 @@
 			<otherwise></otherwise>
 		</choose>
 	</sql>
+
+
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM writerUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{writerSeq}
+		ORDER BY
+			type, sort
+	</select>
 	
 	<select id="selectSeq" resultMap="resultMapObj">
 		SELECT
@@ -86,23 +104,6 @@
 		WHERE 1=1 
 			AND	writerSeq = #{writerSeq}
 	</delete>
-	
-	<select id="selectListUploaded" resultMap="resultMapObj">
-		SELECT 
-			seq
-			,type
-			,defaultNy
-			,sort
-			,path
-			,originalName
-			,uuidName
-		FROM nct.writerUploaded
-		WHERE 1=1
-			AND delNy = 0
-			AND pseq = #{writerSeq}
-		ORDER BY
-			type, sort
-	</select>
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
