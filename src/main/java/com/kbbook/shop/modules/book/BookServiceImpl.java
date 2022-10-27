@@ -4,14 +4,19 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kbbook.shop.common.base.BaseServiceImpl;
 import com.kbbook.shop.common.base.BaseVo;
 import com.kbbook.shop.common.constants.Constants;
 import com.kbbook.shop.common.util.UtilDateTime;
+import com.kbbook.shop.common.util.UtilRegMod;
 
 
 @Service
@@ -19,6 +24,21 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	
 	@Autowired
 	BookDao dao;
+	
+	@Override
+	public void setRegMod(Book dto) throws Exception {
+		HttpServletRequest httpServletRequest = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		
+		dto.setRegIp(UtilRegMod.getClientIp(httpServletRequest));
+		dto.setRegSeq(UtilRegMod.getSessionSeq(httpServletRequest));
+		dto.setRegDeviceCd(UtilRegMod.getDevice());
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		
+		dto.setModIp(UtilRegMod.getClientIp(httpServletRequest));
+		dto.setModSeq(UtilRegMod.getSessionSeq(httpServletRequest));
+		dto.setModDeviceCd(UtilRegMod.getDevice());
+		dto.setModDateTime(UtilDateTime.nowDate());
+	}
 	
 	public void uploadFiles(MultipartFile[] multipartFiles, Book dto, String tableName, int type, int maxNumber) throws Exception {
 		
@@ -96,6 +116,11 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 		}
 	}
 	
+	@Override
+	public List<Book> bookListUploaded(BookVo vo) throws Exception {
+		return dao.bookListUploaded(vo);
+	}
+	
 	
 	@Override
 	public List<Book> selectList(BookVo vo) throws Exception {
@@ -104,6 +129,8 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	
 	@Override
 	public int insert(Book dto) throws Exception {
+		
+		setRegMod(dto);
 		
 		int result = dao.insert(dto);
 		uploadFiles(dto.getUploadSign(), dto, "bookUploaded", 1, dto.getUploadSignMaxNumber());
@@ -125,17 +152,19 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	
 	@Override
 	public int update(Book dto) throws Exception{
+		setRegMod(dto);
 		dao.update(dto);
 		deleteFiles(dto.getUploadSignDeleteSeq(), dto.getUploadSignDeletePathFile(), dto, "bookUploaded");
 		uploadFiles(dto.getUploadSign(), dto, "bookUploaded", 1, dto.getUploadSignMaxNumber());
 		
 		deleteFiles(dto.getUploadImageDeleteSeq(), dto.getUploadImageDeletePathFile(), dto, "bookUploaded");
-		uploadFiles(dto.getUploadImage(), dto, "infrMemberUploaded", 2, dto.getUploadImageMaxNumber());
+		uploadFiles(dto.getUploadImage(), dto, "bookUploaded", 2, dto.getUploadImageMaxNumber());
 		return 1;
 	}
 	
 	@Override
 	public int uelete(Book dto) throws Exception{
+		setRegMod(dto);
 		return dao.uelete(dto);
 	}
 	

@@ -71,6 +71,7 @@ public class BookController {
 			Book result = service.selectSeq(vo);
 			model.addAttribute("item", result);
 		}
+		model.addAttribute("bookListUploaded", service.bookListUploaded(vo));
 		
 		return "infra/book/dmin/bookView";
 	}
@@ -202,7 +203,9 @@ public class BookController {
 		
 		List<Main> newList = mainService.newList();
 		model.addAttribute("newList", newList);
-
+		
+		model.addAttribute("bookListUploaded", service.bookListUploaded(vo));
+		
 		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		
 		int favorite = service.favoriteCheck(vo);

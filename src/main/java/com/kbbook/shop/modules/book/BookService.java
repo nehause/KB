@@ -8,10 +8,13 @@ import com.kbbook.shop.common.base.BaseVo;
 
 public interface BookService {
 	
+	public void setRegMod(Book dto) throws Exception;
 	// uploaded
 	public void uploadFiles(MultipartFile[] multipartFiles, Book dto, String tableName, int type, int maxNumber) throws Exception;
 	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
 	public void ueleteFiles(String[] deleteSeq, String[] deletePathFile, Book dto, String tableName) throws Exception;
+	List<Book> bookListUploaded(BookVo vo) throws Exception; 
+	
 	
 	public List<Book> selectList(BookVo vo) throws Exception; 
 	public int insert(Book dto) throws Exception;

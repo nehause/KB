@@ -21,14 +21,18 @@ public class BookDao {
 	
 //	uploaded
 	public int insertUploaded(Book dto) { 
-		return sqlSession.insert(namespace + ".insertUploaded", dto); 
+		return sqlSession.insert("Base" + ".insertUploaded", dto); 
 	}
 	public int ueleteUploaded(Book dto) { 
-		return sqlSession.insert(namespace + ".ueleteUploaded", dto); 
+		return sqlSession.insert("Base" + ".ueleteUploaded", dto); 
 	}
 	public int deleteUploaded(Book dto) { 
-		return sqlSession.delete(namespace + ".deleteUploaded", dto); 
+		return sqlSession.delete("Base" + ".deleteUploaded", dto); 
 	}
+	public List<Book> bookListUploaded(BookVo vo){ 
+		return sqlSession.selectList(namespace + ".selectListUploaded", vo); 
+		}
+	
 	
 	public List<Book> selectList(BookVo vo){
 		return sqlSession.selectList(namespace + ".selectList", vo);

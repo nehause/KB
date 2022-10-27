@@ -18,6 +18,23 @@
 			AND bookSeq = #{bookSeq}
 	
 	</select>
+	
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM bookUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{bookSeq}
+		ORDER BY
+			type, sort
+	</select>
 
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />

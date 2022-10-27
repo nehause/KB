@@ -122,11 +122,11 @@
 					            <label for="uploadSign" class="form-label input-file-button">표지 첨부</label>
 					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1);">
 								<div id="<c:out value="${name }"/>Preview" class="addScroll" style="width: 150px; padding: 5px;">
-									<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-										<c:if test="${listUploaded.type eq type }">
-											<div id="signDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
-												<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "140px" height="191px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
-												<div style="position: relative; top:-190px; left:5px"><span style="color: red; cursor:pointer;" onClick="delSignDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+									<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
+										<c:if test="${bookListUploaded.type eq type }">
+											<div id="signDiv_<c:out value="${type }"/>_<c:out value="${bookListUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+												<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="rounded" width= "140px" height="191px" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
+												<div style="position: relative; top:-190px; left:5px"><span style="color: red; cursor:pointer;" onClick="delSignDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${bookListUploaded.sort }"/>, <c:out value="${bookListUploaded.seq }"/>, '<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>')">X</span></div>
 											</div>
 										</c:if>
 									</c:forEach>
@@ -204,11 +204,11 @@
 					            <label for="uploadImage" class="form-label input-file-button">이미지 첨부</label>
 					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 2);">
 								<div id="<c:out value="${name }"/>Preview" class="addScroll" style="width: 624px; padding: 5px; margin: 0px;">
-									<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-										<c:if test="${listUploaded.type eq type }">
-											<div id="imageDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 130px;">
-												<div style="position: relative; top:40px; left:20px"><span style="color: red; cursor:pointer;" onClick="delImageDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
-												<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "582px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+									<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
+										<c:if test="${bookListUploaded.type eq type }">
+											<div id="imageDiv_<c:out value="${type }"/>_<c:out value="${bookListUploaded.sort }"/>" style="display: inline-block; height: 130px;">
+												<div style="position: relative; top:40px; left:20px"><span style="color: red; cursor:pointer;" onClick="delImageDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${bookListUploaded.sort }"/>, <c:out value="${bookListUploaded.seq }"/>, '<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>')">X</span></div>
+												<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="rounded" width= "582px" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
 											</div>
 										</c:if>
 									</c:forEach>

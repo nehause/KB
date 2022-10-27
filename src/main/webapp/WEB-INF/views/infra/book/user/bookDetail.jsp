@@ -83,13 +83,22 @@
 							<div class="overlay"></div>
 							<input type="hidden" id="sessSeq" name="sessSeq" value="<c:out value="${sessSeq }"/>">
 							<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
-							<c:out value="${item.sign }"/>
-							<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
-								<div class="deal-details">
-									<h6 class="deal-title">이미지 보기</h6>
-								</div>
-							</a>
+							<c:set var="type" value="1"/>		<!-- #-> -->
+				        	<c:set var="name" value="uploadSign"/>		<!-- #-> -->
+				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+							<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
+								<c:if test="${bookListUploaded.type eq type }">
+									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="rounded" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
+								</c:if>
+							</c:forEach>
 						</div>
+						<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
+							<div class="deal-details">
+								<h6 class="deal-title">이미지 보기</h6>
+							</div>
+						</a>
 					</div>
 					<div class="col-lg-5 offset-lg-1">
 						<div class="s_product_text">
@@ -208,7 +217,17 @@
 					<div>
 						<h4>상세 이미지</h4>	
 						<div class="detailImages" id="detailImages" name="detailImages" style="display: block;">
-							<c:out value="${item.image }"/>
+							<c:set var="type" value="2"/>		<!-- #-> -->
+				        	<c:set var="name" value="uploadImage"/>		<!-- #-> -->
+				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+							<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
+								<c:if test="${bookListUploaded.type eq type }">
+									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
+								</c:if>
+							</c:forEach>
+							</div>
 						</div>
 						<input type='button' id="DIBtn" value='닫기' onclick="DIShow()">
 					</div>
