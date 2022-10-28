@@ -711,8 +711,8 @@
 	}
 
 
-	const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
-	const MAX_TOTAL_FILE_SIZE = 7 * 1024 * 1024;	//	7M
+	const MAX_EACH_FILE_SIZE = 10 * 1024 * 1024;		//	5M
+	const MAX_TOTAL_FILE_SIZE = 10 * 1024 * 1024;	//	7M
 	const MAX_TOTAL_FILE_NUMBER = 2;				//	2
 	
 	function kbToMb(bytes) {
