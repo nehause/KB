@@ -30,10 +30,10 @@
 	<sql id ="selectCommon">
 	from writer a
 	   where 1=1
-		<if test="searchDelNy != null and !searchDelNy.equals('')">AND delNy = #{searchDelNy}</if>
+		<if test="searchDelNy != null and !searchDelNy.equals('')">AND writerDelNy = #{searchDelNy}</if>
 		<choose>
 			<when test="searchOption == 1">AND writerSeq = #{searchValue}</when>
-			<when test="searchOption == 2">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 2">AND writerName LIKE CONCAT('%',#{searchValue},'%')</when>
 			<otherwise></otherwise>
 		</choose>
 	</sql>
@@ -66,13 +66,15 @@
 	
 	<insert id="insert">
 		INSERT INTO writer(
-			image
-			,introduce
-			,delNy
+			writerName
+			,writerImage
+			,writerIntroduce
+			,writerDelNy
 		)
 		VALUES(
-			image
-			,introduce
+			#{writerName}
+			,#{writerImage}
+			,#{writerIntroduce}
 			,0
 		)
 		<selectKey resultType="String" keyProperty="writerSeq" order="AFTER">
@@ -83,9 +85,10 @@
 	<update id="update">
 		UPDATE writer
 		SET
-			image = #{image}
-			,introduce = #{introduce}
-			,delNy = #{delNy}
+			writerName = #{writerName}
+			,writerImage = #{writerImage}
+			,writerIntroduce = #{writerIntroduce}
+			,writerDelNy = #{writerDelNy}
 		WHERE 1=1
 			AND	writerSeq = #{writerSeq}
 	</update>
@@ -93,7 +96,7 @@
 	<update id = "uelete">
 		UPDATE writer
 		SET
-			delNy = 1
+			writerDelNy = 1
 		WHERE 1=1
 			AND	writerSeq = #{writerSeq}
 	</update>
@@ -107,10 +110,10 @@
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
-			a.name
+			a.writerName
 		FROM writer a
 		WHERE 1=1
-			AND delNy = 0
+			AND writerDelNy = 0
 		ORDER NY a.writerSeq DESC
 	</select>
 	

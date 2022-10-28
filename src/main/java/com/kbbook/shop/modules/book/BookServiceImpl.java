@@ -131,7 +131,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 	public int insert(Book dto) throws Exception {
 		
 		setRegMod(dto);
-		
 		int result = dao.insert(dto);
 		uploadFiles(dto.getUploadSign(), dto, "bookUploaded", 1, dto.getUploadSignMaxNumber());
 		uploadFiles(dto.getUploadImage(), dto, "bookUploaded", 2, dto.getUploadImageMaxNumber());

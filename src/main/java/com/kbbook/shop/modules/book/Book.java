@@ -92,6 +92,8 @@ public class Book extends Base {
 	private long size;
 	private Integer delNy;
 	private String pseq;
+	
+	
 	public String getBookSeq() {
 		return bookSeq;
 	}

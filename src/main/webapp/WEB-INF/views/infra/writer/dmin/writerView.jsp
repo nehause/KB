@@ -86,7 +86,7 @@
 				<%@include file="../../../common/dmin/include/dminSideBar.jsp"%>
 				<!-- navBar end -->
 				<div class="col-lg-10">
-					<form method="post" id="WVForm" name="WVForm" autocomplete="off">
+					<form method="post" id="WVForm" name="WVForm" autocomplete="off" enctype="multipart/form-data">
 						<input type="hidden" id="mainKey" name="mainKey">
 						<!-- *Vo.jsp s -->
 						<%@include file="writerVo.jsp"%>
@@ -116,7 +116,7 @@
 					        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
 					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
 					            <label for="uploadWriterImage" class="form-label input-file-button">이미지첨부</label>
-					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1);">
 								<div id="<c:out value="${name }"/>Preview" class="addScroll" style="width: 150px; height: 180px; padding: 5px;">
 									<c:forEach items="${writerListUploaded}" var="writerListUploaded" varStatus="statusUploaded">
 										<c:if test="${writerListUploaded.type eq type }">
@@ -159,7 +159,7 @@
 		<!-- viewModal start -->
 		<%@include file="../../../common/dmin/include/viewModal.jsp"%>
 		<!-- viewModal end -->
-	<form name="CVFormVo" id="WVFormVo" method="post">
+	<form name="WVFormVo" id="WVFormVo" method="post">
 	<!-- *Vo.jsp s -->
 	<%@include file="writerVo.jsp"%>		<!-- #-> -->
 	<!-- *Vo.jsp e -->
@@ -277,8 +277,8 @@
 					maxNumber = parseInt(numbering[numbering.length-1]) + parseInt(1);
 				}
 			} else if(uiType == 2){
-				var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > li").length;
-				var tagIds = document.querySelectorAll("#" + objName + "Preview > li");
+				var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > div > img").length;
+				var tagIds = document.querySelectorAll("#" + objName + "Preview > div");
 
 				for(var i=0; i<tagIds.length; i++){
 					var tagId = tagIds[i].getAttribute("id").split("_");
@@ -324,16 +324,6 @@
 				    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber));
 				    picReader.readAsDataURL(file);
 				}			
-			} else if(uiType == 2) {
-				for (var i = 0 ; i < filesCount ; i++) {
-					addUploadLi(objName, seq, i, $("#" + objName +"")[0].files[i].name, filePreview, maxNumber);
-				}
-			} else if (uiType == 3) {
-				var fileReader = new FileReader();
-				 fileReader.onload = function () {
-					 $("#uploadWriterImageProfilePreview").attr("src", fileReader.result);		/* #-> */
-				 }	
-				 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
 			} else {
 				return false;
 			}
@@ -416,6 +406,15 @@
 				objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
 			}
 		}
+		
+		openViewer = function (type, sort) {
+			var str = '<c:set var="tmp" value="'+ type +'"/>';
+			$("#modalImgViewer").append(str);
+			$("#modalImgViewer").modal("show");
+		}
+		
+		
+	// 추가 밸리데이션 체크
 		
 		var MegaSize = 1024 * 1024;
 		

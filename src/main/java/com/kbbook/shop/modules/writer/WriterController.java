@@ -51,6 +51,8 @@ public class WriterController {
 			Writer result = service.selectSeq(vo);
 			model.addAttribute("item", result);
 		}
+		model.addAttribute("writerListUploaded", service.writerListUploaded(vo));
+		
 		
 		return "infra/writer/dmin/writerView";
 	}

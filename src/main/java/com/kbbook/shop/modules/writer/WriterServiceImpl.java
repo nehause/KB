@@ -128,11 +128,13 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	@Override
 	public int insert(Writer dto) throws Exception {
 		
-		dao.insert(dto);
+		setRegMod(dto);
+		int result = dao.insert(dto);
+		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 1, dto.getUploadWriterImageMaxNumber());
 		
-		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 2, dto.getUploadWriterImageMaxNumber());
+		System.out.println("service result: " + result);
 		
-		return 1;
+		return result;
 	}
 	
 	@Override
@@ -144,10 +146,11 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	
 	@Override
 	public int update(Writer dto) throws Exception{
-		dao.update(dto);
 		
+		setRegMod(dto);
+		dao.update(dto);
 		deleteFiles(dto.getUploadWriterImageDeleteSeq(), dto.getUploadWriterImageDeletePathFile(), dto, "writerUploaded");
-		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 2, dto.getUploadWriterImageMaxNumber());
+		uploadFiles(dto.getUploadWriterImage(), dto, "writerUploaded", 1, dto.getUploadWriterImageMaxNumber());
 		
 		
 		return 1;
@@ -155,6 +158,7 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	
 	@Override
 	public int uelete(Writer dto) throws Exception{
+		setRegMod(dto);
 		return dao.uelete(dto);
 	}
 	
