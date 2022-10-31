@@ -46,9 +46,18 @@
 	    ,sign
 	    ,topic
 	    ,left(introduce , 50) as shortIntro
-	from book
+		,seq
+		,type
+		,defaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
+	from book a
+	join bookUploaded b on a.bookSeq = b.pSeq
 	    where 1=1
-	    order by amount desc
+	    and type = 1
+	    order by type, sort, amount desc
 	    limit 2
 	
 	
@@ -62,8 +71,18 @@
 	    ,name
 	    ,cost*(1-sale) as price
 	    ,cost
-	from book
-		ORDER BY amount desc
+	    ,seq
+		,type
+		,defaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
+	from book a
+	join bookUploaded b on a.bookSeq = b.pSeq
+		where 1=1
+		and type = 1
+		ORDER BY type, sort, amount desc
 	    limit 4
 	
 	</select>
@@ -76,8 +95,18 @@
 	    ,name
 	    ,cost*(1-sale) as price
 	    ,cost
-	from book
-		ORDER BY dor desc
+	    ,seq
+		,type
+		,defaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
+	from book a
+	join bookUploaded b on a.bookSeq = b.pSeq
+		where 1=1
+		and type = 1
+		ORDER BY type, sort, dor desc
 	    limit 4
 	
 	</select>

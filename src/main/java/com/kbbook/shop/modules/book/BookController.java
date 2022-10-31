@@ -169,8 +169,8 @@ public class BookController {
 
 		setRowNumToShow(vo, vo.getPageNum()); // ajax 처리
 		setUserSearchAndPaging(vo);
-		List<Book> list = service.userSelectList(vo);
-		model.addAttribute("list", list);
+		List<Book> index = service.userSelectList(vo);
+		model.addAttribute("index", index);
 		
 		List<Main> best = mainService.bestList();
 		model.addAttribute("best", best);
@@ -205,6 +205,7 @@ public class BookController {
 		model.addAttribute("newList", newList);
 		
 		model.addAttribute("bookListUploaded", service.bookListUploaded(vo));
+		model.addAttribute("writerListUploaded", service.writerListUploaded(vo));
 		
 		vo.setMemberSeq((String) httpSession.getAttribute("sessSeq"));
 		

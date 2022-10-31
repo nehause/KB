@@ -29,10 +29,13 @@ public class BookDao {
 	public int deleteUploaded(Book dto) { 
 		return sqlSession.delete("Base" + ".deleteUploaded", dto); 
 	}
-	public List<Book> bookListUploaded(BookVo vo){ 
-		return sqlSession.selectList(namespace + ".selectListUploaded", vo); 
-	}
 	
+	public List<Book> bookListUploaded(BookVo vo){
+		return sqlSession.selectList(namespace + ".bookListUploaded", vo);
+	}
+	public List<Book> writerListUploaded(BookVo vo){
+		return sqlSession.selectList(namespace + ".writerListUploaded", vo);
+	}
 	
 	public List<Book> selectList(BookVo vo){
 		return sqlSession.selectList(namespace + ".selectList", vo);

@@ -289,24 +289,27 @@
 						<div class="row">
 							<!-- single product -->
 							<c:choose>
-								<c:when test="${fn:length(list) eq 0}"> <!-- length(list)가 0이면 이걸 하고 -->
+								<c:when test="${fn:length(index) eq 0}"> <!-- length(index)가 0이면 이걸 하고 -->
 									<span style="text-align: center;">조건에 맞는 책이 없습니다</span>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${list}" var="list" varStatus="status">
+									<c:forEach items="${index}" var="index" varStatus="status">
 										<div class="col-lg-4 col-md-6">
 											<div class="single-product">
-												<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)">
-													<c:out value="${list.sign }"/>
+												<a href="javascript:goDetail(<c:out value="${index.bookSeq }"/>)">
+													<c:set var="type" value="1"/>		<!-- #-> -->
+													<c:if test="${index.type eq type }">
+														<img src="<c:out value="${index.path }"/><c:out value="${index.uuidName }"/>" class="rounded" style="cursor:pointer; height: 360px;"/>
+													</c:if>
 												</a>
 												<div class="product-details">
-													<a href="javascript:goDetail(<c:out value="${list.bookSeq }"/>)"><h6><c:out value="${list.name }"/></h6></a>
+													<a href="javascript:goDetail(<c:out value="${index.bookSeq }"/>)"><h6><c:out value="${index.name }"/></h6></a>
 													<div class="price">
-														<h6>₩<c:out value="${list.price }"/></h6>
-														<h6 class="l-through">₩<c:out value="${list.cost }"/></h6>
+														<h6>₩<c:out value="${index.price }"/></h6>
+														<h6 class="l-through">₩<c:out value="${index.cost }"/></h6>
 													</div>
 													<div class="prd-bottom">
-														<a href="javascript:goOrder(<c:out value="${list.bookSeq }"/>)" class="social-info">
+														<a href="javascript:goOrder(<c:out value="${index.bookSeq }"/>)" class="social-info">
 															<span class="ti-bag"></span>
 															<p class="hover-text">구매하기</p>
 														</a>
@@ -318,7 +321,7 @@
 															<span class="lnr lnr-sync"></span>
 															<p class="hover-text">리스트가기</p>
 														</a> -->
-														<a herf="javascript:goDetail(<c:out value="${list.bookSeq }"/>)" class="social-info">
+														<a herf="javascript:goDetail(<c:out value="${index.bookSeq }"/>)" class="social-info">
 															<span class="lnr lnr-move"></span>
 															<p class="hover-text">상세보기</p>
 														</a>

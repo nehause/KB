@@ -85,20 +85,18 @@
 							<input type="hidden" id="bookSeq" name="bookSeq" value="<c:out value="${item.bookSeq }"/>">
 							<c:set var="type" value="1"/>		<!-- #-> -->
 				        	<c:set var="name" value="uploadSign"/>		<!-- #-> -->
-				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
 							<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
 								<c:if test="${bookListUploaded.type eq type }">
-									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="rounded" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
-								</c:if>
-							</c:forEach>
+									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="rounded" style="cursor:pointer;"/>
+							
 						</div>
-						<a href="/resources/images/bp1.png" class="img-pop-up" target="_blank">
+						<a href="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" class="img-pop-up" target="_blank">
 							<div class="deal-details">
 								<h6 class="deal-title">이미지 보기</h6>
 							</div>
 						</a>
+							</c:if>
+						</c:forEach>
 					</div>
 					<div class="col-lg-5 offset-lg-1">
 						<div class="s_product_text">
@@ -156,8 +154,7 @@
 					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">상세설명</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="writer-tab" data-toggle="tab" href="#writer" role="tab" aria-controls="writer"
-					 aria-selected="false">작가 소개</a>
+					<a class="nav-link" id="writer-tab" data-toggle="tab" href="#writer" role="tab" aria-controls="writer" aria-selected="false">작가 소개</a>
 				</li>
 				<!-- <li class="nav-item">
 					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
@@ -168,8 +165,7 @@
 					 aria-selected="false">Comments</a>
 				</li> -->
 				<li class="nav-item">
-					<a class="nav-link" id="review-tab" data-toggle="tab" href="#bookMemberReview" role="tab" aria-controls="bookMemberReview"
-					 aria-selected="false">리뷰</a>
+					<a class="nav-link" id="review-tab" data-toggle="tab" href="#bookMemberReview" role="tab" aria-controls="bookMemberReview" aria-selected="false">리뷰</a>
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
@@ -215,21 +211,15 @@
 					<c:out value="${item.introduce }"/>
 					</div>
 					<div>
-						<h4>상세 이미지</h4>	
 						<div class="detailImages" id="detailImages" name="detailImages" style="display: block;">
 							<c:set var="type" value="2"/>		<!-- #-> -->
 				        	<c:set var="name" value="uploadImage"/>		<!-- #-> -->
-				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
 							<c:forEach items="${bookListUploaded}" var="bookListUploaded" varStatus="statusUploaded">
 								<c:if test="${bookListUploaded.type eq type }">
-									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" style="cursor:pointer;" onClick="openViewer(<c:out value="${bookListUploaded.type }"/>, <c:out value="${bookListUploaded. sort }"/>);">
+									<img src="<c:out value="${bookListUploaded.path }"/><c:out value="${bookListUploaded.uuidName }"/>" style="cursor:pointer;"/>
 								</c:if>
 							</c:forEach>
-							</div>
 						</div>
-						<input type='button' id="DIBtn" value='닫기' onclick="DIShow()">
 					</div>
 					<br><br>
 					<h4>목차</h4>
@@ -258,8 +248,16 @@
 				<div class="tab-pane fade" id="writer" role="tabpanel" aria-labelledby="writer-tab">
 					<c:forEach items="${writer}" var="writer" varStatus="status">
 						<div class="border" style="padding: 20px;">
+							<input type="hidden" id="writerSeq" name="writerSeq">
 							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
-								<c:out value="${writer.writerImage }"/>
+					        	<c:choose>
+						        	<c:when test="${writer.seq eq null}"> <!-- length(list)가 0이면 이걸 하고 -->
+										<img src="/resources/images/null_profile.png" style="cursor:pointer;"/>
+									</c:when>
+						        	<c:otherwise>
+										<img src="<c:out value="${writer.path }"/><c:out value="${writer.uuidName }"/>" />
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.writerName }"/></p>
 							<p><c:out value="${writer.writerIntroduce }"/></p>

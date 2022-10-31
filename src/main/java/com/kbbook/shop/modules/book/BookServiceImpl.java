@@ -116,11 +116,15 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService{
 		}
 	}
 	
+	
 	@Override
 	public List<Book> bookListUploaded(BookVo vo) throws Exception {
 		return dao.bookListUploaded(vo);
 	}
-	
+	@Override
+	public List<Book> writerListUploaded(BookVo vo) throws Exception {
+		return dao.writerListUploaded(vo);
+	}
 	
 	@Override
 	public List<Book> selectList(BookVo vo) throws Exception {

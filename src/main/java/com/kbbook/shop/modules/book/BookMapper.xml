@@ -19,7 +19,7 @@
 	
 	</select>
 	
-	<select id="selectListUploaded" resultMap="resultMapObj">
+	<select id="bookListUploaded" resultMap="resultMapObj">
 		SELECT 
 			seq
 			,type
@@ -35,7 +35,24 @@
 		ORDER BY
 			type, sort
 	</select>
-
+	
+	<select id="writerListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM writerUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{writerSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
@@ -62,14 +79,23 @@
 		SELECT
 			a.*
 			,cost*(1-sale) as price
+			,seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
 		FROM book a
+		join bookUploaded b on a.bookSeq = b.pSeq
 		WHERE 1=1
+		 and type = 1
 		<choose>
-			<when test="searchOption == 1">ORDER BY bookSeq desc</when> <!-- 최신 등록순 -->
-			<when test="searchOption == 2">ORDER BY dop desc</when>		<!-- 출간일 -->
-			<when test="searchOption == 3">ORDER BY cost desc</when> 	<!-- 높은 가격순 -->
-			<when test="searchOption == 4">ORDER BY cost asc</when>	<!-- 낮은 가격순 -->
-			<when test="searchOption == 5">ORDER BY amount desc</when> 	<!-- 많이 구매된 순 -->
+			<when test="searchOption == 1">ORDER BY type, sort, bookSeq desc</when> <!-- 최신 등록순 -->
+			<when test="searchOption == 2">ORDER BY type, sort, dop desc</when>		<!-- 출간일 -->
+			<when test="searchOption == 3">ORDER BY type, sort, cost desc</when> 	<!-- 높은 가격순 -->
+			<when test="searchOption == 4">ORDER BY type, sort, cost asc</when>	<!-- 낮은 가격순 -->
+			<when test="searchOption == 5">ORDER BY type, sort, amount desc</when> 	<!-- 많이 구매된 순 -->
 			<otherwise></otherwise>
 		</choose>
 		<include refid="Base.selectListLowerForMysql" />
@@ -255,10 +281,19 @@
 	<select id="bookWriter" resultMap="resultMapObj">
 	select
 		a.*
+		,seq
+		,type
+		,defaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
 	from writer a
 	join book_writer b on a.writerSeq = b.writer_writerSeq
+	left join writerUploaded c on a.writerSeq = c.pSeq
 	where 1=1
-	and book_bookSeq = #{bookSeq}
+    and book_bookSeq = #{bookSeq}
+	order by type, sort
 	</select>
 	
 	<select id="bookCommentCount"  resultType="Integer">

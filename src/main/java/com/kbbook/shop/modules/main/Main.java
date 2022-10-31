@@ -11,6 +11,7 @@ public class Main extends Book {
 	private String name;
 	private String userName;
 	
+	
 
 	public String getShortIntro() {
 		return shortIntro;

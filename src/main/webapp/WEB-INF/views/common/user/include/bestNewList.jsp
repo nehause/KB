@@ -21,7 +21,10 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
 								<a href="javascript:includeGoDetail(<c:out value="${best.bookSeq }"/>)">
-									<c:out value="${best.sign }" />
+									<c:set var="type" value="1"/>		<!-- #-> -->
+									<c:if test="${best.type eq type }">
+										<img src="<c:out value="${best.path }"/><c:out value="${best.uuidName }"/>" class="rounded" style="cursor:pointer; height: 360px;"/>
+									</c:if>
 								</a>
 								<div class="product-details">
 									<h6><c:out value="${best.name }" /></h6>
@@ -64,7 +67,10 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
 								<a href="javascript:includeGoDetail(<c:out value="${newList.bookSeq }"/>)">
-									<c:out value="${newList.sign }" />
+									<c:set var="type" value="1"/>		<!-- #-> -->
+									<c:if test="${newList.type eq type }">
+										<img src="<c:out value="${newList.path }"/><c:out value="${newList.uuidName }"/>" class="rounded" style="cursor:pointer; height: 360px;"/>
+									</c:if>
 								</a>
 								<div class="product-details">
 									<h6><c:out value="${newList.name }" /></h6>

@@ -77,7 +77,10 @@
 									<div class="col-lg-4 offset-2">
 										<div class="banner-img">
 											<a href="javascript:goDetail(<c:out value="${main.bookSeq }"/>)">
-												<c:out value="${main.sign }" />
+												<c:set var="type" value="1"/>		<!-- #-> -->
+												<c:if test="${main.type eq type }">
+													<img src="<c:out value="${main.path }"/><c:out value="${main.uuidName }"/>" class="rounded" style="cursor:pointer;"/>
+												</c:if>
 											</a>
 										</div>
 									</div>
