@@ -80,10 +80,10 @@
 						<h3>로그인 해주세요</h3>
 						<form class="row login_form" method="post" id="loginForm" name="loginForm" novalidate="novalidate" onsubmit="return false">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
+								<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />user" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" onkeyup="enterLogin()">
+								<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />1234" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" onkeyup="enterLogin()">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

@@ -318,9 +318,18 @@
 	    ,b.name as bookName
 	    ,b.cost * (1-b.sale) as bookPrice
 	    ,b.cost as bookCost
+	    ,seq
+		,type
+		,defaultNy
+		,sort
+		,path
+		,originalName
+		,uuidName
 	From favorite a
 	join book b on a.book_bookSeq = b.bookSeq
+	join bookUploaded c on b.bookSeq = c.pSeq
 	where 1=1
+		and type = 1
 		and a.member_memberSeq = #{sessSeq}
 	</select>
 

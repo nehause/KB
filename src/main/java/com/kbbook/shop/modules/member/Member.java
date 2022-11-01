@@ -3,8 +3,10 @@ package com.kbbook.shop.modules.member;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import com.kbbook.shop.common.base.Base;
 
-public class Member{
+
+public class Member extends Base{
 	
 	private String memberSeq;
 	private String id;

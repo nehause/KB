@@ -203,7 +203,7 @@
 								<form method="post" id="MRFForm" name="MRFForm">
 									<input type="hidden" id="bookSeq" name="bookSeq">
 									<div class="row justify-content-center align-items-center">
-										<div class="col-lg-12 no-padding exclusive-right">
+										<div class="col-lg-12 exclusive-right" style="padding-top: 40px;">
 											<div class="active-exclusive-product-slider">
 												<div class="single-exclusive-slider">
 													<div class="single-product-slider">
@@ -227,7 +227,9 @@
 																			<!-- single product -->
 																			<div class="col-lg-4 col-md-6">
 																				<div class="single-product">
-																					<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																					<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)">
+																						<img src="<c:out value="${favorite.path }"/><c:out value="${favorite.uuidName }"/>" />
+																					</a>
 																					<div class="product-details">
 																						<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
 																						<div class="price">
@@ -251,7 +253,9 @@
 																<!-- single product -->
 																<div class="col-lg-4 col-md-6">
 																	<div class="single-product">
-																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)">
+																			<img src="<c:out value="${favorite.path }"/><c:out value="${favorite.uuidName }"/>" />
+																		</a>
 																		<div class="product-details">
 																			<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
 																			<div class="price">
@@ -286,7 +290,9 @@
 																<!-- single product -->
 																<div class="col-lg-4 col-md-6">
 																	<div class="single-product">
-																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><c:out value="${favorite.bookSign }" /></a>
+																		<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)">
+																			<img src="<c:out value="${favorite.path }"/><c:out value="${favorite.uuidName }"/>" />
+																		</a>
 																		<div class="product-details">
 																			<a href="javascript:goDetail(<c:out value="${favorite.bookSeq }"/>)"><h6><c:out value="${favorite.bookName }" /></h6></a>
 																			<div class="price">
@@ -339,7 +345,7 @@
 	var goUrlDetail = "/book/bookDetail";
 	var goUrlList = "/member/memberMyRoom";
 	var seq = $("input:hidden[name=bookSeq]");
-	var form = $("form[name=MROForm]"); 
+	var form = $("form[name=MRFForm]");
 	
 	goDetail = function(seqValue){
 		seq.val(seqValue);

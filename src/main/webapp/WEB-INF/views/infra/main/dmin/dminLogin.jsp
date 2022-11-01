@@ -42,12 +42,12 @@
 			<div>
 				<div class="mb-3 row">
 				    <div class="col-sm-4 offset-4">
-				    	<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />">
+				    	<input type="text" class="form-control" id="id" name="id" value="<c:out value="${dto.id }" />xdmin">
 				    </div>
 				</div>
 				<div class="mb-3 row">
 				    <div class="col-sm-4 offset-4">
-				    	<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />" onkeyup="enterLogin()">
+				    	<input type="password" class="form-control" id="password" name="password" value="<c:out value="${dto.password }" />1234" onkeyup="enterLogin()">
 				    </div>
 				</div>
 				<div class="mb-3 row gx-1">
