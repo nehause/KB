@@ -247,9 +247,9 @@
 				</div>
 				<div class="tab-pane fade" id="writer" role="tabpanel" aria-labelledby="writer-tab">
 					<c:forEach items="${writer}" var="writer" varStatus="status">
-						<div class="border" style="padding: 20px;">
+						<div class="border" style="padding: 20px; display:flow-root;">
 							<input type="hidden" id="writerSeq" name="writerSeq">
-							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px">
+							<div class= "writer image" style="float: left; padding: 30px; padding-top: 0px; padding-bottom: 0px;">
 					        	<c:choose>
 						        	<c:when test="${writer.seq eq null}"> <!-- length(list)가 0이면 이걸 하고 -->
 										<img src="/resources/images/null_profile.png" style="cursor:pointer;"/>
