@@ -62,10 +62,34 @@
 	<select id="selectSeq" resultMap="resultMapObj">
 		SELECT
 			a.*
-		FROM purchase a
-		WHERE 1=1
-			AND	purchaseSeq = #{purchaseSeq}
+		   ,b.name as memberName
+		   ,d.*
+		   ,(select
+		   sum(c.price)
+		   from purchase_book c
+		   where 1=1
+			and purchase_purchaseSeq = purchaseSeq
+		   group by purchaseSeq
+		   ) as priceSum
+		from purchase a
+		   JOIN member b on a.member_memberSeq = b.memberSeq
+		   join transport d on b.memberSeq = d.member_memberSeq
+		   where 1=1 
+		   and purchaseSeq = #{purchaseSeq}
+		   and transportSeq = #{transportSeq}
 	</select>	
+	
+	<select id="bookListSeq" resultMap="resultMapObj">
+		select
+			c.name
+		    ,b.count
+		    ,b.price
+		from purchase a
+		join purchase_book b on b.purchase_purchaseSeq = a.purchaseSeq
+		join book c on b.book_bookSeq = c.bookSeq
+		 where 1=1
+		 and purchaseSeq = #{purchaseSeq}
+	</select>
 	
 	<insert id="insert">
 		INSERT INTO purchase(
