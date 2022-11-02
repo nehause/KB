@@ -24,6 +24,7 @@
 			memberSeq
 			,id
 			,name
+			,userName
 		FROM
 			member a
 		WHERE 1=1

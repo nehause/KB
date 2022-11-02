@@ -53,7 +53,7 @@
 						<%@include file="memberVo.jsp"%>		<!-- #-> -->
 						<!-- *Vo.jsp e -->
 						<div class="row">
-							<h1>멤버 관리</h1>
+							<h1>회원 관리</h1>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">

@@ -28,7 +28,7 @@
 				</div> -->
 			</li>
 			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" aria-expanded="false"  onclick="location.href='/code/codeList'">
+				<button class="btn btn-toggle align-items-center rounded collapsed" aria-expanded="false"  onclick="location.href='/member/memberList'">
 					회원 관리
 				</button>
 				<!-- <div class="collapse" id="member-collapse">

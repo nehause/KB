@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kbbook.shop.common.constants.Constants;
-import com.kbbook.shop.modules.member.Member;
 
 @Controller
 public class MainController {
@@ -110,6 +109,7 @@ public class MainController {
 				httpSession.setAttribute("sessSeq", rtMember2.getMemberSeq());
 				httpSession.setAttribute("sessId", rtMember2.getId());
 				httpSession.setAttribute("sessName", rtMember2.getName());
+				httpSession.setAttribute("sessUserName", rtMember2.getUserName());
 
 				returnMap.put("rt", "success");
 			} else {

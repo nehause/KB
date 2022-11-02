@@ -56,7 +56,7 @@
 							<div class="row" style="height: 20px;"></div>
 							<div class="row" style="height: 100px;">
 								<div class="row" style="height: 20px;"></div>
-								<h1>멤버 관리</h1>
+								<h1>회원 관리</h1>
 								<div class="row" style="height: 20px;"></div>
 							</div>
 							<div class="container-fluid border border-gray">

@@ -12,15 +12,10 @@
 			<div style="float:left">
 				<i class="fa-solid fa-circle-user" style="font-size:50px; padding-right: 20px;"></i>
 			</div>
-			<span style="text-align: center;"> admin <br> administrator </span>			
+			<span style="text-align: center;"> <c:out value="${sessName }"/> <br> <c:out value="${sessUserName }"/> </span>			
 		</div>
 		<div class="col-sm-1">
-			<select class="form-select">
-				<option>언어</option>
-				<option>한국어</option>
-				<option>영어</option>
-				<option>일본어</option>
-			</select>
+			<button class="btn btn-warning" id="logoutBtn" name="logoutBtn" onclick="logOut()">로그아웃</button>
 		</div>
 	</div>
 </div>
@@ -57,3 +52,35 @@
 		</div>
 	</div>
 </nav>
+<div style="display:none;">
+	sessSeq: <c:out value="${sessSeq }"/><br>
+	sessName: <c:out value="${sessName }"/><br>
+	sessId: <c:out value="${sessId }"/><br>
+	sessUserName: <c:out value="${sessUserName }"/><br>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+	var URL_MAIN = "/dminLogin";
+	function logOut(){
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					
+					location.href = URL_MAIN;
+					
+				} else {
+					//by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	</script>
