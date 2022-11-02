@@ -38,33 +38,9 @@
 </head>
 <body>
 <!-- start -->
-	<div class="header">
-		<div class="row" style="height: 50px;">
-			<div class="col-sm-2 offset-1">
-				<h1>KAIONEX</h1>
-			</div>
-			<div class="col-sm-2 gy-3">
-				<span><b>ABC Management System</b></span>
-			</div>
-			<div class="col-sm-2 offset-3">
-				<div style="float:left">
-					<i class="fa-solid fa-circle-user" style="font-size:50px; padding-right: 20px;"></i>
-				</div>
-				<span style="text-align: center;"> Hwijae Jin <br> administrator </span>			
-			</div>
-			<div class="col-sm-1">
-				<select class="form-select">
-					<option>언어</option>
-					<option>한국어</option>
-					<option>영어</option>
-					<option>일본어</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<!-- navBar start -->
+	<!-- header navBar start -->
 	<%@include file="../../../common/dmin/include/headNavBar.jsp"%>
-	<!-- navBar end -->
+	<!-- header navBar end -->
 		<div class="container-fluid">
 			<div class="row" style="padding-left: 20px; padding-right: 20px;">
 				<!-- navBar start -->
