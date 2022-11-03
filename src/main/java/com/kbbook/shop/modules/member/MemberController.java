@@ -471,7 +471,7 @@ public class MemberController {
 	            cell = row.createCell(5);
 	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
 	            cell.setCellStyle(cellStyle);
-	            cell.setCellValue(list.get(i).getDob());
+	            cell.setCellValue(UtilDateTime.dateToString(list.get(i).getDob()));
 	            
 	            cell = row.createCell(6);
 	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
@@ -481,7 +481,7 @@ public class MemberController {
 	            cell = row.createCell(7);
 	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
 	            cell.setCellStyle(cellStyle);
-	            cell.setCellValue(list.get(i).getNumber());	        
+	            cell.setCellValue(list.get(i).getPhone());	        
 	            
 	            cell = row.createCell(8);
 	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);

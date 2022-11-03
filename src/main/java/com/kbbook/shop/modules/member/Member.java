@@ -33,8 +33,8 @@ public class Member extends Base{
 	private Integer memberCount;
 	private Integer memberDelNy;
 	private Integer memberUseNy;
-	private Date registration;
-	private Date correctation;
+	private Timestamp registration;
+	private Timestamp correctation;
 	
 	private boolean autoLogin;
 	
@@ -215,17 +215,17 @@ public class Member extends Base{
 	public void setMemberUseNy(Integer memberUseNy) {
 		this.memberUseNy = memberUseNy;
 	}
-	public Date getRegistration() {
+	public Timestamp getRegistration() {
 		return registration;
 	}
-	public void setRegistration(Date registration) {
+	public void setRegistration(Timestamp registration) {
 		this.registration = registration;
 	}
 	
-	public Date getCorrectation() {
+	public Timestamp getCorrectation() {
 		return correctation;
 	}
-	public void setCorrectation(Date correctation) {
+	public void setCorrectation(Timestamp correctation) {
 		this.correctation = correctation;
 	}
 	public boolean isAutoLogin() {
