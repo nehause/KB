@@ -92,8 +92,8 @@
 								<input type="text" class="form-control" id="toc" name="toc" value="<c:out value="${item.toc }"/>" placeholder="영문(대소문자), 숫자">
 							</div>
 						</div>
-						<div class="row">
-							<h1>구매 정보</h1>
+						<div class="row" style="padding-top: 30px;">
+							<h2 class="offset-1">구매 정보</h2>
 						</div>
 						<c:forEach items="${purchaseBook}" var="purchaseBook" varStatus="status">
 							<div class="row">
@@ -112,7 +112,7 @@
 							</div>
 						</c:forEach>
 						<div class="row">	
-							<h1>배송지 정보</h1>
+							<h2 class="offset-1" style="padding-top: 30px;">배송지 정보</h2>
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="transport_transportSeq">배송지 번호</label>
 								<select class="form-select" id="transport_transportSeq" name="transport_transportSeq">
@@ -128,7 +128,6 @@
 							</div>
 						</div>
 						<div class="row">
-							<h1>주소</h1>
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="phone">휴대전화번호</label>
 								<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="ex)01012345678">

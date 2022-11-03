@@ -96,7 +96,7 @@
 		 and purchaseSeq = #{purchaseSeq}
 	</select>
 	
-	<select id="memberTransportSeq" resultMap="resultMapObj">
+	<select id="memberTransport" resultMap="resultMapObj">
 		select
 			transportSeq
 		from transport a

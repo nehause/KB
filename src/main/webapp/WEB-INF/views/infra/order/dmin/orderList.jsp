@@ -234,7 +234,7 @@
 	<script>
 	var goUrlList = "/order/orderList";
 	var goUrlView = "/order/orderView"
-	var seq = $("input:hidden[name=orderSeq]");
+	var seq = $("input:hidden[name=purchaseSeq]");
 	
 	var form = $("form[name=OLForm]"); 
 	

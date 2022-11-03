@@ -41,6 +41,9 @@
 		.commentHover:hover {
 		  text-decoration: underline;
 		}
+		pre {
+			white-space: break-spaces; 
+		}
 	</style>
 	<script>
 		function onload(){
@@ -208,7 +211,7 @@
 						</tbody>
 					</table>
 					<div class="firstIntroduce">
-					<c:out value="${item.introduce }"/>
+					<pre><c:out value="${item.introduce }"/></pre>
 					</div>
 					<div>
 						<div class="detailImages" id="detailImages" name="detailImages" style="display: block;">
@@ -224,13 +227,13 @@
 					<br><br>
 					<h4>목차</h4>
 					<div class="bookList">
-						<c:out value="${item.list }"/>
+						<pre><c:out value="${item.list }"/></pre>
 					</div>
 					<br><br>
 					<h4>책 속으로</h4>
 					<br>
 					<div id="bookPreview" name="bookPreview"  style="display: block;">
-						<c:out value="${item.content }"/>
+						<pre><c:out value="${item.content }"/></pre>
 						<input type='button' id="bookBtn" value='더보기' onclick="BRShow()">
 						<br><br>
 					</div>
@@ -239,7 +242,7 @@
 					<h4>출판사 서평</h4>
 					
 					<div id="PublisherPreview" name="PublisherPreview" style="display: block;">
-						<c:out value="${item.rop }"/>
+						<pre><c:out value="${item.rop }"/></pre>
 						<input type='button' id="publisherBtn" name="publisherBtn" value='더보기' onclick="PRShow();">
 						<br><br>
 					</div>
@@ -260,7 +263,7 @@
 								</c:choose>
 							</div>
 							<p style="font-size: large; font-weight: bolder;">저자 : <c:out value="${writer.writerName }"/></p>
-							<p><c:out value="${writer.writerIntroduce }"/></p>
+							<p><pre><c:out value="${writer.writerIntroduce }"/></pre></p>
 						</div>
 						<div style="height: 30px;"></div>
 					</c:forEach>
