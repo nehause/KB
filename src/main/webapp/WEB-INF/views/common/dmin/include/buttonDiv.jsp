@@ -9,7 +9,7 @@
 	</button>
 </div>
 <div style="float: right;">
-	<button type="button" class="btn btn-success" id="listexecl">
+	<button type="button" class="btn btn-success" id="excelBtn" name="excelBtn">
 		<i class="fa-solid fa-file-excel"></i> 액셀
 	</button>
 	<button class="btn btn-primary" type="button" id="regBtn" name="regBtn">

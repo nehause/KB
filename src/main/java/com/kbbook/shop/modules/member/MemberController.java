@@ -4,8 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
+import com.kbbook.shop.common.util.UtilDateTime;
+import com.kbbook.shop.modules.code.CodeServiceImpl;
 
 
 
@@ -392,6 +402,110 @@ public class MemberController {
 		return returnMap;
 	}
 	
-	
+	@RequestMapping("excelDownload")
+    public void excelDownload(MemberVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		
+		setSearchAndPaging(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
+
+		if (vo.getTotalRows() > 0) {
+			List<Member> list = service.selectList(vo);
+			
+//			Workbook workbook = new HSSFWorkbook();	// for xls
+	        Workbook workbook = new XSSFWorkbook();
+	        Sheet sheet = workbook.createSheet("Sheet1");
+	        CellStyle cellStyle = workbook.createCellStyle();        
+	        Row row = null;
+	        Cell cell = null;
+	        int rowNum = 0;
+			
+//	        each column width setting	        
+	        sheet.setColumnWidth(0, 2100);
+	        sheet.setColumnWidth(1, 3100);
+
+//	        Header
+	        String[] tableHeader = {"회원 번호", "이름", "아이디", "닉네임", "성별", "생일", "이메일", "모바일", "적립금", "등록일", "수정일"};
+
+	        row = sheet.createRow(rowNum++);
+	        
+			for(int i=0; i<tableHeader.length; i++) {
+				cell = row.createCell(i);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+				cell.setCellValue(tableHeader[i]);
+			}
+
+//	        Body
+	        for (int i=0; i<list.size(); i++) {
+	            row = sheet.createRow(rowNum++);
+	            
+//	            String type: null 전달 되어도 ok
+//	            int, date type: null 시 오류 발생 하므로 null check
+//	            String type 이지만 정수형 데이터가 전체인 seq 의 경우 캐스팅	            
+	            
+	            cell = row.createCell(0);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(Integer.parseInt(list.get(i).getMemberSeq()));
+	            
+	            cell = row.createCell(1);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getName());
+	        	
+	            cell = row.createCell(2);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getId());
+	        	
+	        	cell = row.createCell(3);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getUserName());
+	        	
+	            cell = row.createCell(4);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            if(list.get(i).getGender() != null) cell.setCellValue(CodeServiceImpl.selectOneCachedCode(list.get(i).getGender()));
+	            
+	            cell = row.createCell(5);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getDob());
+	            
+	            cell = row.createCell(6);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getEmail());
+	            
+	            cell = row.createCell(7);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getNumber());	        
+	            
+	            cell = row.createCell(8);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getAccmulate());	       
+	            
+	            cell = row.createCell(9);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	if(list.get(i).getRegistration() != null) cell.setCellValue(UtilDateTime.dateTimeToString(list.get(i).getRegistration()));
+	            
+	            cell = row.createCell(10);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            if(list.get(i).getCorrectation() != null) cell.setCellValue(UtilDateTime.dateTimeToString(list.get(i).getCorrectation()));
+	        }
+
+	        httpServletResponse.setContentType("ms-vnd/excel");
+//	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xls");	// for xls
+	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=memberList.xlsx");
+
+	        workbook.write(httpServletResponse.getOutputStream());
+	        workbook.close();
+		}
+    }
 
 }

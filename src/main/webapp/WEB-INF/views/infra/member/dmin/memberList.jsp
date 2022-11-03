@@ -241,6 +241,7 @@
 	<script>
 	var goUrlList = "/member/memberList";
 	var goUrlView = "/member/memberView"
+	var goUrlExcel = "/member/excelDownload"
 	var seq = $("input:hidden[name=memberSeq]");
 	
 	var form = $("form[name=MLForm]"); 
@@ -258,6 +259,10 @@
 	
 	$("#regBtn").on("click", function(){
 		goView(0);
+	});
+	
+	$("#excelBtn").click(function() {
+		form.attr("action", goUrlExcel).submit();
 	});
 	
 	$("#searchBtn").on("click", function(){
