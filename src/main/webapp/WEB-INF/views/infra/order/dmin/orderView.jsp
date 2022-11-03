@@ -53,66 +53,128 @@
 						<%@include file="orderVo.jsp"%>
 						<!-- *Vo.jsp e -->
 						<div class="row">
-							<H1>코드 관리</H1>
+							<H1>주문 관리</H1>
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CCG_CGSeq">코드그룹</label>
-								<select class="form-select" id="CCG_CGSeq" name="CCG_CGSeq">
+								<label for="purchaseSeq">주문 번호</label>
+								<input type="text" class="form-control" id="purchaseSeq" value="<c:out value="${item.purchaseSeq }"/>" placeholder="자동생성" readonly>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="member_memberSeq">회원 번호</label>
+								<input type="text" class="form-control" id="member_memberSeq" value="<c:out value="${item.member_memberSeq }"/>" placeholder="자동생성" readonly>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="memberName">회원 이름</label>
+								<input type="text" class="form-control" id="memberName" name="memberName" value="<c:out value="${item.memberName }"/>" placeholder="숫자">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="purchaseStatus">결제 수단</label>
+								<input type="text" class="form-control" id="purchaseStatus" name="purchaseStatus" value="<c:out value="${item.purchaseStatus }"/>" placeholder="한글, 숫자">
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="delNy">삭제 여부</label>
+								<select class="form-select" id="delNy" name="delNy">
+									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>Y</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="time">결제 시간</label>
+								<input type="text" class="form-control" id="time" name="time" value="<c:out value="${item.time }"/>" placeholder="영문(대소문자), 숫자">
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="toc">수정 시간</label>
+								<input type="text" class="form-control" id="toc" name="toc" value="<c:out value="${item.toc }"/>" placeholder="영문(대소문자), 숫자">
+							</div>
+						</div>
+						<div class="row">
+							<h1>구매 정보</h1>
+						</div>
+						<c:forEach items="${purchaseBook}" var="purchaseBook" varStatus="status">
+							<div class="row">
+								<div class="col-sm-5 gy-4 offset-1">
+									<label for="name">책 이름</label>
+									<input type="text" class="form-control" id="name" name="name" value="<c:out value="${purchaseBook.name }"/>" placeholder="영문(대소문자), 숫자">
+								</div>
+								<div class="col-sm-1 gy-4">
+									<label for="count">구매 수량</label>
+									<input type="text" class="form-control" id="count" name="count" value="<c:out value="${purchaseBook.count }"/>" placeholder="영문(대소문자), 숫자">
+								</div>
+								<div class="col-sm-4 gy-4">
+									<label for="price">가격</label>
+									<input type="text" class="form-control" id="price" name="price" value="<c:out value="${purchaseBook.price }"/>" placeholder="영문(대소문자), 숫자">
+								</div>
+							</div>
+						</c:forEach>
+						<div class="row">	
+							<h1>배송지 정보</h1>
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="transport_transportSeq">배송지 번호</label>
+								<select class="form-select" id="transport_transportSeq" name="transport_transportSeq">
 									<option value="">
-										코드그룹 선택
+										 배송지 번호 선택
 									</option>
-									<c:forEach items="${view}" var="view" varStatus="status">
-										<option value="${view.CGSeq}"  <c:if test="${view.CGSeq eq item.CCG_CGSeq}">selected</c:if>>
-											<c:out value="${view.CGNameKor }"/>
+									<c:forEach items="${memberTransport}" var="memberTransport" varStatus="status">
+										<option value="${memberTransport.transportSeq}"  <c:if test="${memberTransport.transportSeq eq item.transport_transportSeq}">selected</c:if>>
+											<c:out value="${memberTransport.transportSeq }"/>
 										</option>
 									</c:forEach>
 								</select>
 							</div>
 						</div>
 						<div class="row">
+							<h1>주소</h1>
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CSeq">코드 번호</label>
-								<input type="text" class="form-control" id="CSeq" value="<c:out value="${item.CSeq }"/>" placeholder="자동생성" readonly>
+								<label for="phone">휴대전화번호</label>
+								<input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${item.phone }"/>" placeholder="ex)01012345678">
 							</div>
 							<div class="col-sm-5 gy-4">
-								<label for="COrder">순서</label>
-								<input type="text" class="form-control" id="COrder" name="COrder" value="<c:out value="${item.COrder }"/>" placeholder="숫자">
+								<label for="home">집전화번호</label>
+								<input type="text" class="form-control" id="home" name="home" value="<c:out value="${item.home }"/>" placeholder="ex)021234567">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CNameKor">코드 이름(한글)</label>
-								<input type="text" class="form-control" id="CNameKor" name="CNameKor" value="<c:out value="${item.CNameKor }"/>" placeholder="한글, 숫자">
+								<label for="zip">우편번호</label>
+								<input type="text" class="form-control" id="zip" name="zip" value="<c:out value="${item.zip }"/>" placeholder="우편번호" readonly>
 							</div>
-							<div class="col-sm-5 gy-4">
-								<label for="CNameEng">코드 이름(영문)</label>
-								<input type="text" class="form-control" id="CNameEng" name="CNameEng" value="<c:out value="${item.CNameEng }"/>" placeholder="영문(대소문자), 숫자">
+							<div class="col-sm-2 gy-4" style="margin-top: 48px;">
+								<label for="searchTransport"> </label>
+								<button type="button" class="btn btn-success" id="searchTransport" name="searchTransport" onclick="PostCode()">
+									<i class="fa-solid fa-map"></i> 주소검색
+								</button>
+								<button class="btn btn-warning" type="button" id="transportClearBtn" name="transportClearBtn" style="width: 40px; height:38px; margin-right: 10px;">
+									<i class="fa-solid fa-arrow-rotate-right"></i>
+								</button>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CUseNy">사용여부</label>
-								<select class="form-select" id="CUseNy" name="CUseNy">
-									<option value="0" <c:if test="${item.CUseNy eq 0 }">selected</c:if>>N</option>
-									<option value="1" <c:if test="${item.CUseNy eq 1 }">selected</c:if>>Y</option>
-									
-								</select>
-							</div>
-							<div class="col-sm-5 gy-4">
-								<label for="codeDelNy">삭제여부</label>
-								<select class="form-select" id="CDelNy" name="CDelNy">
-									<option value="0" <c:if test="${item.CDelNy eq 0 }">selected</c:if>>N</option>
-									<option value="1" <c:if test="${item.CDelNy eq 1 }">selected</c:if>>Y</option>
-								</select>
+							<div class="col-sm-3 gy-4">
+								<label for="extraaddress">참고항목</label>
+								<input type="text" class="form-control" id="extraaddress" name="extraaddress" value="" placeholder=" 참고항목" readonly>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="CRegistration">등록일</label>
-								<input type="text" class="form-control" id="CRegistration" name="CRegistration" value="<c:out value="${item.CRegistration }"/>" placeholder="등록일" disabled>
+								<label for="address1">주소</label>
+								<input type="text" class="form-control" id="address1" name="address1" value="<c:out value="${item.address1 }"/>" placeholder="주소" readonly>
 							</div>
 							<div class="col-sm-5 gy-4">
-								<label for="CCorrectation">수정일</label>
-								<input type="text" class="form-control" id="CCorrectation" name="CCorrectation" value="<c:out value="${item.CCorrectation }"/>" placeholder="수정일" disabled>
+								<label for="address2">상세주소</label>
+								<input type="text" class="form-control" id="address2" name="address2" value="<c:out value="${item.address2 }"/>" placeholder="상세주소">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
+								<label for="lng">위도</label>
+								<input type="text" class="form-control" id="lng" name="lng" value="<c:out value="${item.lng }"/>" placeholder="위도" readonly>
+							</div>
+							<div class="col-sm-5 gy-4">
+								<label for="lat">경도</label>
+								<input type="text" class="form-control" id="lat" name="lat" value="<c:out value="${item.lat }"/>" placeholder="경도" readonly>
 							</div>
 						</div>
 						<!-- viewBtn start -->

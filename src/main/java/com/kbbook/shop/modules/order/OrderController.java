@@ -55,6 +55,12 @@ public class OrderController {
 		} else {
 			Order result = service.selectSeq(vo);
 			model.addAttribute("item", result);
+			
+			List<Order> purchaseBook = service.purchaseBookList(vo);
+			model.addAttribute("purchaseBook", purchaseBook);
+			
+			List<Order> memberTransport =service.memberTransport(vo);
+			model.addAttribute("memberTransport", memberTransport);
 		}
 		
 		return "infra/order/dmin/orderView";

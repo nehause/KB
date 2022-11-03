@@ -23,14 +23,21 @@ public class OrderDao {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 	
-	public int insert(Order dto) {
-		int result = sqlSession.insert(namespace + ".insert", dto);
+	public Order selectSeq(OrderVo vo) {
+		Order result = sqlSession.selectOne(namespace + ".selectSeq", vo);
 		System.out.println("dao result: " + result);
 		return result;
 	}
 	
-	public Order selectSeq(OrderVo vo) {
-		Order result = sqlSession.selectOne(namespace + ".selectSeq", vo);
+	public List<Order> purchaseBookList(OrderVo vo) {
+		return sqlSession.selectList(namespace + ".purchaseBookList", vo);
+	}
+	public List<Order> memberTransport(OrderVo vo) {
+		return sqlSession.selectList(namespace + ".memberTransport", vo);
+	}
+	
+	public int insert(Order dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}

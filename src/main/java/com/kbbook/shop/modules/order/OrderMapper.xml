@@ -63,7 +63,13 @@
 		SELECT
 			a.*
 		   ,b.name as memberName
-		   ,d.*
+		   ,d.phone
+		   ,d.home
+		   ,d.zip
+		   ,d.address1
+		   ,d.address2
+		   ,d.lng
+		   ,d.lat
 		   ,(select
 		   sum(c.price)
 		   from purchase_book c
@@ -73,13 +79,12 @@
 		   ) as priceSum
 		from purchase a
 		   JOIN member b on a.member_memberSeq = b.memberSeq
-		   join transport d on b.memberSeq = d.member_memberSeq
+		   join transport d on b.memberSeq = d.member_memberSeq and transportSeq = transport_transportSeq
 		   where 1=1 
 		   and purchaseSeq = #{purchaseSeq}
-		   and transportSeq = #{transportSeq}
 	</select>	
 	
-	<select id="bookListSeq" resultMap="resultMapObj">
+	<select id="purchaseBookList" resultMap="resultMapObj">
 		select
 			c.name
 		    ,b.count
@@ -89,6 +94,15 @@
 		join book c on b.book_bookSeq = c.bookSeq
 		 where 1=1
 		 and purchaseSeq = #{purchaseSeq}
+	</select>
+	
+	<select id="memberTransportSeq" resultMap="resultMapObj">
+		select
+			transportSeq
+		from transport a
+		join member b on b.memberSeq = a.member_memberSeq
+		join purchase c on c.member_memberSeq = b.memberSeq and purchaseSeq = #{purchaseSeq}
+		where 1=1
 	</select>
 	
 	<insert id="insert">

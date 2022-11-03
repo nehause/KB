@@ -17,6 +17,22 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> selectList(OrderVo vo) throws Exception{
 		return dao.selectList(vo);
 	}
+
+	
+	@Override
+	public Order selectSeq(OrderVo vo) throws Exception {
+		Order result = dao.selectSeq(vo);
+		System.out.println("service result: " + result);
+		return result;
+	}
+	
+	public List<Order> purchaseBookList(OrderVo vo) throws Exception {
+		return dao.purchaseBookList(vo);
+	}
+	
+	public List<Order> memberTransport(OrderVo vo) throws Exception {
+		return dao.memberTransport(vo);
+	}
 	
 	@Override
 	public int insert(Order dto) throws Exception {
@@ -24,13 +40,6 @@ public class OrderServiceImpl implements OrderService {
 		int result = dao.insert(dto);
 		System.out.println("service result: " + result);
 		
-		return result;
-	}
-	
-	@Override
-	public Order selectSeq(OrderVo vo) throws Exception {
-		Order result = dao.selectSeq(vo);
-		System.out.println("service result: " + result);
 		return result;
 	}
 	
