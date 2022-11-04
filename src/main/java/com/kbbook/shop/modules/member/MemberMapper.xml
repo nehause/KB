@@ -332,6 +332,51 @@
 		and type = 1
 		and a.member_memberSeq = #{sessSeq}
 	</select>
-
+	
+	<!-- kakao -->
+	
+	<select id="snsLoginCheck" resultMap="resultMapObj">
+	select
+		a.*
+	from member a
+	where 1=1
+		and name = #{name}
+		and email = #{email}
+	</select>
+	<insert id ="kakaoInst">
+		INSERT INTO member (
+			id
+			,name
+			,userName
+			,gender
+			<!-- ,dob -->
+			,phone
+			,email
+			,token
+			,kakao_ctr
+			,accmulate
+			,memberDelNy
+			,memberUseNy
+			,dminDiv
+		)
+		VALUES (
+			#{snsId}
+			,#{name}
+			,#{name}
+			,#{gender}
+			<!-- ,#{dob} -->
+			,#{phone}
+			,#{email}
+			,#{token}
+			,1
+			,0
+			,0
+			,1
+			,1
+		)
+		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 </mapper>	

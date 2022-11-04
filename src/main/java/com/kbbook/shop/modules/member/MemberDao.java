@@ -101,4 +101,12 @@ public class MemberDao {
 		return sqlSession.selectList(namespace + ".favorite", dto);
 	}
 	
+	//kakao
+	public Member snsLoginCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);
+	}
+	
+	public int kakaoInst(Member dto) {
+		return sqlSession.insert(namespace + ".kakaoInst", dto);
+	}
 }

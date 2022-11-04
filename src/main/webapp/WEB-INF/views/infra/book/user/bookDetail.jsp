@@ -234,7 +234,7 @@
 					<br>
 					<div id="bookPreview" name="bookPreview"  style="display: block;">
 						<pre><c:out value="${item.content }"/></pre>
-						<input type='button' id="bookBtn" value='더보기' onclick="BRShow()">
+						<!-- <input type='button' id="bookBtn" value='더보기' onclick="BRShow()"> -->
 						<br><br>
 					</div>
 					
@@ -243,7 +243,7 @@
 					
 					<div id="PublisherPreview" name="PublisherPreview" style="display: block;">
 						<pre><c:out value="${item.rop }"/></pre>
-						<input type='button' id="publisherBtn" name="publisherBtn" value='더보기' onclick="PRShow();">
+						<!-- <input type='button' id="publisherBtn" name="publisherBtn" value='더보기' onclick="PRShow();"> -->
 						<br><br>
 					</div>
 					

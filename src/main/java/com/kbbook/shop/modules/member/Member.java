@@ -65,6 +65,12 @@ public class Member extends Base{
 	private String purchaseCount;
 	private Integer priceSum;
 	
+	//kakao
+	private String snsId;
+	private Integer sns_type;
+	private String token;
+	
+	
 	public String getMemberSeq() {
 		return memberSeq;
 	}
@@ -342,7 +348,25 @@ public class Member extends Base{
 		this.priceSum = priceSum;
 	}
 	
-	
+	//kakao
+	public Integer getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(Integer sns_type) {
+		this.sns_type = sns_type;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
 	
 
 }

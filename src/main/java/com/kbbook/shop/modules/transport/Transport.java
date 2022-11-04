@@ -1,6 +1,6 @@
 package com.kbbook.shop.modules.transport;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import com.kbbook.shop.modules.member.Member;
 
@@ -18,8 +18,8 @@ public class Transport extends Member{
 	private String lat;
 	private Integer useNy;
 	private Integer delNy;
-	private Date registration;
-	private Date correctation;
+	private Timestamp registration;
+	private Timestamp correctation;
 	
 
 	public String getTransportSeq() {
@@ -118,19 +118,19 @@ public class Transport extends Member{
 		this.delNy = delNy;
 	}
 
-	public Date getRegistration() {
+	public Timestamp getRegistration() {
 		return registration;
 	}
 
-	public void setRegistration(Date registration) {
+	public void setRegistration(Timestamp registration) {
 		this.registration = registration;
 	}
 	
-	public Date getCorrectation() {
+	public Timestamp getCorrectation() {
 		return correctation;
 	}
 
-	public void setCorrectation(Date correctation) {
+	public void setCorrectation(Timestamp correctation) {
 		this.correctation = correctation;
 	}
 

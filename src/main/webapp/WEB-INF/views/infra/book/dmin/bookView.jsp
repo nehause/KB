@@ -76,10 +76,6 @@
 								<label for="bookSeq">책 번호</label>
 								<input type="text" class="form-control" id="Seqview" value="<c:out value="${item.bookSeq }"/>" readonly>
 							</div>
-							<div class="col-sm-5 gy-4">
-								<label for="writer_writerSeq">작가 번호</label>
-								<input type="text" class="form-control" id="writer_writerSeq" name="writer_writerSeq" value="<c:out value="${item.writer_writerSeq }"/>">
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
@@ -250,10 +246,7 @@
 								</select>
 							</div>
 						</div>
-						<div>
-							<button type="button" class="btn btn-warning" id="testBtn" name="testBtn">테스트 버튼</button>
-							<button type="button" class="btn btn-danger" id="valiBtn" name="valiBtn">벨리데이션 버튼</button>
-						</div>
+					
 						<!-- viewBtn start -->
 						<%@include file="../../../common/dmin/include/viewBtn.jsp"%>
 						<!-- viewBtn end -->

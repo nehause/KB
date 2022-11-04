@@ -121,4 +121,15 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> favorite(Member dto) throws Exception{
 		return dao.favorite(dto);
 	}
+	
+	//kakao
+	@Override
+	public Member snsLoginCheck(Member dto) throws Exception{
+		return dao.snsLoginCheck(dto);
+	}
+	@Override
+	public int kakaoInst(Member dto) throws Exception{
+		return dao.kakaoInst(dto);
+	}
 }	
+

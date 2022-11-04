@@ -52,19 +52,19 @@
 				</div> -->
 			</li>
 			<li class="mb-1">
-				<!-- <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
-					작가 관리
-				</button> -->
-				<button class="btn btn-toggle align-items-center rounded collapsed"  onclick="location.href='/writer/writerList'" aria-expanded="false">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#writer-collapse" aria-expanded="false">
 					작가 관리
 				</button>
-				<!-- <div class="collapse" id="writer-collapse">
+				<!-- <button class="btn btn-toggle align-items-center rounded collapsed"  onclick="location.href='/writer/writerList'" aria-expanded="false"> 
+					작가 관리
+				</button>-->
+				<div class="collapse" id="writer-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="#" class="link-dark rounded">작가 리스트</a></li>
-						<li><a href="#" class="link-dark rounded">작가 추가</a></li>
-						<li><a href="#" class="link-dark rounded">작가 수정</a></li>
+						<li><a href="/writer/writerList" class="link-dark rounded">작가 리스트</a></li>
+						<li><a href="/writer/bookWriter" class="link-dark rounded">작가 저서 추가</a></li>
+						<!-- <li><a href="#" class="link-dark rounded"></a></li> -->
 					</ul>
-				</div> -->
+				</div>
 			</li>
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded collapsed"  onclick="location.href='/order/orderList'" aria-expanded="false">

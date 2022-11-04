@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="/resources/template/karma/css/main.css">
 	<script src="https://kit.fontawesome.com/dca973ab96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 
 <body>
@@ -94,16 +95,16 @@
 							<div class="col-md-12 form-group">
 								<button type="button" id="loginBtn" name="loginBtn" class="primary-btn">로그인</button>
 								<a href="#findIdModal" data-toggle="modal" data-target="#findIdModal" style="margin-top: 10px; margin-bottom: 10px;">아이디 찾기</a>
-								<button type="submit" value="kakao" class="primary-btn genric-btn warning">
+								<button type="button" id="kakaoBtn" name="kakaoBtn" class="primary-btn genric-btn warning">
 									<i class="fa-solid fa-comment"></i> 카카오
 								</button>
-								<button type="submit" value="kakao" class="primary-btn genric-btn naver">
+								<button type="button" value="kakao" class="primary-btn genric-btn naver">
 									<i class="fa-solid fa-n"></i> 네이버
 								</button>
-								<button type="submit" value="kakao" class="primary-btn genric-btn danger">
+								<button type="button" value="kakao" class="primary-btn genric-btn danger">
 									<i class="fa-brands fa-google"></i> 구글
 								</button>
-								<button type="submit" value="kakao" class="primary-btn genric-btn facebook">
+								<button type="button" value="kakao" class="primary-btn genric-btn facebook">
 									<i class="fa-brands fa-square-facebook"></i> 페이스북
 								</button>
 							</div>
@@ -113,7 +114,15 @@
 			</div>
 		</div>
 	</section>
-
+	<form name="form">
+			<input type="hidden" name="name"/>
+			<input type="hidden" name="snsId"/>
+			<input type="hidden" name="phone"/>
+			<input type="hidden" name="email"/>
+			<input type="hidden" name="gender"/>
+			<!-- <input type="hidden" name="dob"/> -->
+			<input type="hidden" name="token"/>
+		</form>
 	
 	<!-- start modal area -->
 	<section class="product_description_area" style="margin-top: 0px; padding-bottom: 0px;">
@@ -319,7 +328,79 @@
 			}
 		});
 	});
+	Kakao.init('fbcf9729cf4cb4a9f70ddf30309fa210'); // test 용
+	console.log(Kakao.isInitialized());
+/*     	Kakao.init('ec2655da82c3779d622f0aff959060e6');
+	console.log(Kakao.isInitialized()); */
 	
+	$("#kakaoBtn").on("click", function() {
+		/* Kakao.Auth.authorize({
+		      redirectUri: 'http://localhost:8080/member/kakaoCallback',
+		    }); */
+		
+		Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  
+		        	  var accessToken = Kakao.Auth.getAccessToken();
+		        	  Kakao.Auth.setAccessToken(accessToken);
+
+		        	  var account = response.kakao_account;
+		        	  
+		        	  console.log(response)
+		        	  console.log("email : " + account.email);
+		        	  console.log("name : " + account.name);
+		        	  console.log("nickname : " + account.profile.nickname);
+		        	  console.log("picture : " + account.gender);
+		        	  console.log("picture : " + account.birthday);
+		        	  console.log("picture : " + account.birthday.substring(0,2) + "-" + account.birthday.substring(2,account.birthday.length));
+	        	  
+  	        	  $("input[name=snsId]").val("카카오로그인");
+  	        	  $("input[name=name]").val(account.profile.nickname);
+  	        	  $("input[name=phone]").val(account.profile.phone_number);
+  	        	  $("input[name=email]").val(account.email);
+  	        	  //$("input[name=dob]").val(account.birthday.substring(0,2) + "-" + account.birthday.substring(2,account.birthday.length));
+  	        	  $("input[name=token]").val(accessToken);
+  	        	  
+  	        	  if (account.gender === "male") {
+  	        		  $("input[name=gender]").val(1);
+          		  } else {
+          			  $("input[name=gender]").val(2);
+     			  } 
+  	        	  
+  	        	 /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
+				
+  	        	  $.ajax({
+					async: true
+					,cache: false
+					,type:"POST"
+					,url: "/member/kakaoLoginProc"
+					,data: {"name": $("input[name=name]").val(), "snsId": $("input[name=snsId]").val(), "phone": $("input[name=phone]").val(), "email": $("input[name=email]").val(), "gender": $("input[name=gender]").val(), /* "dob": $("input[name=dob]").val(), */ "token": $("input[name=token]").val()}
+					,success : function(response) {
+						if (response.rt == "fail") {
+							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+							return false;
+						} else {
+							window.location.href = "/main";
+						}
+					},
+					error : function(jqXHR, status, error) {
+						alert("알 수 없는 에러 [ " + error + " ]");
+					}
+				});
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+	});
 	</script>
 	
 	<!-- 로그인 스크립트 -->

@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<title>코드 관리</title>
+	<title>작가 관리</title>
 	<link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- cdn = 온라인 해석기 -->
@@ -68,9 +68,9 @@
 						<%@include file="writerVo.jsp"%>
 						<!-- *Vo.jsp e -->
 						<div class="row">
-							<H1>코드 관리</H1>
+							<H1 class="offset-1">작가 관리</H1>
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="writerSeq">코드 번호</label>
+								<label for="writerSeq">작가 번호</label>
 								<input type="text" class="form-control" id="writerSeq" value="<c:out value="${item.writerSeq }"/>" placeholder="자동생성" readonly>
 							</div>
 							<div class="col-sm-5 gy-4">
