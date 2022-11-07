@@ -16,13 +16,28 @@ public interface WriterService {
 	
 	
 	public List<Writer> selectList(WriterVo vo) throws Exception; 
-	public int insert(Writer dto) throws Exception;
 	public Writer selectSeq(WriterVo vo) throws Exception;
+	public int insert(Writer dto) throws Exception;
 	public int update(Writer dto) throws Exception;
 	public int uelete(Writer dto) throws Exception;
 	public int delete(WriterVo vo) throws Exception;
 	
 	public List<Writer> selectListWithoutPaging() throws Exception;
 	public int selectOneCount(BaseVo vo) throws Exception;
+	
+	
+	//bookWriter
+	
+	public List<Writer> bookWriterList(WriterVo vo) throws Exception;
+	public Writer bookWriterSeq(WriterVo vo) throws Exception;
+	public int bookWriterInsert(Writer dto) throws Exception;
+	public int bookWriterUpdate(Writer dto) throws Exception;
+	public int bookWriterDelete(WriterVo vo) throws Exception;
+	public int bookWriterCount(WriterVo vo) throws Exception;
+	
+	//bookWriter ajax
+	public Writer bookName(WriterVo vo) throws Exception;
+	public Writer writerName(WriterVo vo) throws Exception;
+	
 	
 }

@@ -176,4 +176,34 @@ public void uploadFiles(MultipartFile[] multipartFiles, Writer dto, String table
 	public int selectOneCount(BaseVo vo) throws Exception{
 		return dao.selectOneCount(vo);
 	}
+	
+	//bookWriter
+	
+	public List<Writer> bookWriterList(WriterVo vo) throws Exception{
+		return dao.bookWriterList(vo);
+	}
+	public Writer bookWriterSeq(WriterVo vo) throws Exception{
+		return dao.bookWriterSeq(vo);
+	}
+	public int bookWriterInsert(Writer dto) throws Exception{
+		return dao.bookWriterInsert(dto);
+	}
+	public int bookWriterUpdate(Writer dto) throws Exception{
+		return dao.bookWriterUpdate(dto);
+	}
+	public int bookWriterDelete(WriterVo vo) throws Exception{
+		return dao.bookWriterDelete(vo);
+	}
+	public int bookWriterCount(WriterVo vo) throws Exception{
+		return dao.bookWriterCount(vo);
+	}
+	
+	//bookwriter ajax
+	
+	public Writer bookName(WriterVo vo) throws Exception{
+		return dao.bookName(vo);
+	}
+	public Writer writerName(WriterVo vo) throws Exception{
+		return dao.writerName(vo);
+	}
 }

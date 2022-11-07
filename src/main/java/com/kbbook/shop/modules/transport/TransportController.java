@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
-import com.kbbook.shop.modules.member.Member;
 import com.kbbook.shop.modules.member.MemberServiceImpl;
-import com.kbbook.shop.modules.member.MemberVo;
 
 
 

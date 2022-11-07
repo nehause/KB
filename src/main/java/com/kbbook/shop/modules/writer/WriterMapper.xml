@@ -122,4 +122,107 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	<!-- bookWriter -->
+	<select id="bookWriterList"  resultMap="resultMapObj">
+	<include refid="Base.selectListUpperForMysql" />
+		select
+			a.book_writerSeq
+			,a.book_bookSeq
+			,b.name
+		    ,a.writer_writerSeq
+		    ,c.writerName
+		from book_writer a
+		join book b on b.bookSeq = book_bookSeq
+		join writer c on c.writerSeq = writer_writerSeq
+		where 1=1
+		<choose>
+			<when test="searchOption == 1">AND book_writerSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND book_bookSeq = #{searchValue}</when>
+			<when test="searchOption == 3">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 4">AND writer_writerSeq = #{searchValue}</when>
+			<when test="searchOption == 5">AND writerName LIKE CONCAT('%',#{searchValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		ORDER BY a.book_writerSeq DESC
+	<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="bookWriterCount" resultType="Integer">
+		SELECT COUNT(*)
+		from book_writer a
+		join book b on b.bookSeq = book_bookSeq
+		join writer c on c.writerSeq = writer_writerSeq
+		where 1=1
+		<choose>
+			<when test="searchOption == 1">AND book_writerSeq = #{searchValue}</when>
+			<when test="searchOption == 2">AND book_bookSeq = #{searchValue}</when>
+			<when test="searchOption == 3">AND name LIKE CONCAT('%',#{searchValue},'%')</when>
+			<when test="searchOption == 4">AND writer_writerSeq = #{searchValue}</when>
+			<when test="searchOption == 5">AND writerName LIKE CONCAT('%',#{searchValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+	</select>
+
+	<select id="bookWriterSeq" resultMap="resultMapObj">
+	select
+		a.book_writerSeq
+		,a.book_bookSeq
+		,b.name
+	    ,a.writer_writerSeq
+	    ,c.writerName
+	from book_writer a
+	join book b on b.bookSeq = book_bookSeq
+	join writer c on c.writerSeq = writer_writerSeq
+	and book_writerSeq = #{book_writerSeq}
+	
+	</select>
+	
+	<insert id="bookWriterInsert">
+		INSERT INTO book_writer(
+			book_bookSeq
+			,writer_writerSeq
+		)
+		VALUES(
+			#{book_bookSeq}
+			,#{writer_writerSeq}
+		)
+		<selectKey resultType="String" keyProperty="book_writerSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>	
+	
+	<update id="bookWriterUpdate">
+		UPDATE book_writer
+		SET
+			book_bookSeq = #{book_bookSeq}
+			,writer_writerSeq = #{writer_writerSeq}
+		WHERE 1=1
+			AND	book_writerSeq = #{book_writerSeq}
+	</update>
+	
+	<delete id = "bookWriterDelete">
+		DELETE 
+		FROM book_writer 
+		WHERE 1=1 
+			AND	book_writerSeq = #{book_writerSeq}
+	</delete>
+	
+	<!-- bookWriter ajax -->
+	
+	<select id="bookName" resultMap="resultMapObj">
+		select
+			name
+		from book a
+		where 1=1
+		and bookSeq = #{book_bookSeq}
+	</select>
+	
+	<select id="writerName" resultMap="resultMapObj">
+		select 
+			writerName
+		from writer
+		where 1=1
+		and writerSeq = #{writer_writerSeq}
+	</select>
+	
 </mapper>	

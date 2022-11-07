@@ -61,7 +61,7 @@
 				<div class="collapse" id="writer-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/writer/writerList" class="link-dark rounded">작가 리스트</a></li>
-						<li><a href="/writer/bookWriter" class="link-dark rounded">작가 저서 추가</a></li>
+						<li><a href="/writer/bookWriterList" class="link-dark rounded">작가 저서 관리</a></li>
 						<!-- <li><a href="#" class="link-dark rounded"></a></li> -->
 					</ul>
 				</div>

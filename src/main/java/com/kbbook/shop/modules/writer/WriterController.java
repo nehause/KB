@@ -1,12 +1,15 @@
 package com.kbbook.shop.modules.writer;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kbbook.shop.common.constants.Constants;
@@ -103,5 +106,114 @@ public class WriterController {
 		
 		return "redirect:/writer/writerList";
 	}
+	
+	//bookWriter
+	
+	@RequestMapping(value="bookWriterList")
+	public String bookWriterList(@ModelAttribute("vo") WriterVo vo, Model model) throws Exception{
+		
+		System.out.println("vo.getSearchDelNy(): " + vo.getSearchDelNy());
+		System.out.println("vo.getSearchOption(): " + vo.getSearchOption());
+		System.out.println("vo.getSearchValue(): " + vo.getSearchValue());
+		
+		vo.setParamsPaging(service.bookWriterCount(vo));
+		List<Writer> list = service.bookWriterList(vo);
+		model.addAttribute("list", list);
+		return "infra/writer/dmin/bookWriterList";
+	}
+	
+	
+	@RequestMapping(value="bookWriterView")
+	public String bookWriterView(Writer dto, @ModelAttribute("vo") WriterVo vo, Model model) throws Exception {
+		
+		System.out.println("vo.getBook_writerSeq(): " + vo.getBook_writerSeq());
+		
+		if(vo.getBook_writerSeq().equals("0") || vo.getBook_writerSeq().equals("")) {
+			//insert
+		} else {
+			Writer result = service.bookWriterSeq(vo);
+			model.addAttribute("item", result);
+		}
+		
+		
+		return "infra/writer/dmin/bookWriterView";
+	}
+	
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value = "bookWriterInsert")
+	public String bookWriterInsert(Writer dto, WriterVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		
+		service.bookWriterInsert(dto);
+		
+		System.out.println("dto.getWriterSeq(): " + dto.getWriterSeq());
+		vo.setBook_writerSeq(dto.getBook_writerSeq());
+		System.out.println("vo.getWriterSeq(): " + vo.getWriterSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		
+		if(Constants.INSERT_AFTER_TYPE == 1) {
+			return "redirect:/writer/bookWriterView";
+		} else {
+			return "redirect:/writer/bookWriterList";
+		}
+	}
+	
+	@SuppressWarnings(value= {"all"})
+	@RequestMapping(value="bookWriterUpdate")
+	public String bookWriterUpdate(WriterVo vo, Writer dto, RedirectAttributes redirectAttributes) throws Exception{
+		
+		System.out.println("dto.getBook_writerSeq(): " + dto.getBook_writerSeq());
+		
+		service.update(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/writer/bookWriterList";
+	}
+	
+	@RequestMapping(value = "bookWriterDelete")
+	public String bookWriterDelete(WriterVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		service.bookWriterDelete(vo);
+		
+		return "redirect:/writer/bookWriterList";
+	}
+	
+	//ajax
+	
+		@ResponseBody
+		@RequestMapping(value = "bookName")
+		public Map<String, Object> bookName(WriterVo vo) throws Exception {
+
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			Writer result = service.bookName(vo);
+
+			if (result == null) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("result", result);
+				returnMap.put("rt", "success");
+				
+			}
+			return returnMap;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "writerName")
+		public Map<String, Object> writerName(WriterVo vo) throws Exception {
+
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			Writer result = service.writerName(vo);
+
+			if (result == null) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("result", result);
+				returnMap.put("rt", "success");
+				
+			}
+			return returnMap;
+		}
 
 }
