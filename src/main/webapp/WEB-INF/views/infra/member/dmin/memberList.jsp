@@ -240,8 +240,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 	var goUrlList = "/member/memberList";
-	var goUrlView = "/member/memberView"
-	var goUrlExcel = "/member/excelDownload"
+	var goUrlView = "/member/memberView";
+	var goUrlExcel = "/member/excelDownload";
 	var seq = $("input:hidden[name=memberSeq]");
 	
 	var form = $("form[name=MLForm]"); 
