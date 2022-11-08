@@ -227,7 +227,7 @@
 			                                <td>
 			                                    <div class="media">
 			                                        <div class="d-flex">
-			                                            <img src="<c:out value="${book.sign }"/>" alt="" style="width: 150px;">
+			                                            <img src="<c:out value="${book.path }"/><c:out value="${book.uuidName }"/>" alt="" style="width: 150px;">
 			                                        </div>
 			                                        <div class="media-body">
 			                                            <p style="width: 175px;"><c:out value="${book.name }"/></p>
