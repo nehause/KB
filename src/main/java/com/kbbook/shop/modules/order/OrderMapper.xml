@@ -133,13 +133,13 @@
 	<update id="update">
 		UPDATE purchase
 		SET
-			member_memberSeq = member_memberSeq
-			,transport_transportSeq = transport_transportSeq
-			,payment = payment
-			,purchaseStatus = purchaseStatus
-			,delNy = delNy
+			member_memberSeq = ${member_memberSeq}
+			,transport_transportSeq = ${transport_transportSeq}
+			,payment = ${payment}
+			,purchaseStatus = ${purchaseStatus}
+			,delNy = ${delNy}
 		WHERE 1=1
-			AND	bookSeq = #{bookSeq}
+			AND	purchaseSeq = #{purchaseSeq}
 	</update>
 	
 	<update id = "uelete">

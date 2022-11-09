@@ -62,7 +62,7 @@
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="member_memberSeq">회원 번호</label>
-								<input type="text" class="form-control" id="member_memberSeq" value="<c:out value="${item.member_memberSeq }"/>" placeholder="자동생성" readonly>
+								<input type="text" class="form-control" id="member_memberSeq" name="member_memberSeq" value="<c:out value="${item.member_memberSeq }"/>" placeholder="자동생성" readonly>
 							</div>
 							<div class="col-sm-5 gy-4">
 								<label for="memberName">회원 이름</label>
@@ -75,6 +75,12 @@
 								<input type="text" class="form-control" id="purchaseStatus" name="purchaseStatus" value="<c:out value="${item.purchaseStatus }"/>" placeholder="한글, 숫자">
 							</div>
 							<div class="col-sm-5 gy-4">
+								<label for="payment">결제 수단</label>
+								<input type="text" class="form-control" id="payment" name="payment" value="<c:out value="${item.payment }"/>" placeholder="한글, 숫자">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
 								<label for="delNy">삭제 여부</label>
 								<select class="form-select" id="delNy" name="delNy">
 									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>N</option>
