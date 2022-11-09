@@ -71,7 +71,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
-								<label for="purchaseStatus">결제 수단</label>
+								<label for="purchaseStatus">배송 상태</label>
 								<input type="text" class="form-control" id="purchaseStatus" name="purchaseStatus" value="<c:out value="${item.purchaseStatus }"/>" placeholder="한글, 숫자">
 							</div>
 							<div class="col-sm-5 gy-4">

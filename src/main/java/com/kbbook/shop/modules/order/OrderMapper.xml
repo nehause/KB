@@ -86,12 +86,17 @@
 	
 	<select id="purchaseBookList" resultMap="resultMapObj">
 		select
-			c.name
+			c.bookSeq
+			,c.name
 		    ,b.count
 		    ,b.price
+		    ,a.purchaseStatus
+		    ,d.path
+		    ,d.uuidName
 		from purchase a
 		join purchase_book b on b.purchase_purchaseSeq = a.purchaseSeq
 		join book c on b.book_bookSeq = c.bookSeq
+		join bookUploaded d on b.book_bookSeq = d.pSeq and type = 1
 		 where 1=1
 		 and purchaseSeq = #{purchaseSeq}
 	</select>
@@ -310,14 +315,13 @@ where 1=1
 	</select>
 	
 	<select id="orderFinPrice" resultMap="resultMapObj">
-	select
-   sum(c.price) as priceSum
-	from purchase_book c
-	join purchase on purchase_purchaseSeq = purchaseSeq
-	where 1=1
-    and purchaseSeq = #{purchaseSeq}
-	group by purchaseSeq
-	
+		select
+	  		sum(c.price) as priceSum
+		from purchase_book c
+		join purchase on purchase_purchaseSeq = purchaseSeq
+		where 1=1
+		   and purchaseSeq = #{purchaseSeq}
+		group by purchaseSeq
 	</select>
 	
 </mapper>	

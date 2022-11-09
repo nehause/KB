@@ -206,6 +206,24 @@ public class OrderController {
 		return "infra/order/user/orderFin";
 	}
 	
+	@RequestMapping(value="orderUserView")
+	public String orderUserView(Order dto, @ModelAttribute("vo") OrderVo vo, Model model) throws Exception {
+		
+		System.out.println("vo.getPurchaseSeq(): " + vo.getPurchaseSeq());
+		
+		if(vo.getPurchaseSeq().equals("0") || vo.getPurchaseSeq().equals("")) {
+			//insert
+		} else {
+			Order result = service.selectSeq(vo);
+			model.addAttribute("item", result);
+			
+			List<Order> purchaseBook = service.purchaseBookList(vo);
+			model.addAttribute("purchaseBook", purchaseBook);
+		}
+		
+		return "infra/order/user/orderUserView";
+	}
+	
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "transportInsert")
 	public String transportInsert(Order dto, OrderVo vo, RedirectAttributes redirectAttributes) throws Exception{

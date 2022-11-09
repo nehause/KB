@@ -77,7 +77,14 @@
 	<select id="userSelectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
-			a.*
+			a.bookSeq
+			,a.name
+			,a.subName
+			,a.publisher
+			,a.dop
+			,a.dor
+			,a.cost
+			,a.sale
 			,cost*(1-sale) as price
 			,seq
 			,type

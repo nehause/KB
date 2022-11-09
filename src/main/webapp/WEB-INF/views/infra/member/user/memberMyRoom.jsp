@@ -129,6 +129,7 @@
 							</table>
 							<div style="height:20px;"></div>
 							<form method="post" id="MROForm" name="MROForm">
+								<input type="hidden" id="purchaseSeq" name="purchaseSeq">
 								<input type="hidden" id="memberSeq" name="memberSeq" value="<c:out value="${vo.memberSeq }"/>">
 								<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 								<input type="hidden" id="rowNumToShow" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
@@ -159,7 +160,7 @@
 								                                <td>
 								                                    <h5>₩<c:out value="${order.priceSum }"/></h5>
 								                                </td>
-								                                <td>
+								                                <td onclick="location.href='javascript:goPurchase(<c:out value="${order.purchaseSeq }"/>)'" style="cursor: pointer;">
 								                                    <h5><c:out value="${order.purchaseBook }"/></h5>
 								                                </td>
 								                                <td>
@@ -344,8 +345,16 @@
 	<script>
 	var goUrlDetail = "/book/bookDetail";
 	var goUrlList = "/member/memberMyRoom";
+	var goUrlPurchase = "/order/orderUserView";
 	var seq = $("input:hidden[name=bookSeq]");
+	var pSeq = $("input:hidden[name=purchaseSeq]");
 	var form = $("form[name=MRFForm]");
+	var OForm = $("form[name=MROForm]");
+	
+	goPurchase = function(seqValue){
+		pSeq.val(seqValue);
+		OForm.attr("action", goUrlPurchase).submit();
+	}
 	
 	goDetail = function(seqValue){
 		seq.val(seqValue);
@@ -375,3 +384,4 @@
 	<script src="/resources/template/karma/js/main.js"></script>
 </body>
 
+</html>
