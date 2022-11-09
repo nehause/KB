@@ -180,22 +180,22 @@
 	
 	<select id="purchaseBookSeq" resultMap="resultMapObj">
 	select
-		bookSeq
-		,name
-		,sign
-		,cost*(1-sale) as price
-		,stock
-	    ,seq
-		,type
-		,defaultNy
-		,sort
-		,path
-		,originalName
-		,uuidName
-	from book a
-	join bookUploaded b on a.bookSeq = b.pSeq and type = 1
-	where 1=1
-		and bookSeq = #{bookSeq}
+	bookSeq
+	,name
+	,sign
+	,cost*(1-sale) as price
+	,stock
+    ,seq
+	,type
+	,defaultNy
+	,sort
+	,path
+	,originalName
+	,uuidName
+from book a
+join bookUploaded b on a.bookSeq = b.pSeq and type = 1
+where 1=1
+	and bookSeq = #{bookSeq}
 	
 	</select>
 	
