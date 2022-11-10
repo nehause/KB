@@ -241,7 +241,7 @@
 		$(location).attr("href", goUrlList);
 	}); 
 	
-	$("#execlBtn").on("click", function(){
+	$("#excelBtn").on("click", function(){
    		alert("코드 리스트에서는 엑셀 기능을 제공하지 않습니다.");
 	});
 	</script>
