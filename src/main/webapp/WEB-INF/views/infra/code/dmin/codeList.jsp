@@ -240,6 +240,10 @@
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
 	}); 
+	
+	$("#execlBtn").on("click", function(){
+   		alert("코드 리스트에서는 엑셀 기능을 제공하지 않습니다.");
+	});
 	</script>
 	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/dmin/js/sidebar.js"></script>

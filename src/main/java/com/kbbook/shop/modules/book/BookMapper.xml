@@ -57,7 +57,16 @@
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			DISTINCT
-			a.*
+			a.bookSeq
+			,a.name
+			,a.publisher
+			,a.dop
+			,a.dor
+			,a.cost
+			,a.sale
+			,a.accmulate
+			,a.stock
+			,a.amount
 			, cost*(1-sale) as price
 			,(SELECT
 			case

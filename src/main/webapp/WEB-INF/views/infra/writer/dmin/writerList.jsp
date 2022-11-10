@@ -200,7 +200,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 	var goUrlList = "/writer/writerList";
-	var goUrlView = "/writer/writerView"
+	var goUrlView = "/writer/writerView";
+	var goUrlExcel = "/writer/writerExcelDownload";
 	var seq = $("input:hidden[name=writerSeq]");
 	
 	var form = $("form[name=WLForm]"); 
@@ -226,8 +227,11 @@
 	
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
-	}); 
+	});
 	
+	$("#excelBtn").click(function() {
+		form.attr("action", goUrlExcel).submit();
+	});
 	</script>
 	<script src="/resources/dmin/js/sidebar.js"></script>
 	

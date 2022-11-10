@@ -12,4 +12,4 @@
 <input type="hidden" name="searchOption" value="<c:out value="${vo.searchOption}"/>"/>
 <input type="hidden" name="searchValue" value="<c:out value="${vo.searchValue}"/>"/>
 
-<input type="hidden" name="writerSeq" value="<c:out value="${vo.book_writerSeq}"/>"/>
+<input type="hidden" name="book_writerSeq" value="<c:out value="${vo.book_writerSeq}"/>"/>

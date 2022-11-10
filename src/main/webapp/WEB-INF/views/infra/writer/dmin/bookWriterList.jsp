@@ -185,6 +185,7 @@
 	<script>
 	var goUrlList = "/writer/bookWriterList";
 	var goUrlView = "/writer/bookWriterView"
+	var goUrlExcel = "/writer/writerBookExcelDownload"
 	var seq = $("input:hidden[name=book_writerSeq]");
 	
 	var form = $("form[name=BWLForm]"); 
@@ -211,6 +212,10 @@
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
 	}); 
+	
+	$("#excelBtn").click(function() {
+		form.attr("action", goUrlExcel).submit();
+	});
 	
 	</script>
 	<script src="/resources/dmin/js/sidebar.js"></script>

@@ -251,10 +251,14 @@
 	}); 
 	$("#searchBtn").on("click", function(){
    		form.attr("action", goUrlList).submit();
-}); 
+	}); 
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
 	}); 
+	$("#execlBtn").on("click", function(){
+   		alert("코드그룹 리스트에서는 엑셀 기능을 제공하지 않습니다.");
+	});
+	
 	</script>
     <script src="/resources/dmin/js/sidebar.js"></script>
 	

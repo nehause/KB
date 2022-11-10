@@ -215,6 +215,7 @@
 	<script>
 	var goUrlList = "/book/bookList";
 	var goUrlView = "/book/bookView"
+	var goUrlExcel = "/book/excelDownload";
 	var seq = $("input:hidden[name=bookSeq]");
 	
 	var form = $("form[name=BLForm]"); 
@@ -235,11 +236,15 @@
 	});
 	
 	$("#searchBtn").on("click", function(){
-	   		form.attr("action", goUrlList).submit();
+   		form.attr("action", goUrlList).submit();
 	}); 
 	
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
+	}); 
+	
+	$("#excelBtn").on("click", function(){
+   		form.attr("action", goUrlExcel).submit();
 	}); 
 	
 	</script>

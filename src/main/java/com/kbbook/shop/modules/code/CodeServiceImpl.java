@@ -105,6 +105,23 @@ public class CodeServiceImpl implements CodeService {
 		}
 		return rt;
 	}
+	//transport
+	public static String selectCGOneCachedCode(int CGSeq, int code) throws Exception {
+		String rt = "";
+		for(Code codeRow : Code.cachedCodeArrayList) {
+			if (codeRow.getCCG_CGSeq().equals((Integer.toString(CGSeq)))) {
+				if (codeRow.getCOrder().equals((code))) {
+					rt = codeRow.getCNameKor();
+				} else {
+					// by pass
+				}
+			} else {
+				// by pass
+			}
+			
+		}
+		return rt;
+	}
 	
 	
 	public static void clear() throws Exception {

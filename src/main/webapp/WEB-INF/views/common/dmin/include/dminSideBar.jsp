@@ -28,16 +28,19 @@
 				</div> -->
 			</li>
 			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" aria-expanded="false"  onclick="location.href='/member/memberList'">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#member-collapse" aria-expanded="false">
 					회원 관리
 				</button>
-				<!-- <div class="collapse" id="member-collapse">
+				<!-- <button class="btn btn-toggle align-items-center rounded collapsed" aria-expanded="false"  onclick="location.href='/member/memberList'">
+					회원 관리
+				</button> -->
+				<div class="collapse" id="member-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="#" class="link-dark rounded">회원 리스트</a></li>
-						<li><a href="#" class="link-dark rounded">회원 추가</a></li>
-						<li><a href="#" class="link-dark rounded">회원 수정</a></li>
+						<li><a href="/member/memberList" class="link-dark rounded">회원 리스트</a></li>
+						<li><a href="/transport/transportList" class="link-dark rounded">회원 주소 관리</a></li>
+						<!-- <li><a href="#" class="link-dark rounded">회원 수정</a></li> -->
 					</ul>
-				</div> -->
+				</div>
 			</li>
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded collapsed"  onclick="location.href='/book/bookList'" aria-expanded="false">

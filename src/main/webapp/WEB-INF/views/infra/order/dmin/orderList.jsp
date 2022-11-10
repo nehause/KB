@@ -234,6 +234,7 @@
 	<script>
 	var goUrlList = "/order/orderList";
 	var goUrlView = "/order/orderView"
+	var goUrlExcel = "/order/excelDownload"
 	var seq = $("input:hidden[name=purchaseSeq]");
 	
 	var form = $("form[name=OLForm]"); 
@@ -254,12 +255,16 @@
 	});
 	
 	$("#searchBtn").on("click", function(){
-	   		form.attr("action", goUrlList).submit();
+   		form.attr("action", goUrlList).submit();
 	}); 
 	
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
-	}); 
+	});
+	
+	$("#excelBtn").on("click", function(){
+   		form.attr("action", goUrlExcel).submit();
+	});
 	
 	</script>
 	<script src="/resources/dmin/js/sidebar.js"></script>

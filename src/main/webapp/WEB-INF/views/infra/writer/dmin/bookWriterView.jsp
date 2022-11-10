@@ -71,7 +71,7 @@
 							<H1 class="offset-1">작가 저서 관리</H1>
 							<div class="col-sm-5 gy-4 offset-1">
 								<label for="writerSeq">작가 저서 번호</label>
-								<input type="text" class="form-control" id="book_writerSeq" name="book_writerSeq" value="<c:out value="${item.book_writerSeq }"/>" placeholder="자동생성" readonly>
+								<input type="text" class="form-control" id="book_writerSeq" value="<c:out value="${item.book_writerSeq }"/>" placeholder="자동생성" readonly>
 							</div>
 						</div>
 						<div class="row">
@@ -104,7 +104,7 @@
 		<!-- viewModal start -->
 		<%@include file="../../../common/dmin/include/viewModal.jsp"%>
 		<!-- viewModal end -->
-	<form name="WVFormVo" id="BWVFormVo" method="post">
+	<form id="BWVFormVo" name="BWVFormVo" method="post">
 	<!-- *Vo.jsp s -->
 	<%@include file="bookWriterVo.jsp"%>		<!-- #-> -->
 	<!-- *Vo.jsp e -->
@@ -166,11 +166,10 @@
 		var goUrlUelete = "/writer/bookWriterUelete";				/* #-> */
 		var goUrlDelete = "/writer/bookWriterDelete";				/* #-> */
 		
-		var seq = $("#book_writerSeq");
+		var seq = $("input:hidden[name=book_writerSeq]");
 		
 		var form = $("form[name=BWVForm]"); 
 		var formVo = $("form[name=BWVFormVo]");
-		
 		
 		$("#listBtn").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
@@ -246,7 +245,7 @@
 	</script>
 
 	
-	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<!-- <script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>

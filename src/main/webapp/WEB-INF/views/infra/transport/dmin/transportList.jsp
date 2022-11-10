@@ -183,8 +183,8 @@
 															<td><c:out value="${list.zip }"/></td>
 															<td><c:out value="${list.address1 }"/></td>
 															<td><c:out value="${list.address2 }"/></td>
-															<td><c:out value="${list.registration }"/></td>
-															<td><c:out value="${list.correctation }"/></td>
+															<td><fmt:formatDate value="${list.registration }" pattern="yyyy-MM-dd"/></td>
+															<td><fmt:formatDate value="${list.correctation }" pattern="yyyy-MM-dd"/></td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>
@@ -234,7 +234,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 	var goUrlList = "/transport/transportList";
-	var goUrlView = "/transport/transportView"
+	var goUrlView = "/transport/transportView";
+	var goUrlExcel = "/transport/excelDownload";
 	var seq = $("input:hidden[name=transportSeq]");
 	
 	var form = $("form[name=TLForm]"); 
@@ -255,11 +256,14 @@
 	});
 	
 	$("#searchBtn").on("click", function(){
-	   		form.attr("action", goUrlList).submit();
+   		form.attr("action", goUrlList).submit();
 	}); 
 	
 	$("#resetBtn").on("click", function(){
 		$(location).attr("href", goUrlList);
+	}); 
+	$("#excelBtn").on("click", function(){
+   		form.attr("action", goUrlExcel).submit();
 	}); 
 	
 	</script>

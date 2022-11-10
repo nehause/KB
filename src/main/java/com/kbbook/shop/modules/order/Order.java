@@ -10,7 +10,7 @@ public class Order extends Transport{
 	private String purchaseSeq;
 	private String member_memberSeq;
 	private String transport_transportSeq;
-	private String payment;
+	private Integer payment;
 	private Timestamp time;
 	private Integer purchaseStatus;
 	private Integer delNy;
@@ -51,10 +51,10 @@ public class Order extends Transport{
 	public void setTransport_transportSeq(String transport_transportSeq) {
 		this.transport_transportSeq = transport_transportSeq;
 	}
-	public String getPayment() {
+	public Integer getPayment() {
 		return payment;
 	}
-	public void setPayment(String payment) {
+	public void setPayment(Integer payment) {
 		this.payment = payment;
 	}
 	public Timestamp getTime() {
