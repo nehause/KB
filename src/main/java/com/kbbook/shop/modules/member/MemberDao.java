@@ -101,6 +101,15 @@ public class MemberDao {
 		return sqlSession.selectList(namespace + ".favorite", dto);
 	}
 	
+	//naver
+	public Member naverLoginCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".naverLoginCheck", dto);
+	}
+	
+	public int naverInst(Member dto) {
+		return sqlSession.insert(namespace + ".naverInst", dto);
+	}
+	
 	//kakao
 	public Member snsLoginCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);

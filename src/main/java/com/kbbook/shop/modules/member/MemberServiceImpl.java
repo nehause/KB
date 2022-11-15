@@ -122,6 +122,17 @@ public class MemberServiceImpl implements MemberService {
 		return dao.favorite(dto);
 	}
 	
+	//naver
+	@Override
+	public Member naverLoginCheck(Member dto) throws Exception{
+		return dao.naverLoginCheck(dto);
+	}
+	
+	@Override
+	public int naverInst(Member dto) throws Exception{
+		return dao.naverInst(dto);
+	}
+	
 	//kakao
 	@Override
 	public Member snsLoginCheck(Member dto) throws Exception{

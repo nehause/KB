@@ -98,7 +98,7 @@
 								<button type="button" id="kakaoBtn" name="kakaoBtn" class="primary-btn genric-btn warning">
 									<i class="fa-solid fa-comment"></i> 카카오
 								</button>
-								<button type="button" value="kakao" class="primary-btn genric-btn naver">
+								<button type="button" id="naverBtn" class="primary-btn genric-btn naver">
 									<i class="fa-solid fa-n"></i> 네이버
 								</button>
 								<button type="button" value="kakao" class="primary-btn genric-btn danger">
@@ -115,14 +115,14 @@
 		</div>
 	</section>
 	<form name="form">
-			<input type="hidden" name="name"/>
-			<input type="hidden" name="snsId"/>
-			<input type="hidden" name="phone"/>
-			<input type="hidden" name="email"/>
-			<input type="hidden" name="gender"/>
-			<!-- <input type="hidden" name="dob"/> -->
-			<input type="hidden" name="token"/>
-		</form>
+		<input type="hidden" name="name"/>
+		<input type="hidden" name="snsId"/>
+		<input type="hidden" name="phone"/>
+		<input type="hidden" name="email"/>
+		<input type="hidden" name="gender"/>
+		<!-- <input type="hidden" name="dob"/> -->
+		<input type="hidden" name="token"/>
+	</form>
 	
 	<!-- start modal area -->
 	<section class="product_description_area" style="margin-top: 0px; padding-bottom: 0px;">
@@ -214,6 +214,90 @@
 	<%@include file="../../../common/user/include/footer.jsp"%>
 	<!-- footer End -->
 	<!-- 로그인 스크립트 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
+	<script>
+	/* naver login test s */
+   		
+   		/* var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "sDzp_r8VgNgKzkpNv7e6",
+				callbackUrl: "http://localhost:8080/userLogin",
+				isPopup: false,
+				loginButton: {color: "green", type: 3, height: 70} 
+			}
+		); */
+   		/* var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "sDzp_r8VgNgKzkpNv7e6",
+				callbackUrl: "http://localhost:8080/member/loginForm",
+				isPopup: false,
+				callbackHandle: true
+				//loginButton: {color: "green", type: 3, height: 70} 
+			}
+		);
+
+    	naverLogin.init(); */
+   		/*  window.addEventListener('load', function () {
+   			naverLogin.getLoginStatus(function (status) {
+   				if (status) {
+//   					 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
+   					setLoginStatus();
+   				}
+   			});
+   		}); */
+   		var naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "sDzp_r8VgNgKzkpNv7e6",
+					callbackUrl: "http://localhost:8080/member/loginForm",
+					isPopup: true
+				}
+			);
+   		
+   		$("#naverBtn").on("click", function(){
+   		
+			naverLogin.init();
+			
+			naverLogin.getLoginStatus(function (status) {
+				
+				if(!status)
+					naverLogin.authorize();
+                else
+                    setLoginStatus();  //하늘님 메소드 실행 -> Ajax
+			});
+   		});
+   		
+   		function setLoginStatus() {
+   			
+			if (naverLogin.user.gender == 'M'){
+				$("input[name=gender]").val(1);
+			} else {
+				$("input[name=gender]").val(2);
+			} 
+			
+			$.ajax({
+				async: true
+				,cache: false
+				,type:"POST"
+				,url: "/member/naverLoginProc"
+				,data: {"name": naverLogin.user.name, "id": "네이버로그인", "phone": naverLogin.user.mobile, "email": naverLogin.user.email, "gender": $("input[name=gender]").val(), "dob": naverLogin.user.birthyear+"-"+naverLogin.user.birthday, "userName": naverLogin.user.name,"name": naverLogin.user.name}
+				,success : function(response) {
+					if (response.rt == "fail") {
+						alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+						return false;
+					} else {
+						window.location.href = "/main";
+					}
+				},
+				error : function(jqXHR, status, error) {
+					//alert("알 수 없는 에러 [ " + error + " ]");
+				}
+			});
+		}
+    	/* naver login test e */
+    </script>
+	
 	<script type="text/javascript">
 	
 	function enterLogin() {
@@ -295,7 +379,6 @@
 	
 	</script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
 	<script>
 	var URL_MAIN = "/main";
 	
@@ -469,7 +552,7 @@
 	<script src="/resources/template/karma/js/jquery.nice-select.min.js"></script>
 	<script src="/resources/template/karma/js/jquery.sticky.js"></script>
 	<script src="/resources/template/karma/js/nouislider.min.js"></script>
-	<script src="/resources/template/karma/js/countdown.js"></script>
+	<!-- <script src="/resources/template/karma/js/countdown.js"></script> -->
 	<script src="/resources/template/karma/js/jquery.magnific-popup.min.js"></script>
 	<script src="/resources/template/karma/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->

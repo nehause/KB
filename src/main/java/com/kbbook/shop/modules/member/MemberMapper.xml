@@ -333,6 +333,50 @@
 		and a.member_memberSeq = #{sessSeq}
 	</select>
 	
+	<!-- naver -->
+	<!-- <select id="naverLoginCheck" resultMap="resultMapObj">
+	select
+		a.*
+	from member a
+	where 1=1
+		and id = #{id}
+	</select> -->
+	
+	<insert id ="naverInst">
+		INSERT INTO member (
+			id
+			,name
+			,userName
+			,gender
+			,dob
+			,phone
+			,email
+			,accmulate
+			,memberDelNy
+			,memberUseNy
+			,dminDiv
+		)
+		VALUES (
+			#{id}
+			,#{name}
+			,#{userName}
+			,#{gender}
+			,#{dob}
+			,#{phone}
+			,#{email}
+			,0
+			,0
+			,1
+			,1
+		)
+		<selectKey resultType="String" keyProperty="memberSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
+	<!-- naver -->
+	
 	<!-- kakao -->
 	
 	<select id="snsLoginCheck" resultMap="resultMapObj">
@@ -340,7 +384,7 @@
 		a.*
 	from member a
 	where 1=1
-		and name = #{name}
+		and id = #{id}
 		and email = #{email}
 	</select>
 	<insert id ="kakaoInst">

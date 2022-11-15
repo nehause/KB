@@ -28,6 +28,10 @@ public interface MemberService {
 	public List<Member> memberOrderList(MemberVo vo) throws Exception;
 	public List<Member> favorite(Member dto) throws Exception;
 	
+	//naver
+	public Member naverLoginCheck(Member dto) throws Exception;
+	public int naverInst(Member dto) throws Exception;
+	
 	//kakao
 	public Member snsLoginCheck(Member dto) throws Exception;
 	public int kakaoInst(Member dto) throws Exception;

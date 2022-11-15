@@ -7,7 +7,7 @@
 <mapper namespace="com.kbbook.shop.modules.book.BookMapper">
 
     <resultMap id="resultMapObj" type="com.kbbook.shop.modules.book.Book"></resultMap>
-
+ 
 	<select id="selectWriter" resultMap="resultMapObj">
 		SELECT
 			a.book_bookSeq
