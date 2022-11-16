@@ -122,6 +122,7 @@
 		<input type="hidden" name="gender"/>
 		<!-- <input type="hidden" name="dob"/> -->
 		<input type="hidden" name="token"/>
+		<input type="hidden" name="access_token">
 	</form>
 	
 	<!-- start modal area -->
@@ -247,6 +248,8 @@
    				}
    			});
    		}); */
+   		
+   		
    		var naverLogin = new naver.LoginWithNaverId(
 				{
 					clientId: "sDzp_r8VgNgKzkpNv7e6",
