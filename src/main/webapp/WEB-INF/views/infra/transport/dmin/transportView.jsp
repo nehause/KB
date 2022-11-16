@@ -125,6 +125,12 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5 gy-4 offset-1">
+								<label for="map">지도</label>
+								<div id="map" style="height:300px; margin-top:10px;"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 gy-4 offset-1">
 								<label for="delNy">삭제 여부</label>
 								<select class="form-select" id="delNy" name="delNy">
 									<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>Y</option>
@@ -254,6 +260,22 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fbcf9729cf4cb4a9f70ddf30309fa210&libraries=services"></script>
 	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	    mapOption = {
+	        center: new daum.maps.LatLng(${item.lng}, ${item.lat}), // 지도의 중심좌표
+	        level: 5 // 지도의 확대 레벨
+	    };
+	
+	    //지도를 미리 생성
+	    var map = new daum.maps.Map(mapContainer, mapOption);
+	    //주소-좌표 변환 객체를 생성
+	    var geocoder = new daum.maps.services.Geocoder();
+	    //마커를 미리 생성
+	    var marker = new daum.maps.Marker({
+	        position: new daum.maps.LatLng(${item.lng}, ${item.lat}),
+	        map: map
+	    });
+	    
 	    function PostCode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -271,6 +293,7 @@
 	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
 	                    addr = data.jibunAddress;
 	                }
+	                
 	
 	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
 	                if(data.userSelectedType === 'R'){
@@ -308,6 +331,12 @@
 //	    	                //위의 것과 같다
 //	    	                document.getElementById("lng").value = result[0].y; // 위도
 //	    	                document.getElementById("lat").value = result[0].x; // 경도
+	 						mapContainer.style.display = "block";
+	                        map.relayout();
+	                        // 지도 중심을 변경한다.
+	                        map.setCenter(coords);
+	                        // 마커를 결과값으로 받은 위치로 옮긴다.
+	                        marker.setPosition(coords)
 	    	                
 	                    }
 	                });
@@ -369,7 +398,7 @@
 		
 	</script>
 <!-- end -->
-	<script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<!-- <script src="/resources/dmin/js/bootStrapSidebar.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
     <script src="/resources/dmin/js/sidebar.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
