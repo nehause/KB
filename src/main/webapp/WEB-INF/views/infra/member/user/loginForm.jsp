@@ -260,7 +260,7 @@
 				}
 			);
    		
-   		$("#naverBtn").on("click", function(){
+   		/* $("#naverBtn").on("click", function(){
    		
 			naverLogin.init();
 			
@@ -271,6 +271,28 @@
                 else
                     setLoginStatus();  //하늘님 메소드 실행 -> Ajax
 			});
+   		}); */
+   		
+   		naverLogin.init();
+   		
+   		$("#naverBtn").on("click", function() {
+   			naverLogin.getLoginStatus(function (status) {
+  				if (!status) {
+  					naverLogin.authorize();
+  				} else {
+					setLoginStatus();
+  				}
+  			});
+		})
+   		
+		window.addEventListener('load', function () {
+			if (naverLogin.accessToken != null) { 
+	  			naverLogin.getLoginStatus(function (status) {
+	  				if (status) {
+	  					setLoginStatus();
+	  				}
+  				});
+			}
    		});
    		
    		function setLoginStatus() {
@@ -465,7 +487,7 @@
 					,cache: false
 					,type:"POST"
 					,url: "/member/kakaoLoginProc"
-					,data: {"name": $("input[name=name]").val(), "snsId": $("input[name=snsId]").val(), "phone": $("input[name=phone]").val(), "email": $("input[name=email]").val(), "gender": $("input[name=gender]").val(), /* "dob": $("input[name=dob]").val(), */ "token": $("input[name=token]").val()}
+					,data: {"name": $("input[name=name]").val(), "id": "카카오로그인", "phone": $("input[name=phone]").val(), "email": $("input[name=email]").val(), "gender": $("input[name=gender]").val(), /* "dob": $("input[name=dob]").val(), */ "token": $("input[name=token]").val()}
 					,success : function(response) {
 						if (response.rt == "fail") {
 							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
