@@ -253,9 +253,9 @@
    		var naverLogin = new naver.LoginWithNaverId(
 				{
 					clientId: "sDzp_r8VgNgKzkpNv7e6",
-					callbackUrl: "http://localhost:8080/member/loginForm", 
-					/* clientId: "_Ep2NDg_yNG1Xouf65sw",
-					callbackUrl: "http://3.35.48.216/member/loginForm", */
+					callbackUrl: "http://localhost:8080/member/loginForm",
+//					clientId: "_Ep2NDg_yNG1Xouf65sw",
+//					callbackUrl: "http://3.35.48.216/member/loginForm",
 					isPopup: true
 				}
 			);
@@ -439,9 +439,9 @@
 		});
 	});
 	Kakao.init('fbcf9729cf4cb4a9f70ddf30309fa210'); // localhost 
-	console.log(Kakao.isInitialized());
-    /* Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
-	console.log(Kakao.isInitialized());  */
+	console.log(Kakao.isInitialized()); 
+//    Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
+//	console.log(Kakao.isInitialized());  
 	
 	$("#kakaoBtn").on("click", function() {
 		/* Kakao.Auth.authorize({
