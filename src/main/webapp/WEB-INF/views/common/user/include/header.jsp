@@ -22,6 +22,7 @@
 									<li class="nav-item"><a class="nav-link" href="/member/loginForm">로그인</a></li>
 									<li class="nav-item"><a class="nav-link" href="/member/memberRegForm">회원가입</a></li>
 									<li class="nav-item"><a class="nav-link" href="/book/bookIndex">도서 목록</a></li>
+									<li class="nav-item"><a class="nav-link" href="/">초기 화면</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="nav-item" style="padding-top: 10px;"><b><c:out value="${sessName }"/></b>님 안녕하세요</li>
@@ -29,18 +30,16 @@
 									<li class="nav-item"><a class="nav-link" href="/book/bookIndex">도서 목록</a></li>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">마이룸</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="/member/memberMyRoom/">주문/배송 조회</a></li>
-										<li class="nav-item"><a class="nav-link" href="/member/memberRoomModCheck">회원정보 수정</a></li>
-										<li class="nav-item"><a class="nav-link" href="/member/memberRoomModPassword">비밀번호 변경</a></li>
-										<li class="nav-item"><a class="nav-link" href="/transport/transportForm">나의 주소록</a></li>
-									</ul>
-								</li>
+										<ul class="dropdown-menu">
+											<li class="nav-item"><a class="nav-link" href="/member/memberMyRoom/">주문/배송 조회</a></li>
+											<li class="nav-item"><a class="nav-link" href="/member/memberRoomModCheck">회원정보 수정</a></li>
+											<li class="nav-item"><a class="nav-link" href="/member/memberRoomModPassword">비밀번호 변경</a></li>
+											<li class="nav-item"><a class="nav-link" href="/transport/transportForm">나의 주소록</a></li>
+										</ul>
+									</li>
+									<li class="nav-item"><a class="nav-link" href="/">초기 화면</a></li>
 								</c:otherwise>
-								
 							</c:choose>
-							
-							
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item">

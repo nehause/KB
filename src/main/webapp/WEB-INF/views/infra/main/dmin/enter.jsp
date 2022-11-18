@@ -51,19 +51,25 @@
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-image: url(/resources/template/karma/img/banner/banner-bg.jpg); background-repeat: no-repeat; background-size: cover; overflow-x:hidden; overflow-y:auto;">
 
-<div class="row">
-
-<div class="col-5 offset-1">
-<a href="/main"><button type="button" id="userBtn" name="userBtn" class="btn primary-btn genric-btn primary"><span style="font-size: 100px;">사용자</span></button></a>
-</div>
-
-<div class="col-5">
-<a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a>
-</div>
-</div>
-
+	<section>
+		<div class="main_menu">
+			<div class="row">
+				<div class="col-5 offset-1" style="vertical-align: middle;">
+					<!-- <a href="/main"><button type="button" id="userBtn" name="userBtn" class="btn primary-btn genric-btn primary"><span style="font-size: 100px;">사용자</span></button></a> -->
+					<a href="/main"><button type="button" id="userBtn" name="userBtn" ><img alt="" src="/resources/images/dminSample.png"></button></a>
+					<!-- <img alt="" src="/resources/images/dminSample.png"> -->
+				</div>
+				<div class="col-5" style="vertical-align: middle;">
+					<!-- <a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a> -->
+					<a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn"><img alt="" src="/resources/images/userSample.png"></button></a>
+					<!-- <img alt="" src="/resources/images/userSample.png"> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
 <script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

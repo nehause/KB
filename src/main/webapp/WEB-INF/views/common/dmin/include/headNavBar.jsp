@@ -17,6 +17,9 @@
 		<div class="col-sm-1">
 			<button class="btn btn-warning" id="logoutBtn" name="logoutBtn" onclick="logOut()">로그아웃</button>
 		</div>
+		<div class="col-sm-1">
+			<button class="btn btn-success" id="mainBtn" name="mainBtn" onclick="goMain()">초기화면</button>
+		</div>
 	</div>
 </div>
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
@@ -82,5 +85,11 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
-	}
+	};
+	
+	function goMain(){
+		location.href = "/"
+		
+	};
+	
 	</script>
