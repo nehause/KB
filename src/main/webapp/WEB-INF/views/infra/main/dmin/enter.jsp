@@ -57,13 +57,13 @@
 		<div class="main_menu">
 			<div class="row">
 				<div class="col-5 offset-1" style="vertical-align: middle;">
-					<!-- <a href="/main"><button type="button" id="userBtn" name="userBtn" class="btn primary-btn genric-btn primary"><span style="font-size: 100px;">사용자</span></button></a> -->
-					<a href="/main"><button type="button" id="userBtn" name="userBtn" ><img alt="" src="/resources/images/dminSample.png"></button></a>
+					<a href="/main"><button type="button" id="userBtn" name="userBtn" class="btn primary-btn genric-btn primary"><span style="font-size: 100px;">사용자</span></button></a>
+					<!-- <a href="/main"><button type="button" id="userBtn" name="userBtn" ><img alt="" src="/resources/images/dminSample.png"></button></a> -->
 					<!-- <img alt="" src="/resources/images/dminSample.png"> -->
 				</div>
 				<div class="col-5" style="vertical-align: middle;">
-					<!-- <a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a> -->
-					<a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn"><img alt="" src="/resources/images/userSample.png"></button></a>
+					<a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn" class="btn primary-btn genric-btn facebook"><span style="font-size: 100px;">관리자</span></button></a>
+					<!-- <a href="/dminLogin"><button type="button" id="dminBtn" name="dminBtn"><img alt="" src="/resources/images/userSample.png"></button></a> -->
 					<!-- <img alt="" src="/resources/images/userSample.png"> -->
 				</div>
 			</div>
