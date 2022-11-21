@@ -260,7 +260,7 @@
 				}
 			);
    		
-   		/* $("#naverBtn").on("click", function(){
+   		/* $("#naverBtn").on("click", function(){ //이 함수는 네이버 버튼을 두번 클릭해야하는 함수
    		
 			naverLogin.init();
 			
@@ -271,12 +271,12 @@
                 else
                     setLoginStatus();  //하늘님 메소드 실행 -> Ajax
 			});
-   		}); */
+   		}); */ 
    		
    		naverLogin.init();
    		
    		$("#naverBtn").on("click", function() {
-   			naverLogin.getLoginStatus(function (status) {
+   			naverLogin.getLoginStatus(function (status) { // 이 함수는 아래 함수와 연동되어 네이버 버튼을 한번만 누르면 되는 함수
   				if (!status) {
   					naverLogin.authorize();
   				} else {
