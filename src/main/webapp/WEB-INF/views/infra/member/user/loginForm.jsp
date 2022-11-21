@@ -327,6 +327,8 @@
 	
 	<script type="text/javascript">
 	
+	var URL_MAIN = "/main";
+	
 	function enterLogin() {
         if (window.event.keyCode == 13) {
             // 엔터키가 눌렸을 때 실행할 내용
@@ -357,6 +359,36 @@
 			});
         }
 	}
+	
+	$("#loginBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/loginProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else {
+						location.href = URL_MAIN;
+					} */
+					location.href = URL_MAIN;
+					
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
 	
 	</script>
 	<script>
@@ -407,40 +439,9 @@
 	</script>
 
 	<script>
-	var URL_MAIN = "/main";
-	
-	$("#loginBtn").on("click", function(){
-		/* if(validation() == false) return false; */
-		
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			/* ,dataType:"json" */
-			,url: "/member/loginProc"
-			/* ,data : $("#formLogin").serialize() */
-			,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
-			,success: function(response) {
-				if(response.rt == "success") {
-					/* if(response.changePwd == "true") {
-						location.href = URL_CHANGE_PWD_FORM;
-					} else {
-						location.href = URL_MAIN;
-					} */
-					location.href = URL_MAIN;
-					
-				} else {
-					alert("회원없음");
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
 	Kakao.init('fbcf9729cf4cb4a9f70ddf30309fa210'); // localhost 
 	console.log(Kakao.isInitialized()); 
-//    Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
+//  Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
 //	console.log(Kakao.isInitialized());  
 	
 	$("#kakaoBtn").on("click", function() {
