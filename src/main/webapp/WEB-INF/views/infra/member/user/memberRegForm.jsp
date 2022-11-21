@@ -51,8 +51,8 @@
 				<div class="col-first">
 					<h1>회원가입</h1>
 					<nav class="d-flex align-items-center">
-						<a href="/">메인<span class="lnr lnr-arrow-right"></span></a>
-						<a href="/loginForm">회원가입</a>
+						<a href="/main">메인<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/member/memberRegForm">회원가입</a>
 					</nav>
 				</div>
 			</div>

@@ -52,9 +52,9 @@
 				<div class="col-first">
 					<h1>마이룸</h1>
 					<nav class="d-flex align-items-center">
-						<a href="main.html">메인<span class="lnr lnr-arrow-right"></span></a>
-						<a href="memberRoomForm.html">마이룸<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">비밀번호변경</a>
+						<a href="/main">메인<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/member/memberMyRoom">마이룸<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/member/memberRoomModPassword">비밀번호변경</a>
 					</nav>
 				</div>
 			</div>

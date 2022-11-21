@@ -74,8 +74,9 @@
                 <div class="col-first">
                     <h1>주문/결제</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">메인<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/resources/book/bookView.html">주문/결제</a>
+                        <a href="/main">메인<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/book/bookIndex">도서 목록<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="#">주문/결제</a>
                     </nav>
                 </div>
             </div>

@@ -59,8 +59,8 @@
 				<div class="col-first">
 					<h1>마이룸</h1>
 					<nav class="d-flex align-items-center">
-						<a href="main.html">마이룸<span class="lnr lnr-arrow-right"></span></a>
-						<a href="memberRoomForm.html">주문/배송 조회</a>
+						<a href="/member/memberMyRoom">마이룸<span class="lnr lnr-arrow-right"></span></a>
+						<a href="#">주문/배송 조회</a>
 					</nav>
 				</div>
 			</div>

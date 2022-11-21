@@ -51,8 +51,8 @@
                 <div class="col-first">
                     <h1>주문/결제</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">메인<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/resources/book/bookView.html">주문/결제</a>
+                        <a href="/main">메인<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/member/memberMyRoom">주문/배송 조회</a>
                     </nav>
                 </div>
             </div>

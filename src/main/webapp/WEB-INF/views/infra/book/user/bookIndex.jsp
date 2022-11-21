@@ -50,9 +50,8 @@
 				<div class="col-first">
 					<h1>도서 목록</h1>
 					<nav class="d-flex align-items-center">
-						<a href="/resources/member/main.html">메인<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">도서<span class="lnr lnr-arrow-right"></span></a>
-						<a href="bookList.html">도서 목록</a>
+						<a href="/main">메인<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/book/bookIndex">도서 목록</a>
 					</nav>
 				</div>
 			</div>
