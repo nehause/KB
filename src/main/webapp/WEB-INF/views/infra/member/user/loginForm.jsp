@@ -329,39 +329,7 @@
 	
 	var URL_MAIN = "/main";
 	
-	function enterLogin() {
-        if (window.event.keyCode == 13) {
-            // 엔터키가 눌렸을 때 실행할 내용
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post"
-				/* ,dataType:"json" */
-				,url: "/member/loginProc"
-				/* ,data : $("#formLogin").serialize() */
-				,data : { "id" : $("#id").val(), "password" : $("#password").val() }/* , "autoLogin" : $("#autoLogin").is(":checked")}*/
-				,success: function(response) {
-					if(response.rt == "success") {
-						/* if(response.changePwd == "true") {
-							location.href = URL_CHANGE_PWD_FORM;
-						} else {
-							location.href = URL_MAIN;
-						} */
-						location.href = URL_MAIN;
-						
-					} else {
-						alert("회원없음");
-					}
-				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
-        }
-	}
-	
-	$("#loginBtn").on("click", function(){
-		/* if(validation() == false) return false; */
+	function loginAjax() {
 		
 		$.ajax({
 			async: true 
@@ -388,6 +356,21 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
+		
+	}
+	
+	function enterLogin() {
+        if (window.event.keyCode == 13) {
+            // 엔터키가 눌렸을 때 실행할 내용
+			loginAjax();
+        }
+	}
+	
+	$("#loginBtn").on("click", function(){
+		/* if(validation() == false) return false; */
+		
+		loginAjax();
+		
 	});
 	
 	</script>
