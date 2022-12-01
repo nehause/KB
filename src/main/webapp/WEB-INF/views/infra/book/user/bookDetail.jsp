@@ -139,17 +139,23 @@
 								<a class="primary-btn" id="purchaseBtn" name="purchaseBtn" href="javascript:goPurchase(<c:out value="${item.bookSeq }"/>)"><span style="color:white;">구매하기</span></a>
 								<!-- <a class="icon_btn" href="#" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-diamond"></i></a> -->
 								<c:choose>
-									<c:when test="${favorite eq 0}">
-										<a class="icon_btn" id="FInst" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+									<c:when test="${sessSeq eq null }">
 									</c:when>
 									<c:otherwise>
-										<a class="icon_btn" id="FDele" style="padding-top: 14px; padding-left: 2px; background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);"><i class="lnr lnr lnr-heart"></i></a>
+										<c:choose>
+											<c:when test="${favorite eq 0}">
+												<a class="icon_btn" id="FInst" style="padding-top: 14px; padding-left: 2px;"><i class="lnr lnr lnr-heart"></i></a>
+											</c:when>
+											<c:otherwise>
+												<a class="icon_btn" id="FDele" style="padding-top: 14px; padding-left: 2px; background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);"><i class="lnr lnr lnr-heart"></i></a>
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
-								<a id="kakaotalk-sharing-btn" href="javascript:shareMessage();">
+								<!-- <a id="kakaotalk-sharing-btn" href="javascript:shareMessage();">
 								  <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
 								    alt="카카오톡 공유 보내기 버튼" />
-								</a>
+								</a> -->
 							</div>
 						</div>
 					</div>
@@ -620,91 +626,7 @@
 	});
 		
 	</script>
-	
-	<script>
-	
-	
-	</script>
-	
-	<!-- <script>
-		var num = idNum;
-		if($('#userGrade_' + num).val() == 5 ){
-			
-			$('#userStar_' + num).text("★★★★★");
-		
-		} else if($('#userGrade_' + num).val() == 4 ){
-		
-			$('#userStar_' + num).text("★★★★");
-		
-		} else if($('#userGrade_' + num).val() == 3 ){
-		
-			$('#userStar_' + num).text("★★★");
-		
-		} else if($('#userGrade_' + num).val() == 2 ){
-		
-			$('#userStar_' + num).text("★★");
-		
-		} else if($('#userGrade_' + num).val() == 1 ){
-		
-			$('#userStar_' + num).text("★");
-		
-		} else {
-		
-			$('#userStar_' + num).text("");
-		
-		}
-			
-	</script> -->
-	<!-- <script>
-	  function shareMessage() {
-		  Kakao.Share.createDefaultButton({
-			  container: '#kakaotalk-sharing-btn',
-			  objectType: 'feed',
-			  content: {
-			    title: '<c:out value="#{item.name}"/>',
-			    description: '#{item.subName}',
-			    imageUrl:
-			      '${bookListUploaded.path }${bookListUploaded.uuidName }',
-			    link: {
-			      mobileWebUrl: 'https://developers.kakao.com',
-			      webUrl: 'https://developers.kakao.com',
-			    },
-			  },
-			  itemContent: {
-			    profileText: 'Kakao',
-			    profileImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-			    titleImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-			    titleImageText: 'Cheese cake',
-			    titleImageCategory: 'Cake',
-			    items: [
-			      {
-			        item: '정가',
-			        itemOp: '#{item.price}원',
-			      },
-			      {
-			    	item: '할인가',
-			    	itemOp: ''
-			      }
-			    ],
-			    sum: '구매가',
-			    sumOp: '#{item.cost}원',
-			  },
-			  social: {
-			    likeCount: <fmt:formatNumber type="number" pattern="###.#" value="${avg.gradeAVG}" />,
-			    commentCount: ${fn:length(comment)}
-			  },
-			  buttons: [
-			    {
-			      title: '웹으로 이동',
-			      link: {
-			        mobileWebUrl: 'https://developers.kakao.com',
-			        webUrl: 'https://developers.kakao.com',
-			      },
-			    }
-			  ],
-			});
-	  }
-	</script> -->
+
 	<script src="/resources/template/karma/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>

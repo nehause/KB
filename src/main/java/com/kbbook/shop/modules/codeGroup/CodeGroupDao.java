@@ -16,9 +16,11 @@ public class CodeGroupDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
-	@Inject
-	@Resource(name = "sqlSessionOracle")
-	private SqlSession sqlSessionOracle;
+	/*
+	 * @Inject
+	 * 
+	 * @Resource(name = "sqlSessionOracle") private SqlSession sqlSessionOracle;
+	 */
 	
 	private static String namespace = "com.kbbook.shop.modules.codeGroup.CodeGroupMapper";
 	
@@ -66,8 +68,9 @@ public class CodeGroupDao {
 	}
 	
 	//oracle test
-	public List<CodeGroup> selectListOracle(CodeGroupVo vo){
-		List<CodeGroup> list = sqlSessionOracle.selectList(namespace + ".selectListOracle", vo);
-		return list;
-	}
+	/*
+	 * public List<CodeGroup> selectListOracle(CodeGroupVo vo){ List<CodeGroup> list
+	 * = sqlSessionOracle.selectList(namespace + ".selectListOracle", vo); return
+	 * list; }
+	 */
 }
