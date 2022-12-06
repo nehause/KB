@@ -424,7 +424,7 @@
 	<script>
 	Kakao.init('fbcf9729cf4cb4a9f70ddf30309fa210'); // localhost 
 	console.log(Kakao.isInitialized()); 
-//  Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
+//	Kakao.init('28ebc8834117458183ac33ed6cbb0505'); // server
 //	console.log(Kakao.isInitialized());  
 	
 	$("#kakaoBtn").on("click", function() {
