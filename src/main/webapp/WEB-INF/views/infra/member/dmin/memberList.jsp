@@ -169,7 +169,7 @@
 												<c:otherwise>
 													<c:forEach items="${list}" var="list" varStatus="status">
 														<tr onclick="location.href='javascript:goView(<c:out value="${list.memberSeq }"/>)'" style="cursor: pointer;">
-															<td>
+															<td onclick="event.cancelBubble=true">
 																<input class="form-check-input" type="checkbox" name="memberCheck" value="memberChecked" onclick="checkSelectAll();">
 															</td>
 															<td><c:out value="${status.count }"/></td>

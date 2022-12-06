@@ -158,7 +158,7 @@
 														<c:forEach items="${list}" var="list" varStatus="status">
 															<!-- gateway?변수명 =값 -->
 															<tr onclick="location.href='javascript:goView(<c:out value="${list.CGSeq }"/>)'" style="cursor: pointer;">
-																<td>
+																<td onclick="event.cancelBubble=true">
 																	<input class="form-check-input" type="checkbox" name="codeGroupCheck" value="codeGroupChecked" onclick="checkSelectAll();">
 																</td>
 																<td>
